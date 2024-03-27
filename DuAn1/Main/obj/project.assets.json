@@ -2017,9 +2017,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\Main.csproj",
-      "projectName": "Main",
-      "projectPath": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\Main.csproj",
+      "projectUniqueName": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\MM.csproj",
+      "projectName": "MM",
+      "projectPath": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\MM.csproj",
       "packagesPath": "C:\\Users\\FPTSHOP\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\obj\\",
       "projectStyle": "PackageReference",
