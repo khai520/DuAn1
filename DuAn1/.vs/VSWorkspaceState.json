@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Main",
+    "\\Main\\GUI",
+    "\\Main\\GUI\\VIEW"
   ],
-  "SelectedNode": "\\MainApp",
+  "SelectedNode": "\\Main",
   "PreviewInSolutionExplorer": false
 }
