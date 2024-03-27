@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj": {}
+    "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\Main.csproj": {}
   },
   "projects": {
-    "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj": {
+    "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\Main.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj",
+        "projectUniqueName": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\Main.csproj",
         "projectName": "Main",
-        "projectPath": "D:\\da1\\DuAn1\\DuAn1\\Main\\Main.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\da1\\DuAn1\\DuAn1\\Main\\obj\\",
+        "projectPath": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\Main.csproj",
+        "packagesPath": "C:\\Users\\FPTSHOP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\FPTSHOP\\Documents\\GitHub\\DuAn1\\DuAn1\\Main\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\FPTSHOP\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
