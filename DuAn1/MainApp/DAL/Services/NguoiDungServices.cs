@@ -28,7 +28,7 @@ namespace WinFormsApp1.Services
                 Dthoai = sdt,
                 Trangthai = trangthai
             };
-            return true;
+            return repo.them(user);
         }
         public bool UpdateUser(string id, string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
         {

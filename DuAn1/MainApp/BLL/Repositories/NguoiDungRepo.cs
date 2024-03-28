@@ -27,8 +27,8 @@ namespace WinFormsApp1.Repositories
         public bool them(NguoiDung nguoiDung)
         {
             context.NguoiDungs.Add(nguoiDung);
-            context.SaveChanges();
-            return true;
+            
+            return context.SaveChanges() > 0;
         }
         public bool sua(string IDND, NguoiDung nguoiDung)
         {
@@ -48,9 +48,8 @@ namespace WinFormsApp1.Repositories
                 obj.Dthoai = nguoiDung.Dthoai;
                 obj.Trangthai = nguoiDung.Trangthai;
                 context.Update(obj);
-                context.SaveChanges();
 
-                return true;
+                return context.SaveChanges() > 0;
             }
             catch (Exception)
             {
