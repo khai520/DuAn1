@@ -16,6 +16,9 @@
     <Compile Update="GUI\VIEW\SanPham.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="GUI\VIEW\TimKiemHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="GUI\VIEW\TrangChu.cs">
       <SubType>Form</SubType>
     </Compile>

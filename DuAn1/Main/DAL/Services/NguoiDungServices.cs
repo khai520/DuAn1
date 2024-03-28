@@ -13,7 +13,7 @@ namespace WinFormsApp1.Services
 {
     internal class NguoiDungServices
     {
-        NguoiDungRepo repo =  new NguoiDungRepo();
+        NguoiDungRepo repo = new NguoiDungRepo();
         static int counter = 0;
         public bool AddUser(string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
 
@@ -21,6 +21,7 @@ namespace WinFormsApp1.Services
             var user = new NguoiDung
             {
                 //IdnguoiDung = GenerateID(),
+
                 Ten = ten,
                 MatKhau = matkhau,
                 Diachi = diachi,
@@ -44,11 +45,7 @@ namespace WinFormsApp1.Services
             };
             return repo.sua(id, nguoidung);
         }
-        static string GenerateID()
-        {
-            counter++;
-            return "ND" + counter.ToString();
-        }
+
         public bool CheckLogin(string email, string password)
         {
             if (repo.CheckLogin(email, password).Count > 0)
@@ -59,6 +56,16 @@ namespace WinFormsApp1.Services
             {
                 return false;
             }
+        } 
+            public List<NguoiDung> SortByName()
+            {
+                List<NguoiDung> nguoidungSoft = repo.getallSPrepo().ToList();
+                nguoidungSoft.Sort((x, y) => x.Ten.CompareTo(y.Ten));
+                return nguoidungSoft;
+            }
+            public List<NguoiDung> FindSvByName(string name)
+            {
+                return repo.FindSvByName(name).ToList();
+            }
         }
-    }
 }
