@@ -1,4 +1,4 @@
-using Main.BLL.Models2;
+﻿using Main.BLL.Models2;
 using WinFormsApp1.Services;
 using Main.DAL.Services;
 namespace APPBanHang
@@ -66,7 +66,14 @@ namespace APPBanHang
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            NguoiDung nguoiDung = NguoiDungServices.checktkdn(txt_tendn.Text, txt_mk.Text).Find(x => x.Email == txt_tendn.Text && x.MatKhau == txt_mk.Text);
+            NguoiDung nguoiDung = new();
+            if (NguoiDungServices.CheckLogin(txt_tendn.Text, txt_mk.Text))
+            {
+                 nguoiDung = NguoiDungServices.checktkdn(txt_tendn.Text, txt_mk.Text).Find(x => x.Email == txt_tendn.Text && x.MatKhau == txt_mk.Text);
+            } else
+            {
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu","Thông báo", MessageBoxButtons.OK);
+            }
             if(txt_tendn.Text == "")
             {
                 MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
