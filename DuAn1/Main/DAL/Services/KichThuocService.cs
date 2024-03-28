@@ -43,9 +43,15 @@ namespace Main.DAL.Services
             return true;
         }
 
-        public List<Kichthuoc> FindKtByName(string name)
+        public List<Kichthuoc> SortByName()
         {
-            return kichthuoc.FindSvByName(name).ToList();
+            List<Kichthuoc> kichthuocSoft = kichthuoc.getallKtRepo().ToList();
+            kichthuocSoft.Sort((x, y) => x.Kichthuoc1.CompareTo(y.Kichthuoc1));
+            return kichthuocSoft;
+        }
+        public List<Kichthuoc> FindSvByName(string name)
+        {
+            return ChatLieuRepo.FindSvByName(name).ToList();
         }
     }
 }

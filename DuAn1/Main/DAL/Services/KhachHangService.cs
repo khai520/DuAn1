@@ -47,7 +47,13 @@ namespace Main.DAL.Services
             return true;
         }
 
-        public List<Khachhang> FindDegiayByName(string name)
+        public List<Khachhang> SortByName()
+        {
+            List<Khachhang> khachhangSoft = repo.getallSPrepo().ToList();
+            khachhangSoft.Sort((x, y) => x.Ten.CompareTo(y.Ten));
+            return khachhangSoft;
+        }
+        public List<Khachhang> FindSvByName(string name)
         {
             return repo.FindSvByName(name).ToList();
         }

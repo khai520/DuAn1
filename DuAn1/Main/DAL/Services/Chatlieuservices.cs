@@ -16,10 +16,7 @@ namespace Main.DAL.Services
         {
             return chatlieu.getallSPrepo().ToList();
         }
-        public List<Chatlieu> FindSvByName(string name)
-        {
-            return chatlieu.FindSvByName(name).ToList();
-        }
+        
         
         public bool Them(string id , string name)
         {
@@ -45,6 +42,15 @@ namespace Main.DAL.Services
         {
             return true;
         }
-
+        public List<Chatlieu> SortByName()
+        {
+            List<Chatlieu> chatlieuSoft = chatlieu.getallSPrepo().ToList();
+            chatlieuSoft.Sort((x, y) => x.Chatlieu1.CompareTo(y.Chatlieu1));
+            return chatlieuSoft;
+        }
+        public List<Chatlieu> FindSvByName(string name)
+        {
+            return chatlieu.FindSvByName(name).ToList();
+        }
     }
 }

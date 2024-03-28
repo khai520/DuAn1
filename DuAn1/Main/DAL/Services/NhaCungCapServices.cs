@@ -45,6 +45,16 @@ namespace WinFormsApp1.Services
         public List<NhaCungCap> FindNCCByName(string name)
         {
             return nhacungcap.FindSvByName(name).ToList();
+        } 
+        public List<NhaCungCap> SortByName()
+        {
+                List<NhaCungCap> nhacungcapSoft = nhacungcap.getallSPrepo().ToList();
+                nhacungcapSoft.Sort((x, y) => x.Tenncc.CompareTo(y.Tenncc));
+                return nhacungcapSoft;
         }
-    }
+        public List<NhaCungCap> FindSvByName(string name)
+        {
+            return nhacungcap.FindSvByName(name).ToList();
+        }
+        }
 }

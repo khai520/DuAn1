@@ -47,5 +47,12 @@ namespace Main.DAL.Services
         {
             return giayRepo.FindSvByName(name).ToList();
         }
+        public List<Degiay> SortByName()
+        {
+            List<Degiay> degiaySoft = giayRepo.getallSPrepo().ToList();
+            degiaySoft.Sort((x, y) => x.Degiay1.CompareTo(y.Degiay1));
+            return degiaySoft;
+        }
+        
     }
 }

@@ -47,5 +47,12 @@ namespace Main.DAL.Services
         {
             return mau.FindSvByName(name).ToList();
         }
+        public List<Mausac> SortByName()
+        {
+            List<Mausac> mausacSoft = mau.getallMauRepo().ToList();
+            mausacSoft.Sort((x, y) => x.Mau.CompareTo(y.Mau));
+            return mausacSoft;
+        }
+       
     }
 }

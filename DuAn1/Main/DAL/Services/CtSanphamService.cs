@@ -53,5 +53,11 @@ namespace Main.DAL.Services
         {
             return sanpham.FindSvByName(name).ToList();
         }
+        public List<Sanpham> SortByName()
+        {
+            List<Sanpham> sanphamSoft = sanpham.getallSPrepo().ToList();
+            sanphamSoft.Sort((x, y) => x.Tensp.CompareTo(y.Tensp));
+            return sanphamSoft;
+        }
     }
 }

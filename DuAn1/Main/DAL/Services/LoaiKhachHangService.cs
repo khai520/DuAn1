@@ -16,6 +16,14 @@ namespace Main.DAL.Services
         public List<Loaikhachhang> Getallkh()
         {
             return repo.getallLoaiKhachHangRepo().ToList();
+
         }
+        public List<Loaikhachhang> SortByName()
+        {
+            List<Loaikhachhang> loaikhachhangSoft = repo.getallLoaiKhachHangRepo().ToList();
+            loaikhachhangSoft.Sort((x, y) => x.Ten.CompareTo(y.Ten));
+            return loaikhachhangSoft;
+        }
+        
     }
 }

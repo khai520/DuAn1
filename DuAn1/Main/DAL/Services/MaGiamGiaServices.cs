@@ -47,5 +47,12 @@ namespace Main.DAL.Services
         {
             return repo.FindMGGByName(name).ToList();
         }
+        public List<Magiamgia> SortByName()
+        {
+            List<Magiamgia> magiamgiaSoft = repo.getallMaRepo().ToList();
+            magiamgiaSoft.Sort((x, y) => x.Tenma.CompareTo(y.Tenma));
+            return magiamgiaSoft;
+        }
+        
     }
 }
