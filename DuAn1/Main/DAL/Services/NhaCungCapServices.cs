@@ -10,9 +10,41 @@ namespace WinFormsApp1.Services
 {
     internal class NhaCungCapServices
     {
-        public List<NhaCungCap> GetNhaCungCaps(List<NhaCungCap> list)
+        NhaCungCapRepo nhacungcap = new NhaCungCapRepo();
+
+        public List<NhaCungCap> getallSnhacungcap()
         {
-            return list;
+            return nhacungcap.getallSPrepo().ToList();
+        }
+
+        public bool Them(string id, string name)
+        {
+            NhaCungCap nha = new NhaCungCap
+            {
+                Idncc = id,
+                Tenncc = name
+            };
+            return true;
+        }
+        public bool Sua(string id, string name)
+        {
+            NhaCungCap nha1 = new NhaCungCap
+            {
+                Idncc = id,
+                Tenncc = name
+            };
+            return nhacungcap.sua(id, nha1);
+
+        }
+
+        public bool Xoa(string ID)
+        {
+            return true;
+        }
+
+        public List<NhaCungCap> FindNCCByName(string name)
+        {
+            return nhacungcap.FindSvByName(name).ToList();
         }
     }
 }

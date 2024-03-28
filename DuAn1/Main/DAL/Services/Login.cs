@@ -9,7 +9,7 @@ namespace Main.DAL.Services
 {
     internal class Login
     {
-        public List<NguoiDung> getAll(List<NguoiDung> list)
+        public List<NguoiDung> GetAll(List<NguoiDung> list)
         {
             return list.ToList();
         }
