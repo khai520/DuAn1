@@ -38,7 +38,6 @@
             label8 = new Label();
             dateTimePicker1 = new DateTimePicker();
             label7 = new Label();
-            textBox4 = new TextBox();
             textBox3 = new TextBox();
             label6 = new Label();
             textBox2 = new TextBox();
@@ -62,6 +61,7 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             button11 = new Button();
             button10 = new Button();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -74,9 +74,9 @@
             label4.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label4.Location = new Point(10, 44);
             label4.Name = "label4";
-            label4.Size = new Size(99, 18);
+            label4.Size = new Size(94, 18);
             label4.TabIndex = 3;
-            label4.Text = "ID Voucher";
+            label4.Text = "Trạng Thái";
             // 
             // label1
             // 
@@ -110,11 +110,11 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(dateTimePicker2);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(label7);
-            panel1.Controls.Add(textBox4);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(textBox2);
@@ -164,13 +164,6 @@
             label7.Size = new Size(121, 18);
             label7.TabIndex = 23;
             label7.Text = "Ngày Hết Hạn";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(10, 65);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(122, 23);
-            textBox4.TabIndex = 22;
             // 
             // textBox3
             // 
@@ -382,7 +375,15 @@
             button10.Text = "Bán Hàng";
             button10.UseVisualStyleBackColor = true;
             // 
-            // HoaDon1
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(15, 71);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 27;
+            // 
+            // Voucher
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -401,7 +402,7 @@
             Controls.Add(panel2);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "HoaDon1";
+            Name = "Voucher";
             Text = "HoaDon1";
             Load += HoaDon1_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
@@ -442,11 +443,11 @@
         private Label label6;
         private TextBox textBox2;
         private Label label5;
-        private TextBox textBox4;
         private DateTimePicker dateTimePicker2;
         private Label label8;
         private DateTimePicker dateTimePicker1;
         private Label label7;
         private Button button10;
+        private ComboBox comboBox1;
     }
 }

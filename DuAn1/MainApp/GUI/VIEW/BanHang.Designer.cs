@@ -51,14 +51,8 @@
             button13 = new Button();
             button14 = new Button();
             textBox1 = new TextBox();
-            textBox2 = new TextBox();
             dateTimePicker1 = new DateTimePicker();
-            textBox4 = new TextBox();
-            label1 = new Label();
             label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            comboBox1 = new ComboBox();
             comboBox2 = new ComboBox();
             textBox3 = new TextBox();
             textBox5 = new TextBox();
@@ -288,96 +282,47 @@
             textBox1.Size = new Size(175, 23);
             textBox1.TabIndex = 80;
             // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(316, 55);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(196, 23);
-            textBox2.TabIndex = 81;
-            // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(316, 84);
+            dateTimePicker1.Location = new Point(302, 65);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(196, 23);
             dateTimePicker1.TabIndex = 82;
             // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(316, 142);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(196, 23);
-            textBox4.TabIndex = 84;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(211, 61);
-            label1.Name = "label1";
-            label1.Size = new Size(74, 15);
-            label1.TabIndex = 85;
-            label1.Text = "Mã Hóa Đơn";
-            // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(218, 86);
+            label2.Location = new Point(215, 66);
             label2.Name = "label2";
             label2.Size = new Size(58, 15);
             label2.TabIndex = 86;
             label2.Text = "Ngày Bán";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(219, 115);
-            label3.Name = "label3";
-            label3.Size = new Size(82, 15);
-            label3.TabIndex = 87;
-            label3.Text = "Mã Nhân Viên";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(223, 145);
-            label4.Name = "label4";
-            label4.Size = new Size(83, 15);
-            label4.TabIndex = 88;
-            label4.Text = "Tên Nhân Viên";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(316, 113);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(196, 23);
-            comboBox1.TabIndex = 89;
-            // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(793, 61);
+            comboBox2.Location = new Point(302, 98);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(196, 23);
             comboBox2.TabIndex = 90;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(793, 90);
+            textBox3.Location = new Point(302, 126);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(196, 23);
             textBox3.TabIndex = 91;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(793, 119);
+            textBox5.Location = new Point(793, 68);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(196, 23);
             textBox5.TabIndex = 92;
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(793, 148);
+            textBox6.Location = new Point(793, 107);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(196, 23);
             textBox6.TabIndex = 93;
@@ -385,7 +330,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(683, 69);
+            label5.Location = new Point(209, 101);
             label5.Name = "label5";
             label5.Size = new Size(92, 15);
             label5.TabIndex = 94;
@@ -394,7 +339,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(685, 98);
+            label6.Location = new Point(210, 130);
             label6.Name = "label6";
             label6.Size = new Size(25, 15);
             label6.TabIndex = 95;
@@ -403,7 +348,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(686, 126);
+            label7.Location = new Point(687, 76);
             label7.Name = "label7";
             label7.Size = new Size(45, 15);
             label7.TabIndex = 96;
@@ -412,7 +357,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(686, 148);
+            label8.Location = new Point(687, 115);
             label8.Name = "label8";
             label8.Size = new Size(79, 15);
             label8.TabIndex = 97;
@@ -428,14 +373,14 @@
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(773, 283);
+            textBox7.Location = new Point(779, 282);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(196, 23);
             textBox7.TabIndex = 99;
             // 
             // textBox8
             // 
-            textBox8.Location = new Point(773, 248);
+            textBox8.Location = new Point(779, 248);
             textBox8.Name = "textBox8";
             textBox8.Size = new Size(196, 23);
             textBox8.TabIndex = 100;
@@ -509,7 +454,7 @@
             // label15
             // 
             label15.AutoSize = true;
-            label15.Location = new Point(718, 286);
+            label15.Location = new Point(713, 286);
             label15.Name = "label15";
             label15.Size = new Size(65, 15);
             label15.TabIndex = 109;
@@ -540,14 +485,8 @@
             Controls.Add(textBox5);
             Controls.Add(textBox3);
             Controls.Add(comboBox2);
-            Controls.Add(comboBox1);
-            Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(textBox4);
             Controls.Add(dateTimePicker1);
-            Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(button14);
             Controls.Add(button13);
@@ -601,14 +540,8 @@
         private Button button13;
         private Button button14;
         private TextBox textBox1;
-        private TextBox textBox2;
         private DateTimePicker dateTimePicker1;
-        private TextBox textBox4;
-        private Label label1;
         private Label label2;
-        private Label label3;
-        private Label label4;
-        private ComboBox comboBox1;
         private ComboBox comboBox2;
         private TextBox textBox3;
         private TextBox textBox5;

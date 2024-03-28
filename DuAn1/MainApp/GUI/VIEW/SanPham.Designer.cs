@@ -33,15 +33,9 @@
             label1 = new Label();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
-            textBox6 = new TextBox();
-            label13 = new Label();
-            textBox5 = new TextBox();
-            label12 = new Label();
             button11 = new Button();
-            comboBox3 = new ComboBox();
             textBox4 = new TextBox();
             comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -49,8 +43,6 @@
             textBox2 = new TextBox();
             button10 = new Button();
             button9 = new Button();
-            button8 = new Button();
-            label7 = new Label();
             textBox3 = new TextBox();
             textBox1 = new TextBox();
             label5 = new Label();
@@ -70,6 +62,11 @@
             panel3 = new Panel();
             button12 = new Button();
             button7 = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            button8 = new Button();
+            textBox5 = new TextBox();
+            label7 = new Label();
+            textBox6 = new TextBox();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -110,14 +107,13 @@
             // 
             panel1.BackColor = Color.White;
             panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(label13);
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(textBox5);
-            panel1.Controls.Add(label12);
+            panel1.Controls.Add(button8);
+            panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(button11);
-            panel1.Controls.Add(comboBox3);
             panel1.Controls.Add(textBox4);
             panel1.Controls.Add(comboBox2);
-            panel1.Controls.Add(comboBox1);
             panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label8);
@@ -125,8 +121,6 @@
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button10);
             panel1.Controls.Add(button9);
-            panel1.Controls.Add(button8);
-            panel1.Controls.Add(label7);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label5);
@@ -138,58 +132,15 @@
             panel1.Size = new Size(862, 240);
             panel1.TabIndex = 0;
             // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(223, 196);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(168, 23);
-            textBox6.TabIndex = 28;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.Location = new Point(225, 174);
-            label13.Name = "label13";
-            label13.Size = new Size(117, 18);
-            label13.TabIndex = 27;
-            label13.Text = "Giá Sau Giảm";
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(24, 195);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(168, 23);
-            textBox5.TabIndex = 26;
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(28, 174);
-            label12.Name = "label12";
-            label12.Size = new Size(106, 18);
-            label12.TabIndex = 25;
-            label12.Text = "Mã giảm giá";
-            // 
             // button11
             // 
             button11.FlatStyle = FlatStyle.Flat;
-            button11.Location = new Point(640, 195);
+            button11.Location = new Point(386, 185);
             button11.Name = "button11";
-            button11.Size = new Size(75, 23);
+            button11.Size = new Size(105, 42);
             button11.TabIndex = 24;
             button11.Text = "Lọc";
             button11.UseVisualStyleBackColor = true;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(582, 143);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 22;
             // 
             // textBox4
             // 
@@ -201,48 +152,40 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(226, 143);
+            comboBox2.Location = new Point(240, 143);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 20;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(27, 143);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 19;
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(580, 116);
+            label10.Location = new Point(404, 116);
             label10.Name = "label10";
-            label10.Size = new Size(57, 18);
+            label10.Size = new Size(111, 18);
             label10.TabIndex = 18;
-            label10.Text = "Mô Tả";
+            label10.Text = "Địa Chỉ Nhập";
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(224, 116);
+            label9.Location = new Point(240, 116);
             label9.Name = "label9";
-            label9.Size = new Size(122, 18);
+            label9.Size = new Size(94, 18);
             label9.TabIndex = 17;
-            label9.Text = "Nhà Cung Cấp";
+            label9.Text = "Trạng Thái";
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(28, 116);
+            label8.Location = new Point(25, 116);
             label8.Name = "label8";
-            label8.Size = new Size(87, 18);
+            label8.Size = new Size(97, 18);
             label8.TabIndex = 16;
-            label8.Text = "Danh Mục";
+            label8.Text = "Ngày Nhập";
             // 
             // label6
             // 
@@ -250,9 +193,9 @@
             label6.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label6.Location = new Point(580, 59);
             label6.Name = "label6";
-            label6.Size = new Size(70, 18);
+            label6.Size = new Size(81, 18);
             label6.TabIndex = 15;
-            label6.Text = "Giá Bán";
+            label6.Text = "Giá Nhập";
             // 
             // textBox2
             // 
@@ -264,9 +207,9 @@
             // button10
             // 
             button10.FlatStyle = FlatStyle.Flat;
-            button10.Location = new Point(485, 195);
+            button10.Location = new Point(161, 185);
             button10.Name = "button10";
-            button10.Size = new Size(75, 23);
+            button10.Size = new Size(95, 42);
             button10.TabIndex = 13;
             button10.Text = "Sửa";
             button10.UseVisualStyleBackColor = true;
@@ -274,32 +217,12 @@
             // button9
             // 
             button9.FlatStyle = FlatStyle.Flat;
-            button9.Location = new Point(563, 195);
+            button9.Location = new Point(274, 185);
             button9.Name = "button9";
-            button9.Size = new Size(75, 23);
+            button9.Size = new Size(97, 42);
             button9.TabIndex = 12;
             button9.Text = "Xóa";
             button9.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Location = new Point(405, 195);
-            button8.Name = "button8";
-            button8.Size = new Size(75, 23);
-            button8.TabIndex = 11;
-            button8.Text = "Lưu";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(414, 116);
-            label7.Name = "label7";
-            label7.Size = new Size(33, 18);
-            label7.TabIndex = 10;
-            label7.Text = "QR";
             // 
             // textBox3
             // 
@@ -321,9 +244,9 @@
             label5.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
             label5.Location = new Point(404, 59);
             label5.Name = "label5";
-            label5.Size = new Size(85, 18);
+            label5.Size = new Size(120, 18);
             label5.TabIndex = 3;
-            label5.Text = "Số Lượng";
+            label5.Text = "Số Lượng Tồn";
             // 
             // label4
             // 
@@ -351,9 +274,9 @@
             label2.Font = new Font("Yu Gothic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label2.Location = new Point(12, 18);
             label2.Name = "label2";
-            label2.Size = new Size(164, 25);
+            label2.Size = new Size(106, 25);
             label2.TabIndex = 0;
-            label2.Text = "Thêm Sản Phẩm";
+            label2.Text = "Sản Phẩm";
             // 
             // button1
             // 
@@ -488,6 +411,49 @@
             button7.Text = "Bán Hàng";
             button7.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(24, 143);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 25;
+            // 
+            // button8
+            // 
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Location = new Point(501, 185);
+            button8.Name = "button8";
+            button8.Size = new Size(137, 42);
+            button8.TabIndex = 26;
+            button8.Text = "Chi Tiết Sản Phẩm";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(404, 143);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(151, 23);
+            textBox5.TabIndex = 27;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(580, 116);
+            label7.Name = "label7";
+            label7.Size = new Size(102, 18);
+            label7.TabIndex = 28;
+            label7.Text = "Người Nhập";
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(580, 143);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(151, 23);
+            textBox6.TabIndex = 29;
+            // 
             // SanPham
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -527,18 +493,14 @@
         private Panel panel1;
         private TextBox textBox2;
         private Button button10;
-        private Button button8;
-        private Label label7;
         private TextBox textBox3;
         private TextBox textBox1;
         private Label label5;
         private Label label4;
         private Label label3;
         private Label label2;
-        private ComboBox comboBox3;
         private TextBox textBox4;
         private ComboBox comboBox2;
-        private ComboBox comboBox1;
         private Label label10;
         private Label label9;
         private Label label8;
@@ -556,11 +518,12 @@
         private Panel panel3;
         private Button button9;
         private Button button11;
-        private TextBox textBox5;
-        private Label label12;
-        private TextBox textBox6;
-        private Label label13;
         private Button button12;
         private Button button7;
+        private Button button8;
+        private DateTimePicker dateTimePicker1;
+        private TextBox textBox5;
+        private TextBox textBox6;
+        private Label label7;
     }
 }

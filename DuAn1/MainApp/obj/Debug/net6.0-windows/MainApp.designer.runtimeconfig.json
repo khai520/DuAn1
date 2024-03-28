@@ -12,8 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\GL66\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\GL66\\.nuget\\packages"
+      "C:\\Users\\FPTSHOP\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\FPTSHOP\\.nuget\\packages"
     ],
     "configProperties": {
       "System.Reflection.NullabilityInfoContext.IsSupported": true,
