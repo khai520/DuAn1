@@ -146,6 +146,7 @@
             btnDong.TabIndex = 15;
             btnDong.Text = "Đóng";
             btnDong.UseVisualStyleBackColor = true;
+            btnDong.Click += btnDong_Click;
             // 
             // ChiTietSanPham
             // 
