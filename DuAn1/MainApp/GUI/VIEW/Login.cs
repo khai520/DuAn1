@@ -70,35 +70,61 @@ namespace APPBanHang
             if (NguoiDungServices.CheckLogin(txt_tendn.Text, txt_mk.Text))
             {
                  nguoiDung = NguoiDungServices.checktkdn(txt_tendn.Text, txt_mk.Text).Find(x => x.Email == txt_tendn.Text && x.MatKhau == txt_mk.Text);
-            } else
-            {
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu","Thông báo", MessageBoxButtons.OK);
-            }
-            if(txt_tendn.Text == "")
-            {
-                MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
-            }
-            else if (txt_mk.Text == "")
-            {
-                MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
             }
             else
             {
-                if (nguoiDung.IdvaiTro == "VT01")
+                if (txt_tendn.Text == "")
                 {
-                    this.Hide();
-                    TrangChu trangChu = new TrangChu();
-                    trangChu.ShowDialog();
+                    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+                }
+                else if (txt_mk.Text == "")
+                {
+                    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+                }
+                else 
+                {
+                    if (nguoiDung.IdvaiTro == "VT01")
+                    {
+                        this.Hide();
+                        TrangChu trangChu = new TrangChu();
+                        trangChu.ShowDialog();
+
+                    }
+                    else if (nguoiDung.IdvaiTro == "VT02")
+                    {
+                        this.Hide();
+                        BanHang banHang = new BanHang();
+                        banHang.ShowDialog();
+                    }
 
                 }
-                else if (nguoiDung.IdvaiTro == "VT02")
-                {
-                    this.Hide();
-                    BanHang banHang = new BanHang();
-                    banHang.ShowDialog();
-                }
-
+                MessageBox.Show("Sai tài khoản hoặc mật khẩu","Thông báo", MessageBoxButtons.OK);
             }
+            //if(txt_tendn.Text == "")
+            //{
+            //    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+            //}
+            //else if (txt_mk.Text == "")
+            //{
+            //    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+            //}
+            //else
+            //{
+            //    if (nguoiDung.IdvaiTro == "VT01")
+            //    {
+            //        this.Hide();
+            //        TrangChu trangChu = new TrangChu();
+            //        trangChu.ShowDialog();
+
+            //    }
+            //    else if (nguoiDung.IdvaiTro == "VT02")
+            //    {
+            //        this.Hide();
+            //        BanHang banHang = new BanHang();
+            //        banHang.ShowDialog();
+            //    }
+
+            //}
             //TrangChu trangchu = new TrangChu();
             //trangchu.Show();
         }

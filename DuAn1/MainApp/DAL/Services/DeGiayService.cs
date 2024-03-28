@@ -15,7 +15,7 @@ namespace Main.DAL.Services
 
         public List<Degiay> Getalldegiay()
         {
-            return giayRepo.getallSPrepo().ToList();
+            return giayRepo.getallDeGiayrepo().ToList();
         }
 
         public bool Them(string id, string name)
@@ -49,7 +49,7 @@ namespace Main.DAL.Services
         }
         public List<Degiay> SortByName()
         {
-            List<Degiay> degiaySoft = giayRepo.getallSPrepo().ToList();
+            List<Degiay> degiaySoft = giayRepo.getallDeGiayrepo().ToList();
             degiaySoft.Sort((x, y) => x.Degiay1.CompareTo(y.Degiay1));
             return degiaySoft;
         }

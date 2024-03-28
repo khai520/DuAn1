@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Mausac> getallMauSacRepo()
+        public List<Mausac> getallMauRepo()
         {
             return context.Mausacs.ToList();
         }

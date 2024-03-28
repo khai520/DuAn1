@@ -11,7 +11,7 @@ namespace WinFormsApp1.Repositories
     internal class KhachHangRepo
     {
         DUAN1Context context = new DUAN1Context();
-        public List<Khachhang> getallVaiTroRepo()
+        public List<Khachhang> getallKhachRepo()
         {
             return context.Khachhangs.ToList();
         }

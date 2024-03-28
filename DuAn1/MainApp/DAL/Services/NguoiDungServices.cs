@@ -57,6 +57,10 @@ namespace WinFormsApp1.Services
                 return false;
             }
         } 
+        public List<NguoiDung> checktkdn(string email, string passwork)
+        {
+            return repo.CheckLogin(email, passwork).ToList();
+        }
             public List<NguoiDung> SortByName()
             {
                 List<NguoiDung> nguoidungSoft = repo.getallSPrepo().ToList();

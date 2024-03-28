@@ -53,10 +53,10 @@ namespace Main.DAL.Services
         {
             return sanpham.FindSvByName(name).ToList();
         }
-        public List<Sanpham> SortByName()
+        public List<Ctsanpham> SortByName()
         {
-            List<Sanpham> sanphamSoft = sanpham.getallSPrepo().ToList();
-            sanphamSoft.Sort((x, y) => x.Tensp.CompareTo(y.Tensp));
+            List<Ctsanpham> sanphamSoft = sanpham.getallSPrepo().ToList();
+            sanphamSoft.Sort((x, y) => x.Tengiay.CompareTo(x.Tengiay));
             return sanphamSoft;
         }
     }

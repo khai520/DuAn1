@@ -49,7 +49,7 @@ namespace Main.DAL.Services
 
         public List<Khachhang> SortByName()
         {
-            List<Khachhang> khachhangSoft = repo.getallSPrepo().ToList();
+            List<Khachhang> khachhangSoft = repo.getallKhachRepo().ToList();
             khachhangSoft.Sort((x, y) => x.Ten.CompareTo(y.Ten));
             return khachhangSoft;
         }

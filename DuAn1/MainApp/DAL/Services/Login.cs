@@ -15,7 +15,7 @@ namespace Main.DAL.Services
         }
         public bool CheckLogin(string tk , string mk , List<NguoiDung> list)
         {
-            if (getAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
+            if (GetAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
             {
                 return true;
             } else 

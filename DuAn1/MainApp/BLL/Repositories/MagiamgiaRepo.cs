@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Magiamgia> getallMGGRepo()
+        public List<Magiamgia> getallMaRepo()
         {
             return context.Magiamgia.ToList();
         }

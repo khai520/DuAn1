@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Kichthuoc> getallVaiTroRepo()
+        public List<Kichthuoc> getallKtRepo()
         {
             return context.Kichthuocs.ToList();
         }

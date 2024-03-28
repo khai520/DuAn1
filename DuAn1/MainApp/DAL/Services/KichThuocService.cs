@@ -51,7 +51,7 @@ namespace Main.DAL.Services
         }
         public List<Kichthuoc> FindSvByName(string name)
         {
-            return ChatLieuRepo.FindSvByName(name).ToList();
+            return kichthuoc.FindSvByName(name).ToList();
         }
     }
 }

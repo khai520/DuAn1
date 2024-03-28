@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Loaikhachhang> getallVaiTroRepo()
+        public List<Loaikhachhang> getallLoaiKhachHangRepo()
         {
             return context.Loaikhachhangs.ToList();
         }
