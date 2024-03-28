@@ -47,9 +47,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Kichthuoc kichthuoc)
+        public bool xoa(string idkichthuoc)
         {
-            context.Kichthuocs.Remove(kichthuoc);
+            var itemxoa =  context.Kichthuocs.Find(idkichthuoc);
+            context.Kichthuocs.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Kichthuoc findbyname(string ID)

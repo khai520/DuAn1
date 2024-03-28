@@ -16,20 +16,18 @@ namespace WinFormsApp1.Repositories
         {
             return context.Hoadons.ToList();
         }
-        public List<Hoadon> FindSvByName(string name)
+        public List<Hoadon> FindhoadonByid(string idhd)
         {
-            return context.Hoadons.Where(x => x.Tensp.ToLower().Contains(name)).ToList();
+            return context.Hoadons.Where(x => x.Mahd.ToLower().Contains(idhd)).ToList();
         }
         public bool them(Hoadon hoadon)
         {
             context.Hoadons.Add(hoadon);
-            context.SaveChanges();
-            return true;
+            return context.SaveChanges() > 0;
+            
         }
         public bool sua(string masp, Hoadon hoadon)
         {
-            try
-            {
                 var obj = findbyname(masp);
                 if (obj == null)
                 {
@@ -45,18 +43,12 @@ namespace WinFormsApp1.Repositories
                 obj.Trangthai = hoadon.Trangthai;
                
                 context.Update(obj);
-                context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+                return context.SaveChanges()> 0;
         }
-        public bool xoa(Hoadon xoahd)
+        public bool xoa(string xoahd)
         {
-            context.Hoadons.Remove(xoahd);
+            var itemxoa = context.Hoadons.Find(xoahd);
+            context.Hoadons.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Hoadon findbyname(string ID)

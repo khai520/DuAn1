@@ -57,9 +57,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(NguoiDung xoaND)
+        public bool xoa(string xoaND)
         {
-            context.NguoiDungs.Remove(xoaND);
+            var itemxoa = context.NguoiDungs.Find(xoaND);
+            context.NguoiDungs.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public NguoiDung findbyname(string ID)

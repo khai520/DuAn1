@@ -52,9 +52,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Khachhang khachhang)
+        public bool xoa(string idkhachhang)
         {
-            context.Khachhangs.Remove(khachhang);
+            var itemxoa = context.Khachhangs.Find(idkhachhang);
+            context.Khachhangs.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Khachhang findbyname(string ID)

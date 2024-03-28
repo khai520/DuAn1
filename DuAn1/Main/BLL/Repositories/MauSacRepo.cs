@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Mausac> getallVaiTroRepo()
+        public List<Mausac> getallMauSacRepo()
         {
             return context.Mausacs.ToList();
         }
@@ -46,11 +46,7 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Mausac xoamausac )
-        {
-            context.Mausacs.Remove(xoamausac);
-            return context.SaveChanges() > 0;
-        }
+        
         public Mausac findbyname(string ID)
         {
             return context.Mausacs.Find(ID);
