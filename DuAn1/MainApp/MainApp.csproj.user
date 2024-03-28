@@ -16,11 +16,7 @@
     <Compile Update="GUI\VIEW\SanPham.cs">
       <SubType>Form</SubType>
     </Compile>
-<<<<<<< Updated upstream
     <Compile Update="GUI\VIEW\TimKiemHoaDon.cs">
-=======
-    <Compile Update="GUI\VIEW\TimHoaDon.cs">
->>>>>>> Stashed changes
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="GUI\VIEW\TrangChu.cs">
