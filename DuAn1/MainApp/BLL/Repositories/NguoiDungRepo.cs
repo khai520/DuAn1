@@ -16,7 +16,7 @@ namespace WinFormsApp1.Repositories
         {
             return context.NguoiDungs.ToList();
         }
-        public List<NguoiDung> CheckLogin(string email, string password)
+        public List<NguoiDung> CheckLogin (string email , string password)
         {
             return context.NguoiDungs.Where(x => x.Email == email && x.MatKhau == password).ToList();
         }
@@ -27,8 +27,8 @@ namespace WinFormsApp1.Repositories
         public bool them(NguoiDung nguoiDung)
         {
             context.NguoiDungs.Add(nguoiDung);
-            
-            return context.SaveChanges() > 0;
+            context.SaveChanges();
+            return true;
         }
         public bool sua(string IDND, NguoiDung nguoiDung)
         {
@@ -48,17 +48,19 @@ namespace WinFormsApp1.Repositories
                 obj.Dthoai = nguoiDung.Dthoai;
                 obj.Trangthai = nguoiDung.Trangthai;
                 context.Update(obj);
+                context.SaveChanges();
 
-                return context.SaveChanges() > 0;
+                return true;
             }
             catch (Exception)
             {
                 return false;
             }
         }
-        public bool xoa(NguoiDung xoaND)
+        public bool xoa(string xoaND)
         {
-            context.NguoiDungs.Remove(xoaND);
+            var itemxoa = context.NguoiDungs.Find(xoaND);
+            context.NguoiDungs.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public NguoiDung findbyname(string ID)

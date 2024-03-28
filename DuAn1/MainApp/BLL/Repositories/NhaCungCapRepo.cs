@@ -51,9 +51,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(NhaCungCap xoanhacungcap)
+        public bool xoa(string idnhacungcap)
         {
-            context.NhaCungCaps.Remove(xoanhacungcap);
+            var itemxoa = context.NhaCungCaps.Find(idnhacungcap);
+            context.NhaCungCaps.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public NhaCungCap findbyname(string ID)

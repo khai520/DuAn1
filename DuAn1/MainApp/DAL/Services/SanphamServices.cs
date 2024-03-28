@@ -10,7 +10,7 @@ namespace WinFormsApp1.Services
 {
     internal class SanphamServices
     {
-
+        SanPhamRepo repo = new SanPhamRepo();
         public List<Sanpham> GetSanphams(List<Sanpham> list)
         {
             return list;
@@ -45,6 +45,16 @@ namespace WinFormsApp1.Services
         public string DeleteSP(string id )
         {
             return id;
+        }
+        public List<Sanpham> SortByName()
+        {
+            List<Sanpham> sanphamSoft = repo.getallSPrepo().ToList();
+            sanphamSoft.Sort((x, y) => x.Tensp.CompareTo(y.Tensp));
+            return sanphamSoft;
+        }
+        public List<Sanpham> FindSvByName(string name)
+        {
+            return repo.FindSvByName(name).ToList();
         }
     }
 }

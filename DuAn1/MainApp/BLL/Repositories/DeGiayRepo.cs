@@ -11,7 +11,7 @@ namespace WinFormsApp1.Repositories
     internal class DeGiayRepo
     {
         DUAN1Context context = new DUAN1Context();
-        public List<Degiay> getallSPrepo()
+        public List<Degiay> getallDeGiayrepo()
         {
             return context.Degiays.ToList();
         }
@@ -47,9 +47,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Degiay degiay)
+        public bool xoa(string iddegiay)
         {
-            context.Degiays.Remove(degiay);
+            var itemxoa = context.Degiays.Find(iddegiay);
+            context.Degiays.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Degiay findbyname(string ID)

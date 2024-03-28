@@ -14,6 +14,8 @@ namespace WinFormsApp1.Services
         public List<VaiTro> GetVaiTros(List<VaiTro> list)
         {
             return list;
+
         }
+        
     }
 }

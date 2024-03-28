@@ -49,9 +49,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Sanpham xoasp)
+        public bool xoa(string idxoasp)
         {
-            context.Sanphams.Remove(xoasp);
+            var itemxoa = context.Sanphams.Find(idxoasp);
+            context.Sanphams.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Sanpham findbyname(string ID)

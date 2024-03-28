@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Magiamgia> getallVaiTroRepo()
+        public List<Magiamgia> getallMGGRepo()
         {
             return context.Magiamgia.ToList();
         }
@@ -50,9 +50,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Magiamgia xoama)
+        public bool xoa(string idxoama)
         {
-            context.Magiamgia.Remove(xoama);
+            var itemxoa = context.Magiamgia.Find(idxoama);
+            context.Magiamgia.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Magiamgia findbyname(string ID)

@@ -16,10 +16,10 @@ namespace WinFormsApp1.Repositories
         {
             return context.Hoadoncts.ToList();
         }
-        //public List<Hoadon> FindSvByName(string name)
-        //{
-        //    return context.Hoadoncts.Where(x => x.Mahd = name).ToList();
-        //}
+        public List<Hoadonct> FindhoadonByid(string idhd)
+        {
+            return context.Hoadoncts.Where(x => x.Mahd.ToLower().Contains(idhd)).ToList();
+        }
         public bool them(Hoadonct hoadonct)
         {
             context.Hoadoncts.Add(hoadonct);
@@ -52,9 +52,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Hoadon xoahd)
+        public bool xoa(string idhdct)
         {
-            context.Hoadons.Remove(xoahd);
+            var itemxoa = context.Hoadoncts.Find(idhdct);
+            context.Hoadoncts.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Hoadonct findbyname(string ID)

@@ -47,9 +47,10 @@ namespace WinFormsApp1.Repositories
                 return false;
             }
         }
-        public bool xoa(Chatlieu chatlieu)
+        public bool xoa(string idchatlieu)
         {
-            context.Chatlieus.Remove(chatlieu);
+            var itemxoa =  context.Chatlieus.Find(idchatlieu);
+            context.Chatlieus.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
         public Chatlieu findbyname(string ID)
