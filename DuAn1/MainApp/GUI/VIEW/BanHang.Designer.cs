@@ -41,7 +41,6 @@
             button11 = new Button();
             button6 = new Button();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            button5 = new Button();
             button7 = new Button();
             dataGridView1 = new DataGridView();
             button8 = new Button();
@@ -50,7 +49,6 @@
             button12 = new Button();
             button13 = new Button();
             button14 = new Button();
-            textBox1 = new TextBox();
             dateTimePicker1 = new DateTimePicker();
             label2 = new Label();
             comboBox2 = new ComboBox();
@@ -169,7 +167,7 @@
             // button11
             // 
             button11.FlatStyle = FlatStyle.Flat;
-            button11.Location = new Point(0, 394);
+            button11.Location = new Point(0, 365);
             button11.Name = "button11";
             button11.Size = new Size(178, 31);
             button11.TabIndex = 71;
@@ -186,20 +184,10 @@
             button6.Text = "Đăng Xuất";
             button6.UseVisualStyleBackColor = true;
             // 
-            // button5
-            // 
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Location = new Point(0, 357);
-            button5.Name = "button5";
-            button5.Size = new Size(178, 31);
-            button5.TabIndex = 66;
-            button5.Text = "Hóa Đơn";
-            button5.UseVisualStyleBackColor = true;
-            // 
             // button7
             // 
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(0, 430);
+            button7.Location = new Point(0, 413);
             button7.Name = "button7";
             button7.Size = new Size(178, 31);
             button7.TabIndex = 72;
@@ -218,9 +206,9 @@
             // button8
             // 
             button8.FlatStyle = FlatStyle.Flat;
-            button8.Location = new Point(238, 438);
+            button8.Location = new Point(261, 438);
             button8.Name = "button8";
-            button8.Size = new Size(75, 23);
+            button8.Size = new Size(75, 37);
             button8.TabIndex = 74;
             button8.Text = "Lưu";
             button8.UseVisualStyleBackColor = true;
@@ -228,9 +216,9 @@
             // button9
             // 
             button9.FlatStyle = FlatStyle.Flat;
-            button9.Location = new Point(337, 438);
+            button9.Location = new Point(352, 438);
             button9.Name = "button9";
-            button9.Size = new Size(75, 23);
+            button9.Size = new Size(75, 37);
             button9.TabIndex = 75;
             button9.Text = "Thêm";
             button9.UseVisualStyleBackColor = true;
@@ -240,7 +228,7 @@
             button10.FlatStyle = FlatStyle.Flat;
             button10.Location = new Point(444, 438);
             button10.Name = "button10";
-            button10.Size = new Size(101, 23);
+            button10.Size = new Size(101, 37);
             button10.TabIndex = 76;
             button10.Text = "Hủy Hóa Đơn";
             button10.UseVisualStyleBackColor = true;
@@ -250,7 +238,7 @@
             button12.FlatStyle = FlatStyle.Flat;
             button12.Location = new Point(564, 438);
             button12.Name = "button12";
-            button12.Size = new Size(103, 23);
+            button12.Size = new Size(103, 37);
             button12.TabIndex = 77;
             button12.Text = "In Hóa Đơn";
             button12.UseVisualStyleBackColor = true;
@@ -258,9 +246,9 @@
             // button13
             // 
             button13.FlatStyle = FlatStyle.Flat;
-            button13.Location = new Point(687, 438);
+            button13.Location = new Point(811, 438);
             button13.Name = "button13";
-            button13.Size = new Size(75, 23);
+            button13.Size = new Size(75, 37);
             button13.TabIndex = 78;
             button13.Text = "Đóng";
             button13.UseVisualStyleBackColor = true;
@@ -268,19 +256,12 @@
             // button14
             // 
             button14.FlatStyle = FlatStyle.Flat;
-            button14.Location = new Point(433, 489);
+            button14.Location = new Point(687, 438);
             button14.Name = "button14";
-            button14.Size = new Size(101, 23);
+            button14.Size = new Size(101, 37);
             button14.TabIndex = 79;
             button14.Text = "Tìm Hóa Đơn";
             button14.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(238, 489);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(175, 23);
-            textBox1.TabIndex = 80;
             // 
             // dateTimePicker1
             // 
@@ -487,7 +468,6 @@
             Controls.Add(comboBox2);
             Controls.Add(label2);
             Controls.Add(dateTimePicker1);
-            Controls.Add(textBox1);
             Controls.Add(button14);
             Controls.Add(button13);
             Controls.Add(button12);
@@ -504,10 +484,10 @@
             Controls.Add(pictureBox1);
             Controls.Add(button11);
             Controls.Add(button6);
-            Controls.Add(button5);
             FormBorderStyle = FormBorderStyle.None;
             Name = "BanHang";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += BanHang_Load;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -530,7 +510,6 @@
         private Button button11;
         private Button button6;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button button5;
         private Button button7;
         private DataGridView dataGridView1;
         private Button button8;
@@ -539,7 +518,6 @@
         private Button button12;
         private Button button13;
         private Button button14;
-        private TextBox textBox1;
         private DateTimePicker dateTimePicker1;
         private Label label2;
         private ComboBox comboBox2;

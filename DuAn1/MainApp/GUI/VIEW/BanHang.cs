@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Main.DAL.Services;
 
 namespace APPBanHang
 {
@@ -15,6 +16,11 @@ namespace APPBanHang
         public BanHang()
         {
             InitializeComponent();
+        }
+
+        private void BanHang_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
