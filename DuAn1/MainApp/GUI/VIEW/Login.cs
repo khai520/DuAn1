@@ -1,7 +1,11 @@
+using Main.BLL.Models2;
+using WinFormsApp1.Services;
+using Main.DAL.Services;
 namespace APPBanHang
 {
     public partial class Login : Form
     {
+        NguoiDungServices NguoiDungServices = new NguoiDungServices();
         public Login()
         {
             InitializeComponent();
@@ -51,19 +55,45 @@ namespace APPBanHang
 
         private void pictureBox2_MouseDown(object sender, MouseEventArgs e)
         {
-            textBox2.UseSystemPasswordChar = false;
+            txt_mk.UseSystemPasswordChar = false;
         }
 
         private void pictureBox2_MouseUp(object sender, MouseEventArgs e)
         {
-            textBox2.UseSystemPasswordChar = true;
+            txt_mk.UseSystemPasswordChar = true;
 
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            TrangChu trangchu = new TrangChu();
-            trangchu.Show();
+            NguoiDung nguoiDung = NguoiDungServices.checktkdn(txt_tendn.Text, txt_mk.Text).Find(x => x.Email == txt_tendn.Text && x.MatKhau == txt_mk.Text);
+            if(txt_tendn.Text == "")
+            {
+                MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+            }
+            else if (txt_mk.Text == "")
+            {
+                MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+            }
+            else
+            {
+                if (nguoiDung.IdvaiTro == "VT01")
+                {
+                    this.Hide();
+                    TrangChu trangChu = new TrangChu();
+                    trangChu.ShowDialog();
+
+                }
+                else if (nguoiDung.IdvaiTro == "VT02")
+                {
+                    this.Hide();
+                    BanHang banHang = new BanHang();
+                    banHang.ShowDialog();
+                }
+
+            }
+            //TrangChu trangchu = new TrangChu();
+            //trangchu.Show();
         }
     }
 }

@@ -60,5 +60,9 @@ namespace WinFormsApp1.Services
                 return false;
             }
         }
+        public List<NguoiDung> checktkdn(string email, string mk)
+        {
+            return repo.CheckLogin(email, mk);
+        }
     }
 }

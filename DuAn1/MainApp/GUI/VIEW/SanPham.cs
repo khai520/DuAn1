@@ -42,8 +42,8 @@ namespace APPBanHang
 
         private void button5_Click(object sender, EventArgs e)
         {
-            HoaDon hoadon = new HoaDon();
-            hoadon.Show();
+            //HoaDon hoadon = new HoaDon();
+            //hoadon.Show();
         }
     }
 }

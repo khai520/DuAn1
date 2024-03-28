@@ -1,4 +1,4 @@
-﻿drop database DA1
+﻿drop database DUAN1
 go 
 create database DUAN1
 ---- tao bang---

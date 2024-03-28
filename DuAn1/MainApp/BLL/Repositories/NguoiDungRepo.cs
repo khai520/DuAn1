@@ -16,7 +16,7 @@ namespace WinFormsApp1.Repositories
         {
             return context.NguoiDungs.ToList();
         }
-        public List<NguoiDung> CheckLogin (string email , string password)
+        public List<NguoiDung> CheckLogin(string email, string password)
         {
             return context.NguoiDungs.Where(x => x.Email == email && x.MatKhau == password).ToList();
         }
