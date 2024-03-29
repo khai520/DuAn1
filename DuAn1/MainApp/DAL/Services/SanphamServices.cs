@@ -15,7 +15,6 @@ namespace WinFormsApp1.Services
 
         List<Sanpham> list = new();
         public List<Sanpham> GetSanphams(List<Sanpham> list1)
-
         {
             return list = list1;
         } 

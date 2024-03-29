@@ -15,7 +15,7 @@ namespace Main.DAL.Services
 
         public List<Mausac> GetallMau()
         {
-            return mau.getallMauRepo().ToList();
+            return mau.GetAllMau();
         }
 
         public bool Them(string id, string name)
