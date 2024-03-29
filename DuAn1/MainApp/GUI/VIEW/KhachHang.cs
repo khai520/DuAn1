@@ -29,25 +29,28 @@ namespace APPBanHang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
             TrangChu trangChu = new TrangChu();
+            this.Hide();
             trangChu.Show();
+            this.Close();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Close();
             SanPham sanpham = new SanPham();
+            this.Hide();
             sanpham.Show();
+            this.Close();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Close();
             NhanVien nhanvien = new NhanVien();
+            this.Hide();
             nhanvien.Show();
+            this.Close();
 
         }
 
@@ -60,9 +63,24 @@ namespace APPBanHang
 
         private void button6_Click(object sender, EventArgs e)
         {
-            this.Close();
             Login login = new Login();
+            this.Hide();
             login.Show();
+            this.Close();
+        }
+        private void button_Click_Voucher(object sender, EventArgs e)
+        {
+            Voucher voucher = new Voucher();
+            this.Hide();
+            voucher.Show();
+            this.Close();
+        }
+        private void button_Click_BanHang(object sender, EventArgs e)
+        {
+            BanHang banHang = new BanHang();
+            this.Hide();
+            banHang.Show();
+            this.Close();
         }
     }
 }

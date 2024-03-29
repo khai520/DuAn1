@@ -366,6 +366,7 @@
             button11.TabIndex = 60;
             button11.Text = "Voucher";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button_Click_Voucher;
             // 
             // button7
             // 
@@ -376,6 +377,7 @@
             button7.TabIndex = 74;
             button7.Text = "Bán Hàng";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button_Click_BanHang;
             // 
             // NhanVien
             // 

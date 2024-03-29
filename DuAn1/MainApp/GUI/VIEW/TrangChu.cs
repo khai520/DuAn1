@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainApp.GUI.VIEW;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -33,19 +34,25 @@ namespace APPBanHang
         private void button2_Click(object sender, EventArgs e)
         {
             SanPham sanpham = new SanPham();
+            this.Hide();
             sanpham.Show();
+            this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             NhanVien nhanvien = new NhanVien();
+            this.Hide();
             nhanvien.Show();
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             KhachHang khachHang = new KhachHang();
+            this.Hide();
             khachHang.Show();
+            this.Close();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -56,12 +63,32 @@ namespace APPBanHang
 
         private void button6_Click(object sender, EventArgs e)
         {
-
-
             Login login = new Login();
+            this.Hide();
             login.Show();
+            this.Close();
         }
-
+        private void button_Click_Voucher(object sender, EventArgs e)
+        {
+            Voucher voucher = new Voucher();
+            this.Hide();
+            voucher.Show();
+            this.Close();
+        }
+        private void button_Click_BanHang(object sender, EventArgs e)
+        {
+            BanHang banHang = new BanHang();
+            this.Hide();
+            banHang.Show();
+            this.Close();
+        }
+        private void button_Click_TimHoaDon(object sender, EventArgs e)
+        {
+            TimKiemHoaDon timKiemHoaDon = new();
+            this.Hide();
+            timKiemHoaDon.Show();
+            this.Close();
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 

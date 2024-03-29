@@ -1,65 +1,35 @@
-﻿using Main.BLL.Models2;
+﻿using APPBanHang;
+using Main.DAL.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WinFormsApp1.Repositories;
+using System.Windows.Forms;
 using WinFormsApp1.Services;
 
-namespace Main.DAL.Services
+namespace MainApp.GUI.VIEW
 {
-    internal class HoadonServices
+    public partial class HoaDon : Form
     {
-        HoaDonRepo repo = new HoaDonRepo();
-        public List<Hoadon> GetHoadons()
+        public HoaDon()
         {
-            return repo.getallSPrepo().ToList();
+            InitializeComponent();
         }
-        public bool AddHoaDon(string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai , string idhdct, string idctsp, int slban, decimal gia, DateTime ngayban2)
-        {
-            HoaDonChiTietServices hoaDonChiTietServices = new();
-            Hoadonct hoadonct = new();
-            hoadonct = hoaDonChiTietServices.AddHoaDonCT(  idctsp,  slban, gia,ngayban2);
-            var hoadon = new Hoadon
-            {
-                Mahd = hoadonct.Mahd,
-                Idkh = idkh,
-                IdnguoiDung = idnguoidung,
-                Idmagiamgia = idmgg,
-                Ngayban = ngayban,
-                Tensp = tensanpham,
-                Soluong = soluong,
-                Tongtien = tongtien,
-                Trangthai = trangthai
-            };
 
-           
-            return true;
-        }
-        public bool UpdateHoaDon(string idhoadon, string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai)
+        private void HoaDon_Load(object sender, EventArgs e)
         {
-            Hoadon hoadon = new Hoadon
-            {
-                Mahd = idhoadon,
-                Idkh = idkh,
-                IdnguoiDung = idnguoidung,
-                Idmagiamgia = idmgg,
-                Ngayban = ngayban,
-                Tensp = tensanpham,
-                Soluong = soluong,
-                Tongtien = tongtien,
-                Trangthai = trangthai
-            };
-            return repo.sua(idhoadon, hoadon);
+
         }
-        public bool XoaHoaDon(string id)
+        private void button_Click_BanHang(object sender, EventArgs e)
         {
-            return repo.xoa(id);
-        }
-        public List<Hoadon> FindHoaDon(string idhd)
-        {
-            return repo.FindhoadonByid(idhd).ToList();
+            BanHang banHang = new BanHang();
+            this.Hide();
+            banHang.Show();
+            this.Close();
         }
         public void Timkiem(string? tengiay, string? tenHang, string? Mau, string? chatlieu, string? kichthuoc, string? deGiay)
         {

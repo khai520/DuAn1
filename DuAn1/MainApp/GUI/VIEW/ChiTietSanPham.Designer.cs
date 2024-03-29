@@ -28,28 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            comboBox1 = new ComboBox();
             label5 = new Label();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            textBox2 = new TextBox();
-            comboBox4 = new ComboBox();
+            cbx_Ms = new ComboBox();
+            cbx_cl = new ComboBox();
+            txt_Gb = new TextBox();
+            cbx_Kc = new ComboBox();
             btnLuu = new Button();
             btnDong = new Button();
+            label1 = new Label();
+            txt_Ten = new TextBox();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(43, 51);
-            label1.Name = "label1";
-            label1.Size = new Size(73, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Mã giảm giá";
             // 
             // label2
             // 
@@ -79,53 +70,45 @@
             label4.TabIndex = 3;
             label4.Text = "Chất Liệu";
             // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(122, 45);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 4;
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(55, 180);
+            label5.Location = new Point(55, 167);
             label5.Name = "label5";
             label5.Size = new Size(47, 15);
             label5.TabIndex = 5;
             label5.Text = "Giá Bán";
             // 
-            // comboBox2
+            // cbx_Ms
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(122, 106);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 7;
+            cbx_Ms.FormattingEnabled = true;
+            cbx_Ms.Location = new Point(122, 106);
+            cbx_Ms.Name = "cbx_Ms";
+            cbx_Ms.Size = new Size(294, 23);
+            cbx_Ms.TabIndex = 7;
             // 
-            // comboBox3
+            // cbx_cl
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(122, 135);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 8;
+            cbx_cl.FormattingEnabled = true;
+            cbx_cl.Location = new Point(122, 135);
+            cbx_cl.Name = "cbx_cl";
+            cbx_cl.Size = new Size(294, 23);
+            cbx_cl.TabIndex = 8;
             // 
-            // textBox2
+            // txt_Gb
             // 
-            textBox2.Location = new Point(123, 172);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(119, 23);
-            textBox2.TabIndex = 9;
+            txt_Gb.Location = new Point(122, 164);
+            txt_Gb.Name = "txt_Gb";
+            txt_Gb.Size = new Size(293, 23);
+            txt_Gb.TabIndex = 9;
             // 
-            // comboBox4
+            // cbx_Kc
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(122, 74);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(121, 23);
-            comboBox4.TabIndex = 10;
+            cbx_Kc.FormattingEnabled = true;
+            cbx_Kc.Location = new Point(122, 74);
+            cbx_Kc.Name = "cbx_Kc";
+            cbx_Kc.Size = new Size(294, 23);
+            cbx_Kc.TabIndex = 10;
             // 
             // btnLuu
             // 
@@ -136,6 +119,7 @@
             btnLuu.TabIndex = 14;
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnDong
             // 
@@ -148,44 +132,59 @@
             btnDong.UseVisualStyleBackColor = true;
             btnDong.Click += btnDong_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(50, 39);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 15);
+            label1.TabIndex = 16;
+            label1.Text = "Tên giày";
+            // 
+            // txt_Ten
+            // 
+            txt_Ten.Location = new Point(122, 36);
+            txt_Ten.Name = "txt_Ten";
+            txt_Ten.Size = new Size(294, 23);
+            txt_Ten.TabIndex = 17;
+            // 
             // ChiTietSanPham
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(528, 276);
+            Controls.Add(txt_Ten);
+            Controls.Add(label1);
             Controls.Add(btnDong);
             Controls.Add(btnLuu);
-            Controls.Add(comboBox4);
-            Controls.Add(textBox2);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
+            Controls.Add(cbx_Kc);
+            Controls.Add(txt_Gb);
+            Controls.Add(cbx_cl);
+            Controls.Add(cbx_Ms);
             Controls.Add(label5);
-            Controls.Add(comboBox1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ChiTietSanPham";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "ChiTietSanPham";
+            Text = "Tên giày";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
-        private ComboBox comboBox1;
         private Label label5;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private TextBox textBox2;
-        private ComboBox comboBox4;
+        private ComboBox cbx_Ms;
+        private ComboBox cbx_cl;
+        private TextBox txt_Gb;
+        private ComboBox cbx_Kc;
         private Button btnLuu;
         private Button btnDong;
+        private Label label1;
+        private TextBox txt_Ten;
     }
 }

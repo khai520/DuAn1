@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Main.DAL.Services;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFormsApp1.Services;
 
 namespace MainApp.GUI.VIEW
 {
@@ -25,6 +27,12 @@ namespace MainApp.GUI.VIEW
         private void btnDong_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            CtSanphamService spser = new();
+            
         }
     }
 }

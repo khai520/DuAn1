@@ -69,7 +69,20 @@ namespace APPBanHang
             NguoiDung nguoiDung = new();
             if (NguoiDungServices.CheckLogin(txt_tendn.Text, txt_mk.Text))
             {
-                 nguoiDung = NguoiDungServices.checktkdn(txt_tendn.Text, txt_mk.Text).Find(x => x.Email == txt_tendn.Text && x.MatKhau == txt_mk.Text);
+                nguoiDung = NguoiDungServices.checktkdn(txt_tendn.Text, txt_mk.Text).Find(x => x.Email == txt_tendn.Text && x.MatKhau == txt_mk.Text);
+                if (nguoiDung.IdvaiTro == "VT01")
+                {
+                    this.Hide();
+                    TrangChu trangChu = new TrangChu();
+                    trangChu.ShowDialog();
+
+                }
+                else if (nguoiDung.IdvaiTro == "VT02")
+                {
+                    this.Hide();
+                    BanHang banHang = new BanHang();
+                    banHang.ShowDialog();
+                }
             }
             else
             {
@@ -83,22 +96,8 @@ namespace APPBanHang
                 }
                 else 
                 {
-                    if (nguoiDung.IdvaiTro == "VT01")
-                    {
-                        this.Hide();
-                        TrangChu trangChu = new TrangChu();
-                        trangChu.ShowDialog();
-
-                    }
-                    else if (nguoiDung.IdvaiTro == "VT02")
-                    {
-                        this.Hide();
-                        BanHang banHang = new BanHang();
-                        banHang.ShowDialog();
-                    }
-
+                    MessageBox.Show("Sai tài khoản hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK);
                 }
-                MessageBox.Show("Sai tài khoản hoặc mật khẩu","Thông báo", MessageBoxButtons.OK);
             }
             //if(txt_tendn.Text == "")
             //{

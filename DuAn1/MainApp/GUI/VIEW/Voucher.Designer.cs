@@ -34,6 +34,7 @@
             dataGridView1 = new DataGridView();
             label3 = new Label();
             panel1 = new Panel();
+            comboBox1 = new ComboBox();
             dateTimePicker2 = new DateTimePicker();
             label8 = new Label();
             dateTimePicker1 = new DateTimePicker();
@@ -61,7 +62,6 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             button11 = new Button();
             button10 = new Button();
-            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -130,6 +130,14 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(365, 400);
             panel1.TabIndex = 52;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(15, 71);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 27;
             // 
             // dateTimePicker2
             // 
@@ -255,7 +263,6 @@
             button6.TabIndex = 51;
             button6.Text = "Đăng Xuất";
             button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
             // 
             // button5
             // 
@@ -276,6 +283,7 @@
             button4.TabIndex = 49;
             button4.Text = "Khách Hàng";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -286,6 +294,7 @@
             button3.TabIndex = 48;
             button3.Text = "Nhân Viên";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -296,6 +305,7 @@
             button2.TabIndex = 47;
             button2.Text = "Sản Phẩm";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -306,6 +316,7 @@
             button1.TabIndex = 46;
             button1.Text = "Trang Chủ";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // btn1
             // 
@@ -374,14 +385,7 @@
             button10.TabIndex = 73;
             button10.Text = "Bán Hàng";
             button10.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(15, 71);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 27;
+            button10.Click += button_Click_BanHang;
             // 
             // Voucher
             // 

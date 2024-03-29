@@ -36,7 +36,11 @@ namespace Main.BLL.Models2
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=PHẠM-TIẾN-DŨNG;Database=DUAN1;Trusted_Connection=True;");
+<<<<<<< HEAD
+                optionsBuilder.UseSqlServer("Server=.;Database=DUAN1;Trusted_Connection=True;");
+=======
+                optionsBuilder.UseSqlServer("Server=TUZXJE\\SQLEXPRESS;Database=DUAN1;Trusted_Connection=True;");
+>>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
             }
         }
 

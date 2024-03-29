@@ -33,20 +33,17 @@
             label1 = new Label();
             dataGridView1 = new DataGridView();
             panel1 = new Panel();
+            button8 = new Button();
+            dateTimePicker1 = new DateTimePicker();
             button11 = new Button();
-            textBox4 = new TextBox();
             comboBox2 = new ComboBox();
-            label10 = new Label();
             label9 = new Label();
             label8 = new Label();
-            label6 = new Label();
-            textBox2 = new TextBox();
             button10 = new Button();
             button9 = new Button();
             textBox3 = new TextBox();
             textBox1 = new TextBox();
             label5 = new Label();
-            label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             button1 = new Button();
@@ -62,11 +59,6 @@
             panel3 = new Panel();
             button12 = new Button();
             button7 = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            button8 = new Button();
-            textBox5 = new TextBox();
-            label7 = new Label();
-            textBox6 = new TextBox();
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             panel1.SuspendLayout();
@@ -106,31 +98,40 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(textBox6);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(textBox5);
             panel1.Controls.Add(button8);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(button11);
-            panel1.Controls.Add(textBox4);
             panel1.Controls.Add(comboBox2);
-            panel1.Controls.Add(label10);
             panel1.Controls.Add(label9);
             panel1.Controls.Add(label8);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(textBox2);
             panel1.Controls.Add(button10);
             panel1.Controls.Add(button9);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(3, 6);
             panel1.Name = "panel1";
             panel1.Size = new Size(862, 240);
             panel1.TabIndex = 0;
+            // 
+            // button8
+            // 
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Location = new Point(501, 185);
+            button8.Name = "button8";
+            button8.Size = new Size(137, 42);
+            button8.TabIndex = 26;
+            button8.Text = "Thêm sản phẩm";
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(28, 143);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(200, 23);
+            dateTimePicker1.TabIndex = 25;
             // 
             // button11
             // 
@@ -142,36 +143,19 @@
             button11.Text = "Lọc";
             button11.UseVisualStyleBackColor = true;
             // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(580, 83);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(151, 23);
-            textBox4.TabIndex = 21;
-            // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(240, 143);
+            comboBox2.Location = new Point(397, 83);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(121, 23);
             comboBox2.TabIndex = 20;
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(404, 116);
-            label10.Name = "label10";
-            label10.Size = new Size(111, 18);
-            label10.TabIndex = 18;
-            label10.Text = "Địa Chỉ Nhập";
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(240, 116);
+            label9.Location = new Point(397, 59);
             label9.Name = "label9";
             label9.Size = new Size(94, 18);
             label9.TabIndex = 17;
@@ -186,23 +170,6 @@
             label8.Size = new Size(97, 18);
             label8.TabIndex = 16;
             label8.Text = "Ngày Nhập";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(580, 59);
-            label6.Name = "label6";
-            label6.Size = new Size(81, 18);
-            label6.TabIndex = 15;
-            label6.Text = "Giá Nhập";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(225, 83);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(168, 23);
-            textBox2.TabIndex = 14;
             // 
             // button10
             // 
@@ -226,7 +193,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(407, 82);
+            textBox3.Location = new Point(220, 83);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(151, 23);
             textBox3.TabIndex = 7;
@@ -242,21 +209,11 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(404, 59);
+            label5.Location = new Point(217, 60);
             label5.Name = "label5";
             label5.Size = new Size(120, 18);
             label5.TabIndex = 3;
             label5.Text = "Số Lượng Tồn";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(230, 59);
-            label4.Name = "label4";
-            label4.Size = new Size(32, 18);
-            label4.TabIndex = 2;
-            label4.Text = "Mã";
             // 
             // label3
             // 
@@ -400,6 +357,7 @@
             button12.TabIndex = 60;
             button12.Text = "Voucher";
             button12.UseVisualStyleBackColor = true;
+            button12.Click += button_Click_Voucher;
             // 
             // button7
             // 
@@ -410,49 +368,7 @@
             button7.TabIndex = 74;
             button7.Text = "Bán Hàng";
             button7.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(24, 143);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(200, 23);
-            dateTimePicker1.TabIndex = 25;
-            // 
-            // button8
-            // 
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Location = new Point(501, 185);
-            button8.Name = "button8";
-            button8.Size = new Size(137, 42);
-            button8.TabIndex = 26;
-            button8.Text = "Chi Tiết Sản Phẩm";
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(404, 143);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(151, 23);
-            textBox5.TabIndex = 27;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Verdana", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(580, 116);
-            label7.Name = "label7";
-            label7.Size = new Size(102, 18);
-            label7.TabIndex = 28;
-            label7.Text = "Người Nhập";
-            // 
-            // textBox6
-            // 
-            textBox6.Location = new Point(580, 143);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(151, 23);
-            textBox6.TabIndex = 29;
+            button7.Click += button_Click_BanHang;
             // 
             // SanPham
             // 
@@ -491,20 +407,15 @@
         private Label label1;
         private DataGridView dataGridView1;
         private Panel panel1;
-        private TextBox textBox2;
         private Button button10;
         private TextBox textBox3;
         private TextBox textBox1;
         private Label label5;
-        private Label label4;
         private Label label3;
         private Label label2;
-        private TextBox textBox4;
         private ComboBox comboBox2;
-        private Label label10;
         private Label label9;
         private Label label8;
-        private Label label6;
         private Button button1;
         private PictureBox pictureBox1;
         private Button button2;
@@ -522,8 +433,5 @@
         private Button button7;
         private Button button8;
         private DateTimePicker dateTimePicker1;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private Label label7;
     }
 }

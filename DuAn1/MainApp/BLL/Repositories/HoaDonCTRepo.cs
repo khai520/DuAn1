@@ -23,8 +23,8 @@ namespace WinFormsApp1.Repositories
         public bool them(Hoadonct hoadonct)
         {
             context.Hoadoncts.Add(hoadonct);
-            context.SaveChanges();
-            return true;
+            
+            return context.SaveChanges() > 0;
         }
         public bool sua(string mahd, Hoadonct hoadonct)
         {
@@ -43,9 +43,9 @@ namespace WinFormsApp1.Repositories
                
 
                 context.Update(obj);
-                context.SaveChanges();
+                
 
-                return true;
+                return context.SaveChanges() > 0;
             }
             catch (Exception)
             {

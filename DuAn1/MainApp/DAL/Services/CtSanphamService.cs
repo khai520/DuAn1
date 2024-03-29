@@ -18,12 +18,18 @@ namespace Main.DAL.Services
             return sanpham.getallSPrepo().ToList();
         }
 
-        public bool Them(string id, string name)
+        public bool Them(string id, string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
         {
             Ctsanpham ctsanpham = new Ctsanpham
             {
                 Idctsp = id,
                 Tengiay = name,
+                Masp = masp,
+                Chatlieuu = chatlieu,
+                Kichthuoc = kichthuoc,
+                Degiay = degiay,
+                Mau = mau,
+                Giaban = giaban
             };
             return true;
         }
