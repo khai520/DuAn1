@@ -8,14 +8,14 @@ using WinFormsApp1.Repositories;
 
 namespace WinFormsApp1.Services
 {
-    internal class VaiTroServices
-    {
+    //internal class VaiTroServices
+    //{
 
-        public List<VaiTro> GetVaiTros(List<VaiTro> list)
-        {
-            return list;
+    //    public List<VaiTro> GetVaiTros(List<VaiTro> list)
+    //    {
+    //        return list;
 
-        }
+    //    }
         
-    }
+    //}
 }

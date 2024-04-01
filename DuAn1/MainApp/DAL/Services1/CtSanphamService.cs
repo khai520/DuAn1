@@ -89,6 +89,7 @@ namespace Main.DAL.Services
                 Kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString(),
                 Degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString(),
                 Giaban = list.Find(x => x.Idctsp == id).Giaban,
+
             };
             return sP;
         }

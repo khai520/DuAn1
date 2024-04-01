@@ -18,7 +18,16 @@ namespace WinFormsApp1.Services
 
         {
             return list = list1;
-        } 
+        }
+        public List<Sanpham> Change()
+        {
+            List<Sanpham> list2 = new();
+            foreach (var item in list)
+            {
+                list2.Add(Loc(item.Masp));
+            }
+            return list2;
+        }
         public string XulyId()
         {
             string idtam = "";
@@ -39,7 +48,7 @@ namespace WinFormsApp1.Services
             }
             return idtam;
         }
-        public Sanpham AddSP(string ten, int soluong, int giaban, string trangthai )
+        public Sanpham AddSP(string ten, int soluong, int giaban, string trangthai)
         {
             Sanpham sanpham = new Sanpham
             {
@@ -50,7 +59,7 @@ namespace WinFormsApp1.Services
             };
             return sanpham;
         }
-        public Sanpham UpdateSP(string id , string name,int soluong, int giaban, string trangthai )
+        public Sanpham UpdateSP(string id, string name, int soluong, int giaban, string trangthai)
         {
             Sanpham sanpham = new Sanpham
             {
@@ -67,11 +76,11 @@ namespace WinFormsApp1.Services
             Sanpham sanpham = list.Find(x => x.Masp == id);
             return sanpham;
         }
-        public List<Sanpham> GetSanphamsByName(string name , List<Sanpham> list)
+        public List<Sanpham> GetSanphamsByName(string name, List<Sanpham> list)
         {
             return list;
         }
-        public string DeleteSP(string id )
+        public string DeleteSP(string id)
         {
             return id;
         }
@@ -84,6 +93,37 @@ namespace WinFormsApp1.Services
         public List<Sanpham> FindSvByName(string name)
         {
             return repo.FindSvByName(name).ToList();
+        }
+        public Sanpham Loc(string id)
+        {
+            Sanpham sP = new Sanpham()
+            {
+           
+                Masp = id,
+                Tensp = list.Find(x => x.Masp == id).Tensp.ToString(),
+                Soluong = list.Find(x => x.Masp == id).Soluong.Value,
+                Giaban = list.Find(x => x.Masp == id).Giaban.Value,
+                Trangthai = list.Find(x => x.Masp == id).Trangthai.ToString()
+
+            };
+            return sP;
+        }
+        public List<Sanpham> Timkiem(string? id, string? tensp, int? soluong, decimal? giaban, string? trangthai)
+        {
+            var ds = Change().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai );
+            List<Sanpham> listAdd = new();
+            if (ds.Count() > 0)
+            {
+                foreach (var item in ds)
+                {
+                    listAdd.Add(Loc(item.Masp));
+                }
+            }
+            else
+            {
+                listAdd = list;
+            }
+            return listAdd;
         }
 
     }

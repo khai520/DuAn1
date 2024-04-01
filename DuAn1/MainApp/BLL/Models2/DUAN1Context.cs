@@ -35,7 +35,7 @@ namespace Main.BLL.Models2
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.;Database=DUAN1;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=PHẠM-TIẾN-DŨNG;Database=DUAN1;Trusted_Connection=True;");
 
                 optionsBuilder.UseSqlServer("Server=TUZXJE\\SQLEXPRESS;Database=DUAN1;Trusted_Connection=True;");
 

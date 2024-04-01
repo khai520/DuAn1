@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace Main.DAL.Services
 {
-    internal class Login
-    {
-        public List<NguoiDung> GetAll(List<NguoiDung> list)
-        {
-            return list.ToList();
-        }
-        public bool CheckLogin(string tk , string mk , List<NguoiDung> list)
-        {
-            if (GetAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
-            {
-                return true;
-            } else 
-            {
-                return false; 
-            }
-        }
-    }
+    //internal class Login
+    //{
+    //    public List<NguoiDung> GetAll(List<NguoiDung> list)
+    //    {
+    //        return list.ToList();
+    //    }
+    //    public bool CheckLogin(string tk , string mk , List<NguoiDung> list)
+    //    {
+    //        if (GetAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
+    //        {
+    //            return true;
+    //        } else 
+    //        {
+    //            return false; 
+    //        }
+    //    }
+    //}
 }
