@@ -12,9 +12,9 @@ namespace WinFormsApp1.Services
     {
         NhaCungCapRepo nhacungcap = new NhaCungCapRepo();
         List<NhaCungCap> list = new List<NhaCungCap>(); 
-        public List<NhaCungCap> getallSnhacungcap(List<NhaCungCap> list1)
+        public List<NhaCungCap> getallSnhacungcap()
         {
-            return list = list1;
+            return nhacungcap.getallSPrepo().ToList();
         }
         public List<NhaCungCap> Change()
         {
@@ -54,14 +54,7 @@ namespace WinFormsApp1.Services
         {
             NhaCungCap sP = new NhaCungCap()
             {
-                //Idctsp = id,
-                //Tengiay = list.Find(x => x.Idctsp == id).Tengiay.ToString(),
-                //Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
-                //Mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString(),
-                //Chatlieuu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString(),
-                //Kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString(),
-                //Degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString(),
-                //Giaban = list.Find(x => x.Idctsp == id).Giaban,
+              
                 Idncc= id,
                 Tenncc = list.Find(x=>x.Idncc == id).Tenncc.ToString(),
                 Email = list.Find(x => x.Idncc == id).Email.ToString(),

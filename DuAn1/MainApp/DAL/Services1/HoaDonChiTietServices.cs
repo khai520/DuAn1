@@ -11,8 +11,8 @@ namespace Main.DAL.Services
     internal class HoaDonChiTietServices
     {
         HoaDonCTRepo repo = new HoaDonCTRepo();
-        List<Hoadon> list = new();
-        public List<Hoadon> GetSanphams(List<Hoadon> list1)
+        List<Hoadonct> list = new();
+        public List<Hoadonct> GetSanphams(List<Hoadonct> list1)
 
         {
             return list = list1;
@@ -57,6 +57,55 @@ namespace Main.DAL.Services
                 return null;
             }
             
+        }
+        public List<Hoadonct> Change()
+        {
+            List<Hoadonct> list2 = new();
+            foreach (var item in list)
+            {
+                list2.Add(Loc(item.Mahd));
+            }
+            return list2;
+        }
+        public Hoadonct Loc(string id)
+        {
+            Hoadonct sP = new Hoadonct()
+            {
+                //Idctsp = id,
+                //Tengiay = list.Find(x => x.Idctsp == id).Tengiay.ToString(),
+                //Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
+                //Mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString(),
+                //Chatlieuu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString(),
+                //Kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString(),
+                //Degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString(),
+                //Giaban = list.Find(x => x.Idctsp == id).Giaban,
+                Mahd = id ,
+                Idctsp = list.Find(x=>x.Mahd == id).Idctsp.ToString(),
+                Slban = list.Find(x => x.Mahd == id).Slban.Value,
+                Gia = list.Find(x => x.Mahd == id).Gia.Value,
+                Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value
+
+
+            };
+            return sP;
+        }
+
+        public List<Hoadonct> Timkiem(string? id, string? idctsp, int? slban, decimal? gia,DateTime? ngayban)
+        {
+            var ds = Change().Where(x => x.Mahd == id || x.Idctsp == idctsp || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
+            List<Hoadonct> listAdd = new();
+            if (ds.Count() > 0)
+            {
+                foreach (var item in ds)
+                {
+                    listAdd.Add(Loc(item.Mahd));
+                }
+            }
+            else
+            {
+                listAdd = list;
+            }
+            return listAdd;
         }
         public bool AddHoaDonCT2(string idctsp, int slban, decimal gia, DateTime ngayban)
         {

@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Main.DAL.Services;
 using Main.BLL.Models2;
+using WinFormsApp1.Repositories;
 
 namespace APPBanHang
 {
     public partial class BanHang : Form
     {
         HoadonServices _hoadonService = new();
-<<<<<<< HEAD
-=======
+       HoaDonRepo HoaDonRepo = new HoaDonRepo();
+
         int _idCellClick;
 
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
         public BanHang()
         {
             InitializeComponent();
@@ -68,25 +69,26 @@ namespace APPBanHang
         }
         private void BanHang_Load(object sender, EventArgs e)
         {
-<<<<<<< HEAD
+
             LoadData();
 
         }
         private void LoadData()
         {
             int STT = 0;
-            var result = from hd in _hoadonService.GetHoadons()
+            var result = from hd in _hoadonService.GetHoadons(HoaDonRepo.getallSPrepo())
+                         select hd;
 
-=======
+
             LoadData(string.Empty, string.Empty);
 
         }
         private void LoadData(string textSearch, string option)
         {
             int STT = 0;
-            var result = from hd in _hoadonService.GetHoadons()
+            var result = from hd in _hoadonService.GetHoadons(HoaDonRepo.getallSPrepo())
                          
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
                          select new
                          {
                              STT = STT++,
@@ -95,11 +97,9 @@ namespace APPBanHang
                              SoLuong = hd.Soluong,
                              Coupon = hd.Idmagiamgia,
                              TongTien = hd.Tongtien,
-<<<<<<< HEAD
-                             TrangThai = hd.Trangthai,
-=======
-                             TrangThai=hd.Trangthai,
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+                             TrangThai = hd.Trangthai
+
+
 
                          };
 
@@ -113,7 +113,7 @@ namespace APPBanHang
             dgvDSHoaDon.Columns[6].HeaderText = "Trạng Thái";
             dgvDSHoaDon.AllowUserToAddRows = false;
             dgvDSHoaDon.EditMode = DataGridViewEditMode.EditProgrammatically;
-<<<<<<< HEAD
+
 
 
 
@@ -123,8 +123,7 @@ namespace APPBanHang
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-=======
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
 
         }
 

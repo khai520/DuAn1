@@ -12,9 +12,25 @@ namespace Main.DAL.Services
     internal class HoadonServices
     {
         HoaDonRepo repo = new HoaDonRepo();
-        public List<Hoadon> GetHoadons()
+        List<Hoadon> list = new List<Hoadon>();
+        KhachHangService khachHangService = new KhachHangService();
+        NguoiDungServices nguoiDungServices= new NguoiDungServices();
+        MaGiamGiaServices ma = new();
+        KhachHangRepo KhachHangRepo = new KhachHangRepo();
+        NguoiDungRepo NguoiDungRepo = new NguoiDungRepo();
+     
+        public List<Hoadon> GetHoadons(List<Hoadon> list1)
         {
-            return repo.getallSPrepo().ToList();
+            return list = list1;
+        }
+        public List<Hoadon> Change()
+        {
+            List<Hoadon> list2 = new();
+            foreach (var item in list)
+            {
+                list2.Add(Loc(item.Mahd));
+            }
+            return list2;
         }
         public bool AddHoaDon(string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai , string idhdct, string idctsp, int slban, decimal gia, DateTime ngayban2)
         {
@@ -61,45 +77,42 @@ namespace Main.DAL.Services
         {
             return repo.FindhoadonByid(idhd).ToList();
         }
-        public void Timkiem(string? tengiay, string? tenHang, string? Mau, string? chatlieu, string? kichthuoc, string? deGiay)
-        {
-            CtSanphamService spser = new();
-            NhaCungCapServices nc = new();
-            MauSacService ms = new();
-            Chatlieuservices cl = new();
-            KichThuocService kt = new();
-            DeGiayService dg = new();
-            var timKiem = spser.GetallChitietsanpham()
-                .Join(nc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new { x.Tengiay, y.Tenncc, x.Mau, x.Chatlieuu, x.Kichthuoc, x.Degiay })
-                .Join(cl.Getallchatlieu(), x => x.Chatlieuu, y => y.Idchatlieu, (x, y) => new { x.Tengiay, x.Tenncc, x.Mau, y.Chatlieu1, x.Kichthuoc, x.Degiay })
-                .Join(ms.GetallMau(), x => x.Mau, y => y.Idmau, (x, y) => new { x.Tengiay, x.Tenncc, y.Mau, x.Chatlieu1, x.Kichthuoc, x.Degiay })
-                .Join(kt.Getallkt(), x => x.Kichthuoc, y => y.IdKichthuoc, (x, y) => new { x.Tengiay, x.Tenncc, x.Mau, x.Chatlieu1, y.Kichthuoc1, x.Degiay })
-                .Join(dg.Getalldegiay(), x => x.Degiay, y => y.IdDegiay, (x, y) => new { x.Tengiay, x.Tenncc, x.Mau, x.Chatlieu1, x.Kichthuoc1, y.Degiay1 });
-            if (tengiay != null)
-            {
-                timKiem = timKiem.Where(x => x.Tengiay.Contains(tengiay)).ToList();
-            }
-            if (tenHang != null)
-            {
 
-                timKiem = timKiem.Where(x => x.Tenncc.Contains(tenHang)).ToList();
-            }
-            if (Mau != null)
+ public Hoadon Loc(string id)
+        {
+            Hoadon hoadon = new Hoadon()
             {
-                timKiem = timKiem.Where(x => x.Mau.Contains(Mau)).ToList();
-            }
-            if (chatlieu != null)
-            {
-                timKiem = timKiem.Where(x => x.Chatlieu1.Contains(chatlieu)).ToList();
-            }
-            if (kichthuoc != null)
-            {
-                timKiem = timKiem.Where(x => x.Kichthuoc1.Contains(kichthuoc)).ToList();
-            }
-            if (deGiay != null)
-            {
-                timKiem = timKiem.Where(x => x.Degiay1.Contains(deGiay)).ToList();
-            }
+              
+                Mahd = id,
+                Idkh = khachHangService.Getallkh(KhachHangRepo.getallKhachRepo()).Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh).Ten.ToString(),
+                IdnguoiDung = nguoiDungServices.GetallChitietsanpham(NguoiDungRepo.getallSPrepo()).Find(x => x.IdnguoiDung == list.Find(x => x.Mahd == id).IdnguoiDung).Ten.ToString(),
+                Idmagiamgia = list.Find(x => x.Mahd == id).Idmagiamgia.ToString(),
+                Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value,
+                Tensp = list.Find(x => x.Mahd == id).Tensp.ToString(),
+                Soluong = list.Find(x => x.Mahd == id).Soluong.Value,
+                Tongtien = list.Find(x => x.Mahd == id).Tongtien.Value,
+                Trangthai = list.Find(x => x.Mahd == id).Trangthai.ToString()
+
+            };
+            return hoadon;
         }
+        public List<Hoadon> Timkiem(string? id, string? idkh, string? idngdung, string? idmagiamgia, DateTime? ngayban, string? tensp, int? soluong, decimal? tongtien, string? trangthai  )
+        {
+            var ds = Change().Where(x => x.Mahd == id ||x.Idkh == idkh || x.IdnguoiDung == idngdung || x.Idmagiamgia == idmagiamgia || x.Ngayban == ngayban ||x.Tensp == tensp || x.Soluong == soluong || x.Tongtien == tongtien || x.Trangthai == trangthai  );
+            List<Hoadon> listAdd = new();
+            if (ds.Count() > 0)
+            {
+                foreach (var item in ds)
+                {
+                    listAdd.Add(Loc(item.Mahd));
+                }
+            }
+            else
+            {
+                listAdd = list;
+            }
+            return listAdd;
+        }
+
     }
 }

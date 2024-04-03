@@ -43,10 +43,9 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             button7 = new Button();
             dgvDSHoaDon = new DataGridView();
-<<<<<<< HEAD
-=======
+
             button8 = new Button();
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
             button9 = new Button();
             button10 = new Button();
             button12 = new Button();
@@ -206,8 +205,7 @@
             dgvDSHoaDon.RowTemplate.Height = 25;
             dgvDSHoaDon.Size = new Size(814, 105);
             dgvDSHoaDon.TabIndex = 73;
-<<<<<<< HEAD
-=======
+
             // 
             // button8
             // 
@@ -218,7 +216,7 @@
             button8.TabIndex = 74;
             button8.Text = "Lưu";
             button8.UseVisualStyleBackColor = true;
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
             // 
             // button9
             // 
@@ -252,7 +250,7 @@
             // 
             // btnDong
             // 
-<<<<<<< HEAD
+
             btnDong.FlatStyle = FlatStyle.Flat;
             btnDong.Location = new Point(811, 438);
             btnDong.Name = "btnDong";
@@ -261,15 +259,9 @@
             btnDong.Text = "Đóng";
             btnDong.UseVisualStyleBackColor = true;
             btnDong.Click += btnDong_Click;
-=======
-            button13.FlatStyle = FlatStyle.Flat;
-            button13.Location = new Point(917, 469);
-            button13.Name = "button13";
-            button13.Size = new Size(75, 37);
-            button13.TabIndex = 78;
-            button13.Text = "Đóng";
-            button13.UseVisualStyleBackColor = true;
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
+      
+
             // 
             // button14
             // 
@@ -457,10 +449,9 @@
             Controls.Add(button12);
             Controls.Add(button10);
             Controls.Add(button9);
-<<<<<<< HEAD
-=======
-            Controls.Add(button8);
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
+       
+
             Controls.Add(dgvDSHoaDon);
             Controls.Add(button7);
             Controls.Add(button4);
@@ -499,10 +490,9 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Button button7;
         private DataGridView dgvDSHoaDon;
-<<<<<<< HEAD
-=======
+
         private Button button8;
->>>>>>> 6b350488ca77575b449486aab61f88d5dffb3ba2
+
         private Button button9;
         private Button button10;
         private Button button12;

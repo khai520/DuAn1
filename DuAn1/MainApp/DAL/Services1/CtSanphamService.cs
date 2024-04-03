@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WinFormsApp1.Repositories;
+using WinFormsApp1.Services;
 
 namespace Main.DAL.Services
 {
     internal class CtSanphamService
     {
         CTSanPhamRepo sanpham = new CTSanPhamRepo();
+        NhaCungCapServices ncc = new NhaCungCapServices();
         MauSacService ms = new();
         Chatlieuservices cl = new();
         KichThuocService kt = new();
@@ -82,6 +84,7 @@ namespace Main.DAL.Services
             Ctsanpham sP = new Ctsanpham()
             {
                 Idctsp = id,
+                Idncc = ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc).Tenncc.ToString(),
                 Tengiay = list.Find(x => x.Idctsp == id).Tengiay.ToString(),
                 Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
                 Mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString(),
