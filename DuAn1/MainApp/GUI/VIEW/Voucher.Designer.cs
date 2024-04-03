@@ -31,38 +31,37 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Voucher));
             label4 = new Label();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
+            dgvDanhSachVoucher = new DataGridView();
             label3 = new Label();
             panel1 = new Panel();
-            comboBox1 = new ComboBox();
+            cbxTrangThai = new ComboBox();
             dateTimePicker2 = new DateTimePicker();
             label8 = new Label();
             dateTimePicker1 = new DateTimePicker();
             label7 = new Label();
             textBox3 = new TextBox();
             label6 = new Label();
-            textBox2 = new TextBox();
+            txtMaVoucher = new TextBox();
             label5 = new Label();
-            button9 = new Button();
-            button8 = new Button();
+            btnThem = new Button();
+            btnSua = new Button();
             label2 = new Label();
-            textBox1 = new TextBox();
-            button7 = new Button();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
-            btn1 = new Button();
+            txtSoLuong = new TextBox();
+            btnTimKiem = new Button();
+            btnLogout = new Button();
+            btnKhachHang = new Button();
+            btnNhanVien = new Button();
+            btnSanPham = new Button();
+            btnTrangChu = new Button();
+            btnExit = new Button();
             label11 = new Label();
             panel3 = new Panel();
             panel2 = new Panel();
             pictureBox1 = new PictureBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            button11 = new Button();
-            button10 = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnVoucher = new Button();
+            btnBanHang = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvDanhSachVoucher).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -82,20 +81,20 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 11.25F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(625, 109);
+            label1.Location = new Point(616, 68);
             label1.Name = "label1";
             label1.Size = new Size(141, 18);
             label1.TabIndex = 55;
             label1.Text = "Voucher Đã Thêm";
             // 
-            // dataGridView1
+            // dgvDanhSachVoucher
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(616, 143);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(439, 247);
-            dataGridView1.TabIndex = 54;
+            dgvDanhSachVoucher.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDanhSachVoucher.Location = new Point(608, 93);
+            dgvDanhSachVoucher.Name = "dgvDanhSachVoucher";
+            dgvDanhSachVoucher.RowTemplate.Height = 25;
+            dgvDanhSachVoucher.Size = new Size(537, 482);
+            dgvDanhSachVoucher.TabIndex = 54;
             // 
             // label3
             // 
@@ -110,34 +109,34 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Controls.Add(comboBox1);
+            panel1.Controls.Add(cbxTrangThai);
             panel1.Controls.Add(dateTimePicker2);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(label6);
-            panel1.Controls.Add(textBox2);
+            panel1.Controls.Add(txtMaVoucher);
             panel1.Controls.Add(label5);
-            panel1.Controls.Add(button9);
-            panel1.Controls.Add(button8);
+            panel1.Controls.Add(btnThem);
+            panel1.Controls.Add(btnSua);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(textBox1);
-            panel1.Controls.Add(button7);
+            panel1.Controls.Add(txtSoLuong);
+            panel1.Controls.Add(btnTimKiem);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(label3);
-            panel1.Location = new Point(204, 143);
+            panel1.Location = new Point(204, 49);
             panel1.Name = "panel1";
-            panel1.Size = new Size(365, 400);
+            panel1.Size = new Size(406, 526);
             panel1.TabIndex = 52;
             // 
-            // comboBox1
+            // cbxTrangThai
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(15, 71);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 27;
+            cbxTrangThai.FormattingEnabled = true;
+            cbxTrangThai.Location = new Point(15, 71);
+            cbxTrangThai.Name = "cbxTrangThai";
+            cbxTrangThai.Size = new Size(121, 23);
+            cbxTrangThai.TabIndex = 27;
             // 
             // dateTimePicker2
             // 
@@ -190,12 +189,12 @@
             label6.TabIndex = 20;
             label6.Text = "%";
             // 
-            // textBox2
+            // txtMaVoucher
             // 
-            textBox2.Location = new Point(10, 124);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(122, 23);
-            textBox2.TabIndex = 19;
+            txtMaVoucher.Location = new Point(10, 124);
+            txtMaVoucher.Name = "txtMaVoucher";
+            txtMaVoucher.Size = new Size(122, 23);
+            txtMaVoucher.TabIndex = 19;
             // 
             // label5
             // 
@@ -207,25 +206,25 @@
             label5.TabIndex = 18;
             label5.Text = "Mã Voucher";
             // 
-            // button9
+            // btnThem
             // 
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.Location = new Point(193, 300);
-            button9.Name = "button9";
-            button9.Size = new Size(75, 23);
-            button9.TabIndex = 17;
-            button9.Text = "Thêm";
-            button9.UseVisualStyleBackColor = true;
+            btnThem.FlatStyle = FlatStyle.Flat;
+            btnThem.Location = new Point(193, 300);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(75, 23);
+            btnThem.TabIndex = 17;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // btnSua
             // 
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Location = new Point(103, 300);
-            button8.Name = "button8";
-            button8.Size = new Size(75, 23);
-            button8.TabIndex = 16;
-            button8.Text = "Sửa";
-            button8.UseVisualStyleBackColor = true;
+            btnSua.FlatStyle = FlatStyle.Flat;
+            btnSua.Location = new Point(103, 300);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(75, 23);
+            btnSua.TabIndex = 16;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -237,97 +236,89 @@
             label2.TabIndex = 15;
             label2.Text = "Số Lượng";
             // 
-            // textBox1
+            // txtSoLuong
             // 
-            textBox1.Location = new Point(167, 65);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(122, 23);
-            textBox1.TabIndex = 14;
+            txtSoLuong.Location = new Point(167, 65);
+            txtSoLuong.Name = "txtSoLuong";
+            txtSoLuong.Size = new Size(122, 23);
+            txtSoLuong.TabIndex = 14;
             // 
-            // button7
+            // btnTimKiem
             // 
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.Location = new Point(11, 300);
-            button7.Name = "button7";
-            button7.Size = new Size(75, 23);
-            button7.TabIndex = 13;
-            button7.Text = "Tìm Kiếm";
-            button7.UseVisualStyleBackColor = true;
+            btnTimKiem.FlatStyle = FlatStyle.Flat;
+            btnTimKiem.Location = new Point(11, 300);
+            btnTimKiem.Name = "btnTimKiem";
+            btnTimKiem.Size = new Size(75, 23);
+            btnTimKiem.TabIndex = 13;
+            btnTimKiem.Text = "Tìm Kiếm";
+            btnTimKiem.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // btnLogout
             // 
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Location = new Point(8, 512);
-            button6.Name = "button6";
-            button6.Size = new Size(178, 31);
-            button6.TabIndex = 51;
-            button6.Text = "Đăng Xuất";
-            button6.UseVisualStyleBackColor = true;
+            btnLogout.FlatStyle = FlatStyle.Flat;
+            btnLogout.Location = new Point(0, 530);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(205, 31);
+            btnLogout.TabIndex = 51;
+            btnLogout.Text = "Đăng Xuất";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
             // 
-            // button5
+            // btnKhachHang
             // 
-            button5.FlatStyle = FlatStyle.Flat;
-            button5.Location = new Point(8, 380);
-            button5.Name = "button5";
-            button5.Size = new Size(178, 31);
-            button5.TabIndex = 50;
-            button5.Text = "Hóa Đơn";
-            button5.UseVisualStyleBackColor = true;
+            btnKhachHang.FlatStyle = FlatStyle.Flat;
+            btnKhachHang.Location = new Point(-1, 306);
+            btnKhachHang.Name = "btnKhachHang";
+            btnKhachHang.Size = new Size(205, 31);
+            btnKhachHang.TabIndex = 49;
+            btnKhachHang.Text = "Khách Hàng";
+            btnKhachHang.UseVisualStyleBackColor = true;
+            btnKhachHang.Click += button4_Click;
             // 
-            // button4
+            // btnNhanVien
             // 
-            button4.FlatStyle = FlatStyle.Flat;
-            button4.Location = new Point(8, 335);
-            button4.Name = "button4";
-            button4.Size = new Size(178, 31);
-            button4.TabIndex = 49;
-            button4.Text = "Khách Hàng";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            btnNhanVien.FlatStyle = FlatStyle.Flat;
+            btnNhanVien.Location = new Point(-1, 269);
+            btnNhanVien.Name = "btnNhanVien";
+            btnNhanVien.Size = new Size(205, 31);
+            btnNhanVien.TabIndex = 48;
+            btnNhanVien.Text = "Nhân Viên";
+            btnNhanVien.UseVisualStyleBackColor = true;
+            btnNhanVien.Click += button3_Click;
             // 
-            // button3
+            // btnSanPham
             // 
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Location = new Point(8, 289);
-            button3.Name = "button3";
-            button3.Size = new Size(178, 31);
-            button3.TabIndex = 48;
-            button3.Text = "Nhân Viên";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            btnSanPham.FlatStyle = FlatStyle.Flat;
+            btnSanPham.Location = new Point(-1, 232);
+            btnSanPham.Name = "btnSanPham";
+            btnSanPham.Size = new Size(205, 31);
+            btnSanPham.TabIndex = 47;
+            btnSanPham.Text = "Sản Phẩm";
+            btnSanPham.UseVisualStyleBackColor = true;
+            btnSanPham.Click += button2_Click;
             // 
-            // button2
+            // btnTrangChu
             // 
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Location = new Point(8, 246);
-            button2.Name = "button2";
-            button2.Size = new Size(178, 31);
-            button2.TabIndex = 47;
-            button2.Text = "Sản Phẩm";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            btnTrangChu.FlatStyle = FlatStyle.Flat;
+            btnTrangChu.Location = new Point(-1, 192);
+            btnTrangChu.Name = "btnTrangChu";
+            btnTrangChu.Size = new Size(205, 31);
+            btnTrangChu.TabIndex = 46;
+            btnTrangChu.Text = "Trang Chủ";
+            btnTrangChu.UseVisualStyleBackColor = true;
+            btnTrangChu.Click += button1_Click;
             // 
-            // button1
+            // btnExit
             // 
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Location = new Point(8, 195);
-            button1.Name = "button1";
-            button1.Size = new Size(178, 31);
-            button1.TabIndex = 46;
-            button1.Text = "Trang Chủ";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
-            // btn1
-            // 
-            btn1.BackColor = Color.White;
-            btn1.FlatAppearance.BorderSize = 0;
-            btn1.Location = new Point(817, 0);
-            btn1.Name = "btn1";
-            btn1.Size = new Size(40, 30);
-            btn1.TabIndex = 4;
-            btn1.Text = "X";
-            btn1.UseVisualStyleBackColor = false;
+            btnExit.BackColor = Color.White;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.Location = new Point(907, 0);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(40, 30);
+            btnExit.TabIndex = 4;
+            btnExit.Text = "X";
+            btnExit.UseVisualStyleBackColor = false;
+            btnExit.Click += btnExit_Click;
             // 
             // label11
             // 
@@ -349,67 +340,68 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
-            panel2.Controls.Add(btn1);
+            panel2.Controls.Add(btnExit);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(198, 2);
+            panel2.Location = new Point(204, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(873, 53);
+            panel2.Size = new Size(941, 51);
             panel2.TabIndex = 45;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(-7, 4);
+            pictureBox1.Location = new Point(0, -26);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(205, 169);
+            pictureBox1.Size = new Size(205, 175);
             pictureBox1.TabIndex = 44;
             pictureBox1.TabStop = false;
             // 
-            // button11
+            // btnVoucher
             // 
-            button11.FlatStyle = FlatStyle.Flat;
-            button11.Location = new Point(8, 421);
-            button11.Name = "button11";
-            button11.Size = new Size(178, 31);
-            button11.TabIndex = 59;
-            button11.Text = "Voucher";
-            button11.UseVisualStyleBackColor = true;
+            btnVoucher.FlatStyle = FlatStyle.Flat;
+            btnVoucher.Location = new Point(0, 343);
+            btnVoucher.Name = "btnVoucher";
+            btnVoucher.Size = new Size(205, 31);
+            btnVoucher.TabIndex = 59;
+            btnVoucher.Text = "Voucher";
+            btnVoucher.UseVisualStyleBackColor = true;
+            btnVoucher.Click += btnVoucher_Click;
             // 
-            // button10
+            // btnBanHang
             // 
-            button10.FlatStyle = FlatStyle.Flat;
-            button10.Location = new Point(8, 458);
-            button10.Name = "button10";
-            button10.Size = new Size(178, 31);
-            button10.TabIndex = 73;
-            button10.Text = "Bán Hàng";
-            button10.UseVisualStyleBackColor = true;
-            button10.Click += button_Click_BanHang;
+            btnBanHang.FlatStyle = FlatStyle.Flat;
+            btnBanHang.Location = new Point(0, 380);
+            btnBanHang.Name = "btnBanHang";
+            btnBanHang.Size = new Size(205, 31);
+            btnBanHang.TabIndex = 73;
+            btnBanHang.Text = "Bán Hàng";
+            btnBanHang.UseVisualStyleBackColor = true;
+            btnBanHang.Click += button_Click_BanHang;
             // 
             // Voucher
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1065, 571);
-            Controls.Add(button10);
-            Controls.Add(button11);
+            ClientSize = new Size(1145, 573);
+            Controls.Add(btnBanHang);
+            Controls.Add(btnVoucher);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvDanhSachVoucher);
             Controls.Add(panel1);
-            Controls.Add(button6);
-            Controls.Add(button5);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnLogout);
+            Controls.Add(btnKhachHang);
+            Controls.Add(btnNhanVien);
+            Controls.Add(btnSanPham);
+            Controls.Add(btnTrangChu);
             Controls.Add(panel2);
             Controls.Add(pictureBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "Voucher";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "HoaDon1";
             Load += HoaDon1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvDanhSachVoucher).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
@@ -422,36 +414,35 @@
         #endregion
         private Label label4;
         private Label label1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvDanhSachVoucher;
         private Label label3;
         private Panel panel1;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
-        private Button btn1;
+        private Button btnLogout;
+        private Button btnKhachHang;
+        private Button btnNhanVien;
+        private Button btnSanPham;
+        private Button btnTrangChu;
+        private Button btnExit;
         private Label label11;
         private Panel panel3;
         private Panel panel2;
         private PictureBox pictureBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private Button button11;
-        private Button button7;
-        private Button button9;
-        private Button button8;
+        private Button btnVoucher;
+        private Button btnTimKiem;
+        private Button btnThem;
+        private Button btnSua;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtSoLuong;
         private TextBox textBox3;
         private Label label6;
-        private TextBox textBox2;
+        private TextBox txtMaVoucher;
         private Label label5;
         private DateTimePicker dateTimePicker2;
         private Label label8;
         private DateTimePicker dateTimePicker1;
         private Label label7;
-        private Button button10;
-        private ComboBox comboBox1;
+        private Button btnBanHang;
+        private ComboBox cbxTrangThai;
     }
 }

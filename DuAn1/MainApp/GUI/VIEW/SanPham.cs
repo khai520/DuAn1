@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Main.DAL.Services;
+using Main.BLL.Models2;
+using WinFormsApp1.Services;
 
 namespace APPBanHang
 {
     public partial class SanPham : Form
     {
+        SanphamServices _sanphamService = new();
         public SanPham()
         {
             InitializeComponent();
@@ -69,6 +73,44 @@ namespace APPBanHang
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSanPham_Click(object sender, EventArgs e)
+        {
+            SanPham sanPham = new SanPham();
+            this.Hide();
+            sanPham.Show();
+            this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Login loGin = new Login();
+            this.Hide();
+            loGin.Show();
+        }
+
+        private void SanPham_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void LoadData() 
+        {
+            //var result = from sp in _sanphamService
+        
+        
+        
+        
         }
     }
 }

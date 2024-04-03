@@ -71,5 +71,13 @@ namespace APPBanHang
             banHang.Show();
             this.Close();
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Login loGin     = new Login();
+            this.Hide();
+            loGin.Show();
+            
+        }
     }
 }

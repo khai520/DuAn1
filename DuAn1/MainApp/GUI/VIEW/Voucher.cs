@@ -78,5 +78,26 @@ namespace APPBanHang
             banHang.Show();
             this.Close();
         }
+
+        private void btnVoucher_Click(object sender, EventArgs e)
+        {
+            Voucher voucher = new Voucher();
+            this.Hide();
+            voucher.Show()
+                ; this.Close();
+
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            Login loGin = new Login();
+            this.Hide();
+            loGin.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

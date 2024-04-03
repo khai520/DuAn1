@@ -66,7 +66,7 @@ namespace APPBanHang
             Login login = new Login();
             this.Hide();
             login.Show();
-            this.Close();
+            
         }
         private void button_Click_Voucher(object sender, EventArgs e)
         {
@@ -80,6 +80,14 @@ namespace APPBanHang
             BanHang banHang = new BanHang();
             this.Hide();
             banHang.Show();
+            this.Close();
+        }
+
+        private void btnKhachHang_Click(object sender, EventArgs e)
+        {
+                KhachHang khachHang = new KhachHang();
+            this.Hide();
+            khachHang.Show();
             this.Close();
         }
     }

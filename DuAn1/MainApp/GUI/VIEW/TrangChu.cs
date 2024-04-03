@@ -93,5 +93,10 @@ namespace APPBanHang
         {
 
         }
+
+        private void TrangChu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
