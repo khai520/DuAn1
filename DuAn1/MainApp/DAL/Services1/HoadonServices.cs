@@ -15,13 +15,33 @@ namespace Main.DAL.Services
         List<Hoadon> list = new List<Hoadon>();
         KhachHangService khachHangService = new KhachHangService();
         NguoiDungServices nguoiDungServices= new NguoiDungServices();
-        MaGiamGiaServices ma = new();
+        MaGiamGiaServices ma = new MaGiamGiaServices();
         KhachHangRepo KhachHangRepo = new KhachHangRepo();
         NguoiDungRepo NguoiDungRepo = new NguoiDungRepo();
      
         public List<Hoadon> GetHoadons(List<Hoadon> list1)
         {
             return list = list1;
+        }
+        public string XulyId()
+        {
+            string idtam = "";
+            for (int i = 0; i <= list.Count(); i++)
+            {
+                if (i >= 10)
+                {
+                    idtam = "HD" + i;
+                }
+                else
+                {
+                    idtam = "HD" + "0" + i;
+                }
+                if (list.Where(x => Convert.ToInt32(x.Mahd.Skip(2)) == i).Count() > 0)
+                {
+                    break;
+                }
+            }
+            return idtam;
         }
         public List<Hoadon> Change()
         {
@@ -39,7 +59,7 @@ namespace Main.DAL.Services
             hoadonct = hoaDonChiTietServices.AddHoaDonCT(  idctsp,  slban, gia,ngayban2);
             var hoadon = new Hoadon
             {
-                Mahd = hoadonct.Mahd,
+                Mahd = XulyId(),
                 Idkh = idkh,
                 IdnguoiDung = idnguoidung,
                 Idmagiamgia = idmgg,

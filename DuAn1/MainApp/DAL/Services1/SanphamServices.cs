@@ -52,6 +52,7 @@ namespace WinFormsApp1.Services
         {
             Sanpham sanpham = new Sanpham
             {
+                Masp = XulyId(),
                 Tensp = ten,
                 Soluong = soluong,
                 Giaban = giaban,

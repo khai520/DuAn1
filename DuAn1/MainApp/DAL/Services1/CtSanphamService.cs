@@ -23,6 +23,26 @@ namespace Main.DAL.Services
         {
             return list = list1;
         }
+        public string XulyId()
+        {
+            string idtam = "";
+            for (int i = 0; i <= list.Count(); i++)
+            {
+                if (i >= 10)
+                {
+                    idtam = "CTSP" + i;
+                }
+                else
+                {
+                    idtam = "CTSP" + "0" + i;
+                }
+                if (list.Where(x => Convert.ToInt32(x.Masp.Skip(2)) == i).Count() > 0)
+                {
+                    break;
+                }
+            }
+            return idtam;
+        }
         public List<Ctsanpham> Change()
         {
             List<Ctsanpham> list2 = new();
@@ -32,11 +52,11 @@ namespace Main.DAL.Services
             }
             return list2;
         }
-        public bool Them(string id, string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
+        public bool Them(string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
         {
             Ctsanpham ctsanpham = new Ctsanpham
             {
-                Idctsp = id,
+                Idctsp = XulyId(),
                 Tengiay = name,
                 Masp = masp,
                 Chatlieuu = chatlieu,

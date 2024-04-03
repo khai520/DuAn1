@@ -17,15 +17,39 @@ namespace Main.DAL.Services
         {
             return list = list1;
         }
-      
-        public bool Them(string id, string name)
+        public string XulyId()
+        {
+            string idtam = "";
+            for (int i = 0; i <= list.Count; i++)
+            {
+                if (i >= 10)
+                {
+                    idtam = "KH" + i;
+                }
+                else
+                {
+                    idtam = "KH" + "0" + i;
+                }
+                if (list.Where(x => Convert.ToInt32(x.Idkh.Skip(2)) == i).Count() > 0)
+                {
+                    break;
+                }
+            }
+            return idtam;
+        }
+
+        public bool Them(string name, string diachi, string sdt, string email, string diem)
         {
             Khachhang khach = new Khachhang
             {
-                Idkh = id,
-                Ten = name
+                Idkh = XulyId(),
+                Ten = name,
+                Diachi = diachi,
+                Sdt = sdt,
+                Email = email,
+                Diem = diem
             };
-            return true;
+            return repo.them(khach);
         }
         public List<Khachhang> Change()
         {

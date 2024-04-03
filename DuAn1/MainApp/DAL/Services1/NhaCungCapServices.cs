@@ -11,36 +11,68 @@ namespace WinFormsApp1.Services
     internal class NhaCungCapServices
     {
         NhaCungCapRepo nhacungcap = new NhaCungCapRepo();
-        List<NhaCungCap> list = new List<NhaCungCap>(); 
+        List<NhaCungCap> nhaCungCapList = new List<NhaCungCap>();
         public List<NhaCungCap> getallSnhacungcap()
         {
-            return nhacungcap.getallSPrepo().ToList();
+            List<NhaCungCap> list = nhacungcap.getallSPrepo().ToList();
+            return nhaCungCapList = list;
+        }
+        public string XulyId()
+        {
+            List<NhaCungCap> list = getallSnhacungcap();
+            string idtam = "";
+            for (int i = 0; i <= list.Count(); i++)
+            {
+                if (i >= 10)
+                {
+                    idtam = "NCC" + i;
+                }
+                else
+                {
+                    idtam = "NCC" + "0" + i;
+                }
+                if (list.Where(x => Convert.ToInt32(x.Idncc.Skip(2)) == i).Count() > 0)
+                {
+                    break;
+                }
+            }
+            return idtam;
         }
         public List<NhaCungCap> Change()
         {
             List<NhaCungCap> list2 = new();
-            foreach (var item in list)
+            foreach (var item in nhaCungCapList)
             {
                 list2.Add(Loc(item.Idncc));
             }
             return list2;
         }
 
-        public bool Them(string id, string name)
+        public bool Them(string id, string name, string email, string sdt, string loaidichvu, string diaChi, string dieukhoanhoptac)
         {
             NhaCungCap nha = new NhaCungCap
             {
-                Idncc = id,
-                Tenncc = name
+                Idncc = XulyId(),
+                Tenncc = name,
+                Email = email,
+                Sdt = sdt,
+                Loaidichvu = loaidichvu,
+                Diachi = diaChi,
+                Dieukhoanhoptac = dieukhoanhoptac
             };
             return true;
         }
-        public bool Sua(string id, string name)
+        public bool Sua(string id, string name, string email, string sdt, string loaidichvu, string diaChi, string dieukhoanhoptac)
         {
             NhaCungCap nha1 = new NhaCungCap
             {
                 Idncc = id,
-                Tenncc = name
+                Tenncc = name,
+                Email = email,
+                Sdt = sdt,
+                Loaidichvu = loaidichvu,
+                Diachi = diaChi,
+                Dieukhoanhoptac = dieukhoanhoptac
             };
             return nhacungcap.sua(id, nha1);
 
@@ -56,12 +88,12 @@ namespace WinFormsApp1.Services
             {
               
                 Idncc= id,
-                Tenncc = list.Find(x=>x.Idncc == id).Tenncc.ToString(),
-                Email = list.Find(x => x.Idncc == id).Email.ToString(),
-                Sdt = list.Find(x => x.Idncc == id).Sdt.ToString(),
-                Loaidichvu = list.Find(x => x.Idncc == id).Loaidichvu.ToString(),
-                Diachi = list.Find(x => x.Idncc == id).Diachi.ToString(),
-                Dieukhoanhoptac = list.Find(x => x.Idncc == id).Dieukhoanhoptac.ToString()
+                Tenncc = nhaCungCapList.Find(x=>x.Idncc == id).Tenncc.ToString(),
+                Email = nhaCungCapList.Find(x => x.Idncc == id).Email.ToString(),
+                Sdt = nhaCungCapList.Find(x => x.Idncc == id).Sdt.ToString(),
+                Loaidichvu = nhaCungCapList.Find(x => x.Idncc == id).Loaidichvu.ToString(),
+                Diachi = nhaCungCapList.Find(x => x.Idncc == id).Diachi.ToString(),
+                Dieukhoanhoptac = nhaCungCapList.Find(x => x.Idncc == id).Dieukhoanhoptac.ToString()
 
 
             };
@@ -80,7 +112,7 @@ namespace WinFormsApp1.Services
             }
             else
             {
-                listAdd = list;
+                listAdd = nhaCungCapList;
             }
             return listAdd;
         }

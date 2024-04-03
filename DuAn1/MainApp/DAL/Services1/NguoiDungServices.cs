@@ -15,13 +15,33 @@ namespace WinFormsApp1.Services
     internal class NguoiDungServices
     {
         NguoiDungRepo repo = new NguoiDungRepo();
-      VaiTroServices vaiTroServices = new VaiTroServices(); 
+        VaiTroServices vaiTroServices = new VaiTroServices(); 
         List<NguoiDung> list = new List<NguoiDung>();
         public List<NguoiDung> GetallChitietsanpham(List<NguoiDung> list1)
         {
             return list = list1;
         }
-        static int counter = 0;
+        public string XulyId()
+        {
+            string idtam = "";
+            for (int i = 0; i <= list.Count(); i++)
+            {
+                if (i >= 10)
+                {
+                    idtam = "ND" + i;
+                }
+                else
+                {
+                    idtam = "ND" + "0" + i;
+                }
+                if (list.Where(x => Convert.ToInt32(x.IdnguoiDung.Skip(2)) == i).Count() > 0)
+                {
+                    break;
+                }
+            }
+            return idtam;
+        }
+
         //public List<NguoiDung> Change()
         //{
         //    List<NguoiDung> list2 = new();
@@ -36,8 +56,7 @@ namespace WinFormsApp1.Services
         {
             var user = new NguoiDung
             {
-                //IdnguoiDung = GenerateID(),
-
+                IdnguoiDung = XulyId(),
                 Ten = ten,
                 MatKhau = matkhau,
                 Diachi = diachi,

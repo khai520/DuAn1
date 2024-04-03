@@ -12,10 +12,31 @@ namespace Main.DAL.Services
     internal class MaGiamGiaServices
     {
         MagiamgiaRepo repo = new MagiamgiaRepo();
+        List<Magiamgia> list = new List<Magiamgia>();
 
-        public List<Magiamgia> Getallmagiam()
+        public List<Magiamgia> Getallmagiam(List<Magiamgia> list1)
         {
-            return repo.getallMaRepo().ToList();
+            return list= list1;
+        }
+        public string XulyId()
+        {
+            string idtam = "";
+            for (int i = 0; i <= list.Count(); i++)
+            {
+                if (i >= 10)
+                {
+                    idtam = "MGG" + i;
+                }
+                else
+                {
+                    idtam = "MGG" + "0" + i;
+                }
+                if (list.Where(x => Convert.ToInt32(x.Idmagiamgia.Skip(2)) == i).Count() > 0)
+                {
+                    break;
+                }
+            }
+            return idtam;
         }
 
         public bool Them(string id, string name)
