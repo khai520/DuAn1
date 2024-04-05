@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Main.DAL.Services;
 using Main.BLL.Models2;
 using WinFormsApp1.Services;
+using MainApp.GUI.VIEW;
 
 namespace APPBanHang
 {
@@ -104,13 +105,22 @@ namespace APPBanHang
         {
 
         }
-        private void LoadData() 
+        private void LoadData()
         {
             //var result = from sp in _sanphamService
-        
-        
-        
-        
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            ChiTietSanPham chiTietSanPham = new ChiTietSanPham();
+            chiTietSanPham.Show();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            ThongTinNhaCungCap ttncc = new ThongTinNhaCungCap();
+            ttncc.Show();
         }
     }
 }
