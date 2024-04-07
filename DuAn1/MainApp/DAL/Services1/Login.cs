@@ -13,15 +13,26 @@ namespace Main.DAL.Services
         {
             return list.ToList();
         }
-        public bool CheckLogin(string tk , string mk , List<NguoiDung> list)
+        public bool CheckLogin(string tk, string mk, List<NguoiDung> list)
         {
-            if (GetAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
+            if (tk == "" || mk == "")
             {
-                return true;
-            } else 
+                MessageBox.Show("Bạn chưa nhập tài khoản hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK);
+                return false;
+            }
+            else
             {
-                return false; 
+                if (GetAll(list).Where(x => x.Email == tk && x.MatKhau == mk).ToList().Count() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
             }
         }
+
     }
 }

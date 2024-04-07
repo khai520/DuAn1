@@ -28,6 +28,14 @@ namespace WinFormsApp1.Services
             }
             return list2;
         }
+        public bool CheckValidate(dynamic Check)
+        {
+            if (Check == null || Check.Length == 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public string XulyId()
         {
             string idtam = "";
@@ -48,29 +56,47 @@ namespace WinFormsApp1.Services
             }
             return idtam;
         }
-        public Sanpham AddSP(string ten, int soluong, int giaban, string trangthai)
+        public bool AddSP(string ten, int soluong, int giaban, string trangthai)
         {
-            Sanpham sanpham = new Sanpham
+            if (CheckValidate(ten) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
             {
-                Masp = XulyId(),
-                Tensp = ten,
-                Soluong = soluong,
-                Giaban = giaban,
-                Trangthai = trangthai
-            };
-            return sanpham;
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Sanpham sanpham = new Sanpham
+                {
+                    Masp = XulyId(),
+                    Tensp = ten,
+                    Soluong = soluong,
+                    Giaban = giaban,
+                    Trangthai = trangthai
+                };
+                return true;
+            }
+
         }
-        public Sanpham UpdateSP(string id, string name, int soluong, int giaban, string trangthai)
+        public bool UpdateSP(string id, string name, int soluong, int giaban, string trangthai)
         {
-            Sanpham sanpham = new Sanpham
+            if (CheckValidate(id) || CheckValidate(name) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
             {
-                Masp = id,
-                Tensp = name,
-                Soluong = soluong,
-                Giaban = giaban,
-                Trangthai = trangthai
-            };
-            return sanpham;
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Sanpham sanpham = new Sanpham
+                {
+                    Masp = id,
+                    Tensp = name,
+                    Soluong = soluong,
+                    Giaban = giaban,
+                    Trangthai = trangthai
+                };
+                return repo.sua(id, sanpham);
+            }
+
         }
         public Sanpham XoaSp(string id)
         {
@@ -111,20 +137,28 @@ namespace WinFormsApp1.Services
         }
         public List<Sanpham> Timkiem(string? id, string? tensp, int? soluong, decimal? giaban, string? trangthai)
         {
-            var ds = Change().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai );
-            List<Sanpham> listAdd = new();
-            if (ds.Count() > 0)
+            if (id == null && tensp == null && soluong == null && giaban == null && trangthai == null)
             {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.Masp));
-                }
+                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
             else
             {
-                listAdd = list;
+                var ds = Change().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai);
+                List<Sanpham> listAdd = new();
+                if (ds.Count() > 0)
+                {
+                    foreach (var item in ds)
+                    {
+                        listAdd.Add(Loc(item.Masp));
+                    }
+                }
+                else
+                {
+                    listAdd = list;
+                }
+                return listAdd;
             }
-            return listAdd;
         }
 
     }

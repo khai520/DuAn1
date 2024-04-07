@@ -52,35 +52,64 @@ namespace Main.DAL.Services
             }
             return list2;
         }
-        public bool Them(string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
+        public bool CheckValidate(dynamic Check)
         {
-            Ctsanpham ctsanpham = new Ctsanpham
+            if (Check == null || Check.Length == 0)
             {
-                Idctsp = XulyId(),
-                Tengiay = name,
-                Masp = masp,
-                Chatlieuu = chatlieu,
-                Kichthuoc = kichthuoc,
-                Degiay = degiay,
-                Mau = mau,
-                Giaban = giaban
-            };
-            return true;
+                return true;
+            }
+            else { return false; }
         }
-        public bool Sua(string id, string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
+        public bool Them(string name, string idncc, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
         {
-            Ctsanpham ctsanpham = new Ctsanpham
+            if (CheckValidate(name) || CheckValidate(idncc) || CheckValidate(masp) || CheckValidate(mau) || CheckValidate(chatlieu) || CheckValidate(kichthuoc) || CheckValidate(degiay) || CheckValidate(giaban))
             {
-                Idctsp = id,
-                Tengiay = name,
-                Masp = masp,
-                Chatlieuu = chatlieu,
-                Kichthuoc = kichthuoc,
-                Degiay = degiay,
-                Mau = mau,
-                Giaban = giaban
-            };
-            return sanpham.sua(id, ctsanpham);
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Ctsanpham ctsanpham = new Ctsanpham
+                {
+                    Idctsp = XulyId(),
+                    Idncc = idncc,
+                    Tengiay = name,
+                    Masp = masp,
+                    Chatlieuu = chatlieu,
+                    Kichthuoc = kichthuoc,
+                    Degiay = degiay,
+                    Mau = mau,
+                    Giaban = giaban
+                };
+                return true;
+            }
+
+        }
+        public bool Sua(string id, string idncc, string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
+        {
+            if (CheckValidate(name) || CheckValidate(idncc) || CheckValidate(masp) || CheckValidate(mau) || CheckValidate(chatlieu) || CheckValidate(kichthuoc) || CheckValidate(degiay) || CheckValidate(giaban))
+            {
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Ctsanpham ctsanpham = new Ctsanpham
+                {
+                    Idctsp = id,
+                    Idncc = idncc,
+                    Tengiay = name,
+                    Masp = masp,
+                    Chatlieuu = chatlieu,
+                    Kichthuoc = kichthuoc,
+                    Degiay = degiay,
+                    Mau = mau,
+                    Giaban = giaban
+                };
+                sanpham.sua(id, ctsanpham);
+                return true;
+            }
+
 
         }
 
@@ -118,20 +147,29 @@ namespace Main.DAL.Services
         }
         public List<Ctsanpham> Timkiem(string? id, string? name, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, decimal giaban)
         {
-            var ds = Change().Where(x => x.Idctsp == id || x.Tengiay == name || x.Masp == masp || x.Mau == mau || x.Chatlieuu == chatlieu || x.Kichthuoc == kichthuoc || x.Degiay == degiay || x.Giaban == giaban);
-            List<Ctsanpham> listAdd = new();
-            if (ds.Count() > 0)
+            if (id == null && name == null && masp == null && mau == null && chatlieu == null && kichthuoc == null && degiay == null)
             {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.Idctsp));
-                }
+
+                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
             else
             {
-                listAdd = list;
+                var ds = Change().Where(x => x.Idctsp == id || x.Tengiay == name || x.Masp == masp || x.Mau == mau || x.Chatlieuu == chatlieu || x.Kichthuoc == kichthuoc || x.Degiay == degiay || x.Giaban == giaban);
+                List<Ctsanpham> listAdd = new();
+                if (ds.Count() > 0)
+                {
+                    foreach (var item in ds)
+                    {
+                        listAdd.Add(Loc(item.Idctsp));
+                    }
+                }
+                else
+                {
+                    listAdd = list;
+                }
+                return listAdd;
             }
-            return listAdd;
         }
     }
 }

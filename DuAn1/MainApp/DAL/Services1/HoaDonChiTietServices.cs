@@ -17,6 +17,14 @@ namespace Main.DAL.Services
         {
             return list = repo.getallHoaDonrepo();
         }
+        public bool CheckValidate(dynamic Check)
+        {
+            if (Check == null || Check.Length == 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public string XulyId()
         {
             string idtam = "";
@@ -37,26 +45,26 @@ namespace Main.DAL.Services
             }
             return idtam;
         }
-        
+
         public Hoadonct AddHoaDonCT(string idctsp, int slban, decimal gia, DateTime ngayban)
         {
-            var hdct = new Hoadonct
+            if (CheckValidate(idctsp) || CheckValidate(slban) || CheckValidate(gia) || CheckValidate(ngayban))
             {
-                Mahd = XulyId(),
-                Idctsp = idctsp,
-                Slban = slban,
-                Gia = gia,
-                Ngayban = ngayban,
-            };
-            if (AddHoaDonCT2(idctsp,slban,gia,ngayban))
-            {
-                return hdct;
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return null;
             }
             else
             {
-                return null;
+                Hoadonct hdct = new Hoadonct
+                {
+                    Mahd = XulyId(),
+                    Idctsp = idctsp,
+                    Slban = slban,
+                    Gia = gia,
+                    Ngayban = ngayban,
+                };
+                return hdct;
             }
-            
         }
         public List<Hoadonct> Change()
         {
@@ -90,38 +98,55 @@ namespace Main.DAL.Services
             return sP;
         }
 
-        public List<Hoadonct> Timkiem(string? id, string? idctsp, int? slban, decimal? gia,DateTime? ngayban)
+        public List<Hoadonct> Timkiem(string? id, string? idctsp, int? slban, decimal? gia, DateTime? ngayban)
         {
-            var ds = Change().Where(x => x.Mahd == id || x.Idctsp == idctsp || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
-            List<Hoadonct> listAdd = new();
-            if (ds.Count() > 0)
+            if (id == null && idctsp == null && slban == null && gia == null && ngayban == null)
             {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.Mahd));
-                }
+                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
             else
             {
-                listAdd = list;
+                var ds = Change().Where(x => x.Mahd == id || x.Idctsp == idctsp || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
+                List<Hoadonct> listAdd = new();
+                if (ds.Count() > 0)
+                {
+                    foreach (var item in ds)
+                    {
+                        listAdd.Add(Loc(item.Mahd));
+                    }
+                }
+                else
+                {
+                    listAdd = list;
+                }
+                return listAdd;
             }
-            return listAdd;
         }
         public bool AddHoaDonCT2(string idctsp, int slban, decimal gia, DateTime ngayban)
         {
             return repo.them(AddHoaDonCT(idctsp, slban, gia, ngayban));
         }
-        public bool UpdateHoaDonCT(string idhdct,string idctsp, int slban, decimal gia, DateTime ngayban)
+        public bool UpdateHoaDonCT(string idhdct, string idctsp, int slban, decimal gia, DateTime ngayban)
         {
-            Hoadonct hoadonct = new Hoadonct
+            if (CheckValidate(idctsp) || CheckValidate(slban) || CheckValidate(gia) || CheckValidate(ngayban))
             {
-                Mahd = idhdct,
-                Slban = slban,
-                Idctsp = idctsp,
-                Gia = gia,
-                Ngayban = ngayban
-            };
-            return repo.sua(idhdct, hoadonct);
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Hoadonct hoadonct = new Hoadonct
+                {
+                    Mahd = idhdct,
+                    Slban = slban,
+                    Idctsp = idctsp,
+                    Gia = gia,
+                    Ngayban = ngayban
+                };
+                return repo.sua(idhdct, hoadonct);
+            }
+
         }
         public bool XoaHDCT(string idhdct)
         {

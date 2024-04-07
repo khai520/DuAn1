@@ -17,6 +17,14 @@ namespace Main.DAL.Services
         {
             return list = repo.getallKhachRepo();
         }
+        public bool CheckValidate(dynamic Check)
+        {
+            if (Check == null || Check.Length == 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public string XulyId()
         {
             string idtam = "";
@@ -40,16 +48,25 @@ namespace Main.DAL.Services
 
         public bool Them(string name, string diachi, string sdt, string email, string diem)
         {
-            Khachhang khach = new Khachhang
+            if (CheckValidate(diachi) || CheckValidate(sdt) || CheckValidate(email) || CheckValidate(name))
             {
-                Idkh = XulyId(),
-                Ten = name,
-                Diachi = diachi,
-                Sdt = sdt,
-                Email = email,
-                Diem = diem
-            };
-            return repo.them(khach);
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Khachhang khach = new Khachhang
+                {
+                    Idkh = XulyId(),
+                    Ten = name,
+                    Diachi = diachi,
+                    Sdt = sdt,
+                    Email = email,
+                    Diem = diem
+                };
+                return repo.them(khach);
+            }
+
         }
         public List<Khachhang> Change()
         {
@@ -76,38 +93,54 @@ namespace Main.DAL.Services
             };
             return sP;
         }
-        public List<Khachhang> Timkiem(string? idkh , string? idloaikh, string? ten, string? sdt , string? diachi, string? email, string? diem  )
+        public List<Khachhang> Timkiem(string? idkh, string? idloaikh, string? ten, string? sdt, string? diachi, string? email, string? diem)
         {
-            var ds = Change().Where(x => x.Idkh == idkh || x.Idloaind == idloaikh || x.Ten == ten ||x.Sdt == sdt ||x.Diachi == diachi || x.Email == email || x.Diem == diem);
-            List<Khachhang> listAdd = new();
-            if (ds.Count() > 0)
+            if (idkh == null && idloaikh == null && ten == null && sdt == null && diachi == null && email == null && diem == null)
             {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.Idkh));
-                }
+                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
             else
             {
-                listAdd = list;
+                var ds = Change().Where(x => x.Idkh == idkh || x.Idloaind == idloaikh || x.Ten == ten || x.Sdt == sdt || x.Diachi == diachi || x.Email == email || x.Diem == diem);
+                List<Khachhang> listAdd = new();
+                if (ds.Count() > 0)
+                {
+                    foreach (var item in ds)
+                    {
+                        listAdd.Add(Loc(item.Idkh));
+                    }
+                }
+                else
+                {
+                    listAdd = list;
+                }
+                return listAdd;
             }
-            return listAdd;
         }
 
 
-        public bool Sua(string id, string name,string diachi, string sdt, string email, string diem)
+        public bool Sua(string id, string name, string diachi, string sdt, string email, string diem)
         {
-            Khachhang khach1 = new Khachhang
+            if (CheckValidate(id) || CheckValidate(diachi) || CheckValidate(sdt) || CheckValidate(email) || CheckValidate(name))
             {
-                Idkh = id,
-                Ten = name,
-                Sdt = sdt,
-                Diachi = diachi,
-                Email = email,
-                Diem = diem
-            };
-            return repo.sua(id, khach1);
-
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Khachhang khach1 = new Khachhang
+                {
+                    Idkh = id,
+                    Ten = name,
+                    Sdt = sdt,
+                    Diachi = diachi,
+                    Email = email,
+                    Diem = diem
+                };
+                repo.sua(id, khach1);
+                return true;
+            }
         }
 
         public bool Xoa(string ID)

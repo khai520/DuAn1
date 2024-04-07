@@ -21,7 +21,15 @@ namespace Main.DAL.Services
         {
             return list = repo.getallSPrepo();
         }
-        
+        public bool CheckValidate(dynamic Check)
+        {
+            if (Check == null || Check.Length == 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
         public string XulyId()
         {
             string idtam = "";
@@ -52,53 +60,61 @@ namespace Main.DAL.Services
             }
             return list2;
         }
-        public bool AddHoaDon(string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai , string idhdct, string idctsp, int slban, decimal gia, DateTime ngayban2)
+        public bool AddHoaDon(string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai, string idhdct, string idctsp, int slban, decimal gia)
         {
             HoaDonChiTietServices hoaDonChiTietServices = new();
             Hoadonct hoadonct = new();
-            hoadonct = hoaDonChiTietServices.AddHoaDonCT(  idctsp,  slban, gia,ngayban2);
-            var hoadon = new Hoadon
+            if (CheckValidate(idkh) || CheckValidate(idnguoidung) || CheckValidate(ngayban) || CheckValidate(tensanpham) || CheckValidate(soluong) || CheckValidate(tongtien) || CheckValidate(trangthai) || CheckValidate(idhdct) || CheckValidate(idctsp) || CheckValidate(slban) || CheckValidate(gia))
             {
-                Mahd = XulyId(),
-                Idkh = idkh,
-                IdnguoiDung = idnguoidung,
-                Idmagiamgia = idmgg,
-                Ngayban = ngayban,
-                Tensp = tensanpham,
-                Soluong = soluong,
-                Tongtien = tongtien,
-                Trangthai = trangthai
-            };
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                hoadonct = hoaDonChiTietServices.AddHoaDonCT(idctsp, slban, gia, ngayban);
+                var hoadon = new Hoadon
+                {
+                    Mahd = XulyId(),
+                    Idkh = idkh,
+                    IdnguoiDung = idnguoidung,
+                    Idmagiamgia = idmgg,
+                    Ngayban = ngayban,
+                    Tensp = tensanpham,
+                    Soluong = soluong,
+                    Tongtien = tongtien,
+                    Trangthai = trangthai
+                };
+                return true;
+            }
 
-           
-            return true;
         }
         public bool UpdateHoaDon(string idhoadon, string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai)
         {
-            Hoadon hoadon = new Hoadon
+            if (CheckValidate(idhoadon) || CheckValidate(idkh) || CheckValidate(idnguoidung) || CheckValidate(ngayban) || CheckValidate(tensanpham) || CheckValidate(tongtien) || CheckValidate(trangthai) || CheckValidate(soluong))
             {
-                Mahd = idhoadon,
-                Idkh = idkh,
-                IdnguoiDung = idnguoidung,
-                Idmagiamgia = idmgg,
-                Ngayban = ngayban,
-                Tensp = tensanpham,
-                Soluong = soluong,
-                Tongtien = tongtien,
-                Trangthai = trangthai
-            };
-            return repo.sua(idhoadon, hoadon);
-        }
-        public bool XoaHoaDon(string id)
-        {
-            return repo.xoa(id);
-        }
-        public List<Hoadon> FindHoaDon(string idhd)
-        {
-            return repo.FindhoadonByid(idhd).ToList();
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Hoadon hoadon = new Hoadon
+                {
+                    Mahd = idhoadon,
+                    Idkh = idkh,
+                    IdnguoiDung = idnguoidung,
+                    Idmagiamgia = idmgg,
+                    Ngayban = ngayban,
+                    Tensp = tensanpham,
+                    Soluong = soluong,
+                    Tongtien = tongtien,
+                    Trangthai = trangthai
+                };
+                return repo.sua(idhoadon, hoadon);
+            }
+
         }
 
- public Hoadon Loc(string id)
+        public Hoadon Loc(string id)
         {
             string? kh ;
             if (khachHangService.Getallkh().Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh) == null)  
@@ -142,22 +158,30 @@ namespace Main.DAL.Services
             };
             return hoadon;
         }
-        public List<Hoadon> Timkiem(string? id, string? idkh, string? idngdung, string? idmagiamgia, DateTime? ngayban, string? tensp, int? soluong, decimal? tongtien, string? trangthai  )
+        public List<Hoadon> Timkiem(string? id, string? idkh, string? idngdung, string? idmagiamgia, DateTime? ngayban, string? tensp, int? soluong, decimal? tongtien, string? trangthai)
         {
-            var ds = Change().Where(x => x.Mahd == id ||x.Idkh == idkh || x.IdnguoiDung == idngdung || x.Idmagiamgia == idmagiamgia || x.Ngayban == ngayban ||x.Tensp == tensp || x.Soluong == soluong || x.Tongtien == tongtien || x.Trangthai == trangthai  );
-            List<Hoadon> listAdd = new();
-            if (ds.Count() > 0)
+            if (id == null && idkh == null && idngdung == null && idmagiamgia == null && ngayban == null && tensp == null && soluong == null && tongtien == null && trangthai == null)
             {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.Mahd));
-                }
+                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
             else
             {
-                listAdd = list;
+                var ds = Change().Where(x => x.Mahd == id || x.Idkh == idkh || x.IdnguoiDung == idngdung || x.Idmagiamgia == idmagiamgia || x.Ngayban == ngayban || x.Tensp == tensp || x.Soluong == soluong || x.Tongtien == tongtien || x.Trangthai == trangthai);
+                List<Hoadon> listAdd = new();
+                if (ds.Count() > 0)
+                {
+                    foreach (var item in ds)
+                    {
+                        listAdd.Add(Loc(item.Mahd));
+                    }
+                }
+                else
+                {
+                    listAdd = list;
+                }
+                return listAdd;
             }
-            return listAdd;
         }
 
     }

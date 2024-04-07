@@ -21,6 +21,14 @@ namespace WinFormsApp1.Services
         {
             return list = repo.getallSPrepo();
         }
+        public bool CheckValidate(dynamic Check)
+        {
+            if (Check == null || Check.Length == 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public string XulyId()
         {
             string idtam = "";
@@ -52,33 +60,51 @@ namespace WinFormsApp1.Services
         //    return list2;
         //}
         public bool AddUser(string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
-
         {
-            var user = new NguoiDung
+            if (CheckValidate(ten) || CheckValidate(matkhau) || CheckValidate(diachi) || CheckValidate(email) || CheckValidate(sdt) || CheckValidate(trangthai))
             {
-                IdnguoiDung = XulyId(),
-                Ten = ten,
-                MatKhau = matkhau,
-                Diachi = diachi,
-                Email = email,
-                Dthoai = sdt,
-                Trangthai = trangthai
-            };
-            return true;
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                var user = new NguoiDung
+                {
+                    IdnguoiDung = XulyId(),
+                    Ten = ten,
+                    MatKhau = matkhau,
+                    Diachi = diachi,
+                    Email = email,
+                    Dthoai = sdt,
+                    Trangthai = trangthai
+                };
+                return true;
+            }
+
         }
         public bool UpdateUser(string id, string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
         {
-            NguoiDung nguoidung = new NguoiDung
+            if (CheckValidate(ten) || CheckValidate(matkhau) || CheckValidate(diachi) || CheckValidate(email) || CheckValidate(sdt) || CheckValidate(trangthai))
             {
-                IdnguoiDung = id,
-                Ten = ten,
-                MatKhau = matkhau,
-                Diachi = diachi,
-                Email = email,
-                Dthoai = sdt,
-                Trangthai = trangthai
-            };
-            return repo.sua(id, nguoidung);
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                NguoiDung nguoidung = new NguoiDung
+                {
+                    IdnguoiDung = id,
+                    Ten = ten,
+                    MatKhau = matkhau,
+                    Diachi = diachi,
+                    Email = email,
+                    Dthoai = sdt,
+                    Trangthai = trangthai
+                };
+                repo.sua(id, nguoidung);
+                return true;
+            }
+
         }
 
         public bool CheckLogin(string email, string password)

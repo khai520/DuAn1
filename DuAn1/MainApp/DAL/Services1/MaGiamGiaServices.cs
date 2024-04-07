@@ -38,24 +38,57 @@ namespace Main.DAL.Services
             }
             return idtam;
         }
-
-        public bool Them(string id, string name)
+        public bool CheckValidate(dynamic Check)
         {
-            Magiamgia ma = new Magiamgia
+            if (Check == null || Check.Length == 0)
             {
-                Idmagiamgia = id,
-                Tenma = name
-            };
-            return true;
+                return true;
+            }
+            else { return false; }
         }
-        public bool Sua(string id, string name)
+
+        public bool Them(string name, int phantramgiam, DateTime ngaybatdau, DateTime ngayketthuc)
         {
-            Magiamgia magiam = new Magiamgia
+            if (CheckValidate(name) || CheckValidate(phantramgiam) || CheckValidate(ngaybatdau) || CheckValidate(ngayketthuc))
             {
-                Idmagiamgia = id,
-                Tenma = name
-            };
-            return repo.sua(id, magiam);
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Magiamgia ma = new Magiamgia
+                {
+                    Idmagiamgia = XulyId(),
+                    Tenma = name,
+                    Phamtramgiam = phantramgiam,
+                    Ngaybatdau = ngaybatdau,
+                    Ngayketthuc = ngayketthuc
+                };
+                return true;
+            }
+
+        }
+        public bool Sua(string id, string name, int phantramgiam, DateTime ngaybatdau, DateTime ngayketthuc)
+        {
+            if (CheckValidate(name) || CheckValidate(phantramgiam) || CheckValidate(ngaybatdau) || CheckValidate(ngayketthuc))
+            {
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                Magiamgia magiam = new Magiamgia
+                {
+                    Idmagiamgia = id,
+                    Tenma = name,
+                    Phamtramgiam = phantramgiam,
+                    Ngaybatdau = ngaybatdau,
+                    Ngayketthuc = ngayketthuc
+                };
+                repo.sua(id, magiam);
+                return true;
+            }
+
 
         }
 

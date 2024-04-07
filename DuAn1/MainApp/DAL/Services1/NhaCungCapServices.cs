@@ -38,6 +38,14 @@ namespace WinFormsApp1.Services
             }
             return idtam;
         }
+        public bool CheckValidate(dynamic Check)
+        {
+            if (Check == null || Check.Length == 0)
+            {
+                return true;
+            }
+            else { return false; }
+        }
         public List<NhaCungCap> Change()
         {
             List<NhaCungCap> list2 = new();
@@ -48,33 +56,52 @@ namespace WinFormsApp1.Services
             return list2;
         }
 
-        public bool Them(string id, string name, string email, string sdt, string loaidichvu, string diaChi, string dieukhoanhoptac)
+        public bool Them(string name, string email, string sdt, string loaidichvu, string diaChi, string dieukhoanhoptac)
         {
-            NhaCungCap nha = new NhaCungCap
+            if (CheckValidate(name) || CheckValidate(email) || CheckValidate(sdt) || CheckValidate(loaidichvu) || CheckValidate(diaChi) || CheckValidate(dieukhoanhoptac))
             {
-                Idncc = XulyId(),
-                Tenncc = name,
-                Email = email,
-                Sdt = sdt,
-                Loaidichvu = loaidichvu,
-                Diachi = diaChi,
-                Dieukhoanhoptac = dieukhoanhoptac
-            };
-            return true;
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                NhaCungCap nha = new NhaCungCap
+                {
+                    Idncc = XulyId(),
+                    Tenncc = name,
+                    Email = email,
+                    Sdt = sdt,
+                    Loaidichvu = loaidichvu,
+                    Diachi = diaChi,
+                    Dieukhoanhoptac = dieukhoanhoptac
+                };
+                return true;
+            }
+
         }
         public bool Sua(string id, string name, string email, string sdt, string loaidichvu, string diaChi, string dieukhoanhoptac)
         {
-            NhaCungCap nha1 = new NhaCungCap
+            if (CheckValidate(id) || CheckValidate(name) || CheckValidate(email) || CheckValidate(sdt) || CheckValidate(loaidichvu) || CheckValidate(diaChi) || CheckValidate(dieukhoanhoptac))
             {
-                Idncc = id,
-                Tenncc = name,
-                Email = email,
-                Sdt = sdt,
-                Loaidichvu = loaidichvu,
-                Diachi = diaChi,
-                Dieukhoanhoptac = dieukhoanhoptac
-            };
-            return nhacungcap.sua(id, nha1);
+                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                return false;
+            }
+            else
+            {
+                NhaCungCap nha1 = new NhaCungCap
+                {
+                    Idncc = id,
+                    Tenncc = name,
+                    Email = email,
+                    Sdt = sdt,
+                    Loaidichvu = loaidichvu,
+                    Diachi = diaChi,
+                    Dieukhoanhoptac = dieukhoanhoptac
+                };
+                nhacungcap.sua(id, nha1);
+                return true;
+            }
+
 
         }
 
@@ -99,22 +126,30 @@ namespace WinFormsApp1.Services
             };
             return sP;
         }
-        public List<NhaCungCap> Timkiem(string? id,string? tenncc, string? email, string? sdt, string? loaidichvu, string? diachi, string? dieukhoan )
+        public List<NhaCungCap> Timkiem(string? id, string? tenncc, string? email, string? sdt, string? loaidichvu, string? diachi, string? dieukhoan)
         {
-            var ds = Change().Where(x => x.Idncc == id || x.Tenncc == tenncc || x.Email == email || x.Sdt == sdt || x.Loaidichvu == loaidichvu || x.Diachi == diachi || x.Dieukhoanhoptac == dieukhoan );
-            List<NhaCungCap> listAdd = new();
-            if (ds.Count() > 0)
+            if (id == null && tenncc == null && email == null && sdt == null && loaidichvu == null && diachi == null && dieukhoan == null)
             {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.Idncc));
-                }
+                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return null;
             }
             else
             {
-                listAdd = nhaCungCapList;
+                var ds = Change().Where(x => x.Idncc == id || x.Tenncc == tenncc || x.Email == email || x.Sdt == sdt || x.Loaidichvu == loaidichvu || x.Diachi == diachi || x.Dieukhoanhoptac == dieukhoan);
+                List<NhaCungCap> listAdd = new();
+                if (ds.Count() > 0)
+                {
+                    foreach (var item in ds)
+                    {
+                        listAdd.Add(Loc(item.Idncc));
+                    }
+                }
+                else
+                {
+                    listAdd = nhaCungCapList;
+                }
+                return listAdd;
             }
-            return listAdd;
         }
         public List<NhaCungCap> FindNCCByName(string name)
         {
