@@ -14,9 +14,9 @@ namespace Main.DAL.Services
         MagiamgiaRepo repo = new MagiamgiaRepo();
         List<Magiamgia> list = new List<Magiamgia>();
 
-        public List<Magiamgia> Getallmagiam(List<Magiamgia> list1)
+        public List<Magiamgia> Getallmagiam()
         {
-            return list= list1;
+            return list= repo.getallMaRepo();
         }
         public string XulyId()
         {

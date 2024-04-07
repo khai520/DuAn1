@@ -84,7 +84,6 @@
             dgvDanhSachSanPham.RowTemplate.Height = 25;
             dgvDanhSachSanPham.Size = new Size(939, 237);
             dgvDanhSachSanPham.TabIndex = 1;
-            dgvDanhSachSanPham.CellClick += dgvDanhSachSanPham_CellClick;
             // 
             // panel1
             // 
@@ -137,7 +136,6 @@
             btnThemSanPham.TabIndex = 32;
             btnThemSanPham.Text = "Thêm Sản Phẩm";
             btnThemSanPham.UseVisualStyleBackColor = true;
-            btnThemSanPham.Click += btnThemSanPham_Click;
             // 
             // cbxNhaCungCap
             // 
@@ -198,7 +196,6 @@
             btnSua.TabIndex = 13;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = true;
-            btnSua.Click += btnSua_Click;
             // 
             // btnXoa
             // 
@@ -210,7 +207,6 @@
             btnXoa.TabIndex = 12;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
             // 
             // txtSoLuongTon
             // 
@@ -267,7 +263,6 @@
             btnTrangChu.TabIndex = 15;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
-            btnTrangChu.Click += btnTrangChu_Click;
             // 
             // pictureBox1
             // 
@@ -298,7 +293,6 @@
             btnNhanVien.TabIndex = 24;
             btnNhanVien.Text = "Nhân Viên";
             btnNhanVien.UseVisualStyleBackColor = true;
-            btnNhanVien.Click += btnNhanVien_Click;
             // 
             // btnKhachHang
             // 
@@ -309,7 +303,6 @@
             btnKhachHang.TabIndex = 25;
             btnKhachHang.Text = "Khách Hàng";
             btnKhachHang.UseVisualStyleBackColor = true;
-            btnKhachHang.Click += btnKhachHang_Click;
             // 
             // btnExit
             // 

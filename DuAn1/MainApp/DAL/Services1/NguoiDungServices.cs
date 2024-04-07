@@ -17,9 +17,9 @@ namespace WinFormsApp1.Services
         NguoiDungRepo repo = new NguoiDungRepo();
         VaiTroServices vaiTroServices = new VaiTroServices(); 
         List<NguoiDung> list = new List<NguoiDung>();
-        public List<NguoiDung> GetallChitietsanpham(List<NguoiDung> list1)
+        public List<NguoiDung> GetallND()
         {
-            return list = list1;
+            return list = repo.getallSPrepo();
         }
         public string XulyId()
         {

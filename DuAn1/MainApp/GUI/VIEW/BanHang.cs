@@ -135,29 +135,31 @@ namespace APPBanHang
 
         private void loaddanhsachhoadon()
         {
-            List<Hoadon> danhSachHoaDon = _hoadonService.GetHoadons();
-
-            dgvDanhSachHoaDon.DataSource = danhSachHoaDon;
-            DataGridViewTextBoxColumn sttColumnb = new DataGridViewTextBoxColumn();
-            sttColumnb.HeaderText = "STT";
-            sttColumnb.Name = "sttColumn";
-            dgvDanhSachHoaDon.Columns.Insert(0, sttColumnb);
-
-
-            for (int i = 0; i < dgvDanhSachHoaDon.Rows.Count; i++)
+            int Stt = 1;
+            dgvDanhSachHoaDon.DataSource = _hoadonService.Change().Select(x => new
             {
-                dgvDanhSachHoaDon.Rows[i].Cells["sttColumn"].Value = (i + 1).ToString();
-            }
+                STT = Stt++,
+                x.Mahd,
+                x.Idkh,
+                x.IdnguoiDung,
+                x.Idmagiamgia,
+                x.Ngayban,
+                x.Tensp,
+                x.Soluong,
+                x.Tongtien,
+                x.Trangthai
+            }).ToList();
+            dgvDanhSachHoaDon.Columns[0].HeaderText = "STT";
+            dgvDanhSachHoaDon.Columns[1].HeaderText = "MaHD";
+            dgvDanhSachHoaDon.Columns[2].HeaderText = "Tên khách hàng";
+            dgvDanhSachHoaDon.Columns[3].HeaderText = "Tên nhân viên";
+            dgvDanhSachHoaDon.Columns[4].HeaderText = "Mã giảm giá";
+            dgvDanhSachHoaDon.Columns[5].HeaderText = "Ngày bán";
+            dgvDanhSachHoaDon.Columns[6].HeaderText = "Tên sản phẩm";
+            dgvDanhSachHoaDon.Columns[7].HeaderText = "Số lượng";
+            dgvDanhSachHoaDon.Columns[8].HeaderText = "Tổng tiền";
+            dgvDanhSachHoaDon.Columns[9].HeaderText = "Trạng thái";
 
-
-
-
-            dgvDanhSachHoaDon.Columns[9].Visible = false;
-            dgvDanhSachHoaDon.Columns[10].Visible = false;
-            dgvDanhSachHoaDon.Columns[11].Visible = false;
-            dgvDanhSachHoaDon.Columns[12].Visible = false;
-
-            dgvDanhSachSanPham.EditMode = DataGridViewEditMode.EditProgrammatically;
 
         }
 

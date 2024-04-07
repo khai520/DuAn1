@@ -13,9 +13,9 @@ namespace Main.DAL.Services
         KhachHangRepo repo = new KhachHangRepo();
         List<Khachhang> list = new List<Khachhang>();
         
-        public List<Khachhang> Getallkh(List<Khachhang> list1)
+        public List<Khachhang> Getallkh()
         {
-            return list = list1;
+            return list = repo.getallKhachRepo();
         }
         public string XulyId()
         {

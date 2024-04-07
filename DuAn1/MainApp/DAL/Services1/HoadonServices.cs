@@ -16,8 +16,6 @@ namespace Main.DAL.Services
         KhachHangService khachHangService = new KhachHangService();
         NguoiDungServices nguoiDungServices = new NguoiDungServices();
         MaGiamGiaServices ma = new MaGiamGiaServices();
-        KhachHangRepo KhachHangRepo = new KhachHangRepo();
-        NguoiDungRepo NguoiDungRepo = new NguoiDungRepo();
 
         public List<Hoadon> GetHoadons()
         {
@@ -47,6 +45,7 @@ namespace Main.DAL.Services
         public List<Hoadon> Change()
         {
             List<Hoadon> list2 = new();
+            GetHoadons();
             foreach (var item in list)
             {
                 list2.Add(Loc(item.Mahd));
@@ -101,13 +100,39 @@ namespace Main.DAL.Services
 
  public Hoadon Loc(string id)
         {
+            string? kh ;
+            if (khachHangService.Getallkh().Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh) == null)  
+            {
+                kh = " ";
+            }
+            else
+            {
+                kh = khachHangService.Getallkh().Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh).Ten.ToString();
+            }
+            string? nd;
+            if (nguoiDungServices.GetallND().Find(x => x.IdnguoiDung == list.Find(x => x.Mahd == id).IdnguoiDung) == null)
+            {
+                nd = " ";
+            }
+            else
+            {
+                nd = nguoiDungServices.GetallND().Find(x => x.IdnguoiDung == list.Find(x => x.Mahd == id).IdnguoiDung).Ten.ToString();
+            }
+            string? magg ;
+            if (ma.Getallmagiam().Find(x => x.Idmagiamgia == list.Find(x => x.Mahd == id).Idmagiamgia) == null)
+            {
+                magg = " ";
+            }
+            else
+            {
+                magg = ma.Getallmagiam().Find(x => x.Idmagiamgia == list.Find(x => x.Mahd == id).Idmagiamgia).Tenma.ToString();
+            }
             Hoadon hoadon = new Hoadon()
             {
-              
                 Mahd = id,
-                Idkh = khachHangService.Getallkh(KhachHangRepo.getallKhachRepo()).Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh).Ten.ToString(),
-                IdnguoiDung = nguoiDungServices.GetallChitietsanpham(NguoiDungRepo.getallSPrepo()).Find(x => x.IdnguoiDung == list.Find(x => x.Mahd == id).IdnguoiDung).Ten.ToString(),
-                Idmagiamgia = list.Find(x => x.Mahd == id).Idmagiamgia.ToString(),
+                Idkh = kh,
+                IdnguoiDung = nd,
+                Idmagiamgia = magg,
                 Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value,
                 Tensp = list.Find(x => x.Mahd == id).Tensp.ToString(),
                 Soluong = list.Find(x => x.Mahd == id).Soluong.Value,
