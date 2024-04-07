@@ -14,15 +14,16 @@ namespace Main.DAL.Services
         HoaDonRepo repo = new HoaDonRepo();
         List<Hoadon> list = new List<Hoadon>();
         KhachHangService khachHangService = new KhachHangService();
-        NguoiDungServices nguoiDungServices= new NguoiDungServices();
+        NguoiDungServices nguoiDungServices = new NguoiDungServices();
         MaGiamGiaServices ma = new MaGiamGiaServices();
         KhachHangRepo KhachHangRepo = new KhachHangRepo();
         NguoiDungRepo NguoiDungRepo = new NguoiDungRepo();
-     
-        public List<Hoadon> GetHoadons(List<Hoadon> list1)
+
+        public List<Hoadon> GetHoadons()
         {
-            return list = list1;
+            return list = repo.getallSPrepo();
         }
+        
         public string XulyId()
         {
             string idtam = "";

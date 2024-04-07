@@ -32,7 +32,12 @@ namespace MainApp.GUI.VIEW
         private void btnLuu_Click(object sender, EventArgs e)
         {
             CtSanphamService spser = new();
-            
+
+        }
+
+        private void cbx_cl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

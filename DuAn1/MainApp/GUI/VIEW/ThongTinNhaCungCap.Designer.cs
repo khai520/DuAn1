@@ -29,20 +29,20 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            cbxLoaiDichVu = new ComboBox();
+            txtSoDienThoai = new TextBox();
+            txtEmail = new TextBox();
+            txtTen = new TextBox();
+            txtDiaChi = new TextBox();
+            txtDieuKhoan = new TextBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
             panel2 = new Panel();
             label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            txtDieuKhoan = new TextBox();
-            txtDiaChi = new TextBox();
-            txtTen = new TextBox();
-            txtEmail = new TextBox();
-            txtSoDienThoai = new TextBox();
-            cbxLoaiDichVu = new ComboBox();
             groupBox1 = new GroupBox();
             dataGridView1 = new DataGridView();
             btnThem = new Button();
@@ -78,6 +78,112 @@
             panel1.Size = new Size(880, 254);
             panel1.TabIndex = 0;
             // 
+            // cbxLoaiDichVu
+            // 
+            cbxLoaiDichVu.FormattingEnabled = true;
+            cbxLoaiDichVu.Location = new Point(120, 205);
+            cbxLoaiDichVu.Name = "cbxLoaiDichVu";
+            cbxLoaiDichVu.Size = new Size(210, 23);
+            cbxLoaiDichVu.TabIndex = 12;
+            // 
+            // txtSoDienThoai
+            // 
+            txtSoDienThoai.Location = new Point(125, 163);
+            txtSoDienThoai.Name = "txtSoDienThoai";
+            txtSoDienThoai.Size = new Size(205, 23);
+            txtSoDienThoai.TabIndex = 11;
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(81, 127);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(249, 23);
+            txtEmail.TabIndex = 10;
+            // 
+            // txtTen
+            // 
+            txtTen.Location = new Point(149, 85);
+            txtTen.Name = "txtTen";
+            txtTen.Size = new Size(181, 23);
+            txtTen.TabIndex = 9;
+            // 
+            // txtDiaChi
+            // 
+            txtDiaChi.Location = new Point(486, 106);
+            txtDiaChi.Multiline = true;
+            txtDiaChi.Name = "txtDiaChi";
+            txtDiaChi.Size = new Size(292, 62);
+            txtDiaChi.TabIndex = 8;
+            // 
+            // txtDieuKhoan
+            // 
+            txtDieuKhoan.Location = new Point(486, 188);
+            txtDieuKhoan.Multiline = true;
+            txtDieuKhoan.Name = "txtDieuKhoan";
+            txtDieuKhoan.Size = new Size(292, 63);
+            txtDieuKhoan.TabIndex = 7;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.Location = new Point(486, 171);
+            label7.Name = "label7";
+            label7.Size = new Size(148, 14);
+            label7.TabIndex = 6;
+            label7.Text = "Điều Khoản Hợp Tác :";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(486, 85);
+            label6.Name = "label6";
+            label6.Size = new Size(63, 14);
+            label6.TabIndex = 5;
+            label6.Text = "Địa Chỉ :";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(12, 211);
+            label5.Name = "label5";
+            label5.Size = new Size(98, 14);
+            label5.TabIndex = 4;
+            label5.Text = "Loại Dịch Vụ :";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(12, 171);
+            label4.Name = "label4";
+            label4.Size = new Size(107, 14);
+            label4.TabIndex = 3;
+            label4.Text = "Số Điện Thoại :";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(12, 130);
+            label3.Name = "label3";
+            label3.Size = new Size(52, 14);
+            label3.TabIndex = 2;
+            label3.Text = "Email :";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(12, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(136, 14);
+            label2.TabIndex = 1;
+            label2.Text = "Tên Nhà Cung Cấp :";
+            
+            // 
             // panel2
             // 
             panel2.BackColor = Color.Aquamarine;
@@ -96,111 +202,6 @@
             label1.Size = new Size(300, 25);
             label1.TabIndex = 0;
             label1.Text = "Thông Tin Nhà Cung Cấp";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(12, 89);
-            label2.Name = "label2";
-            label2.Size = new Size(136, 14);
-            label2.TabIndex = 1;
-            label2.Text = "Tên Nhà Cung Cấp :";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(12, 130);
-            label3.Name = "label3";
-            label3.Size = new Size(52, 14);
-            label3.TabIndex = 2;
-            label3.Text = "Email :";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(12, 171);
-            label4.Name = "label4";
-            label4.Size = new Size(107, 14);
-            label4.TabIndex = 3;
-            label4.Text = "Số Điện Thoại :";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(12, 211);
-            label5.Name = "label5";
-            label5.Size = new Size(98, 14);
-            label5.TabIndex = 4;
-            label5.Text = "Loại Dịch Vụ :";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(486, 85);
-            label6.Name = "label6";
-            label6.Size = new Size(63, 14);
-            label6.TabIndex = 5;
-            label6.Text = "Địa Chỉ :";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(486, 171);
-            label7.Name = "label7";
-            label7.Size = new Size(148, 14);
-            label7.TabIndex = 6;
-            label7.Text = "Điều Khoản Hợp Tác :";
-            // 
-            // txtDieuKhoan
-            // 
-            txtDieuKhoan.Location = new Point(486, 188);
-            txtDieuKhoan.Multiline = true;
-            txtDieuKhoan.Name = "txtDieuKhoan";
-            txtDieuKhoan.Size = new Size(292, 63);
-            txtDieuKhoan.TabIndex = 7;
-            // 
-            // txtDiaChi
-            // 
-            txtDiaChi.Location = new Point(486, 106);
-            txtDiaChi.Multiline = true;
-            txtDiaChi.Name = "txtDiaChi";
-            txtDiaChi.Size = new Size(292, 62);
-            txtDiaChi.TabIndex = 8;
-            // 
-            // txtTen
-            // 
-            txtTen.Location = new Point(149, 85);
-            txtTen.Name = "txtTen";
-            txtTen.Size = new Size(181, 23);
-            txtTen.TabIndex = 9;
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(81, 127);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(249, 23);
-            txtEmail.TabIndex = 10;
-            // 
-            // txtSoDienThoai
-            // 
-            txtSoDienThoai.Location = new Point(125, 163);
-            txtSoDienThoai.Name = "txtSoDienThoai";
-            txtSoDienThoai.Size = new Size(205, 23);
-            txtSoDienThoai.TabIndex = 11;
-            // 
-            // cbxLoaiDichVu
-            // 
-            cbxLoaiDichVu.FormattingEnabled = true;
-            cbxLoaiDichVu.Location = new Point(120, 205);
-            cbxLoaiDichVu.Name = "cbxLoaiDichVu";
-            cbxLoaiDichVu.Size = new Size(210, 23);
-            cbxLoaiDichVu.TabIndex = 12;
             // 
             // groupBox1
             // 

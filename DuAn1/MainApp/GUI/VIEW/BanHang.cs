@@ -9,49 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Main.DAL.Services;
 using Main.BLL.Models2;
+using WinFormsApp1.Services;
 
 namespace APPBanHang
 {
     public partial class BanHang : Form
     {
-        //HoadonServices _hoadonService = new();
+        HoadonServices _hoadonService = new();
+        SanphamServices SanphamServices = new();
+        HoaDonChiTietServices _hoadonChiTietServices = new();
         //int _idCellClick;
         public BanHang()
         {
             InitializeComponent();
         }
-        //private void BanHang_Load(object sender, EventArgs e)
-        //{
-        //    LoadData(string.Empty, string.Empty);
 
-        //}
-        //private void LoadData(string textSearch, string option)
-        //{
-        //    int STT = 0;
-        //    var result = from hd in _hoadonService.GetHoadons()
-
-        //                 select new
-        //                 {
-        //                     STT = STT++,
-        //                     TenSp = hd.Tensp,
-        //                     NgayBan = hd.Ngayban,
-        //                     SoLuong = hd.Soluong,
-        //                     Coupon = hd.Idmagiamgia,
-        //                     TongTien = hd.Tongtien,
-        //                     TrangThai = hd.Trangthai,
-
-        //                 };
-
-        //    dgvDSHoaDon.DataSource = result.ToList();
-        //    dgvDSHoaDon.Columns[0].HeaderText = "STT";
-        //    dgvDSHoaDon.Columns[1].HeaderText = "Tên SP";
-        //    dgvDSHoaDon.Columns[2].HeaderText = "Ngày Bán";
-        //    dgvDSHoaDon.Columns[3].HeaderText = "Số Lượng";
-        //    dgvDSHoaDon.Columns[4].HeaderText = "Coupon";
-        //    dgvDSHoaDon.Columns[5].HeaderText = "Tổng Tiền";
-        //    dgvDSHoaDon.Columns[6].HeaderText = "Trạng Thái";
-        //    dgvDSHoaDon.AllowUserToAddRows = false;
-        //    dgvDSHoaDon.EditMode = DataGridViewEditMode.EditProgrammatically;
         private void btn1_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -93,47 +65,9 @@ namespace APPBanHang
             voucher.Show();
             this.Close();
         }
-        private void BanHang_Load(object sender, EventArgs e)
-        {
-            LoadData();
 
-        }
-        private void LoadData()
-        {
-            //int STT = 0;
-            //var result = from hd in _hoadonService.GetHoadons()
-            //             select hd;
-            //LoadData(string.Empty, string.Empty);
 
-        }
-        //private void LoadData(string textSearch, string option)
-        //{
-            //int STT = 0;
-            //var result = from hd in _hoadonService.GetHoadons()
 
-            //             select new
-            //             {
-            //                 STT = STT++,
-            //                 TenSp = hd.Tensp,
-            //                 NgayBan = hd.Ngayban,
-            //                 SoLuong = hd.Soluong,
-            //                 Coupon = hd.Idmagiamgia,
-            //                 TongTien = hd.Tongtien,
-            //                 TrangThai = hd.Trangthai,
-            //             };
-
-            //dgvDSHoaDon.DataSource = result.ToList();
-            //dgvDSHoaDon.Columns[0].HeaderText = "STT";
-            //dgvDSHoaDon.Columns[1].HeaderText = "Tên SP";
-            //dgvDSHoaDon.Columns[2].HeaderText = "Ngày Bán";
-            //dgvDSHoaDon.Columns[3].HeaderText = "Số Lượng";
-            //dgvDSHoaDon.Columns[4].HeaderText = "Coupon";
-            //dgvDSHoaDon.Columns[5].HeaderText = "Tổng Tiền";
-            //dgvDSHoaDon.Columns[6].HeaderText = "Trạng Thái";
-            //dgvDSHoaDon.AllowUserToAddRows = false;
-            //dgvDSHoaDon.EditMode = DataGridViewEditMode.EditProgrammatically;
-
-        //}
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -153,17 +87,137 @@ namespace APPBanHang
 
         private void btnBanHang_Click(object sender, EventArgs e)
         {
+            KhachHang khachHang = new KhachHang();
+            this.Hide();
+            khachHang.Show();
+            this.Close();
+        }
+
+        private void btnTimSanPham_Click(object sender, EventArgs e)
+        {
 
         }
 
-        //private void label15_Click(object sender, EventArgs e)
-        //{
+        private void btnTrangChu_Click(object sender, EventArgs e)
+        {
 
-        //}
+        }
 
-        //private void BanHang_Load_1(object sender, EventArgs e)
-        //{
+        private void btnSanPham_Click(object sender, EventArgs e)
+        {
+            SanPham sanpham = new SanPham();
+            this.Hide();
+            sanpham.Show();
+            this.Close();
+        }
 
-        //}
+        private void btnKhachHang_Click(object sender, EventArgs e)
+        {
+            KhachHang khachHang = new KhachHang();
+            this.Hide();
+            khachHang.Show();
+            this.Close();
+        }
+
+        private void btnVoucher_Click(object sender, EventArgs e)
+        {
+            Voucher voucher = new Voucher();
+            this.Hide();
+            voucher.Show();
+            this.Close();
+        }
+
+        private void btnexit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
+        private void loaddanhsachhoadon()
+        {
+            List<Hoadon> danhSachHoaDon = _hoadonService.GetHoadons();
+
+            dgvDanhSachHoaDon.DataSource = danhSachHoaDon;
+            DataGridViewTextBoxColumn sttColumnb = new DataGridViewTextBoxColumn();
+            sttColumnb.HeaderText = "STT";
+            sttColumnb.Name = "sttColumn";
+            dgvDanhSachHoaDon.Columns.Insert(0, sttColumnb);
+
+
+            for (int i = 0; i < dgvDanhSachHoaDon.Rows.Count; i++)
+            {
+                dgvDanhSachHoaDon.Rows[i].Cells["sttColumn"].Value = (i + 1).ToString();
+            }
+
+
+
+
+            dgvDanhSachHoaDon.Columns[9].Visible = false;
+            dgvDanhSachHoaDon.Columns[10].Visible = false;
+            dgvDanhSachHoaDon.Columns[11].Visible = false;
+            dgvDanhSachHoaDon.Columns[12].Visible = false;
+
+            dgvDanhSachSanPham.EditMode = DataGridViewEditMode.EditProgrammatically;
+
+        }
+
+        private void loaddanhsachsanpham()
+        {
+            List<Sanpham> sanphams = SanphamServices.GetSanphams();
+            dgvDanhSachSanPham.DataSource = sanphams;
+            DataGridViewTextBoxColumn sttColumns = new DataGridViewTextBoxColumn();
+            sttColumns.HeaderText = "STT";
+            sttColumns.Name = "sttColumn";
+            dgvDanhSachSanPham.Columns.Insert(0, sttColumns);
+
+
+            for (int i = 0; i < dgvDanhSachSanPham.Rows.Count; i++)
+            {
+                dgvDanhSachSanPham.Rows[i].Cells["sttColumn"].Value = (i + 1).ToString();
+            }
+
+            dgvDanhSachSanPham.Columns[6].Visible = false;
+            dgvDanhSachSanPham.EditMode = DataGridViewEditMode.EditProgrammatically;
+
+
+
+        }
+        private void loadhoadonchitiet()
+        {
+            List<Hoadonct> hoadoncts = _hoadonChiTietServices.GetHoaDonCT();
+            dgvHoaDonChiTiet.DataSource = hoadoncts;
+            DataGridViewTextBoxColumn sttColumna = new DataGridViewTextBoxColumn();
+            sttColumna.HeaderText = "STT";
+            sttColumna.Name = "sttColumn";
+            dgvHoaDonChiTiet.Columns.Insert(0, sttColumna);
+
+
+            for (int i = 0; i < dgvHoaDonChiTiet.Rows.Count; i++)
+            {
+                dgvHoaDonChiTiet.Rows[i].Cells["sttColumn"].Value = (i + 1).ToString();
+            }
+            dgvHoaDonChiTiet.Columns[6].Visible = false;
+            dgvHoaDonChiTiet.Columns[7].Visible = false;
+            dgvDanhSachSanPham.EditMode = DataGridViewEditMode.EditProgrammatically;
+
+
+
+
+
+
+
+        }
+
+        private void BanHang_Load_1(object sender, EventArgs e)
+        {
+            loaddanhsachhoadon();
+            loaddanhsachsanpham();
+            loadhoadonchitiet();
+        }
+
+        private void btnQRCode_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

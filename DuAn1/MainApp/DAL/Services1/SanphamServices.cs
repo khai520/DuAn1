@@ -14,10 +14,10 @@ namespace WinFormsApp1.Services
         SanPhamRepo repo = new SanPhamRepo();
 
         List<Sanpham> list = new();
-        public List<Sanpham> GetSanphams(List<Sanpham> list1)
+        public List<Sanpham> GetSanphams()
 
         {
-            return list = list1;
+            return list = repo.getallSPrepo();
         }
         public List<Sanpham> Change()
         {

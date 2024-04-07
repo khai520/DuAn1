@@ -12,7 +12,7 @@ namespace WinFormsApp1.Repositories
     {
 
         DUAN1Context context = new DUAN1Context();
-        public List<Hoadonct> getallSPrepo()
+        public List<Hoadonct> getallHoaDonrepo()
         {
             return context.Hoadoncts.ToList();
         }

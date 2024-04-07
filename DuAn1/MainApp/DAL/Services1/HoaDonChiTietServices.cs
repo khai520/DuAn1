@@ -12,10 +12,10 @@ namespace Main.DAL.Services
     {
         HoaDonCTRepo repo = new HoaDonCTRepo();
         List<Hoadonct> list = new();
-        public List<Hoadonct> GetSanphams(List<Hoadonct> list1)
+        public List<Hoadonct> GetHoaDonCT()
 
         {
-            return list = list1;
+            return list = repo.getallHoaDonrepo();
         }
         public string XulyId()
         {

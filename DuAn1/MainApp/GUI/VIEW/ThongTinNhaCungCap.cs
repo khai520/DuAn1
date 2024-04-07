@@ -21,5 +21,7 @@ namespace MainApp.GUI.VIEW
         {
             this.Close();
         }
+
+        
     }
 }

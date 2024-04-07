@@ -38,13 +38,13 @@
             panel1 = new Panel();
             panel2 = new Panel();
             label11 = new Label();
-            pictureBox1 = new PictureBox();
             btnVoucher = new Button();
             btnLogout = new Button();
             btnBanHang = new Button();
             groupBox1 = new GroupBox();
             dgvDanhSachHoaDon = new DataGridView();
             panel4 = new Panel();
+            btnQRCode = new Button();
             btnTimSanPham = new Button();
             txtTimSanPham = new TextBox();
             dgvDanhSachSanPham = new DataGridView();
@@ -61,6 +61,14 @@
             panel7 = new Panel();
             label3 = new Label();
             panel8 = new Panel();
+            label17 = new Label();
+            txtTraLai = new TextBox();
+            label15 = new Label();
+            label5 = new Label();
+            txtKhachDua = new TextBox();
+            panel9 = new Panel();
+            label6 = new Label();
+            label14 = new Label();
             label16 = new Label();
             btnLuuHoaDon = new Button();
             btnTaoHoaDon = new Button();
@@ -71,27 +79,13 @@
             label8 = new Label();
             txtTongTien = new TextBox();
             label7 = new Label();
-            panel9 = new Panel();
-            label6 = new Label();
             label13 = new Label();
             label9 = new Label();
             label10 = new Label();
-            label12 = new Label();
-            btnDong = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox1 = new ComboBox();
             label2 = new Label();
-            label14 = new Label();
-            txtKhachDua = new TextBox();
-            label5 = new Label();
-            label15 = new Label();
-            txtTraLai = new TextBox();
-            label17 = new Label();
+            pictureBox1 = new PictureBox();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachHoaDon).BeginInit();
             panel4.SuspendLayout();
@@ -103,6 +97,7 @@
             panel7.SuspendLayout();
             panel8.SuspendLayout();
             panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // btnKhachHang
@@ -114,7 +109,7 @@
             btnKhachHang.TabIndex = 65;
             btnKhachHang.Text = "Khách Hàng";
             btnKhachHang.UseVisualStyleBackColor = true;
-            btnKhachHang.Click += button4_Click;
+            btnKhachHang.Click += btnKhachHang_Click;
             // 
             // btnSanPham
             // 
@@ -125,7 +120,7 @@
             btnSanPham.TabIndex = 63;
             btnSanPham.Text = "Sản Phẩm";
             btnSanPham.UseVisualStyleBackColor = true;
-            btnSanPham.Click += button2_Click;
+            btnSanPham.Click += btnSanPham_Click;
             // 
             // btnTrangChu
             // 
@@ -136,19 +131,19 @@
             btnTrangChu.TabIndex = 62;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
-            btnTrangChu.Click += button1_Click;
+            btnTrangChu.Click += btnTrangChu_Click;
             // 
             // btnExit
             // 
             btnExit.BackColor = Color.White;
             btnExit.FlatAppearance.BorderSize = 0;
-            btnExit.Location = new Point(917, 0);
+            btnExit.Location = new Point(1690, 0);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(40, 30);
             btnExit.TabIndex = 4;
             btnExit.Text = "X";
             btnExit.UseVisualStyleBackColor = false;
-            btnExit.Click += btn1_Click;
+            btnExit.Click += btnexit_Click;
             // 
             // btnNhanVien
             // 
@@ -184,7 +179,7 @@
             panel2.Controls.Add(panel3);
             panel2.Location = new Point(190, 1);
             panel2.Name = "panel2";
-            panel2.Size = new Size(960, 53);
+            panel2.Size = new Size(1739, 53);
             panel2.TabIndex = 61;
             // 
             // label11
@@ -197,15 +192,6 @@
             label11.TabIndex = 3;
             label11.Text = "Snaker Shop";
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, -26);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(187, 175);
-            pictureBox1.TabIndex = 60;
-            pictureBox1.TabStop = false;
-            // 
             // btnVoucher
             // 
             btnVoucher.FlatStyle = FlatStyle.Flat;
@@ -215,6 +201,7 @@
             btnVoucher.TabIndex = 71;
             btnVoucher.Text = "Voucher";
             btnVoucher.UseVisualStyleBackColor = true;
+            btnVoucher.Click += btnVoucher_Click;
             // 
             // btnLogout
             // 
@@ -242,9 +229,9 @@
             // 
             groupBox1.Controls.Add(dgvDanhSachHoaDon);
             groupBox1.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox1.Location = new Point(189, 89);
+            groupBox1.Location = new Point(190, 126);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(582, 122);
+            groupBox1.Size = new Size(956, 208);
             groupBox1.TabIndex = 73;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh Sách Hóa Đơn";
@@ -256,34 +243,47 @@
             dgvDanhSachHoaDon.Name = "dgvDanhSachHoaDon";
             dgvDanhSachHoaDon.RowHeadersWidth = 51;
             dgvDanhSachHoaDon.RowTemplate.Height = 25;
-            dgvDanhSachHoaDon.Size = new Size(575, 94);
+            dgvDanhSachHoaDon.Size = new Size(953, 180);
             dgvDanhSachHoaDon.TabIndex = 0;
             // 
             // panel4
             // 
+            panel4.Controls.Add(btnQRCode);
             panel4.Controls.Add(btnTimSanPham);
             panel4.Controls.Add(txtTimSanPham);
             panel4.Controls.Add(dgvDanhSachSanPham);
             panel4.Controls.Add(panel5);
-            panel4.Location = new Point(190, 211);
+            panel4.Location = new Point(193, 356);
             panel4.Name = "panel4";
-            panel4.Size = new Size(582, 192);
+            panel4.Size = new Size(959, 299);
             panel4.TabIndex = 74;
+            // 
+            // btnQRCode
+            // 
+            btnQRCode.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnQRCode.Location = new Point(787, 38);
+            btnQRCode.Name = "btnQRCode";
+            btnQRCode.Size = new Size(150, 23);
+            btnQRCode.TabIndex = 4;
+            btnQRCode.Text = "Quét Mã";
+            btnQRCode.UseVisualStyleBackColor = true;
+            btnQRCode.Click += btnQRCode_Click;
             // 
             // btnTimSanPham
             // 
             btnTimSanPham.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnTimSanPham.Location = new Point(392, 43);
+            btnTimSanPham.Location = new Point(479, 41);
             btnTimSanPham.Name = "btnTimSanPham";
             btnTimSanPham.Size = new Size(150, 23);
             btnTimSanPham.TabIndex = 3;
             btnTimSanPham.Text = "Tìm Sản Phẩm";
             btnTimSanPham.UseVisualStyleBackColor = true;
+            btnTimSanPham.Click += btnTimSanPham_Click;
             // 
             // txtTimSanPham
             // 
             txtTimSanPham.BorderStyle = BorderStyle.FixedSingle;
-            txtTimSanPham.Location = new Point(98, 43);
+            txtTimSanPham.Location = new Point(185, 40);
             txtTimSanPham.Name = "txtTimSanPham";
             txtTimSanPham.Size = new Size(288, 23);
             txtTimSanPham.TabIndex = 2;
@@ -295,23 +295,23 @@
             dgvDanhSachSanPham.Name = "dgvDanhSachSanPham";
             dgvDanhSachSanPham.RowHeadersWidth = 51;
             dgvDanhSachSanPham.RowTemplate.Height = 25;
-            dgvDanhSachSanPham.Size = new Size(575, 120);
+            dgvDanhSachSanPham.Size = new Size(950, 227);
             dgvDanhSachSanPham.TabIndex = 1;
             // 
             // panel5
             // 
             panel5.BackColor = Color.Aquamarine;
             panel5.Controls.Add(label1);
-            panel5.Location = new Point(0, 3);
+            panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(582, 34);
+            panel5.Size = new Size(956, 34);
             panel5.TabIndex = 0;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Verdana", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(125, 2);
+            label1.Location = new Point(297, 5);
             label1.Name = "label1";
             label1.Size = new Size(297, 29);
             label1.TabIndex = 0;
@@ -322,16 +322,16 @@
             groupBox2.Controls.Add(btnXoa);
             groupBox2.Controls.Add(dgvHoaDonChiTiet);
             groupBox2.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            groupBox2.Location = new Point(193, 418);
+            groupBox2.Location = new Point(190, 661);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(579, 153);
+            groupBox2.Size = new Size(962, 215);
             groupBox2.TabIndex = 76;
             groupBox2.TabStop = false;
             groupBox2.Text = "Hóa Đơn Chi Tiết";
             // 
             // btnXoa
             // 
-            btnXoa.Location = new Point(497, 20);
+            btnXoa.Location = new Point(884, 18);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(75, 23);
             btnXoa.TabIndex = 1;
@@ -345,7 +345,7 @@
             dgvHoaDonChiTiet.Name = "dgvHoaDonChiTiet";
             dgvHoaDonChiTiet.RowHeadersWidth = 51;
             dgvHoaDonChiTiet.RowTemplate.Height = 25;
-            dgvHoaDonChiTiet.Size = new Size(575, 100);
+            dgvHoaDonChiTiet.Size = new Size(956, 162);
             dgvHoaDonChiTiet.TabIndex = 0;
             // 
             // panel6
@@ -355,7 +355,7 @@
             panel6.Controls.Add(txtTenKhachHang);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(panel7);
-            panel6.Location = new Point(774, 99);
+            panel6.Location = new Point(1152, 147);
             panel6.Name = "panel6";
             panel6.Size = new Size(373, 112);
             panel6.TabIndex = 77;
@@ -398,7 +398,7 @@
             // 
             panel7.BackColor = Color.Aquamarine;
             panel7.Controls.Add(label3);
-            panel7.Location = new Point(4, 3);
+            panel7.Location = new Point(3, 3);
             panel7.Name = "panel7";
             panel7.Size = new Size(366, 30);
             panel7.TabIndex = 0;
@@ -420,6 +420,7 @@
             panel8.Controls.Add(label15);
             panel8.Controls.Add(label5);
             panel8.Controls.Add(txtKhachDua);
+            panel8.Controls.Add(panel9);
             panel8.Controls.Add(label14);
             panel8.Controls.Add(label16);
             panel8.Controls.Add(btnLuuHoaDon);
@@ -431,14 +432,82 @@
             panel8.Controls.Add(label8);
             panel8.Controls.Add(txtTongTien);
             panel8.Controls.Add(label7);
-            panel8.Controls.Add(panel9);
             panel8.Controls.Add(label13);
             panel8.Controls.Add(label9);
             panel8.Controls.Add(label10);
-            panel8.Location = new Point(774, 211);
+            panel8.Location = new Point(1155, 361);
             panel8.Name = "panel8";
-            panel8.Size = new Size(370, 360);
+            panel8.Size = new Size(370, 352);
             panel8.TabIndex = 78;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(273, 166);
+            label17.Name = "label17";
+            label17.Size = new Size(31, 15);
+            label17.TabIndex = 22;
+            label17.Text = "VNĐ";
+            // 
+            // txtTraLai
+            // 
+            txtTraLai.Location = new Point(111, 158);
+            txtTraLai.Name = "txtTraLai";
+            txtTraLai.Size = new Size(147, 23);
+            txtTraLai.TabIndex = 21;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(13, 161);
+            label15.Name = "label15";
+            label15.Size = new Size(46, 15);
+            label15.TabIndex = 20;
+            label15.Text = "Trả Lại :";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(273, 137);
+            label5.Name = "label5";
+            label5.Size = new Size(31, 15);
+            label5.TabIndex = 19;
+            label5.Text = "VNĐ";
+            // 
+            // txtKhachDua
+            // 
+            txtKhachDua.Location = new Point(111, 129);
+            txtKhachDua.Name = "txtKhachDua";
+            txtKhachDua.Size = new Size(147, 23);
+            txtKhachDua.TabIndex = 18;
+            // 
+            // panel9
+            // 
+            panel9.BackColor = Color.Aquamarine;
+            panel9.Controls.Add(label6);
+            panel9.Location = new Point(0, 1);
+            panel9.Name = "panel9";
+            panel9.Size = new Size(370, 37);
+            panel9.TabIndex = 0;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(119, 11);
+            label6.Name = "label6";
+            label6.Size = new Size(131, 14);
+            label6.TabIndex = 0;
+            label6.Text = "Thông Tin Hóa Đơn";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(13, 137);
+            label14.Name = "label14";
+            label14.Size = new Size(70, 15);
+            label14.TabIndex = 17;
+            label14.Text = "Khách Đưa :";
             // 
             // label16
             // 
@@ -527,25 +596,6 @@
             label7.TabIndex = 1;
             label7.Text = "Tổng Tiền :";
             // 
-            // panel9
-            // 
-            panel9.BackColor = Color.Aquamarine;
-            panel9.Controls.Add(label6);
-            panel9.Location = new Point(0, 0);
-            panel9.Name = "panel9";
-            panel9.Size = new Size(370, 37);
-            panel9.TabIndex = 0;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(119, 11);
-            label6.Name = "label6";
-            label6.Size = new Size(131, 14);
-            label6.TabIndex = 0;
-            label6.Text = "Thông Tin Hóa Đơn";
-            // 
             // label13
             // 
             label13.AutoSize = true;
@@ -573,58 +623,6 @@
             label10.TabIndex = 6;
             label10.Text = "Thanh Toán :";
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(273, 117);
-            label12.Name = "label12";
-            label12.Size = new Size(31, 15);
-            label12.TabIndex = 8;
-            label12.Text = "VNĐ";
-            // 
-            // btnDong
-            // 
-            btnDong.FlatStyle = FlatStyle.Flat;
-            btnDong.Location = new Point(811, 438);
-            btnDong.Name = "btnDong";
-            btnDong.Size = new Size(75, 37);
-            btnDong.TabIndex = 78;
-            btnDong.Text = "Đóng";
-            btnDong.UseVisualStyleBackColor = true;
-            btnDong.Click += btnDong_Click;
-            // 
-            // dateTimePicker1
-            // 
-            dateTimePicker1.Location = new Point(302, 160);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(196, 23);
-            dateTimePicker1.TabIndex = 82;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(302, 197);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(196, 23);
-            comboBox2.TabIndex = 90;
-            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
-            // 
-            // comboBox3
-            // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(286, 249);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(121, 23);
-            comboBox3.TabIndex = 98;
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(779, 219);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(196, 23);
-            comboBox1.TabIndex = 110;
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -635,73 +633,26 @@
             label2.TabIndex = 113;
             label2.Text = "Bán Hàng";
             // 
-            // label14
+            // pictureBox1
             // 
-            label14.AutoSize = true;
-            label14.Location = new Point(13, 137);
-            label14.Name = "label14";
-            label14.Size = new Size(70, 15);
-            label14.TabIndex = 17;
-            label14.Text = "Khách Đưa :";
-            // 
-            // txtKhachDua
-            // 
-            txtKhachDua.Location = new Point(111, 129);
-            txtKhachDua.Name = "txtKhachDua";
-            txtKhachDua.Size = new Size(147, 23);
-            txtKhachDua.TabIndex = 18;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(273, 137);
-            label5.Name = "label5";
-            label5.Size = new Size(31, 15);
-            label5.TabIndex = 19;
-            label5.Text = "VNĐ";
-            // 
-            // label15
-            // 
-            label15.AutoSize = true;
-            label15.Location = new Point(13, 161);
-            label15.Name = "label15";
-            label15.Size = new Size(46, 15);
-            label15.TabIndex = 20;
-            label15.Text = "Trả Lại :";
-            // 
-            // txtTraLai
-            // 
-            txtTraLai.Location = new Point(111, 158);
-            txtTraLai.Name = "txtTraLai";
-            txtTraLai.Size = new Size(147, 23);
-            txtTraLai.TabIndex = 21;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.Location = new Point(273, 166);
-            label17.Name = "label17";
-            label17.Size = new Size(31, 15);
-            label17.TabIndex = 22;
-            label17.Text = "VNĐ";
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(0, -26);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(187, 175);
+            pictureBox1.TabIndex = 60;
+            pictureBox1.TabStop = false;
             // 
             // BanHang
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1145, 573);
+            ClientSize = new Size(1920, 1080);
             Controls.Add(label2);
-            Controls.Add(panel8);
             Controls.Add(panel6);
+            Controls.Add(panel8);
             Controls.Add(groupBox2);
             Controls.Add(panel4);
             Controls.Add(groupBox1);
-            Controls.Add(comboBox1);
-            Controls.Add(label12);
-            Controls.Add(comboBox3);
-            Controls.Add(comboBox2);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(btnDong);
             Controls.Add(btnBanHang);
             Controls.Add(btnKhachHang);
             Controls.Add(btnSanPham);
@@ -714,10 +665,10 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "BanHang";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += BanHang_Load_1;
             panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachHoaDon).EndInit();
             panel4.ResumeLayout(false);
@@ -735,6 +686,7 @@
             panel8.PerformLayout();
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -749,7 +701,6 @@
         private Panel panel3;
         private Panel panel2;
         private Label label11;
-        private PictureBox pictureBox1;
         private Button btnVoucher;
         private Button btnLogout;
         private Button btnBanHang;
@@ -759,7 +710,6 @@
         private Panel panel4;
         private Panel panel5;
         private Label label1;
-        private Button btnTimSanPham;
         private TextBox txtTimSanPham;
         private DataGridView dgvDanhSachSanPham;
         private Label label2;
@@ -782,19 +732,13 @@
         private Label label6;
         private Button button12;
         private Button button10;
-        private Button btnDong;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
         private TextBox txtGhiChu;
         private Label label13;
-        private Label label12;
         private TextBox txtThanhToan;
         private Label label10;
         private TextBox txtCoupon;
         private Label label9;
         private Button btnThanhToan;
-        private ComboBox comboBox1;
         private Button btnLuuHoaDon;
         private Button btnTaoHoaDon;
         private Button btnLuu;
@@ -804,5 +748,8 @@
         private Label label17;
         private TextBox txtTraLai;
         private Label label15;
+        private Button btnTimSanPham;
+        private PictureBox pictureBox1;
+        private Button btnQRCode;
     }
 }
