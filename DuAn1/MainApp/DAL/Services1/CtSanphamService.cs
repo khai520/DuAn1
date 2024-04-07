@@ -14,7 +14,7 @@ namespace Main.DAL.Services
     {
         CTSanPhamRepo sanpham = new CTSanPhamRepo();
         NhaCungCapServices ncc = new NhaCungCapServices();
-        MauSacService ms = new();
+        MauSacService ms = new MauSacService();
         Chatlieuservices cl = new();
         KichThuocService kt = new();
         DeGiayService dg = new();
@@ -140,8 +140,44 @@ namespace Main.DAL.Services
             {
                 nccc = ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc).Tenncc.ToString();
             }
+            string? mau;
+            if (ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau) == null)
+            {
+                mau = " ";
+            }
+            else
+            {
+                mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString();
+            }
+            string? chatlieu;
+            if (cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu) == null)
+            {
+                chatlieu = " ";
+            }
+            else
+            {
+                chatlieu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString();
+            }
+            string? kichthuoc;
+            if (kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc) == null)
+            {
+                kichthuoc = " ";
+            }
+            else
+            {
+                kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString();
+            }
+            string? degiay;
+            if (dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay) == null)
+            {
+               degiay = " ";
+            }
+            else
+            {
+                degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString();
+            }
 
-         
+
 
             Ctsanpham sP = new Ctsanpham()
             {
@@ -149,10 +185,10 @@ namespace Main.DAL.Services
                 Idncc = nccc,
                 Tengiay = list.Find(x => x.Idctsp == list.Find(x => x.Idctsp == id).Idncc).Tengiay.ToString(),
                 Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
-                Mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString(),
-                Chatlieuu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString(),
-                Kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString(),
-                Degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString(),
+                Mau = mau,
+                Chatlieuu = chatlieu,
+                Kichthuoc = kichthuoc,
+                Degiay = degiay,
                 Giaban = list.Find(x => x.Idctsp == id).Giaban,
 
             };

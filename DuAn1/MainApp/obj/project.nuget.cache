@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/YLjpmfiLAFrZkQB71P3RXHRWq9B6LU4kIRjXRayIOD12lP1ZWGXUfPe11E/v1p3qNmakmGbiYaphqlbVu1Cng==",
+  "dgSpecHash": "DB1rPaM+QZF26LRWIfilfCIoxWaVwPKtfAWJZFRdyEoCVQYjjS6pvD2wxMS7hS+0Qh6vvCUfxLqfZ5Il+7z5dA==",
   "success": true,
-  "projectFilePath": "D:\\dự án 1\\githup\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj",
+  "projectFilePath": "D:\\dự án 1\\git\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ADMIN\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
