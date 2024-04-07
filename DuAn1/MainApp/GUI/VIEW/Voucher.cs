@@ -29,38 +29,39 @@ namespace APPBanHang
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
             TrangChu trangChu = new TrangChu();
-            this.Hide();
-            trangChu.Show();
+            trangChu.ShowDialog();
             this.Close();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
             SanPham sanpham = new SanPham();
-            this.Hide();
-            sanpham.Show();
+            sanpham.ShowDialog();
             this.Close();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            this.Hide();
 
             NhanVien nhanvien = new NhanVien();
-            this.Hide();
-            nhanvien.Show();
+            nhanvien.ShowDialog();
             this.Close();
 
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            KhachHang khachHang = new KhachHang();
             this.Hide();
-            khachHang.Show();
+
+            KhachHang khachHang = new KhachHang();
+            khachHang.ShowDialog();
             this.Close();
         }
 
@@ -73,26 +74,29 @@ namespace APPBanHang
 
         private void button_Click_BanHang(object sender, EventArgs e)
         {
-            BanHang banHang = new BanHang();
             this.Hide();
-            banHang.Show();
+
+            BanHang banHang = new BanHang();
+            banHang.ShowDialog();
             this.Close();
         }
 
         private void btnVoucher_Click(object sender, EventArgs e)
         {
-            Voucher voucher = new Voucher();
             this.Hide();
-            voucher.Show()
+
+            Voucher voucher = new Voucher();
+            voucher.ShowDialog()
                 ; this.Close();
 
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Login loGin = new Login();
             this.Hide();
-            loGin.Show();
+
+            Login loGin = new Login();
+            loGin.ShowDialog();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

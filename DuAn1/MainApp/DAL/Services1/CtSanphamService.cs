@@ -109,15 +109,12 @@ namespace Main.DAL.Services
                 sanpham.sua(id, ctsanpham);
                 return true;
             }
-
-
         }
 
         public bool Xoa(string ID)
         {
             return true;
         }
-
         public List<Ctsanpham> FindCTSPByName(string name)
         {
             return sanpham.FindSvByName(name).ToList();

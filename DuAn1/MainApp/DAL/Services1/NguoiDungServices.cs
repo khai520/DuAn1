@@ -106,20 +106,26 @@ namespace WinFormsApp1.Services
             }
 
         }
-
         public bool CheckLogin(string email, string password)
         {
-            if (repo.CheckLogin(email, password).Count > 0)
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                return true;
+                MessageBox.Show("Bạn chưa nhập tài khoản hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
             else
             {
-                return false;
+                if (repo.CheckLogin(email, password).Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("Tài khoản hoặc mật khẩu không đúng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
         }
-      
-  
         public List<NguoiDung> checktkdn(string email, string passwork)
         {
             return repo.CheckLogin(email, passwork).ToList();

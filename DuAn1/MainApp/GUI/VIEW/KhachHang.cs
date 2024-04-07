@@ -29,27 +29,30 @@ namespace APPBanHang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TrangChu trangChu = new TrangChu();
             this.Hide();
-            trangChu.Show();
+
+            TrangChu trangChu = new TrangChu();
+            trangChu.ShowDialog();
             this.Close();
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SanPham sanpham = new SanPham();
             this.Hide();
-            sanpham.Show();
+
+            SanPham sanpham = new SanPham();
+            sanpham.ShowDialog();
             this.Close();
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            NhanVien nhanvien = new NhanVien();
             this.Hide();
-            nhanvien.Show();
+
+            NhanVien nhanvien = new NhanVien();
+            nhanvien.ShowDialog();
             this.Close();
 
         }
@@ -63,31 +66,35 @@ namespace APPBanHang
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
             this.Hide();
-            login.Show();
+
+            Login login = new Login();
+            login.ShowDialog();
             
         }
         private void button_Click_Voucher(object sender, EventArgs e)
         {
-            Voucher voucher = new Voucher();
             this.Hide();
-            voucher.Show();
+
+            Voucher voucher = new Voucher();
+            voucher.ShowDialog();
             this.Close();
         }
         private void button_Click_BanHang(object sender, EventArgs e)
         {
-            BanHang banHang = new BanHang();
             this.Hide();
-            banHang.Show();
+
+            BanHang banHang = new BanHang();
+            banHang.ShowDialog();
             this.Close();
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-                KhachHang khachHang = new KhachHang();
             this.Hide();
-            khachHang.Show();
+
+            KhachHang khachHang = new KhachHang();
+            khachHang.ShowDialog();
             this.Close();
         }
     }

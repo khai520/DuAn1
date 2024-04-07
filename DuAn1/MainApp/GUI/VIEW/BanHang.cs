@@ -31,38 +31,43 @@ namespace APPBanHang
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TrangChu trangChu = new TrangChu();
             this.Hide();
-            trangChu.Show();
+
+            TrangChu trangChu = new TrangChu();
+            trangChu.ShowDialog();
             this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SanPham sanpham = new SanPham();
             this.Hide();
-            sanpham.Show();
+
+            SanPham sanpham = new SanPham();
+            sanpham.ShowDialog(   );
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            NhanVien nhanvien = new NhanVien();
             this.Hide();
-            nhanvien.Show();
+
+            NhanVien nhanvien = new NhanVien();
+            nhanvien.ShowDialog();
             this.Close();
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            KhachHang khachHang = new KhachHang();
             this.Hide();
-            khachHang.Show();
+
+            KhachHang khachHang = new KhachHang();
+            khachHang.ShowDialog();
             this.Close();
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            Voucher voucher = new Voucher();
             this.Hide();
-            voucher.Show();
+
+            Voucher voucher = new Voucher();
+            voucher.ShowDialog();
             this.Close();
         }
 
@@ -80,16 +85,17 @@ namespace APPBanHang
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            Login login = new Login();
             this.Hide();
-            login.Show();
+
+            Login login = new Login();
+            login.ShowDialog();
         }
 
         private void btnBanHang_Click(object sender, EventArgs e)
         {
-            KhachHang khachHang = new KhachHang();
             this.Hide();
-            khachHang.Show();
+            BanHang ban = new BanHang();
+            ban.ShowDialog();
             this.Close();
         }
 
@@ -100,30 +106,36 @@ namespace APPBanHang
 
         private void btnTrangChu_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            TrangChu tc = new TrangChu();
+            tc.ShowDialog();
+            this.Close();
         }
 
         private void btnSanPham_Click(object sender, EventArgs e)
         {
-            SanPham sanpham = new SanPham();
             this.Hide();
-            sanpham.Show();
+
+            SanPham sanpham = new SanPham();
+            sanpham.ShowDialog();
             this.Close();
         }
 
         private void btnKhachHang_Click(object sender, EventArgs e)
         {
-            KhachHang khachHang = new KhachHang();
             this.Hide();
-            khachHang.Show();
+
+            KhachHang khachHang = new KhachHang();
+            khachHang.ShowDialog();
             this.Close();
         }
 
         private void btnVoucher_Click(object sender, EventArgs e)
         {
-            Voucher voucher = new Voucher();
             this.Hide();
-            voucher.Show();
+
+            Voucher voucher = new Voucher();
+            voucher.ShowDialog();
             this.Close();
         }
 

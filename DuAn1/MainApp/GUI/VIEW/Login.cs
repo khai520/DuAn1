@@ -84,21 +84,22 @@ namespace APPBanHang
                     banHang.ShowDialog();
                 }
             }
-            else
-            {
-                if (txt_tendn.Text == "")
-                {
-                    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
-                }
-                else if (txt_mk.Text == "")
-                {
-                    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
-                }
-                else 
-                {
-                    MessageBox.Show("Sai tài khoản hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK);
-                }
-            }
+            //else
+            //{
+            //    if (txt_tendn.Text == "")
+            //    {
+            //        MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+            //    }
+            //    else if (txt_mk.Text == "")
+            //    {
+            //        MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
+            //    }
+            //    else 
+            //    {
+            //        MessageBox.Show("Sai tài khoản hoặc mật khẩu", "Thông báo", MessageBoxButtons.OK);
+            //    }
+            //}
+            //----------------------------------------------------------------------------------------------------------
             //if(txt_tendn.Text == "")
             //{
             //    MessageBox.Show(" moi nhap email va mk", "thong bao", MessageBoxButtons.OK);
