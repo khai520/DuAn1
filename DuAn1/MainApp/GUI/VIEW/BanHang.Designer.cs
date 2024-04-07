@@ -55,21 +55,21 @@
             dgvHoaDonChiTiet = new DataGridView();
             panel6 = new Panel();
             btnLuu = new Button();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
+            txtSoDienThoai = new TextBox();
+            txtTenKhachHang = new TextBox();
             label4 = new Label();
             panel7 = new Panel();
             label3 = new Label();
             panel8 = new Panel();
             label16 = new Label();
-            button15 = new Button();
-            button14 = new Button();
-            button13 = new Button();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
+            btnLuuHoaDon = new Button();
+            btnTaoHoaDon = new Button();
+            btnThanhToan = new Button();
+            txtGhiChu = new TextBox();
+            txtThanhToan = new TextBox();
+            txtCoupon = new TextBox();
             label8 = new Label();
-            textBox4 = new TextBox();
+            txtTongTien = new TextBox();
             label7 = new Label();
             panel9 = new Panel();
             label6 = new Label();
@@ -83,6 +83,12 @@
             comboBox3 = new ComboBox();
             comboBox1 = new ComboBox();
             label2 = new Label();
+            label14 = new Label();
+            txtKhachDua = new TextBox();
+            label5 = new Label();
+            label15 = new Label();
+            txtTraLai = new TextBox();
+            label17 = new Label();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -345,8 +351,8 @@
             // panel6
             // 
             panel6.Controls.Add(btnLuu);
-            panel6.Controls.Add(textBox3);
-            panel6.Controls.Add(textBox2);
+            panel6.Controls.Add(txtSoDienThoai);
+            panel6.Controls.Add(txtTenKhachHang);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(panel7);
             panel6.Location = new Point(774, 99);
@@ -363,21 +369,21 @@
             btnLuu.Text = "Lưu";
             btnLuu.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // txtSoDienThoai
             // 
-            textBox3.BorderStyle = BorderStyle.FixedSingle;
-            textBox3.Location = new Point(66, 74);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(162, 23);
-            textBox3.TabIndex = 5;
+            txtSoDienThoai.BorderStyle = BorderStyle.FixedSingle;
+            txtSoDienThoai.Location = new Point(66, 74);
+            txtSoDienThoai.Name = "txtSoDienThoai";
+            txtSoDienThoai.Size = new Size(162, 23);
+            txtSoDienThoai.TabIndex = 5;
             // 
-            // textBox2
+            // txtTenKhachHang
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Location = new Point(63, 38);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(166, 23);
-            textBox2.TabIndex = 4;
+            txtTenKhachHang.BorderStyle = BorderStyle.FixedSingle;
+            txtTenKhachHang.Location = new Point(63, 38);
+            txtTenKhachHang.Name = "txtTenKhachHang";
+            txtTenKhachHang.Size = new Size(166, 23);
+            txtTenKhachHang.TabIndex = 4;
             // 
             // label4
             // 
@@ -409,15 +415,21 @@
             // 
             // panel8
             // 
+            panel8.Controls.Add(label17);
+            panel8.Controls.Add(txtTraLai);
+            panel8.Controls.Add(label15);
+            panel8.Controls.Add(label5);
+            panel8.Controls.Add(txtKhachDua);
+            panel8.Controls.Add(label14);
             panel8.Controls.Add(label16);
-            panel8.Controls.Add(button15);
-            panel8.Controls.Add(button14);
-            panel8.Controls.Add(button13);
-            panel8.Controls.Add(textBox7);
-            panel8.Controls.Add(textBox6);
-            panel8.Controls.Add(textBox5);
+            panel8.Controls.Add(btnLuuHoaDon);
+            panel8.Controls.Add(btnTaoHoaDon);
+            panel8.Controls.Add(btnThanhToan);
+            panel8.Controls.Add(txtGhiChu);
+            panel8.Controls.Add(txtThanhToan);
+            panel8.Controls.Add(txtCoupon);
             panel8.Controls.Add(label8);
-            panel8.Controls.Add(textBox4);
+            panel8.Controls.Add(txtTongTien);
             panel8.Controls.Add(label7);
             panel8.Controls.Add(panel9);
             panel8.Controls.Add(label13);
@@ -431,64 +443,64 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(273, 120);
+            label16.Location = new Point(273, 109);
             label16.Name = "label16";
             label16.Size = new Size(31, 15);
             label16.TabIndex = 16;
             label16.Text = "VNĐ";
             // 
-            // button15
+            // btnLuuHoaDon
             // 
-            button15.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button15.Location = new Point(133, 300);
-            button15.Name = "button15";
-            button15.Size = new Size(114, 30);
-            button15.TabIndex = 15;
-            button15.Text = "Lưu Hóa Đơn";
-            button15.UseVisualStyleBackColor = true;
+            btnLuuHoaDon.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLuuHoaDon.Location = new Point(133, 319);
+            btnLuuHoaDon.Name = "btnLuuHoaDon";
+            btnLuuHoaDon.Size = new Size(114, 30);
+            btnLuuHoaDon.TabIndex = 15;
+            btnLuuHoaDon.Text = "Lưu Hóa Đơn";
+            btnLuuHoaDon.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // btnTaoHoaDon
             // 
-            button14.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button14.Location = new Point(5, 300);
-            button14.Name = "button14";
-            button14.Size = new Size(114, 30);
-            button14.TabIndex = 14;
-            button14.Text = "Tạo Hóa Đơn";
-            button14.UseVisualStyleBackColor = true;
+            btnTaoHoaDon.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTaoHoaDon.Location = new Point(5, 319);
+            btnTaoHoaDon.Name = "btnTaoHoaDon";
+            btnTaoHoaDon.Size = new Size(114, 30);
+            btnTaoHoaDon.TabIndex = 14;
+            btnTaoHoaDon.Text = "Tạo Hóa Đơn";
+            btnTaoHoaDon.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btnThanhToan
             // 
-            button13.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            button13.Location = new Point(253, 300);
-            button13.Name = "button13";
-            button13.Size = new Size(114, 30);
-            button13.TabIndex = 13;
-            button13.Text = "Thanh Toán";
-            button13.UseVisualStyleBackColor = true;
+            btnThanhToan.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnThanhToan.Location = new Point(256, 319);
+            btnThanhToan.Name = "btnThanhToan";
+            btnThanhToan.Size = new Size(114, 30);
+            btnThanhToan.TabIndex = 13;
+            btnThanhToan.Text = "Thanh Toán";
+            btnThanhToan.UseVisualStyleBackColor = true;
             // 
-            // textBox7
+            // txtGhiChu
             // 
-            textBox7.BorderStyle = BorderStyle.FixedSingle;
-            textBox7.Location = new Point(4, 181);
-            textBox7.Multiline = true;
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(363, 113);
-            textBox7.TabIndex = 10;
+            txtGhiChu.BorderStyle = BorderStyle.FixedSingle;
+            txtGhiChu.Location = new Point(3, 200);
+            txtGhiChu.Multiline = true;
+            txtGhiChu.Name = "txtGhiChu";
+            txtGhiChu.Size = new Size(363, 113);
+            txtGhiChu.TabIndex = 10;
             // 
-            // textBox6
+            // txtThanhToan
             // 
-            textBox6.Location = new Point(111, 112);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(147, 23);
-            textBox6.TabIndex = 7;
+            txtThanhToan.Location = new Point(111, 101);
+            txtThanhToan.Name = "txtThanhToan";
+            txtThanhToan.Size = new Size(147, 23);
+            txtThanhToan.TabIndex = 7;
             // 
-            // textBox5
+            // txtCoupon
             // 
-            textBox5.Location = new Point(111, 77);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(147, 23);
-            textBox5.TabIndex = 5;
+            txtCoupon.Location = new Point(111, 72);
+            txtCoupon.Name = "txtCoupon";
+            txtCoupon.Size = new Size(147, 23);
+            txtCoupon.TabIndex = 5;
             // 
             // label8
             // 
@@ -499,12 +511,12 @@
             label8.TabIndex = 3;
             label8.Text = "VNĐ";
             // 
-            // textBox4
+            // txtTongTien
             // 
-            textBox4.Location = new Point(111, 44);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(147, 23);
-            textBox4.TabIndex = 2;
+            txtTongTien.Location = new Point(111, 44);
+            txtTongTien.Name = "txtTongTien";
+            txtTongTien.Size = new Size(147, 23);
+            txtTongTien.TabIndex = 2;
             // 
             // label7
             // 
@@ -537,7 +549,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(3, 162);
+            label13.Location = new Point(3, 182);
             label13.Name = "label13";
             label13.Size = new Size(56, 15);
             label13.TabIndex = 9;
@@ -546,7 +558,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(12, 85);
+            label9.Location = new Point(12, 80);
             label9.Name = "label9";
             label9.Size = new Size(59, 15);
             label9.TabIndex = 4;
@@ -555,7 +567,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(12, 120);
+            label10.Location = new Point(12, 109);
             label10.Name = "label10";
             label10.Size = new Size(74, 15);
             label10.TabIndex = 6;
@@ -622,6 +634,56 @@
             label2.Size = new Size(160, 32);
             label2.TabIndex = 113;
             label2.Text = "Bán Hàng";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(13, 137);
+            label14.Name = "label14";
+            label14.Size = new Size(70, 15);
+            label14.TabIndex = 17;
+            label14.Text = "Khách Đưa :";
+            // 
+            // txtKhachDua
+            // 
+            txtKhachDua.Location = new Point(111, 129);
+            txtKhachDua.Name = "txtKhachDua";
+            txtKhachDua.Size = new Size(147, 23);
+            txtKhachDua.TabIndex = 18;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(273, 137);
+            label5.Name = "label5";
+            label5.Size = new Size(31, 15);
+            label5.TabIndex = 19;
+            label5.Text = "VNĐ";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(13, 161);
+            label15.Name = "label15";
+            label15.Size = new Size(46, 15);
+            label15.TabIndex = 20;
+            label15.Text = "Trả Lại :";
+            // 
+            // txtTraLai
+            // 
+            txtTraLai.Location = new Point(111, 158);
+            txtTraLai.Name = "txtTraLai";
+            txtTraLai.Size = new Size(147, 23);
+            txtTraLai.TabIndex = 21;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(273, 166);
+            label17.Name = "label17";
+            label17.Size = new Size(31, 15);
+            label17.TabIndex = 22;
+            label17.Text = "VNĐ";
             // 
             // BanHang
             // 
@@ -710,11 +772,11 @@
         private Button button9;
         private Panel panel7;
         private Label label3;
-        private TextBox textBox3;
-        private TextBox textBox2;
+        private TextBox txtSoDienThoai;
+        private TextBox txtTenKhachHang;
         private Panel panel8;
         private Label label8;
-        private TextBox textBox4;
+        private TextBox txtTongTien;
         private Label label7;
         private Panel panel9;
         private Label label6;
@@ -724,18 +786,23 @@
         private DateTimePicker dateTimePicker1;
         private ComboBox comboBox2;
         private ComboBox comboBox3;
-        private TextBox textBox7;
+        private TextBox txtGhiChu;
         private Label label13;
         private Label label12;
-        private TextBox textBox6;
+        private TextBox txtThanhToan;
         private Label label10;
-        private TextBox textBox5;
+        private TextBox txtCoupon;
         private Label label9;
-        private Button button13;
+        private Button btnThanhToan;
         private ComboBox comboBox1;
-        private Button button15;
-        private Button button14;
+        private Button btnLuuHoaDon;
+        private Button btnTaoHoaDon;
         private Button btnLuu;
         private Label label16;
+        private TextBox txtKhachDua;
+        private Label label14;
+        private Label label17;
+        private TextBox txtTraLai;
+        private Label label15;
     }
 }
