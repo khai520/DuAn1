@@ -77,16 +77,11 @@ namespace Main.DAL.Services
         }
         public Hoadonct Loc(string id)
         {
+
+
             Hoadonct sP = new Hoadonct()
             {
-                //Idctsp = id,
-                //Tengiay = list.Find(x => x.Idctsp == id).Tengiay.ToString(),
-                //Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
-                //Mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString(),
-                //Chatlieuu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString(),
-                //Kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString(),
-                //Degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString(),
-                //Giaban = list.Find(x => x.Idctsp == id).Giaban,
+                
                 Mahd = id ,
                 Idctsp = list.Find(x=>x.Mahd == id).Idctsp.ToString(),
                 Slban = list.Find(x => x.Mahd == id).Slban.Value,

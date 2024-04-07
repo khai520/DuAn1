@@ -12,7 +12,7 @@ namespace Main.DAL.Services
     {
         KhachHangRepo repo = new KhachHangRepo();
         List<Khachhang> list = new List<Khachhang>();
-        
+        LoaiKhachHangService loaiKhach = new LoaiKhachHangService();
         public List<Khachhang> Getallkh()
         {
             return list = repo.getallKhachRepo();
@@ -79,11 +79,20 @@ namespace Main.DAL.Services
         }
         public Khachhang Loc(string id)
         {
+            string? loaikh;
+            if (loaiKhach.Getallkh().Find(x => x.Idloaind == list.Find(x => x.Idkh == id).Idloaind) == null)
+            {
+                loaikh = " ";
+            }
+            else
+            {
+                loaikh = loaiKhach.Getallkh().Find(x => x.Idloaind == list.Find(x => x.Idkh == id).Idloaind).Ten.ToString();
+            }
             Khachhang sP = new Khachhang()
             {
               
                 Idkh = id,
-                Idloaind = list.Find(x=>x.Idkh == id).Idloaind.ToString(),
+                Idloaind = loaikh,
                 Ten = list.Find(x => x.Idkh == id).Ten.ToString(),
                 Sdt = list.Find(x => x.Idkh == id).Sdt.ToString(),
                 Diachi = list.Find(x => x.Idkh == id).Diachi.ToString(),

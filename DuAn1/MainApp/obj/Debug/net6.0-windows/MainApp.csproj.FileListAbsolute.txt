@@ -225,4 +225,4 @@ C:\Users\khai5\OneDrive\Tài liệu\GitHub\DuAn1\DuAn1\MainApp\obj\Debug\net6.
 C:\Users\khai5\OneDrive\Tài liệu\GitHub\DuAn1\DuAn1\MainApp\obj\Debug\net6.0-windows\MainApp.genruntimeconfig.cache
 C:\Users\khai5\OneDrive\Tài liệu\GitHub\DuAn1\DuAn1\MainApp\obj\Debug\net6.0-windows\ref\MainApp.dll
 C:\Users\khai5\OneDrive\Tài liệu\GitHub\DuAn1\DuAn1\MainApp\obj\Debug\net6.0-windows\MainApp.GUI.VIEW.HoaDon.resources
-D:\dự án 1\githup\DuAn1\DuAn1\MainApp\obj\Debug\net6.0-windows\MainApp.GUI.VIEW.HoaDon.resources
+D:\dự án 1\githup\DuAn1\DuAn1\MainApp\obj\Debug\net6.0-windows\MainApp.GUI.VIEW.ThongTinNhaCungCap.resources

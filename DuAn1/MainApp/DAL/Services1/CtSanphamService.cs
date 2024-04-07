@@ -130,11 +130,24 @@ namespace Main.DAL.Services
         }
         public Ctsanpham Loc(string id)
         {
+
+            string? nccc;
+            if (ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc) == null)
+            {
+                nccc = " ";
+            }
+            else
+            {
+                nccc = ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc).Tenncc.ToString();
+            }
+
+         
+
             Ctsanpham sP = new Ctsanpham()
             {
                 Idctsp = id,
-                Idncc = ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc).Tenncc.ToString(),
-                Tengiay = list.Find(x => x.Idctsp == id).Tengiay.ToString(),
+                Idncc = nccc,
+                Tengiay = list.Find(x => x.Idctsp == list.Find(x => x.Idctsp == id).Idncc).Tengiay.ToString(),
                 Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
                 Mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString(),
                 Chatlieuu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString(),
