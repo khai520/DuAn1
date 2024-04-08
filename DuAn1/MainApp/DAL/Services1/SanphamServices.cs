@@ -19,15 +19,6 @@ namespace WinFormsApp1.Services
         {
             return list = repo.getallSPrepo();
         }
-        public List<Sanpham> Change()
-        {
-            List<Sanpham> list2 = new();
-            foreach (var item in list)
-            {
-                list2.Add(Loc(item.Masp));
-            }
-            return list2;
-        }
         public bool CheckValidate(dynamic Check)
         {
             if (Check == null || Check.Length == 0)
@@ -39,7 +30,7 @@ namespace WinFormsApp1.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count(); i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -49,67 +40,82 @@ namespace WinFormsApp1.Services
                 {
                     idtam = "SP" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.Masp.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.Masp == idtam).Count() > 0)
                 {
-                    break;
+                    continue;
                 }
             }
             return idtam;
         }
-        public bool AddSP(string ten, int soluong, int giaban, string trangthai)
+        public string AddSP(string ten, string soluong, string giaban, string trangthai)
         {
-            if (CheckValidate(ten) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
+            string id = XulyId();
+            try
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
-            }
-            else
-            {
-                Sanpham sanpham = new Sanpham
+                if(CheckValidate(ten) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
                 {
-                    Masp = XulyId(),
-                    Tensp = ten,
-                    Soluong = soluong,
-                    Giaban = giaban,
-                    Trangthai = trangthai
-                };
-                return true;
+                    return "Sai dữ liệu";
+                }
+                else
+                {
+                    
+                    Sanpham sanpham = new Sanpham
+                    {
+                        Masp = id,
+                        Tensp = ten,
+                        Soluong = Convert.ToInt32(soluong),
+                        Giaban = Convert.ToDecimal(giaban),
+                        Trangthai = trangthai
+                    };
+                    if (repo.them(sanpham))
+                    {
+                        return "Add thành công";
+                    }
+                    else { return "Add không thành công"; }
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show(id + ten + soluong + giaban + trangthai);
+                return "Sai kiểu dữ liệu";
+            }
+            
 
         }
-        public bool UpdateSP(string id, string name, int soluong, int giaban, string trangthai)
+        public string UpdateSP(string id, string name, string soluong, string giaban, string trangthai)
         {
             if (CheckValidate(id) || CheckValidate(name) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
+                return "Dữ liệu nhập vào lỗi hoặc chưa đầy đủ";
             }
             else
             {
-                Sanpham sanpham = new Sanpham
+                Sanpham sanpham = list.Find(x => x.Masp == id);
+                sanpham.Tensp = name;
+                sanpham.Soluong = Convert.ToInt32(soluong);
+                sanpham.Giaban = Convert.ToDecimal(giaban);
+                sanpham.Trangthai = trangthai;
+                if (repo.sua(sanpham))
                 {
-                    Masp = id,
-                    Tensp = name,
-                    Soluong = soluong,
-                    Giaban = giaban,
-                    Trangthai = trangthai
-                };
-                return repo.sua(id, sanpham);
+                    return "Sửa thành công";
+                }
+                else return "Sửa không thành công";
             }
 
         }
-        public Sanpham XoaSp(string id)
+        public string XoaSp(string id)
         {
             Sanpham sanpham = list.Find(x => x.Masp == id);
-            return sanpham;
+            if (repo.xoa(id))
+            {
+                return "Xóa thành công";
+            }
+            else return "Xóa không thành công";
+            
         }
         public List<Sanpham> GetSanphamsByName(string name, List<Sanpham> list)
         {
             return list;
-        }
-        public string DeleteSP(string id)
-        {
-            return id;
         }
         public List<Sanpham> SortByName()
         {
@@ -121,44 +127,11 @@ namespace WinFormsApp1.Services
         {
             return repo.FindSvByName(name).ToList();
         }
-        public Sanpham Loc(string id)
-        {
-            Sanpham sP = new Sanpham()
-            {
-           
-                Masp = id,
-                Tensp = list.Find(x => x.Masp == id).Tensp.ToString(),
-                Soluong = list.Find(x => x.Masp == id).Soluong.Value,
-                Giaban = list.Find(x => x.Masp == id).Giaban.Value,
-                Trangthai = list.Find(x => x.Masp == id).Trangthai.ToString()
 
-            };
-            return sP;
-        }
         public List<Sanpham> Timkiem(string? id, string? tensp, int? soluong, decimal? giaban, string? trangthai)
         {
-            if (id == null && tensp == null && soluong == null && giaban == null && trangthai == null)
-            {
-                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
-            else
-            {
-                var ds = Change().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai);
-                List<Sanpham> listAdd = new();
-                if (ds.Count() > 0)
-                {
-                    foreach (var item in ds)
-                    {
-                        listAdd.Add(Loc(item.Masp));
-                    }
-                }
-                else
-                {
-                    listAdd = list;
-                }
-                return listAdd;
-            }
+
+            return GetSanphams().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai).ToList();
         }
 
     }

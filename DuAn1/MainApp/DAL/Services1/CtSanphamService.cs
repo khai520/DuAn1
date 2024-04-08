@@ -19,9 +19,9 @@ namespace Main.DAL.Services
         KichThuocService kt = new();
         DeGiayService dg = new();
         List<Ctsanpham> list = new List<Ctsanpham>();
-        public List<Ctsanpham> GetallChitietsanpham(List<Ctsanpham> list1)
+        public List<Ctsanpham> GetallChitietsanpham()
         {
-            return list = list1;
+            return list = sanpham.getallSPrepo();
         }
         public string XulyId()
         {
@@ -43,15 +43,15 @@ namespace Main.DAL.Services
             }
             return idtam;
         }
-        public List<Ctsanpham> Change()
-        {
-            List<Ctsanpham> list2 = new();
-            foreach (var item in list)
-            {
-                list2.Add(Loc(item.Idctsp));
-            }
-            return list2;
-        }
+        //public List<Ctsanpham> Change()
+        //{
+        //    List<Ctsanpham> list2 = new();
+        //    foreach (var item in list)
+        //    {
+        //        list2.Add(Loc(item.Idctsp));
+        //    }
+        //    return list2;
+        //}
         public bool CheckValidate(dynamic Check)
         {
             if (Check == null || Check.Length == 0)
@@ -125,97 +125,75 @@ namespace Main.DAL.Services
             sanphamSoft.Sort((x, y) => x.Tengiay.CompareTo(x.Tengiay));
             return sanphamSoft;
         }
-        public Ctsanpham Loc(string id)
-        {
+        //public Ctsanpham Loc(string id)
+        //{
 
-            string? nccc;
-            if (ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc) == null)
-            {
-                nccc = " ";
-            }
-            else
-            {
-                nccc = ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc).Tenncc.ToString();
-            }
-            string? mau;
-            if (ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau) == null)
-            {
-                mau = " ";
-            }
-            else
-            {
-                mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString();
-            }
-            string? chatlieu;
-            if (cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu) == null)
-            {
-                chatlieu = " ";
-            }
-            else
-            {
-                chatlieu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString();
-            }
-            string? kichthuoc;
-            if (kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc) == null)
-            {
-                kichthuoc = " ";
-            }
-            else
-            {
-                kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString();
-            }
-            string? degiay;
-            if (dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay) == null)
-            {
-               degiay = " ";
-            }
-            else
-            {
-                degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString();
-            }
+        //    string? nccc;
+        //    if (ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc) == null)
+        //    {
+        //        nccc = " ";
+        //    }
+        //    else
+        //    {
+        //        nccc = ncc.getallSnhacungcap().Find(x => x.Idncc == list.Find(x => x.Idctsp == id).Idncc).Tenncc.ToString();
+        //    }
+        //    string? mau;
+        //    if (ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau) == null)
+        //    {
+        //        mau = " ";
+        //    }
+        //    else
+        //    {
+        //        mau = ms.GetallMau().Find(x => x.Idmau == list.Find(x => x.Idctsp == id).Mau).Mau.ToString();
+        //    }
+        //    string? chatlieu;
+        //    if (cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu) == null)
+        //    {
+        //        chatlieu = " ";
+        //    }
+        //    else
+        //    {
+        //        chatlieu = cl.Getallchatlieu().Find(x => x.Idchatlieu == list.Find(x => x.Idctsp == id).Chatlieuu).Chatlieu1.ToString();
+        //    }
+        //    string? kichthuoc;
+        //    if (kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc) == null)
+        //    {
+        //        kichthuoc = " ";
+        //    }
+        //    else
+        //    {
+        //        kichthuoc = kt.Getallkt().Find(x => x.IdKichthuoc == list.Find(x => x.Idctsp == id).Kichthuoc).Kichthuoc1.ToString();
+        //    }
+        //    string? degiay;
+        //    if (dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay) == null)
+        //    {
+        //       degiay = " ";
+        //    }
+        //    else
+        //    {
+        //        degiay = dg.Getalldegiay().Find(x => x.IdDegiay == list.Find(x => x.Idctsp == id).Degiay).Degiay1.ToString();
+        //    }
 
 
 
-            Ctsanpham sP = new Ctsanpham()
-            {
-                Idctsp = id,
-                Idncc = nccc,
-                Tengiay = list.Find(x => x.Idctsp == list.Find(x => x.Idctsp == id).Idncc).Tengiay.ToString(),
-                Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
-                Mau = mau,
-                Chatlieuu = chatlieu,
-                Kichthuoc = kichthuoc,
-                Degiay = degiay,
-                Giaban = list.Find(x => x.Idctsp == id).Giaban,
+        //    Ctsanpham sP = new Ctsanpham()
+        //    {
+        //        Idctsp = id,
+        //        Idncc = nccc,
+        //        Tengiay = list.Find(x => x.Idctsp == list.Find(x => x.Idctsp == id).Idncc).Tengiay.ToString(),
+        //        Masp = list.Find(x => x.Idctsp == id).Masp.ToString(),
+        //        Mau = mau,
+        //        Chatlieuu = chatlieu,
+        //        Kichthuoc = kichthuoc,
+        //        Degiay = degiay,
+        //        Giaban = list.Find(x => x.Idctsp == id).Giaban,
 
-            };
-            return sP;
-        }
+        //    };
+        //    return sP;
+        //}
         public List<Ctsanpham> Timkiem(string? id, string? name, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, decimal giaban)
         {
-            if (id == null && name == null && masp == null && mau == null && chatlieu == null && kichthuoc == null && degiay == null)
-            {
-
-                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
-            else
-            {
-                var ds = Change().Where(x => x.Idctsp == id || x.Tengiay == name || x.Masp == masp || x.Mau == mau || x.Chatlieuu == chatlieu || x.Kichthuoc == kichthuoc || x.Degiay == degiay || x.Giaban == giaban);
-                List<Ctsanpham> listAdd = new();
-                if (ds.Count() > 0)
-                {
-                    foreach (var item in ds)
-                    {
-                        listAdd.Add(Loc(item.Idctsp));
-                    }
-                }
-                else
-                {
-                    listAdd = list;
-                }
-                return listAdd;
-            }
+            return GetallChitietsanpham().Where(x => x.Idctsp == id || x.Tengiay == name || x.Masp == masp || x.Mau == mau || x.Chatlieuu == chatlieu || x.Kichthuoc == kichthuoc || x.Degiay == degiay || x.Giaban == giaban).ToList();
         }
     }
 }

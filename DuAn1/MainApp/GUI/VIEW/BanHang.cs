@@ -198,26 +198,7 @@ namespace APPBanHang
         }
         private void loadhoadonchitiet()
         {
-            List<Hoadonct> hoadoncts = _hoadonChiTietServices.GetHoaDonCT();
-            dgvHoaDonChiTiet.DataSource = hoadoncts;
-            DataGridViewTextBoxColumn sttColumna = new DataGridViewTextBoxColumn();
-            sttColumna.HeaderText = "STT";
-            sttColumna.Name = "sttColumn";
-            dgvHoaDonChiTiet.Columns.Insert(0, sttColumna);
-
-
-            for (int i = 0; i < dgvHoaDonChiTiet.Rows.Count; i++)
-            {
-                dgvHoaDonChiTiet.Rows[i].Cells["sttColumn"].Value = (i + 1).ToString();
-            }
-            dgvHoaDonChiTiet.Columns[6].Visible = false;
-            dgvHoaDonChiTiet.Columns[7].Visible = false;
-            dgvDanhSachSanPham.EditMode = DataGridViewEditMode.EditProgrammatically;
-
-
-
-
-
+            List<Hoadonct> hoadoncts = new();
 
 
         }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\dự án 1\\git\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj": {}
+    "C:\\Users\\khai5\\OneDrive\\Tài liệu\\GitHub\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj": {}
   },
   "projects": {
-    "D:\\dự án 1\\git\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj": {
+    "C:\\Users\\khai5\\OneDrive\\Tài liệu\\GitHub\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\dự án 1\\git\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj",
+        "projectUniqueName": "C:\\Users\\khai5\\OneDrive\\Tài liệu\\GitHub\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj",
         "projectName": "MainApp",
-        "projectPath": "D:\\dự án 1\\git\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "D:\\dự án 1\\git\\DuAn1\\DuAn1\\MainApp\\obj\\",
+        "projectPath": "C:\\Users\\khai5\\OneDrive\\Tài liệu\\GitHub\\DuAn1\\DuAn1\\MainApp\\MainApp.csproj",
+        "packagesPath": "C:\\Users\\khai5\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\khai5\\OneDrive\\Tài liệu\\GitHub\\DuAn1\\DuAn1\\MainApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\khai5\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -74,7 +74,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
         }
       }
     }

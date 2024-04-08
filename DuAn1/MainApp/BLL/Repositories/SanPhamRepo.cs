@@ -26,28 +26,10 @@ namespace WinFormsApp1.Repositories
             context.Sanphams.Add(sanpham);
             return context.SaveChanges() > 0;
         }
-        public bool sua(string masp, Sanpham sanpham)
+        public bool sua(Sanpham sanpham)
         {
-            try
-            {
-                var obj = findbyname(masp);
-                if (obj == null)
-                {
-                    return false;
-                }
-                obj.Masp = sanpham.Masp;
-                obj.Tensp = sanpham.Tensp;
-                obj.Soluong = sanpham.Soluong;
-                obj.Giaban = sanpham.Giaban;
-                obj.Trangthai = sanpham.Trangthai;
-                context.Update(obj);
-                context.SaveChanges();
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            context.Update(sanpham);
+            return context.SaveChanges() > 0;
         }
         public bool xoa(string idxoasp)
         {

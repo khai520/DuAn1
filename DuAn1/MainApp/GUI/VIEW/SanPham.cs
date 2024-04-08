@@ -17,6 +17,7 @@ namespace APPBanHang
     public partial class SanPham : Form
     {
         SanphamServices _sanphamService = new();
+        string id;
         public SanPham()
         {
             InitializeComponent();
@@ -113,12 +114,27 @@ namespace APPBanHang
 
         private void SanPham_Load(object sender, EventArgs e)
         {
-
+            LoadData();
         }
         private void LoadData()
         {
             //var result = from sp in _sanphamService
-
+            int Stt = 1;
+            dgvDanhSachSanPham.DataSource = _sanphamService.GetSanphams().Select(x => new
+            {
+                STT = Stt++,
+                x.Masp,
+                x.Tensp,
+                x.Soluong,
+                x.Giaban,
+                x.Trangthai
+            }).ToList();
+            dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
+            dgvDanhSachSanPham.Columns[1].HeaderText = "Masp";
+            dgvDanhSachSanPham.Columns[2].HeaderText = "Tên sản phẩm";
+            dgvDanhSachSanPham.Columns[3].HeaderText = "Số lượng";
+            dgvDanhSachSanPham.Columns[4].HeaderText = "Giá bán";
+            dgvDanhSachSanPham.Columns[5].HeaderText = "Trạng thái";
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -155,6 +171,39 @@ namespace APPBanHang
             NhanVien nhan = new NhanVien();
             nhan.ShowDialog();
             this.Close();
+        }
+
+        private void btnThemSanPham_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+            LoadData();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_sanphamService.XoaSp(id));
+            LoadData();
+        }
+
+        private void dgvDanhSachSanPham_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvDanhSachSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int d = e.RowIndex;
+            id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
+            txtTenSP.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
+            txtSoLuongTon.Text = dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString();
+            txtGiaBan.Text = dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString();
+            cbxTrangThai.Text = dgvDanhSachSanPham.Rows[d].Cells[5].Value.ToString();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_sanphamService.UpdateSP(id, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+            LoadData();
         }
     }
 }
