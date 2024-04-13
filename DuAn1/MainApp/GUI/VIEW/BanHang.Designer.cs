@@ -35,6 +35,7 @@
             btnExit = new Button();
             btnNhanVien = new Button();
             panel2 = new Panel();
+            btnThoat = new Button();
             panel3 = new Panel();
             label19 = new Label();
             label20 = new Label();
@@ -92,12 +93,10 @@
             btnLuuHoaDon = new Button();
             btnTaoHoaDon = new Button();
             btnThanhToan = new Button();
-            txtGhiChu = new TextBox();
             txtCoupon = new TextBox();
             label8 = new Label();
             txtTongTien = new TextBox();
             label7 = new Label();
-            label13 = new Label();
             label9 = new Label();
             label10 = new Label();
             label2 = new Label();
@@ -113,7 +112,6 @@
             comboBox1 = new ComboBox();
             panel11 = new Panel();
             label36 = new Label();
-            btnThoat = new Button();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -135,9 +133,9 @@
             // btnKhachHang
             // 
             btnKhachHang.FlatStyle = FlatStyle.Flat;
-            btnKhachHang.Location = new Point(-18, 303);
+            btnKhachHang.Location = new Point(13, 306);
             btnKhachHang.Name = "btnKhachHang";
-            btnKhachHang.Size = new Size(205, 31);
+            btnKhachHang.Size = new Size(174, 31);
             btnKhachHang.TabIndex = 65;
             btnKhachHang.Text = "Khách Hàng";
             btnKhachHang.UseVisualStyleBackColor = true;
@@ -146,9 +144,9 @@
             // btnSanPham
             // 
             btnSanPham.FlatStyle = FlatStyle.Flat;
-            btnSanPham.Location = new Point(-18, 229);
+            btnSanPham.Location = new Point(13, 232);
             btnSanPham.Name = "btnSanPham";
-            btnSanPham.Size = new Size(205, 31);
+            btnSanPham.Size = new Size(174, 31);
             btnSanPham.TabIndex = 63;
             btnSanPham.Text = "Sản Phẩm";
             btnSanPham.UseVisualStyleBackColor = true;
@@ -157,9 +155,9 @@
             // btnTrangChu
             // 
             btnTrangChu.FlatStyle = FlatStyle.Flat;
-            btnTrangChu.Location = new Point(-19, 192);
+            btnTrangChu.Location = new Point(12, 195);
             btnTrangChu.Name = "btnTrangChu";
-            btnTrangChu.Size = new Size(205, 31);
+            btnTrangChu.Size = new Size(175, 31);
             btnTrangChu.TabIndex = 62;
             btnTrangChu.Text = "Trang Chủ";
             btnTrangChu.UseVisualStyleBackColor = true;
@@ -180,9 +178,9 @@
             // btnNhanVien
             // 
             btnNhanVien.FlatStyle = FlatStyle.Flat;
-            btnNhanVien.Location = new Point(-18, 266);
+            btnNhanVien.Location = new Point(13, 269);
             btnNhanVien.Name = "btnNhanVien";
-            btnNhanVien.Size = new Size(205, 31);
+            btnNhanVien.Size = new Size(174, 31);
             btnNhanVien.TabIndex = 64;
             btnNhanVien.Text = "Nhân Viên";
             btnNhanVien.UseVisualStyleBackColor = true;
@@ -200,6 +198,18 @@
             panel2.Size = new Size(1739, 53);
             panel2.TabIndex = 61;
             panel2.Paint += panel2_Paint;
+            // 
+            // btnThoat
+            // 
+            btnThoat.BackColor = Color.White;
+            btnThoat.FlatAppearance.BorderSize = 0;
+            btnThoat.Location = new Point(1312, 11);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(40, 30);
+            btnThoat.TabIndex = 80;
+            btnThoat.Text = "X";
+            btnThoat.UseVisualStyleBackColor = false;
+            btnThoat.Click += btnThoat_Click;
             // 
             // panel3
             // 
@@ -408,9 +418,9 @@
             // btnVoucher
             // 
             btnVoucher.FlatStyle = FlatStyle.Flat;
-            btnVoucher.Location = new Point(-18, 340);
+            btnVoucher.Location = new Point(13, 343);
             btnVoucher.Name = "btnVoucher";
-            btnVoucher.Size = new Size(205, 31);
+            btnVoucher.Size = new Size(174, 31);
             btnVoucher.TabIndex = 71;
             btnVoucher.Text = "Voucher";
             btnVoucher.UseVisualStyleBackColor = true;
@@ -419,9 +429,9 @@
             // btnLogout
             // 
             btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Location = new Point(-18, 530);
+            btnLogout.Location = new Point(12, 531);
             btnLogout.Name = "btnLogout";
-            btnLogout.Size = new Size(205, 31);
+            btnLogout.Size = new Size(175, 31);
             btnLogout.TabIndex = 67;
             btnLogout.Text = "Đăng Xuất";
             btnLogout.UseVisualStyleBackColor = true;
@@ -430,9 +440,9 @@
             // btnBanHang
             // 
             btnBanHang.FlatStyle = FlatStyle.Flat;
-            btnBanHang.Location = new Point(-18, 377);
+            btnBanHang.Location = new Point(13, 380);
             btnBanHang.Name = "btnBanHang";
-            btnBanHang.Size = new Size(205, 31);
+            btnBanHang.Size = new Size(174, 31);
             btnBanHang.TabIndex = 72;
             btnBanHang.Text = "Bán Hàng";
             btnBanHang.UseVisualStyleBackColor = true;
@@ -639,12 +649,10 @@
             panel8.Controls.Add(btnLuuHoaDon);
             panel8.Controls.Add(btnTaoHoaDon);
             panel8.Controls.Add(btnThanhToan);
-            panel8.Controls.Add(txtGhiChu);
             panel8.Controls.Add(txtCoupon);
             panel8.Controls.Add(label8);
             panel8.Controls.Add(txtTongTien);
             panel8.Controls.Add(label7);
-            panel8.Controls.Add(label13);
             panel8.Controls.Add(label9);
             panel8.Controls.Add(label10);
             panel8.Location = new Point(1172, 524);
@@ -771,15 +779,6 @@
             btnThanhToan.Text = "Thanh Toán";
             btnThanhToan.UseVisualStyleBackColor = true;
             // 
-            // txtGhiChu
-            // 
-            txtGhiChu.BorderStyle = BorderStyle.FixedSingle;
-            txtGhiChu.Location = new Point(3, 200);
-            txtGhiChu.Multiline = true;
-            txtGhiChu.Name = "txtGhiChu";
-            txtGhiChu.Size = new Size(363, 113);
-            txtGhiChu.TabIndex = 10;
-            // 
             // txtCoupon
             // 
             txtCoupon.Location = new Point(111, 72);
@@ -811,15 +810,6 @@
             label7.Size = new Size(65, 15);
             label7.TabIndex = 1;
             label7.Text = "Tổng Tiền :";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(3, 182);
-            label13.Name = "label13";
-            label13.Size = new Size(56, 15);
-            label13.TabIndex = 9;
-            label13.Text = "Ghi Chú :";
             // 
             // label9
             // 
@@ -963,18 +953,6 @@
             label36.TabIndex = 0;
             label36.Text = "Tìm kiếm sản phẩm";
             // 
-            // btnThoat
-            // 
-            btnThoat.BackColor = Color.White;
-            btnThoat.FlatAppearance.BorderSize = 0;
-            btnThoat.Location = new Point(1312, 11);
-            btnThoat.Name = "btnThoat";
-            btnThoat.Size = new Size(40, 30);
-            btnThoat.TabIndex = 80;
-            btnThoat.Text = "X";
-            btnThoat.UseVisualStyleBackColor = false;
-            btnThoat.Click += btnThoat_Click;
-            // 
             // BanHang
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1067,8 +1045,6 @@
         private Label label6;
         private Button button12;
         private Button button10;
-        private TextBox txtGhiChu;
-        private Label label13;
         private Label label10;
         private TextBox txtCoupon;
         private Label label9;

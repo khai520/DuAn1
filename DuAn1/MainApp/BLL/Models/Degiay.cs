@@ -10,7 +10,7 @@ namespace MainApp.BLL.Models
             Ctsanphams = new HashSet<Ctsanpham>();
         }
 
-        public string IdDegiay { get; set; } = null!;
+        public string Iddegiay { get; set; } = null!;
         public string Degiay1 { get; set; } = null!;
 
         public virtual ICollection<Ctsanpham> Ctsanphams { get; set; }

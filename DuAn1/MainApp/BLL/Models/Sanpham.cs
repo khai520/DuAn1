@@ -8,6 +8,7 @@ namespace MainApp.BLL.Models
         public Sanpham()
         {
             Ctsanphams = new HashSet<Ctsanpham>();
+            Hoadoncts = new HashSet<Hoadonct>();
         }
 
         public string Masp { get; set; } = null!;
@@ -17,5 +18,6 @@ namespace MainApp.BLL.Models
         public string? Trangthai { get; set; }
 
         public virtual ICollection<Ctsanpham> Ctsanphams { get; set; }
+        public virtual ICollection<Hoadonct> Hoadoncts { get; set; }
     }
 }

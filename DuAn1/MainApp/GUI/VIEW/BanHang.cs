@@ -140,7 +140,7 @@ namespace APPBanHang
             voucher.ShowDialog();
             this.Close();
         }
-        
+
         private void btnexit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -173,8 +173,6 @@ namespace APPBanHang
             dgvDanhSachHoaDon.Columns[7].HeaderText = "Số lượng";
             dgvDanhSachHoaDon.Columns[8].HeaderText = "Tổng tiền";
             dgvDanhSachHoaDon.Columns[9].HeaderText = "Trạng thái";
-
-
         }
 
         private void loaddanhsachsanpham()
@@ -221,8 +219,7 @@ namespace APPBanHang
         }
         private void loadhoadonchitiet()
         {
-
-
+            
         }
 
         private void BanHang_Load_1(object sender, EventArgs e)
@@ -249,7 +246,12 @@ namespace APPBanHang
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+
         }
     }
 }

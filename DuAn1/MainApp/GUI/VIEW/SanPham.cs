@@ -307,24 +307,9 @@ namespace APPBanHang
         private void btn_Them_Click(object sender, EventArgs e)
         {
             if (id != null)
-            {
-                if (ctSanphamService.GetallChitietsanpham().Where(x => x.Masp == id).Count() > 0)
-                {
-                    if (idctsp == null)
-                    {
-                        MessageBox.Show("Chọn sản phẩm muốn sửa chi tiết");
-                    }
-                    else
-                    {
-                        MessageBox.Show(ctSanphamService.Sua(id, cbx_Ncc.SelectedValue.ToString(), cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
-                    }
-                    Loadtab2();
-                }
-                else
-                {
-                    MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue.ToString(), id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
-                    Loadtab2();
-                }
+            { 
+                MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue.ToString(), id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+                Loadtab2();
             }
             else
             {

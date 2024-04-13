@@ -144,10 +144,10 @@ namespace MainApp.BLL.Models
                     .HasMaxLength(50)
                     .HasColumnName("DEGIAY");
 
-                entity.Property(e => e.IdDegiay)
+                entity.Property(e => e.Iddegiay)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("ID_DEGIAY");
+                    .HasColumnName("IDDEGIAY");
             });
 
             modelBuilder.Entity<Hoadon>(entity =>
@@ -212,7 +212,7 @@ namespace MainApp.BLL.Models
 
             modelBuilder.Entity<Hoadonct>(entity =>
             {
-                entity.HasKey(e => new { e.Mahd, e.Idctsp });
+                entity.HasKey(e => new { e.Mahd, e.Masp });
 
                 entity.ToTable("HOADONCT");
 
@@ -221,10 +221,10 @@ namespace MainApp.BLL.Models
                     .IsUnicode(false)
                     .HasColumnName("MAHD");
 
-                entity.Property(e => e.Idctsp)
+                entity.Property(e => e.Masp)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("IDCTSP");
+                    .HasColumnName("MASP");
 
                 entity.Property(e => e.Gia)
                     .HasColumnType("money")
@@ -236,17 +236,17 @@ namespace MainApp.BLL.Models
 
                 entity.Property(e => e.Slban).HasColumnName("SLBAN");
 
-                entity.HasOne(d => d.IdctspNavigation)
-                    .WithMany(p => p.Hoadoncts)
-                    .HasForeignKey(d => d.Idctsp)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_HOADONCT_CTSANPHAM");
-
                 entity.HasOne(d => d.MahdNavigation)
                     .WithMany(p => p.Hoadoncts)
                     .HasForeignKey(d => d.Mahd)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_HOADONCT_HOADON");
+
+                entity.HasOne(d => d.MaspNavigation)
+                    .WithMany(p => p.Hoadoncts)
+                    .HasForeignKey(d => d.Masp)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_HOADONCT_CTSANPHAM");
             });
 
             modelBuilder.Entity<Khachhang>(entity =>
@@ -302,10 +302,10 @@ namespace MainApp.BLL.Models
                     .HasMaxLength(50)
                     .HasColumnName("KICHTHUOC");
 
-                entity.Property(e => e.IdKichthuoc)
+                entity.Property(e => e.Idkichthuoc)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("ID_KICHTHUOC");
+                    .HasColumnName("IDKICHTHUOC");
             });
 
             modelBuilder.Entity<Loaikhachhang>(entity =>

@@ -5,11 +5,6 @@ namespace MainApp.BLL.Models
 {
     public partial class Ctsanpham
     {
-        public Ctsanpham()
-        {
-            Hoadoncts = new HashSet<Hoadonct>();
-        }
-
         public string Idctsp { get; set; } = null!;
         public string? Idncc { get; set; }
         public string? Masp { get; set; }
@@ -26,6 +21,5 @@ namespace MainApp.BLL.Models
         public virtual Mausac? IdmauNavigation { get; set; }
         public virtual NhaCungCap? IdnccNavigation { get; set; }
         public virtual Sanpham? MaspNavigation { get; set; }
-        public virtual ICollection<Hoadonct> Hoadoncts { get; set; }
     }
 }
