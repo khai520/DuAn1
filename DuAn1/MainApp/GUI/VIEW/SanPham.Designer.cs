@@ -51,8 +51,6 @@
             dgvDanhSachSanPham = new DataGridView();
             label6 = new Label();
             btnThemSanPham = new Button();
-            cbxTrangThai = new ComboBox();
-            label9 = new Label();
             btnSua = new Button();
             btnXoa = new Button();
             txtSoLuongTon = new TextBox();
@@ -248,8 +246,6 @@
             panel1.Controls.Add(dgvDanhSachSanPham);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(btnThemSanPham);
-            panel1.Controls.Add(cbxTrangThai);
-            panel1.Controls.Add(label9);
             panel1.Controls.Add(btnSua);
             panel1.Controls.Add(btnXoa);
             panel1.Controls.Add(txtSoLuongTon);
@@ -287,7 +283,7 @@
             // txtGiaBan
             // 
             txtGiaBan.BorderStyle = BorderStyle.FixedSingle;
-            txtGiaBan.Location = new Point(530, 82);
+            txtGiaBan.Location = new Point(404, 83);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(158, 23);
             txtGiaBan.TabIndex = 34;
@@ -308,7 +304,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(530, 59);
+            label6.Location = new Point(404, 60);
             label6.Name = "label6";
             label6.Size = new Size(62, 16);
             label6.TabIndex = 33;
@@ -325,25 +321,6 @@
             btnThemSanPham.Text = "Thêm Sản Phẩm";
             btnThemSanPham.UseVisualStyleBackColor = true;
             btnThemSanPham.Click += btnThemSanPham_Click;
-            // 
-            // cbxTrangThai
-            // 
-            cbxTrangThai.FormattingEnabled = true;
-            cbxTrangThai.Items.AddRange(new object[] { "Còn Hàng", "Hết Hàng" });
-            cbxTrangThai.Location = new Point(397, 83);
-            cbxTrangThai.Name = "cbxTrangThai";
-            cbxTrangThai.Size = new Size(121, 23);
-            cbxTrangThai.TabIndex = 20;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(397, 59);
-            label9.Name = "label9";
-            label9.Size = new Size(82, 16);
-            label9.TabIndex = 17;
-            label9.Text = "Trạng Thái";
             // 
             // btnSua
             // 
@@ -687,8 +664,6 @@
         private Button btnThemSanPham;
         private ComboBox cbxNhaCungCap;
         private Label label12;
-        private ComboBox cbxTrangThai;
-        private Label label9;
         private Button btnSua;
         private Button btnXoa;
         private TextBox txtSoLuongTon;

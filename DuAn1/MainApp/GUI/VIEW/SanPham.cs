@@ -225,16 +225,16 @@ namespace APPBanHang
                 if (check == DialogResult.Yes)
                 {
                     var spdaco = _sanphamService.GetSanphams().Find(x => x.Tensp == txtTenSP.Text);
-                    _sanphamService.UpdateSP(spdaco.Masp, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text);
+                    _sanphamService.UpdateSP(spdaco.Masp, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text);
                 }
                 else if (check == DialogResult.No)
                 {
-                    MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+                    MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text));
                 }
             }
             else
             {
-                MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+                MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text ));
             }
             LoadData();
         }
@@ -277,14 +277,13 @@ namespace APPBanHang
                 txtTenSP.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
                 txtSoLuongTon.Text = dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString();
                 txtGiaBan.Text = dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString();
-                cbxTrangThai.Text = dgvDanhSachSanPham.Rows[d].Cells[5].Value.ToString();
             }
             Loadtab2();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_sanphamService.UpdateSP(id, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+            MessageBox.Show(_sanphamService.UpdateSP(id, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text));
             LoadData();
         }
 
@@ -307,7 +306,7 @@ namespace APPBanHang
         private void btn_Them_Click(object sender, EventArgs e)
         {
             if (id != null)
-            { 
+            {
                 MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue.ToString(), id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
                 Loadtab2();
             }
@@ -326,9 +325,8 @@ namespace APPBanHang
             else
             {
                 MessageBox.Show(ctSanphamService.Sua(idctsp, cbx_Ncc.SelectedValue.ToString(), cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+                Loadtab2();
             }
-
-            Loadtab2();
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
@@ -336,8 +334,9 @@ namespace APPBanHang
             if (MessageBox.Show("Bạn có muốn xóa không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 MessageBox.Show(ctSanphamService.Xoa(idctsp));
+                Loadtab2();
             }
-            Loadtab2();
+            
         }
 
         private void dgv_tab2_CellClick(object sender, DataGridViewCellEventArgs e)

@@ -50,7 +50,7 @@ namespace WinFormsApp1.Services
             }
             return idtam;
         }
-        public string AddSP(string ten, string soluong, string giaban, string trangthai)
+        public string AddSP(string ten, string soluong, string giaban)
         {
             string id = XulyId();
             try
@@ -76,8 +76,8 @@ namespace WinFormsApp1.Services
                         Tensp = ten,
                         Soluong = Convert.ToInt32(soluong),
                         Giaban = Convert.ToDecimal(giaban),
-                        Trangthai = trangthai
-                    };
+                        Trangthai = Convert.ToInt32(soluong) == 0 ? "Hết hàng" : "Còn hàng"
+                };
                     if (repo.them(sanpham))
                     {
                         return "Add thành công";
@@ -87,13 +87,12 @@ namespace WinFormsApp1.Services
             }
             catch (Exception)
             {
-                MessageBox.Show(id + ten + soluong + giaban + trangthai);
                 return "Sai kiểu dữ liệu";
             }
             
 
         }
-        public string UpdateSP(string id, string name, string soluong, string giaban, string trangthai)
+        public string UpdateSP(string id, string name, string soluong, string giaban)
         {
             try
             {
@@ -115,7 +114,7 @@ namespace WinFormsApp1.Services
                     sanpham.Tensp = name;
                     sanpham.Soluong = Convert.ToInt32(soluong);
                     sanpham.Giaban = Convert.ToDecimal(giaban);
-                    sanpham.Trangthai = trangthai;
+                    sanpham.Trangthai = Convert.ToInt32(soluong) == 0 ? "Hết hàng" : "Còn hàng";
                     if (repo.sua(sanpham))
                     {
                         return "Sửa thành công";

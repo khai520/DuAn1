@@ -20,6 +20,7 @@ namespace APPBanHang
         HoaDonChiTietServices _hoadonChiTietServices;
         CtSanphamService _ctsp;
         NhaCungCapServices _ncc;
+        string idsp;
         //int _idCellClick;
         public BanHang()
         {
@@ -219,7 +220,22 @@ namespace APPBanHang
         }
         private void loadhoadonchitiet()
         {
-            
+            int Stt = 1;
+            dgvHoaDonChiTiet.DataSource = _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Masp == idsp).Join(_SanphamServices.GetSanphams(), x => x.Masp, x => x.Masp, (x, y) => new
+            {
+                STT = Stt++,
+                x.Mahd,
+                y.Tensp,
+                x.Slban,
+                x.Gia,
+                x.Ngayban
+            }).ToList();
+            dgvDanhSachHoaDon.Columns[0].HeaderText = "STT";
+            dgvDanhSachHoaDon.Columns[1].HeaderText = "MaHD";
+            dgvDanhSachHoaDon.Columns[2].HeaderText = "Tên sản phẩm";
+            dgvDanhSachHoaDon.Columns[3].HeaderText = "Số lượng";
+            dgvDanhSachHoaDon.Columns[4].HeaderText = "Giá";
+            dgvDanhSachHoaDon.Columns[5].HeaderText = "Ngày bán";
         }
 
         private void BanHang_Load_1(object sender, EventArgs e)
