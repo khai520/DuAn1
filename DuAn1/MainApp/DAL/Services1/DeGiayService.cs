@@ -23,7 +23,7 @@ namespace Main.DAL.Services
         {
             Degiay degiay = new Degiay
             {
-                IdDegiay = id,
+                Iddegiay = id,
                 Degiay1 = name,
             };
             return true;
@@ -32,7 +32,7 @@ namespace Main.DAL.Services
         {
             Degiay degiay1 = new Degiay
             {
-                IdDegiay = id,
+                Iddegiay = id,
                 Degiay1 = name,
             };
             return giayRepo.sua(id, degiay1);

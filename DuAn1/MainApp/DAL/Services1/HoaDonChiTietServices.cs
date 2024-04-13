@@ -59,7 +59,7 @@ namespace Main.DAL.Services
                 Hoadonct hdct = new Hoadonct
                 {
                     Mahd = XulyId(),
-                    Idctsp = idctsp,
+                    Masp = idctsp,
                     Slban = slban,
                     Gia = gia,
                     Ngayban = ngayban,
@@ -84,7 +84,7 @@ namespace Main.DAL.Services
             {
                 
                 Mahd = id ,
-                Idctsp = list.Find(x=>x.Mahd == id).Idctsp.ToString(),
+                Masp = list.Find(x=>x.Mahd == id).Masp.ToString(),
                 Slban = list.Find(x => x.Mahd == id).Slban.Value,
                 Gia = list.Find(x => x.Mahd == id).Gia.Value,
                 Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value
@@ -103,7 +103,7 @@ namespace Main.DAL.Services
             }
             else
             {
-                var ds = Change().Where(x => x.Mahd == id || x.Idctsp == idctsp || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
+                var ds = Change().Where(x => x.Mahd == id || x.Masp == idctsp || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
                 List<Hoadonct> listAdd = new();
                 if (ds.Count() > 0)
                 {
@@ -136,17 +136,18 @@ namespace Main.DAL.Services
                 {
                     Mahd = idhdct,
                     Slban = slban,
-                    Idctsp = idctsp,
+                    Masp = idctsp,
                     Gia = gia,
                     Ngayban = ngayban
                 };
-                return repo.sua(idhdct, hoadonct);
+                return repo.sua(hoadonct);
             }
 
         }
         public bool XoaHDCT(string idhdct)
         {
-            return repo.xoa(idhdct);
+            Hoadonct hoadonct = GetHoaDonCT().Find(x => x.Mahd == idhdct);
+            return repo.xoa(hoadonct);
         }
         public List<Hoadonct> FindHoaDonct(string idkh)
         {

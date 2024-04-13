@@ -23,7 +23,7 @@ namespace Main.DAL.Services
         {
             Kichthuoc kt = new Kichthuoc
             {
-                IdKichthuoc = id,
+                Idkichthuoc = id,
                 Kichthuoc1 = name,
             };
             return true;
@@ -32,7 +32,7 @@ namespace Main.DAL.Services
         {
             Kichthuoc kt = new Kichthuoc
             {
-                IdKichthuoc = id,
+                Idkichthuoc = id,
                 Kichthuoc1 = name,
             };
             return kichthuoc.sua(id, kt);

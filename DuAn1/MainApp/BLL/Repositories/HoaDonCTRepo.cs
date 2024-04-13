@@ -26,36 +26,14 @@ namespace WinFormsApp1.Repositories
             
             return context.SaveChanges() > 0;
         }
-        public bool sua(string mahd, Hoadonct hoadonct)
+        public bool sua(Hoadonct hoadonct)
         {
-            try
-            {
-                var obj = findbyname(mahd);
-                if (obj == null)
-                {
-                    return false;
-                }
-                obj.Mahd = hoadonct.Mahd;
-                obj.Idctsp = hoadonct.Idctsp;
-                obj.Slban = hoadonct.Slban;
-                obj.Gia = hoadonct.Gia;
-                obj.Ngayban = hoadonct.Ngayban;
-               
-
-                context.Update(obj);
-                
-
-                return context.SaveChanges() > 0;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            context.Update(hoadonct);
+            return context.SaveChanges() > 0;
         }
-        public bool xoa(string idhdct)
+        public bool xoa(Hoadonct hoadonct)
         {
-            var itemxoa = context.Hoadoncts.Find(idhdct);
-            context.Hoadoncts.Remove(itemxoa);
+            context.Hoadoncts.Remove(hoadonct);
             return context.SaveChanges() > 0;
         }
         public Hoadonct findbyname(string ID)
