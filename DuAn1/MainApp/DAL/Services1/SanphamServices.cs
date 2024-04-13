@@ -1,9 +1,12 @@
-﻿using Main.BLL.Models2;
+﻿
+using Main.DAL.Services;
+using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using WinFormsApp1.Repositories;
 
 namespace WinFormsApp1.Services
@@ -21,7 +24,7 @@ namespace WinFormsApp1.Services
         }
         public bool CheckValidate(dynamic Check)
         {
-            if (Check == null || Check.Length == 0)
+            if (Check == null || Check.Length == 0 )
             {
                 return true;
             }
@@ -52,9 +55,17 @@ namespace WinFormsApp1.Services
             string id = XulyId();
             try
             {
-                if(CheckValidate(ten) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
+                if (Convert.ToInt32(soluong) < 0)
                 {
-                    return "Sai dữ liệu";
+                    return "Số lượng không được nhỏ hơn 0";
+                }
+                else if (Convert.ToInt32(giaban) < 0)
+                {
+                    return "Giá bán không được nhỏ hơn 0";
+                }
+                else if (CheckValidate(ten))
+                {
+                    return "Thiếu tên";
                 }
                 else
                 {
@@ -84,29 +95,45 @@ namespace WinFormsApp1.Services
         }
         public string UpdateSP(string id, string name, string soluong, string giaban, string trangthai)
         {
-            if (CheckValidate(id) || CheckValidate(name) || CheckValidate(soluong) || CheckValidate(giaban) || CheckValidate(trangthai))
+            try
             {
-                return "Dữ liệu nhập vào lỗi hoặc chưa đầy đủ";
-            }
-            else
-            {
-                Sanpham sanpham = list.Find(x => x.Masp == id);
-                sanpham.Tensp = name;
-                sanpham.Soluong = Convert.ToInt32(soluong);
-                sanpham.Giaban = Convert.ToDecimal(giaban);
-                sanpham.Trangthai = trangthai;
-                if (repo.sua(sanpham))
+                if (Convert.ToInt32(soluong) < 0)
                 {
-                    return "Sửa thành công";
+                    return "Số lượng không được nhỏ hơn 0";
                 }
-                else return "Sửa không thành công";
+                else if (Convert.ToInt32(giaban) < 0)
+                {
+                    return "Giá bán không được nhỏ hơn 0";
+                }
+                else if (CheckValidate(name))
+                {
+                    return "Thiếu tên";
+                }
+                else
+                {
+                    Sanpham sanpham = list.Find(x => x.Masp == id);
+                    sanpham.Tensp = name;
+                    sanpham.Soluong = Convert.ToInt32(soluong);
+                    sanpham.Giaban = Convert.ToDecimal(giaban);
+                    sanpham.Trangthai = trangthai;
+                    if (repo.sua(sanpham))
+                    {
+                        return "Sửa thành công";
+                    }
+                    else return "Sửa không thành công";
+                }
             }
-
+            catch (Exception)
+            {
+                return "Lỗi dữ liệu";
+            }
         }
         public string XoaSp(string id)
         {
             Sanpham sanpham = list.Find(x => x.Masp == id);
-            if (repo.xoa(id))
+            CtSanphamService ctsp = new();
+            ctsp.Xoa(sanpham.Masp);
+            if (repo.xoa(sanpham))
             {
                 return "Xóa thành công";
             }
@@ -117,12 +144,7 @@ namespace WinFormsApp1.Services
         {
             return list;
         }
-        public List<Sanpham> SortByName()
-        {
-            List<Sanpham> sanphamSoft = repo.getallSPrepo().ToList();
-            sanphamSoft.Sort((x, y) => x.Tensp.CompareTo(y.Tensp));
-            return sanphamSoft;
-        }
+
         public List<Sanpham> FindSvByName(string name)
         {
             return repo.FindSvByName(name).ToList();

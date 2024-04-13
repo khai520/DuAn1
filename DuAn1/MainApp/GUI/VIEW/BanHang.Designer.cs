@@ -34,9 +34,27 @@
             btnTrangChu = new Button();
             btnExit = new Button();
             btnNhanVien = new Button();
-            panel3 = new Panel();
-            panel1 = new Panel();
             panel2 = new Panel();
+            panel3 = new Panel();
+            label19 = new Label();
+            label20 = new Label();
+            label21 = new Label();
+            label22 = new Label();
+            label23 = new Label();
+            textBox1 = new TextBox();
+            label24 = new Label();
+            label25 = new Label();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            textBox2 = new TextBox();
+            textBox3 = new TextBox();
+            label26 = new Label();
+            textBox4 = new TextBox();
+            label27 = new Label();
+            label28 = new Label();
+            label29 = new Label();
+            label30 = new Label();
             label11 = new Label();
             btnVoucher = new Button();
             btnLogout = new Button();
@@ -44,16 +62,16 @@
             groupBox1 = new GroupBox();
             dgvDanhSachHoaDon = new DataGridView();
             panel4 = new Panel();
-            btnQRCode = new Button();
-            btnTimSanPham = new Button();
-            txtTimSanPham = new TextBox();
             dgvDanhSachSanPham = new DataGridView();
             panel5 = new Panel();
             label1 = new Label();
+            btnQRCode = new Button();
+            btnTimSanPham = new Button();
             groupBox2 = new GroupBox();
             btnXoa = new Button();
             dgvHoaDonChiTiet = new DataGridView();
             panel6 = new Panel();
+            label12 = new Label();
             btnLuu = new Button();
             txtSoDienThoai = new TextBox();
             txtTenKhachHang = new TextBox();
@@ -61,8 +79,9 @@
             panel7 = new Panel();
             label3 = new Label();
             panel8 = new Panel();
+            lb_TT = new Label();
+            lb_TL = new Label();
             label17 = new Label();
-            txtTraLai = new TextBox();
             label15 = new Label();
             label5 = new Label();
             txtKhachDua = new TextBox();
@@ -74,7 +93,6 @@
             btnTaoHoaDon = new Button();
             btnThanhToan = new Button();
             txtGhiChu = new TextBox();
-            txtThanhToan = new TextBox();
             txtCoupon = new TextBox();
             label8 = new Label();
             txtTongTien = new TextBox();
@@ -84,8 +102,20 @@
             label10 = new Label();
             label2 = new Label();
             pictureBox1 = new PictureBox();
-            panel3.SuspendLayout();
+            panel10 = new Panel();
+            label33 = new Label();
+            label32 = new Label();
+            label31 = new Label();
+            label18 = new Label();
+            comboBox4 = new ComboBox();
+            comboBox3 = new ComboBox();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
+            panel11 = new Panel();
+            label36 = new Label();
+            btnThoat = new Button();
             panel2.SuspendLayout();
+            panel3.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachHoaDon).BeginInit();
             panel4.SuspendLayout();
@@ -98,6 +128,8 @@
             panel8.SuspendLayout();
             panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel10.SuspendLayout();
+            panel11.SuspendLayout();
             SuspendLayout();
             // 
             // btnKhachHang
@@ -156,31 +188,212 @@
             btnNhanVien.UseVisualStyleBackColor = true;
             btnNhanVien.Click += button3_Click;
             // 
-            // panel3
-            // 
-            panel3.Controls.Add(panel1);
-            panel3.Location = new Point(0, 49);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(597, 100);
-            panel3.TabIndex = 2;
-            // 
-            // panel1
-            // 
-            panel1.Location = new Point(0, 3);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(857, 67);
-            panel1.TabIndex = 74;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(btnThoat);
+            panel2.Controls.Add(panel3);
             panel2.Controls.Add(btnExit);
             panel2.Controls.Add(label11);
-            panel2.Controls.Add(panel3);
             panel2.Location = new Point(190, 1);
             panel2.Name = "panel2";
             panel2.Size = new Size(1739, 53);
             panel2.TabIndex = 61;
+            panel2.Paint += panel2_Paint;
+            // 
+            // panel3
+            // 
+            panel3.Controls.Add(label19);
+            panel3.Controls.Add(label20);
+            panel3.Controls.Add(label21);
+            panel3.Controls.Add(label22);
+            panel3.Controls.Add(label23);
+            panel3.Controls.Add(textBox1);
+            panel3.Controls.Add(label24);
+            panel3.Controls.Add(label25);
+            panel3.Controls.Add(button1);
+            panel3.Controls.Add(button2);
+            panel3.Controls.Add(button3);
+            panel3.Controls.Add(textBox2);
+            panel3.Controls.Add(textBox3);
+            panel3.Controls.Add(label26);
+            panel3.Controls.Add(textBox4);
+            panel3.Controls.Add(label27);
+            panel3.Controls.Add(label28);
+            panel3.Controls.Add(label29);
+            panel3.Controls.Add(label30);
+            panel3.Location = new Point(985, 57);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(370, 332);
+            panel3.TabIndex = 79;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(111, 109);
+            label19.Name = "label19";
+            label19.Size = new Size(13, 15);
+            label19.TabIndex = 24;
+            label19.Text = "0";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(111, 161);
+            label20.Name = "label20";
+            label20.Size = new Size(13, 15);
+            label20.TabIndex = 23;
+            label20.Text = "0";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(273, 161);
+            label21.Name = "label21";
+            label21.Size = new Size(31, 15);
+            label21.TabIndex = 22;
+            label21.Text = "VNĐ";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(13, 161);
+            label22.Name = "label22";
+            label22.Size = new Size(46, 15);
+            label22.TabIndex = 20;
+            label22.Text = "Trả Lại :";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(273, 132);
+            label23.Name = "label23";
+            label23.Size = new Size(31, 15);
+            label23.TabIndex = 19;
+            label23.Text = "VNĐ";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(111, 129);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(147, 23);
+            textBox1.TabIndex = 18;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(13, 137);
+            label24.Name = "label24";
+            label24.Size = new Size(70, 15);
+            label24.TabIndex = 17;
+            label24.Text = "Khách Đưa :";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(273, 104);
+            label25.Name = "label25";
+            label25.Size = new Size(31, 15);
+            label25.TabIndex = 16;
+            label25.Text = "VNĐ";
+            // 
+            // button1
+            // 
+            button1.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(133, 319);
+            button1.Name = "button1";
+            button1.Size = new Size(114, 30);
+            button1.TabIndex = 15;
+            button1.Text = "Lưu Hóa Đơn";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Location = new Point(5, 319);
+            button2.Name = "button2";
+            button2.Size = new Size(114, 30);
+            button2.TabIndex = 14;
+            button2.Text = "Tạo Hóa Đơn";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Location = new Point(256, 319);
+            button3.Name = "button3";
+            button3.Size = new Size(114, 30);
+            button3.TabIndex = 13;
+            button3.Text = "Thanh Toán";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            textBox2.BorderStyle = BorderStyle.FixedSingle;
+            textBox2.Location = new Point(3, 200);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(363, 113);
+            textBox2.TabIndex = 10;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(111, 72);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(147, 23);
+            textBox3.TabIndex = 5;
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(273, 48);
+            label26.Name = "label26";
+            label26.Size = new Size(31, 15);
+            label26.TabIndex = 3;
+            label26.Text = "VNĐ";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(111, 44);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(147, 23);
+            textBox4.TabIndex = 2;
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(12, 51);
+            label27.Name = "label27";
+            label27.Size = new Size(65, 15);
+            label27.TabIndex = 1;
+            label27.Text = "Tổng Tiền :";
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(3, 182);
+            label28.Name = "label28";
+            label28.Size = new Size(56, 15);
+            label28.TabIndex = 9;
+            label28.Text = "Ghi Chú :";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.Location = new Point(12, 80);
+            label29.Name = "label29";
+            label29.Size = new Size(59, 15);
+            label29.TabIndex = 4;
+            label29.Text = "Coupon : ";
+            // 
+            // label30
+            // 
+            label30.AutoSize = true;
+            label30.Location = new Point(12, 109);
+            label30.Name = "label30";
+            label30.Size = new Size(74, 15);
+            label30.TabIndex = 6;
+            label30.Text = "Thanh Toán :";
             // 
             // label11
             // 
@@ -248,45 +461,12 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(btnQRCode);
-            panel4.Controls.Add(btnTimSanPham);
-            panel4.Controls.Add(txtTimSanPham);
             panel4.Controls.Add(dgvDanhSachSanPham);
             panel4.Controls.Add(panel5);
             panel4.Location = new Point(193, 356);
             panel4.Name = "panel4";
             panel4.Size = new Size(959, 299);
             panel4.TabIndex = 74;
-            // 
-            // btnQRCode
-            // 
-            btnQRCode.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnQRCode.Location = new Point(787, 38);
-            btnQRCode.Name = "btnQRCode";
-            btnQRCode.Size = new Size(150, 23);
-            btnQRCode.TabIndex = 4;
-            btnQRCode.Text = "Quét Mã";
-            btnQRCode.UseVisualStyleBackColor = true;
-            btnQRCode.Click += btnQRCode_Click;
-            // 
-            // btnTimSanPham
-            // 
-            btnTimSanPham.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            btnTimSanPham.Location = new Point(479, 41);
-            btnTimSanPham.Name = "btnTimSanPham";
-            btnTimSanPham.Size = new Size(150, 23);
-            btnTimSanPham.TabIndex = 3;
-            btnTimSanPham.Text = "Tìm Sản Phẩm";
-            btnTimSanPham.UseVisualStyleBackColor = true;
-            btnTimSanPham.Click += btnTimSanPham_Click;
-            // 
-            // txtTimSanPham
-            // 
-            txtTimSanPham.BorderStyle = BorderStyle.FixedSingle;
-            txtTimSanPham.Location = new Point(185, 40);
-            txtTimSanPham.Name = "txtTimSanPham";
-            txtTimSanPham.Size = new Size(288, 23);
-            txtTimSanPham.TabIndex = 2;
             // 
             // dgvDanhSachSanPham
             // 
@@ -304,7 +484,7 @@
             panel5.Controls.Add(label1);
             panel5.Location = new Point(0, 0);
             panel5.Name = "panel5";
-            panel5.Size = new Size(956, 34);
+            panel5.Size = new Size(956, 35);
             panel5.TabIndex = 0;
             // 
             // label1
@@ -316,6 +496,28 @@
             label1.Size = new Size(297, 29);
             label1.TabIndex = 0;
             label1.Text = "Danh Sách Sản Phẩm";
+            // 
+            // btnQRCode
+            // 
+            btnQRCode.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnQRCode.Location = new Point(28, 236);
+            btnQRCode.Name = "btnQRCode";
+            btnQRCode.Size = new Size(150, 23);
+            btnQRCode.TabIndex = 4;
+            btnQRCode.Text = "Quét Mã";
+            btnQRCode.UseVisualStyleBackColor = true;
+            btnQRCode.Click += btnQRCode_Click;
+            // 
+            // btnTimSanPham
+            // 
+            btnTimSanPham.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnTimSanPham.Location = new Point(198, 236);
+            btnTimSanPham.Name = "btnTimSanPham";
+            btnTimSanPham.Size = new Size(150, 23);
+            btnTimSanPham.TabIndex = 3;
+            btnTimSanPham.Text = "Tìm Sản Phẩm";
+            btnTimSanPham.UseVisualStyleBackColor = true;
+            btnTimSanPham.Click += btnTimSanPham_Click;
             // 
             // groupBox2
             // 
@@ -350,19 +552,29 @@
             // 
             // panel6
             // 
+            panel6.Controls.Add(label12);
             panel6.Controls.Add(btnLuu);
             panel6.Controls.Add(txtSoDienThoai);
             panel6.Controls.Add(txtTenKhachHang);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(panel7);
-            panel6.Location = new Point(1152, 147);
+            panel6.Location = new Point(1172, 406);
             panel6.Name = "panel6";
-            panel6.Size = new Size(373, 112);
+            panel6.Size = new Size(370, 112);
             panel6.TabIndex = 77;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(12, 76);
+            label12.Name = "label12";
+            label12.Size = new Size(26, 15);
+            label12.TabIndex = 7;
+            label12.Text = "SDT";
             // 
             // btnLuu
             // 
-            btnLuu.Location = new Point(288, 79);
+            btnLuu.Location = new Point(273, 74);
             btnLuu.Name = "btnLuu";
             btnLuu.Size = new Size(75, 23);
             btnLuu.TabIndex = 6;
@@ -380,7 +592,7 @@
             // txtTenKhachHang
             // 
             txtTenKhachHang.BorderStyle = BorderStyle.FixedSingle;
-            txtTenKhachHang.Location = new Point(63, 38);
+            txtTenKhachHang.Location = new Point(66, 39);
             txtTenKhachHang.Name = "txtTenKhachHang";
             txtTenKhachHang.Size = new Size(166, 23);
             txtTenKhachHang.TabIndex = 4;
@@ -415,8 +627,9 @@
             // 
             // panel8
             // 
+            panel8.Controls.Add(lb_TT);
+            panel8.Controls.Add(lb_TL);
             panel8.Controls.Add(label17);
-            panel8.Controls.Add(txtTraLai);
             panel8.Controls.Add(label15);
             panel8.Controls.Add(label5);
             panel8.Controls.Add(txtKhachDua);
@@ -427,7 +640,6 @@
             panel8.Controls.Add(btnTaoHoaDon);
             panel8.Controls.Add(btnThanhToan);
             panel8.Controls.Add(txtGhiChu);
-            panel8.Controls.Add(txtThanhToan);
             panel8.Controls.Add(txtCoupon);
             panel8.Controls.Add(label8);
             panel8.Controls.Add(txtTongTien);
@@ -435,26 +647,37 @@
             panel8.Controls.Add(label13);
             panel8.Controls.Add(label9);
             panel8.Controls.Add(label10);
-            panel8.Location = new Point(1155, 361);
+            panel8.Location = new Point(1172, 524);
             panel8.Name = "panel8";
             panel8.Size = new Size(370, 352);
             panel8.TabIndex = 78;
             // 
+            // lb_TT
+            // 
+            lb_TT.AutoSize = true;
+            lb_TT.Location = new Point(111, 109);
+            lb_TT.Name = "lb_TT";
+            lb_TT.Size = new Size(13, 15);
+            lb_TT.TabIndex = 24;
+            lb_TT.Text = "0";
+            // 
+            // lb_TL
+            // 
+            lb_TL.AutoSize = true;
+            lb_TL.Location = new Point(111, 161);
+            lb_TL.Name = "lb_TL";
+            lb_TL.Size = new Size(13, 15);
+            lb_TL.TabIndex = 23;
+            lb_TL.Text = "0";
+            // 
             // label17
             // 
             label17.AutoSize = true;
-            label17.Location = new Point(273, 166);
+            label17.Location = new Point(273, 161);
             label17.Name = "label17";
             label17.Size = new Size(31, 15);
             label17.TabIndex = 22;
             label17.Text = "VNĐ";
-            // 
-            // txtTraLai
-            // 
-            txtTraLai.Location = new Point(111, 158);
-            txtTraLai.Name = "txtTraLai";
-            txtTraLai.Size = new Size(147, 23);
-            txtTraLai.TabIndex = 21;
             // 
             // label15
             // 
@@ -468,7 +691,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(273, 137);
+            label5.Location = new Point(273, 132);
             label5.Name = "label5";
             label5.Size = new Size(31, 15);
             label5.TabIndex = 19;
@@ -512,7 +735,7 @@
             // label16
             // 
             label16.AutoSize = true;
-            label16.Location = new Point(273, 109);
+            label16.Location = new Point(273, 104);
             label16.Name = "label16";
             label16.Size = new Size(31, 15);
             label16.TabIndex = 16;
@@ -556,13 +779,6 @@
             txtGhiChu.Name = "txtGhiChu";
             txtGhiChu.Size = new Size(363, 113);
             txtGhiChu.TabIndex = 10;
-            // 
-            // txtThanhToan
-            // 
-            txtThanhToan.Location = new Point(111, 101);
-            txtThanhToan.Name = "txtThanhToan";
-            txtThanhToan.Size = new Size(147, 23);
-            txtThanhToan.TabIndex = 7;
             // 
             // txtCoupon
             // 
@@ -642,11 +858,129 @@
             pictureBox1.TabIndex = 60;
             pictureBox1.TabStop = false;
             // 
+            // panel10
+            // 
+            panel10.Controls.Add(btnQRCode);
+            panel10.Controls.Add(label33);
+            panel10.Controls.Add(label32);
+            panel10.Controls.Add(label31);
+            panel10.Controls.Add(label18);
+            panel10.Controls.Add(comboBox4);
+            panel10.Controls.Add(comboBox3);
+            panel10.Controls.Add(comboBox2);
+            panel10.Controls.Add(comboBox1);
+            panel10.Controls.Add(panel11);
+            panel10.Controls.Add(btnTimSanPham);
+            panel10.Location = new Point(1172, 131);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(370, 269);
+            panel10.TabIndex = 79;
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Location = new Point(25, 183);
+            label33.Name = "label33";
+            label33.Size = new Size(46, 15);
+            label33.TabIndex = 11;
+            label33.Text = "Đế giày";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Location = new Point(17, 143);
+            label32.Name = "label32";
+            label32.Size = new Size(64, 15);
+            label32.TabIndex = 10;
+            label32.Text = "Kích thước";
+            // 
+            // label31
+            // 
+            label31.AutoSize = true;
+            label31.Location = new Point(28, 104);
+            label31.Name = "label31";
+            label31.Size = new Size(31, 15);
+            label31.TabIndex = 9;
+            label31.Text = "Màu";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(17, 62);
+            label18.Name = "label18";
+            label18.Size = new Size(54, 15);
+            label18.TabIndex = 8;
+            label18.Text = "Chất liệu";
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(92, 180);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(212, 23);
+            comboBox4.TabIndex = 7;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(92, 138);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(212, 23);
+            comboBox3.TabIndex = 6;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(92, 101);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(212, 23);
+            comboBox2.TabIndex = 5;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(92, 59);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(212, 23);
+            comboBox1.TabIndex = 4;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.Aquamarine;
+            panel11.Controls.Add(label36);
+            panel11.Location = new Point(0, 1);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(370, 37);
+            panel11.TabIndex = 0;
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label36.Location = new Point(119, 11);
+            label36.Name = "label36";
+            label36.Size = new Size(134, 14);
+            label36.TabIndex = 0;
+            label36.Text = "Tìm kiếm sản phẩm";
+            // 
+            // btnThoat
+            // 
+            btnThoat.BackColor = Color.White;
+            btnThoat.FlatAppearance.BorderSize = 0;
+            btnThoat.Location = new Point(1312, 11);
+            btnThoat.Name = "btnThoat";
+            btnThoat.Size = new Size(40, 30);
+            btnThoat.TabIndex = 80;
+            btnThoat.Text = "X";
+            btnThoat.UseVisualStyleBackColor = false;
+            btnThoat.Click += btnThoat_Click;
+            // 
             // BanHang
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1920, 1080);
+            ClientSize = new Size(1554, 890);
+            Controls.Add(panel10);
             Controls.Add(label2);
             Controls.Add(panel6);
             Controls.Add(panel8);
@@ -666,13 +1000,13 @@
             Name = "BanHang";
             StartPosition = FormStartPosition.CenterScreen;
             Load += BanHang_Load_1;
-            panel3.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachHoaDon).EndInit();
             panel4.ResumeLayout(false);
-            panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachSanPham).EndInit();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
@@ -687,6 +1021,10 @@
             panel9.ResumeLayout(false);
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel10.ResumeLayout(false);
+            panel10.PerformLayout();
+            panel11.ResumeLayout(false);
+            panel11.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -698,19 +1036,16 @@
         private Button btnTrangChu;
         private Button btnExit;
         private Button btnNhanVien;
-        private Panel panel3;
         private Panel panel2;
         private Label label11;
         private Button btnVoucher;
         private Button btnLogout;
         private Button btnBanHang;
-        private Panel panel1;
         private GroupBox groupBox1;
         private DataGridView dgvDanhSachHoaDon;
         private Panel panel4;
         private Panel panel5;
         private Label label1;
-        private TextBox txtTimSanPham;
         private DataGridView dgvDanhSachSanPham;
         private Label label2;
         private GroupBox groupBox2;
@@ -734,7 +1069,6 @@
         private Button button10;
         private TextBox txtGhiChu;
         private Label label13;
-        private TextBox txtThanhToan;
         private Label label10;
         private TextBox txtCoupon;
         private Label label9;
@@ -746,10 +1080,44 @@
         private TextBox txtKhachDua;
         private Label label14;
         private Label label17;
-        private TextBox txtTraLai;
         private Label label15;
         private Button btnTimSanPham;
         private PictureBox pictureBox1;
         private Button btnQRCode;
+        private Label label12;
+        private Label lb_TT;
+        private Label lb_TL;
+        private Panel panel3;
+        private Label label19;
+        private Label label20;
+        private Label label21;
+        private Label label22;
+        private Label label23;
+        private TextBox textBox1;
+        private Label label24;
+        private Label label25;
+        private Button button1;
+        private Button button2;
+        private Button button3;
+        private TextBox textBox2;
+        private TextBox textBox3;
+        private Label label26;
+        private TextBox textBox4;
+        private Label label27;
+        private Label label28;
+        private Label label29;
+        private Label label30;
+        private Panel panel10;
+        private Panel panel11;
+        private Label label36;
+        private ComboBox comboBox4;
+        private ComboBox comboBox3;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private Label label33;
+        private Label label32;
+        private Label label31;
+        private Label label18;
+        private Button btnThoat;
     }
 }

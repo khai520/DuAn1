@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MainApp.BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Main.BLL;
-using Main.BLL.Models2;
+
 using WinFormsApp1.Repositories;
 
 namespace Main.DAL.Services
@@ -12,9 +12,9 @@ namespace Main.DAL.Services
     internal class MaGiamGiaServices
     {
         MagiamgiaRepo repo = new MagiamgiaRepo();
-        List<Magiamgia> list = new List<Magiamgia>();
+        List<Magiamgium> list = new List<Magiamgium>();
 
-        public List<Magiamgia> Getallmagiam()
+        public List<Magiamgium> Getallmagiam()
         {
             return list= repo.getallMaRepo();
         }
@@ -56,7 +56,7 @@ namespace Main.DAL.Services
             }
             else
             {
-                Magiamgia ma = new Magiamgia
+                Magiamgium ma = new Magiamgium
                 {
                     Idmagiamgia = XulyId(),
                     Tenma = name,
@@ -77,7 +77,7 @@ namespace Main.DAL.Services
             }
             else
             {
-                Magiamgia magiam = new Magiamgia
+                Magiamgium magiam = new Magiamgium
                 {
                     Idmagiamgia = id,
                     Tenma = name,
@@ -85,7 +85,7 @@ namespace Main.DAL.Services
                     Ngaybatdau = ngaybatdau,
                     Ngayketthuc = ngayketthuc
                 };
-                repo.sua(id, magiam);
+                repo.sua(magiam);
                 return true;
             }
 
@@ -97,13 +97,13 @@ namespace Main.DAL.Services
             return true;
         }
 
-        public List<Magiamgia> FindMGGByName(string name)
+        public List<Magiamgium> FindMGGByName(string name)
         {
             return repo.FindMGGByName(name).ToList();
         }
-        public List<Magiamgia> SortByName()
+        public List<Magiamgium> SortByName()
         {
-            List<Magiamgia> magiamgiaSoft = repo.getallMaRepo().ToList();
+            List<Magiamgium> magiamgiaSoft = repo.getallMaRepo().ToList();
             magiamgiaSoft.Sort((x, y) => x.Tenma.CompareTo(y.Tenma));
             return magiamgiaSoft;
         }

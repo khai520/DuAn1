@@ -1,4 +1,5 @@
-﻿using Main.BLL.Models2;
+﻿
+using MainApp.BLL.Models;
 using MainApp.GUI.VIEW;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count(); i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -36,9 +37,9 @@ namespace Main.DAL.Services
                 {
                     idtam = "CTSP" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.Masp.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.Idctsp == idtam).Count() > 0)
                 {
-                    break;
+                    continue;
                 }
             }
             return idtam;
@@ -60,60 +61,48 @@ namespace Main.DAL.Services
             }
             else { return false; }
         }
-        public bool Them(string name, string idncc, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
+        public string Them(string? idncc, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay)
         {
-            if (CheckValidate(name) || CheckValidate(idncc) || CheckValidate(masp) || CheckValidate(mau) || CheckValidate(chatlieu) || CheckValidate(kichthuoc) || CheckValidate(degiay) || CheckValidate(giaban))
+            Ctsanpham ctsanpham = new Ctsanpham
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
-            }
-            else
+                Idctsp = XulyId(),
+                Idncc = idncc,
+                Masp = masp,
+                Idchatlieu = chatlieu,
+                Idkichthuoc = kichthuoc,
+                Iddegiay = degiay,
+                Idmau = mau,
+            };
+            if (sanpham.them(ctsanpham))
             {
-                Ctsanpham ctsanpham = new Ctsanpham
-                {
-                    Idctsp = XulyId(),
-                    Idncc = idncc,
-                    Tengiay = name,
-                    Masp = masp,
-                    Chatlieuu = chatlieu,
-                    Kichthuoc = kichthuoc,
-                    Degiay = degiay,
-                    Mau = mau,
-                    Giaban = giaban
-                };
-                return true;
+                return "Add thành công";
             }
-
+            else { return "Add không thành công"; }
         }
-        public bool Sua(string id, string idncc, string name, string masp, string mau, string chatlieu, string kichthuoc, string degiay, decimal giaban)
+        public string Sua(string id, string? idncc, string? mau, string? chatlieu, string? kichthuoc, string? degiay)
         {
-            if (CheckValidate(name) || CheckValidate(idncc) || CheckValidate(masp) || CheckValidate(mau) || CheckValidate(chatlieu) || CheckValidate(kichthuoc) || CheckValidate(degiay) || CheckValidate(giaban))
+            Ctsanpham sp = GetallChitietsanpham().Find(x => x.Idctsp == id);
+            sp.Idncc = idncc;
+            sp.Idmau = mau;
+            sp.Idchatlieu = chatlieu;
+            sp.Idkichthuoc = kichthuoc;
+            sp.Iddegiay = degiay;
+            if (sanpham.sua(sp))
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
+                return "Sửa thành công";
             }
-            else
-            {
-                Ctsanpham ctsanpham = new Ctsanpham
-                {
-                    Idctsp = id,
-                    Idncc = idncc,
-                    Tengiay = name,
-                    Masp = masp,
-                    Chatlieuu = chatlieu,
-                    Kichthuoc = kichthuoc,
-                    Degiay = degiay,
-                    Mau = mau,
-                    Giaban = giaban
-                };
-                sanpham.sua(id, ctsanpham);
-                return true;
-            }
+            else return "Sửa không thành công";
+            
         }
 
-        public bool Xoa(string ID)
+        public string Xoa(string ID)
         {
-            return true;
+            Ctsanpham sp = sanpham.getallSPrepo().Find(x => x.Idctsp == ID);
+            if (sanpham.xoa(sp))
+            {
+                return "Xóa thành công";
+            }
+            else return "Xóa không thành công";
         }
         public List<Ctsanpham> FindCTSPByName(string name)
         {
@@ -193,7 +182,7 @@ namespace Main.DAL.Services
         //}
         public List<Ctsanpham> Timkiem(string? id, string? name, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, decimal giaban)
         {
-            return GetallChitietsanpham().Where(x => x.Idctsp == id || x.Tengiay == name || x.Masp == masp || x.Mau == mau || x.Chatlieuu == chatlieu || x.Kichthuoc == kichthuoc || x.Degiay == degiay || x.Giaban == giaban).ToList();
+            return GetallChitietsanpham().Where(x => x.Idctsp == id || x.Tengiay == name || x.Masp == masp || x.Idmau == mau || x.Idchatlieu == chatlieu || x.Idkichthuoc == kichthuoc || x.Iddegiay == degiay || x.Giaban == giaban).ToList();
         }
     }
 }

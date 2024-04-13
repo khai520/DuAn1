@@ -1,4 +1,4 @@
-﻿using Main.BLL.Models2;
+﻿using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,43 +12,24 @@ namespace WinFormsApp1.Repositories
     {
         DUAN1Context context = new DUAN1Context();
 
-        public List<Magiamgia> getallMaRepo()
+        public List<Magiamgium> getallMaRepo()
         {
             return context.Magiamgia.ToList();
         }
-        public List<Magiamgia> FindMGGByName(string name)
+        public List<Magiamgium> FindMGGByName(string name)
         {
             return context.Magiamgia.Where(x => x.Tenma.ToLower().Contains(name)).ToList();
         }
-        public bool them(Magiamgia magiamgia)
+        public bool them(Magiamgium magiamgia)
         {
             context.Magiamgia.Add(magiamgia);
             context.SaveChanges();
             return true;
         }
-        public bool sua(string IDND, Magiamgia magiamgia)
+        public bool sua( Magiamgium magiamgia)
         {
-            try
-            {
-                var obj = findbyname(IDND);
-                if (obj == null)
-                {
-                    return false;
-                }
-                obj.Idmagiamgia = magiamgia.Idmagiamgia;
-                obj.Tenma = magiamgia.Tenma;
-                obj.Ngaybatdau = magiamgia.Ngaybatdau;
-                obj.Ngayketthuc = magiamgia.Ngayketthuc;
-                obj.Phamtramgiam = magiamgia.Phamtramgiam;
-                context.Update(obj);
-                context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            context.Update(magiamgia);
+            return context.SaveChanges() > 0;
         }
         public bool xoa(string idxoama)
         {
@@ -56,7 +37,7 @@ namespace WinFormsApp1.Repositories
             context.Magiamgia.Remove(itemxoa);
             return context.SaveChanges() > 0;
         }
-        public Magiamgia findbyname(string ID)
+        public Magiamgium findbyname(string ID)
         {
             return context.Magiamgia.Find(ID);
         }

@@ -8,16 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Main.DAL.Services;
-using Main.BLL.Models2;
+using MainApp.BLL.Models;
 using WinFormsApp1.Services;
 
 namespace APPBanHang
 {
     public partial class BanHang : Form
     {
-        HoadonServices _hoadonService = new();
-        SanphamServices SanphamServices = new();
-        HoaDonChiTietServices _hoadonChiTietServices = new();
+        HoadonServices _hoadonService;
+        SanphamServices _SanphamServices;
+        HoaDonChiTietServices _hoadonChiTietServices;
+        CtSanphamService _ctsp;
+        NhaCungCapServices _ncc;
         //int _idCellClick;
         public BanHang()
         {
@@ -43,7 +45,7 @@ namespace APPBanHang
             this.Hide();
 
             SanPham sanpham = new SanPham();
-            sanpham.ShowDialog(   );
+            sanpham.ShowDialog();
             this.Close();
         }
         private void button3_Click(object sender, EventArgs e)
@@ -138,7 +140,7 @@ namespace APPBanHang
             voucher.ShowDialog();
             this.Close();
         }
-
+        
         private void btnexit_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -177,34 +179,59 @@ namespace APPBanHang
 
         private void loaddanhsachsanpham()
         {
-            List<Sanpham> sanphams = SanphamServices.GetSanphams();
-            dgvDanhSachSanPham.DataSource = sanphams;
-            DataGridViewTextBoxColumn sttColumns = new DataGridViewTextBoxColumn();
-            sttColumns.HeaderText = "STT";
-            sttColumns.Name = "sttColumn";
-            dgvDanhSachSanPham.Columns.Insert(0, sttColumns);
-
-
-            for (int i = 0; i < dgvDanhSachSanPham.Rows.Count; i++)
+            int Stt = 1;
+            dgvDanhSachSanPham.DataSource = _SanphamServices.GetSanphams().Join(_ctsp.GetallChitietsanpham(), x => x.Masp, y => y.Masp, (x, y) => new
             {
-                dgvDanhSachSanPham.Rows[i].Cells["sttColumn"].Value = (i + 1).ToString();
-            }
-
-            dgvDanhSachSanPham.Columns[6].Visible = false;
-            dgvDanhSachSanPham.EditMode = DataGridViewEditMode.EditProgrammatically;
-
-
+                x.Masp,
+                x.Tensp,
+                x.Soluong,
+                x.Giaban,
+                x.Trangthai,
+                y.Idncc,
+                y.Idmau,
+                y.Idchatlieu,
+                y.Idkichthuoc,
+                y.Iddegiay
+            }).ToList().Join(_ncc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new
+            {
+                STT = Stt++,
+                x.Masp,
+                x.Tensp,
+                x.Soluong,
+                x.Giaban,
+                x.Trangthai,
+                y.Tenncc,
+                x.Idmau,
+                x.Idchatlieu,
+                x.Idkichthuoc,
+                x.Iddegiay
+            }).ToList();
+            dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
+            dgvDanhSachSanPham.Columns[1].HeaderText = "Masp";
+            dgvDanhSachSanPham.Columns[2].HeaderText = "Tên sản phẩm";
+            dgvDanhSachSanPham.Columns[3].HeaderText = "Số lượng";
+            dgvDanhSachSanPham.Columns[4].HeaderText = "Giá bán";
+            dgvDanhSachSanPham.Columns[5].HeaderText = "Trạng thái";
+            dgvDanhSachSanPham.Columns[6].HeaderText = "Nhà cung cấp";
+            dgvDanhSachSanPham.Columns[7].HeaderText = "Màu";
+            dgvDanhSachSanPham.Columns[8].HeaderText = "Chất liệu";
+            dgvDanhSachSanPham.Columns[9].HeaderText = "Kích thước";
+            dgvDanhSachSanPham.Columns[10].HeaderText = "Đế giày";
 
         }
         private void loadhoadonchitiet()
         {
-            List<Hoadonct> hoadoncts = new();
 
 
         }
 
         private void BanHang_Load_1(object sender, EventArgs e)
         {
+            _SanphamServices = new();
+            _hoadonChiTietServices = new();
+            _hoadonService = new();
+            _ctsp = new();
+            _ncc = new();
             loaddanhsachhoadon();
             loaddanhsachsanpham();
             loadhoadonchitiet();
@@ -213,6 +240,16 @@ namespace APPBanHang
         private void btnQRCode_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnThoat_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

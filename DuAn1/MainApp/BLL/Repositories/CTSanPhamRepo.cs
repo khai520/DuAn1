@@ -1,4 +1,5 @@
-﻿using Main.BLL.Models2;
+﻿
+using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,43 +23,26 @@ namespace WinFormsApp1.Repositories
         public bool them(Ctsanpham ctsanpham)
         {
             context.Ctsanphams.Add(ctsanpham);
-            context.SaveChanges();
-            return true;
+            return context.SaveChanges() > 0;
         }
-        public bool sua(string masp, Ctsanpham ctsanpham)
+        public bool sua(Ctsanpham ctsanpham)
+        {
+            context.Update(ctsanpham);
+            
+            return context.SaveChanges() > 0;
+        }
+        public bool xoa(Ctsanpham sp)
         {
             try
             {
-                var obj = findbyname(masp);
-                if (obj == null)
-                {
-                    return false;
-                }
-                obj.Idctsp = ctsanpham.Idctsp;
-                obj.Idncc = ctsanpham.Idncc;
-                obj.Masp = ctsanpham.Masp;
-                obj.Mau = ctsanpham.Mau;
-                obj.Chatlieuu = ctsanpham.Chatlieuu;
-                obj.Kichthuoc = ctsanpham.Kichthuoc;
-                obj.Degiay = ctsanpham.Degiay;
-                obj.Tengiay = ctsanpham.Tengiay;
-                obj.Giaban = ctsanpham.Giaban;
-
-                context.Update(obj);
-                context.SaveChanges();
-
-                return true;
+                context.Ctsanphams.Remove(sp);
+                return context.SaveChanges() > 0;
             }
             catch (Exception)
             {
                 return false;
             }
-        }
-        public bool xoa(string idctsanpham)
-        {
-            var itemxoa = context.Ctsanphams.Find(idctsanpham);
-            context.Ctsanphams.Remove(itemxoa);
-            return context.SaveChanges() > 0;
+           
         }
         public Ctsanpham findbyname(string ID)
         {

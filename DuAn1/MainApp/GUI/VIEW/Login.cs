@@ -1,6 +1,8 @@
-﻿using Main.BLL.Models2;
+﻿
 using WinFormsApp1.Services;
 using Main.DAL.Services;
+using MainApp.BLL.Models;
+
 namespace APPBanHang
 {
     public partial class Login : Form

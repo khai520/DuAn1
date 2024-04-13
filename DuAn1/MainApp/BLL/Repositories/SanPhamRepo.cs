@@ -1,4 +1,5 @@
-﻿using Main.BLL.Models2;
+﻿
+using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace WinFormsApp1.Repositories
     internal class SanPhamRepo
     {
         DUAN1Context context = new DUAN1Context();
+        
 
         public List<Sanpham> getallSPrepo()
         {
@@ -31,11 +33,18 @@ namespace WinFormsApp1.Repositories
             context.Update(sanpham);
             return context.SaveChanges() > 0;
         }
-        public bool xoa(string idxoasp)
+        public bool xoa(Sanpham sanpham)
         {
-            var itemxoa = context.Sanphams.Find(idxoasp);
-            context.Sanphams.Remove(itemxoa);
-            return context.SaveChanges() > 0;
+            try
+            {
+                context.Sanphams.Remove(sanpham);
+                return context.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
         public Sanpham findbyname(string ID)
         {

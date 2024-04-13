@@ -1,5 +1,4 @@
 using APPBanHang;
-using Main.BLL.Models2;
 
 namespace MainApp
 {

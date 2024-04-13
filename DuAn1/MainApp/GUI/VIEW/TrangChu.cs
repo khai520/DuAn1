@@ -32,7 +32,7 @@ namespace APPBanHang
         {
             this.Hide();
             SanPham sanpham = new SanPham();
-            
+
             sanpham.ShowDialog();
             this.Close();
         }

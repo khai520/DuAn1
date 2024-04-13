@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Main.DAL.Services;
-using Main.BLL.Models2;
 using WinFormsApp1.Services;
 using MainApp.GUI.VIEW;
 
@@ -16,8 +15,14 @@ namespace APPBanHang
 {
     public partial class SanPham : Form
     {
-        SanphamServices _sanphamService = new();
-        string id;
+        SanphamServices _sanphamService;
+        CtSanphamService ctSanphamService;
+        NhaCungCapServices ncc;
+        MauSacService mau;
+        KichThuocService kt;
+        Chatlieuservices cl;
+        DeGiayService dg;
+        string id, idctsp;
         public SanPham()
         {
             InitializeComponent();
@@ -66,7 +71,6 @@ namespace APPBanHang
         private void button_Click_Voucher(object sender, EventArgs e)
         {
             this.Hide();
-
             Voucher voucher = new Voucher();
             voucher.ShowDialog();
             this.Close();
@@ -74,31 +78,16 @@ namespace APPBanHang
         private void button_Click_BanHang(object sender, EventArgs e)
         {
             this.Hide();
-
             BanHang banHang = new BanHang();
             banHang.ShowDialog();
             this.Close();
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSanPham_Click(object sender, EventArgs e)
         {
             this.Hide();
-
             SanPham sanPham = new SanPham();
             sanPham.ShowDialog();
             this.Close();
@@ -107,17 +96,24 @@ namespace APPBanHang
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Hide();
-
             Login loGin = new Login();
             loGin.ShowDialog();
         }
 
         private void SanPham_Load(object sender, EventArgs e)
         {
+            _sanphamService = new();
+            ctSanphamService = new();
+            ncc = new();
+            mau = new();
+            kt = new();
+            cl = new();
+            dg = new();
             LoadData();
         }
         private void LoadData()
         {
+
             //var result = from sp in _sanphamService
             int Stt = 1;
             dgvDanhSachSanPham.DataSource = _sanphamService.GetSanphams().Select(x => new
@@ -129,12 +125,59 @@ namespace APPBanHang
                 x.Giaban,
                 x.Trangthai
             }).ToList();
+
             dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
             dgvDanhSachSanPham.Columns[1].HeaderText = "Masp";
             dgvDanhSachSanPham.Columns[2].HeaderText = "Tên sản phẩm";
             dgvDanhSachSanPham.Columns[3].HeaderText = "Số lượng";
             dgvDanhSachSanPham.Columns[4].HeaderText = "Giá bán";
             dgvDanhSachSanPham.Columns[5].HeaderText = "Trạng thái";
+
+
+        }
+        public void Loadtab2()
+        {
+            int Stt2 = 1;
+            var tab2 = ctSanphamService.GetallChitietsanpham().Join(ncc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new
+            {
+                STT = Stt2++,
+                x.Idctsp,
+                x.Masp,
+                y.Tenncc,
+                x.Idmau,
+                x.Idchatlieu,
+                x.Idkichthuoc,
+                x.Iddegiay,
+            }).ToList();
+            if (id != null)
+            {
+                dgv_tab2.DataSource = tab2.Where(x => x.Masp == id).ToList();
+                dgv_tab2.Columns[0].HeaderText = "STT";
+                dgv_tab2.Columns[1].HeaderText = "IDctsp";
+                dgv_tab2.Columns[2].HeaderText = "Masp";
+                dgv_tab2.Columns[3].HeaderText = "Nhà cung cấp";
+                dgv_tab2.Columns[4].HeaderText = "Màu";
+                dgv_tab2.Columns[5].HeaderText = "Chất liệu";
+                dgv_tab2.Columns[6].HeaderText = "Kích thước";
+                dgv_tab2.Columns[7].HeaderText = "Đế giày";
+                cbx_Ncc.DataSource = ncc.getallSnhacungcap().ToList();
+                cbx_Ncc.ValueMember = "IDNCC";
+                cbx_Ncc.DisplayMember = "TENNCC";
+                cbx_Mau.DataSource = mau.GetallMau().ToList();
+                cbx_Mau.DisplayMember = "MAU";
+                cbx_Kichthuoc.DataSource = kt.Getallkt().ToList();
+                cbx_Kichthuoc.DisplayMember = "kichthuoc1";
+                cbx_Chatlieu.DataSource = cl.Getallchatlieu().ToList();
+                cbx_Chatlieu.DisplayMember = "Chatlieu1";
+                cbx_DeGiay.DataSource = dg.Getalldegiay().ToList();
+                cbx_DeGiay.DisplayMember = "degiay1";
+            }
+            else
+            {
+                dgv_tab2.DataSource = tab2;
+            }
+
+
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -175,14 +218,44 @@ namespace APPBanHang
 
         private void btnThemSanPham_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+
+            if (_sanphamService.GetSanphams().Find(x => x.Tensp == txtTenSP.Text) != null)
+            {
+                var check = MessageBox.Show("Đã có sản phẩm trong kho bạn có muốn cập nhật không", "Thông báo", MessageBoxButtons.YesNoCancel);
+                if (check == DialogResult.Yes)
+                {
+                    var spdaco = _sanphamService.GetSanphams().Find(x => x.Tensp == txtTenSP.Text);
+                    _sanphamService.UpdateSP(spdaco.Masp, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text);
+                }
+                else if (check == DialogResult.No)
+                {
+                    MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+                }
+            }
+            else
+            {
+                MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
+            }
             LoadData();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_sanphamService.XoaSp(id));
-            LoadData();
+            if (id == null)
+            {
+                MessageBox.Show("Chưa chọn sản phẩm cần xóa", "Thông báo", MessageBoxButtons.OK);
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn có muốn xóa không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(_sanphamService.XoaSp(id), "Thông báo", MessageBoxButtons.OK);
+                    LoadData();
+                }
+            }
+
+
+
         }
 
         private void dgvDanhSachSanPham_SelectionChanged(object sender, EventArgs e)
@@ -193,17 +266,152 @@ namespace APPBanHang
         private void dgvDanhSachSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int d = e.RowIndex;
-            id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
-            txtTenSP.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
-            txtSoLuongTon.Text = dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString();
-            txtGiaBan.Text = dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString();
-            cbxTrangThai.Text = dgvDanhSachSanPham.Rows[d].Cells[5].Value.ToString();
+
+            if (d < 0)
+            {
+
+            }
+            else if (d >= 0)
+            {
+                id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
+                txtTenSP.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
+                txtSoLuongTon.Text = dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString();
+                txtGiaBan.Text = dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString();
+                cbxTrangThai.Text = dgvDanhSachSanPham.Rows[d].Cells[5].Value.ToString();
+            }
+            Loadtab2();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             MessageBox.Show(_sanphamService.UpdateSP(id, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text, cbxTrangThai.Text));
             LoadData();
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+        public string Checkvali(dynamic? x)
+        {
+            if (!string.IsNullOrEmpty(x))
+            {
+                var y = x.ToString();
+                return y;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private void btn_Them_Click(object sender, EventArgs e)
+        {
+            if (id != null)
+            {
+                if (ctSanphamService.GetallChitietsanpham().Where(x => x.Masp == id).Count() > 0)
+                {
+                    if (idctsp == null)
+                    {
+                        MessageBox.Show("Chọn sản phẩm muốn sửa chi tiết");
+                    }
+                    else
+                    {
+                        MessageBox.Show(ctSanphamService.Sua(id, cbx_Ncc.SelectedValue.ToString(), cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+                    }
+                    Loadtab2();
+                }
+                else
+                {
+                    MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue.ToString(), id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+                    Loadtab2();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm muốn thêm chi tiết!");
+            }
+        }
+
+        private void btn_Sua_Click(object sender, EventArgs e)
+        {
+            if (idctsp == null)
+            {
+                MessageBox.Show("Chọn sản phẩm muốn sửa chi tiết");
+            }
+            else
+            {
+                MessageBox.Show(ctSanphamService.Sua(idctsp, cbx_Ncc.SelectedValue.ToString(), cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+            }
+
+            Loadtab2();
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có muốn xóa không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show(ctSanphamService.Xoa(idctsp));
+            }
+            Loadtab2();
+        }
+
+        private void dgv_tab2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int d = e.RowIndex, c = e.ColumnIndex;
+
+            if (d < 0)
+            {
+
+            }
+            else if (d >= 0)
+            {
+                cbx_Ncc.ResetText();
+                cbx_Mau.ResetText();
+                cbx_Chatlieu.ResetText();
+                cbx_DeGiay.ResetText();
+                cbx_Kichthuoc.ResetText();
+                idctsp = dgv_tab2.Rows[d].Cells[1].Value.ToString();
+                id = dgv_tab2.Rows[d].Cells[2].Value.ToString();
+                if (dgv_tab2.Rows[d].Cells[3].Value != null)
+                {
+                    cbx_Ncc.SelectedValue = dgv_tab2.Rows[d].Cells[3].Value.ToString();
+                    cbx_Ncc.SelectedText = dgv_tab2.Rows[d].Cells[3].Value.ToString();
+                }
+                if (dgv_tab2.Rows[d].Cells[4].Value != null)
+                {
+                    cbx_Mau.SelectedText = dgv_tab2.Rows[d].Cells[4].Value.ToString();
+                }
+                if (dgv_tab2.Rows[d].Cells[5].Value != null)
+                {
+                    cbx_Chatlieu.SelectedText = dgv_tab2.Rows[d].Cells[5].Value.ToString();
+                }
+                if (dgv_tab2.Rows[d].Cells[6].Value != null)
+                {
+                    cbx_Kichthuoc.SelectedText = dgv_tab2.Rows[d].Cells[6].Value.ToString();
+                }
+                if (dgv_tab2.Rows[d].Cells[7].Value != null)
+                {
+                    cbx_DeGiay.SelectedText = dgv_tab2.Rows[d].Cells[7].Value.ToString();
+                }
+            }
+        }
+        public void Clear()
+        {
+            this.Controls.Clear();
+            this.InitializeComponent();
+            id = null;
+            _sanphamService = new();
+            ctSanphamService = new();
+            LoadData();
+        }
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Clear();
+        }
+
+        private void btn_Clear_Click(object sender, EventArgs e)
+        {
+            Clear();
         }
     }
 }
