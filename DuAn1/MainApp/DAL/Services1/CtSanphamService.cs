@@ -88,6 +88,7 @@ namespace Main.DAL.Services
                         Idncc = idncc == null ? null : Convert.ToString(idncc),
                         Masp = masp,
                         Soluong = sl,
+                        Trangthai = sl == 0 ? "Hết Hàng" : "Còn Hàng",
                         Idchatlieu = chatlieu,
                         Idkichthuoc = kichthuoc,
                         Iddegiay = degiay,
@@ -134,6 +135,7 @@ namespace Main.DAL.Services
                     sp.Idkichthuoc = kichthuoc;
                     sp.Iddegiay = degiay;
                     sp.Soluong = Convert.ToInt32(sl);
+                    sp.Trangthai = sp.Soluong == 0 ? "Hết Hàng" : "Còn Hàng";                
                     if (sanpham.sua(sp))
                     {
                         return "Sửa thành công";
@@ -165,21 +167,13 @@ namespace Main.DAL.Services
             }
             else return "Xóa không thành công";
         }
-        public bool UpdateSL(string id, int sl)
+        public void UpdateSL(string id, int sl)
         {
             Ctsanpham sp = list.Find(x => x.Idctsp == id);
-
-            if (sp.Soluong == 0)
-            {
-                return false;
-            }
-            else
-            {
-                sp.Soluong = sl;
-                sanpham.sua(sp);
-                return true;
-            }
-
+            sp.Soluong = sl;
+            sp.Trangthai = sp.Soluong == 0 ? "Hết Hàng" : "Còn Hàng";
+            sanpham.sua(sp);
 
         }
     }
+}

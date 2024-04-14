@@ -17,8 +17,8 @@ namespace MainApp.Models
         public string? Idchatlieu { get; set; }
         public string? Idkichthuoc { get; set; }
         public string? Iddegiay { get; set; }
+        public string? Trangthai { get; set; }
         public int? Soluong { get; set; }
-        public int? Giaban { get; set; }
 
         public virtual Chatlieu? IdchatlieuNavigation { get; set; }
         public virtual Degiay? IddegiayNavigation { get; set; }

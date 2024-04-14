@@ -32,7 +32,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count() + 1; i++)
+            for (int i = 1; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -42,7 +42,11 @@ namespace Main.DAL.Services
                 {
                     idtam = "HD" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.Mahd.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.Mahd == idtam).Count() > 0)
+                {
+                    continue;
+                }
+                else
                 {
                     break;
                 }
@@ -50,46 +54,34 @@ namespace Main.DAL.Services
             return idtam;
         }
 
-        public void AddHoaDon(string idnguoidung)
+        public string AddHoaDon()
         {
-            HoaDonChiTietServices hoaDonChiTietServices = new();
-            Hoadonct hoadonct = new();
-            if ( CheckValidate(idnguoidung)  )
-            {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-            }
-            else
-            {
-                var hoadon = new Hoadon
-                {
-                    Mahd = XulyId(),
-                    Ngayban = DateTime.Now.Date,
 
-                };
+            Hoadon hoadon = new Hoadon
+            {
+                Mahd = XulyId(),
+                Ngayban = DateTime.Now.Date,
+                Trangthai = "CHUA TT",
+            };
+            if (repo.them(hoadon))
+            {
+                return "Add thành công";
             }
-
+            else return "Add không thành";
+            
         }
-        public bool UpdateHoaDon(string idhoadon, string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, int tongtien, string trangthai)
+        public void UpdateHoaDon(string idhoadon, string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, int tongtien, string trangthai)
         {
-            if (CheckValidate(idhoadon) || CheckValidate(idkh) || CheckValidate(idnguoidung) || CheckValidate(ngayban) || CheckValidate(tensanpham) || CheckValidate(tongtien) || CheckValidate(trangthai) || CheckValidate(soluong))
-            {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
-            }
-            else
-            {
-                Hoadon hoadon = GetHoadons().Find(x => x.Mahd == idhoadon);
-                hoadon.Idkh = idkh;
-                hoadon.IdnguoiDung = idnguoidung;
-                hoadon.Idmagiamgia = idmgg;
-                hoadon.Ngayban = ngayban;
-                hoadon.Tensp = tensanpham;
-                hoadon.Soluong = soluong;
-                hoadon.Tongtien = tongtien;
-                hoadon.Trangthai = trangthai;
-                return repo.sua(hoadon);
-            }
-
+            Hoadon hoadon = GetHoadons().Find(x => x.Mahd == idhoadon);
+            hoadon.Idkh = idkh;
+            hoadon.IdnguoiDung = idnguoidung;
+            hoadon.Idmagiamgia = idmgg;
+            hoadon.Ngayban = ngayban;
+            hoadon.Tensp = tensanpham;
+            hoadon.Soluong = soluong;
+            hoadon.Tongtien = tongtien;
+            hoadon.Trangthai = trangthai;
+            repo.sua(hoadon);
         }
         public void UpdateGia(string mahd , long gia)
         {

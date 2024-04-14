@@ -69,8 +69,6 @@ namespace MainApp.Models
                     .IsUnicode(false)
                     .HasColumnName("IDCTSP");
 
-                entity.Property(e => e.Giaban).HasColumnName("GIABAN");
-
                 entity.Property(e => e.Idchatlieu)
                     .HasMaxLength(50)
                     .HasColumnName("IDCHATLIEU");
@@ -98,6 +96,10 @@ namespace MainApp.Models
                     .HasColumnName("MASP");
 
                 entity.Property(e => e.Soluong).HasColumnName("SOLUONG");
+
+                entity.Property(e => e.Trangthai)
+                    .HasMaxLength(50)
+                    .HasColumnName("TRANGTHAI");
 
                 entity.HasOne(d => d.IdchatlieuNavigation)
                     .WithMany(p => p.Ctsanphams)
@@ -207,7 +209,7 @@ namespace MainApp.Models
             modelBuilder.Entity<Hoadonct>(entity =>
             {
                 entity.HasKey(e => e.Mahdct)
-                    .HasName("PK__HOADONCT__1A700082B9328D2C");
+                    .HasName("PK__HOADONCT__1A7000820328450E");
 
                 entity.ToTable("HOADONCT");
 

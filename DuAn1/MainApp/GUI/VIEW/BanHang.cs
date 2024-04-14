@@ -108,8 +108,7 @@ namespace APPBanHang
 
         private void btnTimSanPham_Click(object sender, EventArgs e)
         {
-            
-            dgvDanhSachSanPham.DataSource = Timkiem(txt_Ten.Text , cbx_Chatlieu.SelectedText , cbx_Mau.SelectedText , cbx_Kichthuoc.SelectedText , cbx_Degiay.SelectedText);
+            dgvDanhSachSanPham = Timkiem(txt_Ten.Text, cbx_Chatlieu.SelectedText, cbx_Mau.SelectedText, cbx_Kichthuoc.SelectedText, cbx_Degiay.SelectedText);
         }
         public void loadTimKiem()
         {
@@ -200,7 +199,7 @@ namespace APPBanHang
                 y.Tensp,
                 x.Soluong,
                 y.Giaban,
-                y.Trangthai,
+                x.Trangthai,
                 x.Idncc,
                 x.Idmau,
                 x.Idchatlieu,
@@ -219,7 +218,7 @@ namespace APPBanHang
                 x.Idkichthuoc,
                 x.Iddegiay,
                 x.Idctsp
-            }).ToList().Where(x => x.Trangthai == "Còn hàng").ToList();
+            }).ToList().Where(x => x.Trangthai == "Còn Hàng").ToList();
 
             dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
             dgvDanhSachSanPham.Columns[1].HeaderText = "Tên sản phẩm";
@@ -235,16 +234,17 @@ namespace APPBanHang
 
 
         }
-        public DataGridView Timkiem(string ten, string chatlieu, string mau, string kichthuoc, string degiay)
+        public DataGridView Timkiem(string? ten, string? chatlieu, string? mau, string? kichthuoc, string? degiay)
         {
             int Stt = 1;
+            DataGridView dgv = new();
             var sp = _ctsp.GetallChitietsanpham().Join(_SanphamServices.GetSanphams(), x => x.Masp, y => y.Masp, (x, y) => new
             {
                 x.Idctsp,
                 y.Tensp,
                 x.Soluong,
                 y.Giaban,
-                y.Trangthai,
+                x.Trangthai,
                 x.Idncc,
                 x.Idmau,
                 x.Idchatlieu,
@@ -263,7 +263,7 @@ namespace APPBanHang
                 x.Idkichthuoc,
                 x.Iddegiay,
                 x.Idctsp
-            }).ToList().Where(x => x.Trangthai == "Còn hàng").ToList();
+            }).ToList().Where(x => x.Trangthai == "Còn Hàng").ToList();
             if (ten != null)
             {
                 sp = sp.Where(x => x.Tensp.ToLower().Contains(ten.ToLower())).ToList();
@@ -284,7 +284,7 @@ namespace APPBanHang
             {
                 sp = sp.Where(x => x.Iddegiay.ToLower().Contains(degiay.ToLower())).ToList();
             }
-            DataGridView dgv = new();
+
             dgv.DataSource = sp;
             return dgv;
         }
@@ -337,13 +337,14 @@ namespace APPBanHang
             _hoadonService = new();
             _ctsp = new();
             _ncc = new();
-            _mau = new() ;
+            _mau = new();
             _kichthuoc = new();
-            _Cl = new() ;
+            _Cl = new();
             _dg = new();
             loaddanhsachhoadon();
             loaddanhsachsanpham();
             loadhoadonchitiet();
+            loadTimKiem();
         }
 
         private void btnQRCode_Click(object sender, EventArgs e)
@@ -418,8 +419,8 @@ namespace APPBanHang
                 idsp = dgvHoaDonChiTiet.Rows[d].Cells[8].Value.ToString();
                 gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Giaban);
                 sl = sltong = Convert.ToInt32(_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong);
-                sl += Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
-                nUD.Maximum = sl;
+                sltong += Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
+                nUD.Maximum = sltong;
                 lb_SPThem.Text = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
                 MessageBox.Show($"{sltong}");
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
@@ -430,20 +431,20 @@ namespace APPBanHang
 
         private void nUD_ValueChanged(object sender, EventArgs e)
         {
-          
-                if (nUD.Value == nUD.Maximum)
-                {
 
-                    if (MessageBox.Show(" bạn có chắc muốn bán hết không?", "thông báo ", MessageBoxButtons.YesNo) == DialogResult.No)
-                    {
-                        nUD.Value = nUD.Maximum - 1;
-                    }
-                }
-                else
+            if (nUD.Value == nUD.Maximum)
+            {
+
+                if (MessageBox.Show(" bạn có chắc muốn bỏ hết không?", "thông báo ", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
-                    lb_Gia.Text = Convert.ToString(nUD.Value * gia);
+                    nUD.Value = nUD.Maximum - 1;
                 }
             }
+            else
+            {
+                lb_Gia.Text = Convert.ToString(nUD.Value * gia);
+            }
+        }
         public long Tongtien()
         {
             long tong = 0;
@@ -465,28 +466,34 @@ namespace APPBanHang
                 {
                     if (nUD.Value != 0)
                     {
-                        var list = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id);
-                        if (_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id) == null)
+                        if (_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong - Convert.ToInt32(nUD.Value) >= 0)
                         {
-                            _hoadonChiTietServices.AddHoaDonCT(mahd, id, (int)(nUD.Value), lb_Gia.Text);
-                            _ctsp.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                            var list = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id && x.Mahd == mahd);
+                            if (list == null)
+                            {
+                                _hoadonChiTietServices.AddHoaDonCT(mahd, id, (int)(nUD.Value), lb_Gia.Text);
+                                _ctsp.UpdateSL(id, sl - Convert.ToInt32(nUD.Value));
+                            }
+                            else
+                            {
+                                _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(list.Slban) + Convert.ToInt32(nUD.Value), Convert.ToInt32(list.Gia) + Convert.ToInt32(lb_Gia.Text));
+                                _ctsp.UpdateSL(id, sl - Convert.ToInt32(nUD.Value));
+                            }
+                            _hoadonService.UpdateGia(mahd, Tongtien());
+                            _SanphamServices.UpdateSL(idsp);
+                            BanHang_Load_1(sender, e);
+                            Clear();
                         }
                         else
                         {
-                            _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(list.Slban) + Convert.ToInt32(nUD.Value), Convert.ToInt32(list.Gia) + Convert.ToInt32(lb_Gia.Text));
-                            _ctsp.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                            MessageBox.Show("Sai số liệu");
                         }
-                        _hoadonService.UpdateGia(mahd, Tongtien());
-                        _SanphamServices.UpdateSL(idsp);
-
-                        BanHang_Load_1(sender, e);
-
-                        Clear();
                     }
                     else
                     {
                         MessageBox.Show("Chọn số lượng");
                     }
+
                 }
                 else
                 {
@@ -510,7 +517,7 @@ namespace APPBanHang
                     {
                         var list = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id);
                         _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(nUD.Value), Convert.ToInt32(lb_Gia.Text));
-                        _ctsp.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                        _ctsp.UpdateSL(id, sl - Convert.ToInt32(nUD.Value));
 
                     }
                     else
@@ -519,9 +526,7 @@ namespace APPBanHang
                     }
                     _hoadonService.UpdateGia(mahd, Tongtien());
                     _SanphamServices.UpdateSL(idsp);
-                    loaddanhsachsanpham();
-                    loaddanhsachhoadon();
-                    loadhoadonchitiet();
+                    BanHang_Load_1(sender, e);
                     Clear();
                 }
                 else
@@ -542,10 +547,9 @@ namespace APPBanHang
                 if (id != null)
                 {
                     _hoadonChiTietServices.XoaHDCT(mahdct);
-                    _ctsp.UpdateSL(idsp, sltong + Convert.ToInt32(nUD.Value));
+                    _ctsp.UpdateSL(id, sl + Convert.ToInt32(nUD.Value));
                     _hoadonService.UpdateGia(mahd, Tongtien());
                     _SanphamServices.UpdateSL(idsp);
-
                     BanHang_Load_1(sender, e);
                     Clear();
                 }
@@ -600,7 +604,34 @@ namespace APPBanHang
         {
             if (_hoadonService.GetHoadons().Where(x => x.Trangthai == "CHUA TT").Count() <= 5)
             {
+                MessageBox.Show(_hoadonService.AddHoaDon());
+                loaddanhsachhoadon();
+            }
+            else
+            {
+                MessageBox.Show("Chỉ được add tối thiểu 5 hóa đơn");
+            }
+        }
 
+        private void btnLuuHoaDon_Click(object sender, EventArgs e)
+        {
+            if (mahd != null)
+            {
+                foreach (var item in _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Mahd == mahd))
+                {
+                    mahdct = item.Mahdct;
+                    id = item.Idctsp;
+                    sl = Convert.ToInt32(_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong);
+                    _hoadonChiTietServices.XoaHDCT(mahdct);
+                    _ctsp.UpdateSL(id, sl + Convert.ToInt32(item.Slban));
+                    _SanphamServices.UpdateSL(idsp);
+                    BanHang_Load_1(sender, e);
+                    Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn Hóa đơn cần xóa");
             }
         }
     }

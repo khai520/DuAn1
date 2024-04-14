@@ -786,6 +786,7 @@
             btnLuuHoaDon.TabIndex = 15;
             btnLuuHoaDon.Text = "Xóa Hóa Đơn";
             btnLuuHoaDon.UseVisualStyleBackColor = true;
+            btnLuuHoaDon.Click += btnLuuHoaDon_Click;
             // 
             // btnTaoHoaDon
             // 
