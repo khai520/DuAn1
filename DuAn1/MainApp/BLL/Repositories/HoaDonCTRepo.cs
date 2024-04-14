@@ -24,7 +24,6 @@ namespace WinFormsApp1.Repositories
         public bool them(Hoadonct hoadonct)
         {
             context.Hoadoncts.Add(hoadonct);
-            
             return context.SaveChanges() > 0;
         }
         public bool sua(Hoadonct hoadonct)

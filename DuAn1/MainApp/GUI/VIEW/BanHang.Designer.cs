@@ -577,6 +577,7 @@
             dgvHoaDonChiTiet.Size = new Size(684, 162);
             dgvHoaDonChiTiet.TabIndex = 0;
             dgvHoaDonChiTiet.CellClick += dgvHoaDonChiTiet_CellClick;
+            dgvHoaDonChiTiet.CellContentClick += dgvHoaDonChiTiet_CellContentClick;
             // 
             // btn_Them
             // 
@@ -1070,6 +1071,7 @@
             nUD.Name = "nUD";
             nUD.Size = new Size(120, 23);
             nUD.TabIndex = 17;
+            nUD.TextAlign = HorizontalAlignment.Center;
             nUD.ValueChanged += nUD_ValueChanged;
             nUD.KeyDown += nUD_KeyDown;
             nUD.KeyUp += nUD_KeyUp;

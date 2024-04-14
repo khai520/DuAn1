@@ -29,7 +29,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count(); i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -47,25 +47,23 @@ namespace Main.DAL.Services
             return idtam;
         }
 
-        public void AddHoaDonCT( string mahd, string masp, decimal slban, string gia)
+        public string AddHoaDonCT( string mahd, string masp, int slban, string gia)
         {
-            try
-            {
                 Hoadonct hdct = new Hoadonct
                 {
                     Mahdct = XulyId(),
                     Mahd = mahd,
-                    Masp = masp,
-                    Slban = Convert.ToInt32(slban),
+                    Idctsp = masp,
+                    Slban = slban,
                     Gia = Convert.ToDecimal(gia),
-                    Ngayban = DateTime.Now,
+                    Ngayban = DateTime.Now.Date,
                 };
-                repo.them(hdct);
-            }
-            catch (Exception)
-            {
-                Console.WriteLine("Lỗi");
-            }
+                if (repo.them(hdct))
+                {
+                    return "Add thành công";
+                }
+                else return "Add không thành công";
+           
            
         }
         public List<Hoadonct> Change()
@@ -85,7 +83,6 @@ namespace Main.DAL.Services
             {
                 Mahdct = XulyId(),
                 Mahd = id ,
-
                 Slban = list.Find(x => x.Mahd == id).Slban.Value,
                 Gia = list.Find(x => x.Mahd == id).Gia.Value,
                 Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value
@@ -120,14 +117,12 @@ namespace Main.DAL.Services
                 return listAdd;
             }
         }
-        public void UpdateHoaDonCT(string idhdct,string mahd, string Masp, decimal slban, string gia)
+        public void UpdateHoaDonCT(string idhdct, int slban, decimal gia)
         {
             try
             {
                 Hoadonct hdct = GetHoaDonCT().Find(x => x.Mahdct == idhdct);
-                hdct.Mahd = mahd;
-                hdct.Masp = Masp;
-                hdct.Slban = Convert.ToInt32(slban);
+                hdct.Slban = slban;
                 hdct.Gia = Convert.ToDecimal(gia);
                 repo.them(hdct);
 

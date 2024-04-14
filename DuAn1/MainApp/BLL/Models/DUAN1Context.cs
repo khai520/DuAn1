@@ -212,29 +212,28 @@ namespace MainApp.Models
 
             modelBuilder.Entity<Hoadonct>(entity =>
             {
-                entity.HasKey(e => e.Mahdct)
-                    .HasName("PK__HOADONCT__1A700082B49A01C1");
+                entity.HasKey(e => new { e.Mahd, e.Idctsp });
 
                 entity.ToTable("HOADONCT");
-
-                entity.Property(e => e.Mahdct)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("MAHDCT");
-
-                entity.Property(e => e.Gia)
-                    .HasColumnType("money")
-                    .HasColumnName("GIA");
 
                 entity.Property(e => e.Mahd)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("MAHD");
 
-                entity.Property(e => e.Masp)
+                entity.Property(e => e.Idctsp)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("MASP");
+                    .HasColumnName("IDCTSP");
+
+                entity.Property(e => e.Gia)
+                    .HasColumnType("money")
+                    .HasColumnName("GIA");
+
+                entity.Property(e => e.Mahdct)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("MAHDCT");
 
                 entity.Property(e => e.Ngayban)
                     .HasColumnType("datetime")
@@ -242,17 +241,17 @@ namespace MainApp.Models
 
                 entity.Property(e => e.Slban).HasColumnName("SLBAN");
 
+                entity.HasOne(d => d.IdctspNavigation)
+                    .WithMany(p => p.Hoadoncts)
+                    .HasForeignKey(d => d.Idctsp)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_HOADONCT_CTSANPHAM");
+
                 entity.HasOne(d => d.MahdNavigation)
                     .WithMany(p => p.Hoadoncts)
                     .HasForeignKey(d => d.Mahd)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_HOADONCT_HOADON");
-
-                entity.HasOne(d => d.MaspNavigation)
-                    .WithMany(p => p.Hoadoncts)
-                    .HasForeignKey(d => d.Masp)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_HOADONCT_CTSANPHAM");
             });
 
             modelBuilder.Entity<Khachhang>(entity =>

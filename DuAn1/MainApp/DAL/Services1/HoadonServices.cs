@@ -97,23 +97,25 @@ namespace Main.DAL.Services
             }
             else
             {
-                Hoadon hoadon = new Hoadon
-                {
-                    Mahd = idhoadon,
-                    Idkh = idkh,
-                    IdnguoiDung = idnguoidung,
-                    Idmagiamgia = idmgg,
-                    Ngayban = ngayban,
-                    Tensp = tensanpham,
-                    Soluong = soluong,
-                    Tongtien = tongtien,
-                    Trangthai = trangthai
-                };
+                Hoadon hoadon = GetHoadons().Find(x => x.Mahd == idhoadon);
+                hoadon.Idkh = idkh;
+                hoadon.IdnguoiDung = idnguoidung;
+                hoadon.Idmagiamgia = idmgg;
+                hoadon.Ngayban = ngayban;
+                hoadon.Tensp = tensanpham;
+                hoadon.Soluong = soluong;
+                hoadon.Tongtien = tongtien;
+                hoadon.Trangthai = trangthai;
                 return repo.sua(hoadon);
             }
 
         }
-
+        public void UpdateGia(string mahd , decimal gia)
+        {
+            Hoadon hoadon = GetHoadons().Find(x => x.Mahd == mahd);
+            hoadon.Tongtien = gia;
+            repo.sua(hoadon);
+        }
         public Hoadon Loc(string id)
         {
             string? kh ;

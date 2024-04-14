@@ -19,9 +19,9 @@ namespace APPBanHang
         HoaDonChiTietServices _hoadonChiTietServices;
         CtSanphamService _ctsp;
         NhaCungCapServices _ncc;
-        string mahd, id, mahdct;
+        string mahd, id, mahdct , idsp;
         int sltong;
-        decimal gia;
+        decimal gia, tonggia;
         //int _idCellClick;
         public BanHang()
         {
@@ -152,7 +152,7 @@ namespace APPBanHang
         private void loaddanhsachhoadon()
         {
             int Stt = 1;
-            dgvDanhSachHoaDon.DataSource = _hoadonService.Change().Join(_hoadonChiTietServices.GetHoaDonCT(), x => x.Mahd, y => y.Mahd, (x, y) => new
+            dgvDanhSachHoaDon.DataSource = _hoadonService.GetHoadons().Select(x => new
             {
                 STT = Stt++,
                 x.Mahd,
@@ -160,10 +160,9 @@ namespace APPBanHang
                 x.IdnguoiDung,
                 x.Idmagiamgia,
                 x.Ngayban,
-                x.Soluong,
                 x.Tongtien,
                 x.Trangthai,
-                y.Mahdct
+                x.Soluong,
             }).ToList().Where(x => x.Trangthai == "CHUA TT").ToList();
             dgvDanhSachHoaDon.Columns[0].HeaderText = "STT";
             dgvDanhSachHoaDon.Columns[1].HeaderText = "MaHD";
@@ -171,31 +170,29 @@ namespace APPBanHang
             dgvDanhSachHoaDon.Columns[3].HeaderText = "Tên nhân viên";
             dgvDanhSachHoaDon.Columns[4].HeaderText = "Mã giảm giá";
             dgvDanhSachHoaDon.Columns[5].HeaderText = "Ngày bán";
-            dgvDanhSachHoaDon.Columns[6].HeaderText = "Số lượng";
-            dgvDanhSachHoaDon.Columns[7].HeaderText = "Tổng tiền";
-            dgvDanhSachHoaDon.Columns[8].HeaderText = "Trạng thái";
-            dgvDanhSachHoaDon.Columns[9].Visible = false;
+            dgvDanhSachHoaDon.Columns[6].HeaderText = "Tổng tiền";
+            dgvDanhSachHoaDon.Columns[7].HeaderText = "Trạng thái";
+            dgvDanhSachHoaDon.Columns[8].Visible = true;
         }
 
         private void loaddanhsachsanpham()
         {
             int Stt = 1;
-            dgvDanhSachSanPham.DataSource = _SanphamServices.GetSanphams().Join(_ctsp.GetallChitietsanpham(), x => x.Masp, y => y.Masp, (x, y) => new
+            dgvDanhSachSanPham.DataSource = _ctsp.GetallChitietsanpham().Join(_SanphamServices.GetSanphams(), x => x.Masp, y => y.Masp, (x, y) => new
             {
-                x.Masp,
-                x.Tensp,
-                x.Soluong,
-                x.Giaban,
-                x.Trangthai,
-                y.Idncc,
-                y.Idmau,
-                y.Idchatlieu,
-                y.Idkichthuoc,
-                y.Iddegiay
+                x.Idctsp,
+                y.Tensp,
+                y.Soluong,
+                y.Giaban,
+                y.Trangthai,
+                x.Idncc,
+                x.Idmau,
+                x.Idchatlieu,
+                x.Idkichthuoc,
+                x.Iddegiay,
             }).ToList().Join(_ncc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new
             {
                 STT = Stt++,
-                x.Masp,
                 x.Tensp,
                 x.Soluong,
                 x.Giaban,
@@ -204,25 +201,35 @@ namespace APPBanHang
                 x.Idmau,
                 x.Idchatlieu,
                 x.Idkichthuoc,
-                x.Iddegiay
+                x.Iddegiay,
+                x.Idctsp
             }).ToList().Where(x => x.Trangthai == "Còn hàng").ToList();
             dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
-            dgvDanhSachSanPham.Columns[1].HeaderText = "Masp";
-            dgvDanhSachSanPham.Columns[2].HeaderText = "Tên sản phẩm";
-            dgvDanhSachSanPham.Columns[3].HeaderText = "Số lượng";
-            dgvDanhSachSanPham.Columns[4].HeaderText = "Giá bán";
-            dgvDanhSachSanPham.Columns[5].HeaderText = "Trạng thái";
-            dgvDanhSachSanPham.Columns[6].HeaderText = "Nhà cung cấp";
-            dgvDanhSachSanPham.Columns[7].HeaderText = "Màu";
-            dgvDanhSachSanPham.Columns[8].HeaderText = "Chất liệu";
-            dgvDanhSachSanPham.Columns[9].HeaderText = "Kích thước";
-            dgvDanhSachSanPham.Columns[10].HeaderText = "Đế giày";
+            dgvDanhSachSanPham.Columns[1].HeaderText = "Tên sản phẩm";
+            dgvDanhSachSanPham.Columns[2].HeaderText = "Số lượng";
+            dgvDanhSachSanPham.Columns[3].HeaderText = "Giá bán";
+            dgvDanhSachSanPham.Columns[4].HeaderText = "Trạng thái";
+            dgvDanhSachSanPham.Columns[5].HeaderText = "Nhà cung cấp";
+            dgvDanhSachSanPham.Columns[6].HeaderText = "Màu";
+            dgvDanhSachSanPham.Columns[7].HeaderText = "Chất liệu";
+            dgvDanhSachSanPham.Columns[8].HeaderText = "Kích thước";
+            dgvDanhSachSanPham.Columns[9].HeaderText = "Đế giày";
+            dgvDanhSachSanPham.Columns[10].Visible = false;
 
         }
         private void loadhoadonchitiet()
         {
             int Stt = 1;
-            dgvHoaDonChiTiet.DataSource = _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Mahd == mahd).Join(_SanphamServices.GetSanphams(), x => x.Masp, x => x.Masp, (x, y) => new
+            dgvHoaDonChiTiet.DataSource = _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Mahd == mahd).Join(_ctsp.GetallChitietsanpham(), x => x.Idctsp, x => x.Idctsp, (x, y) => new
+            {
+                x.Slban,
+                x.Gia,
+                x.Ngayban,
+                x.Mahdct,
+                x.Mahd,
+                x.Idctsp,
+                y.Masp
+            }).ToList().Join(_SanphamServices.GetSanphams(), x => x.Masp, y => y.Masp, (x, y) => new
             {
                 STT = Stt++,
                 y.Tensp,
@@ -231,6 +238,7 @@ namespace APPBanHang
                 x.Ngayban,
                 x.Mahdct,
                 x.Mahd,
+                x.Idctsp,
                 x.Masp
             }).ToList();
             dgvHoaDonChiTiet.Columns[0].HeaderText = "STT";
@@ -241,6 +249,7 @@ namespace APPBanHang
             dgvHoaDonChiTiet.Columns[5].Visible = false;
             dgvHoaDonChiTiet.Columns[6].Visible = false;
             dgvHoaDonChiTiet.Columns[7].Visible = false;
+            dgvHoaDonChiTiet.Columns[8].Visible = false;
         }
 
         private void BanHang_Load_1(object sender, EventArgs e)
@@ -272,6 +281,7 @@ namespace APPBanHang
         }
         public void Clear()
         {
+            idsp = null;
             id = null;
             mahdct = null;
             gia = 0;
@@ -289,8 +299,8 @@ namespace APPBanHang
             }
             else if (d >= 0)
             {
+                Clear();
                 mahd = dgvDanhSachHoaDon.Rows[d].Cells[1].Value.ToString();
-                mahdct = dgvDanhSachHoaDon.Rows[d].Cells[9].Value.ToString();
                 loadhoadonchitiet();
             }
         }
@@ -303,10 +313,12 @@ namespace APPBanHang
             }
             else if (d >= 0)
             {
-                id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
-                lb_SPThem.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
-                sltong = Convert.ToInt32(dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString());
-                gia = Convert.ToDecimal(dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString());
+                idsp = _ctsp.GetallChitietsanpham().Find(x => x.Idctsp == dgvDanhSachSanPham.Rows[d].Cells[10].Value.ToString()).Masp;
+                id = dgvDanhSachSanPham.Rows[d].Cells[10].Value.ToString();
+                MessageBox.Show($"{id}");
+                lb_SPThem.Text = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
+                sltong = Convert.ToInt32(dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString());
+                gia = Convert.ToDecimal(dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString());
                 nUD.Maximum = sltong;
             }
         }
@@ -320,19 +332,31 @@ namespace APPBanHang
             }
             else if (d >= 0)
             {
-                gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString()).Giaban);
-                sltong = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString()).Soluong);
-                sltong += Convert.ToInt32(_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Masp == dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString()).Slban);
+                idsp = dgvHoaDonChiTiet.Rows[d].Cells[8].Value.ToString();
+                gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Giaban);
+                sltong = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Soluong);
                 nUD.Maximum = sltong;
+                lb_SPThem.Text = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
-                nUD.Value = Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
-                lb_Gia.Text = dgvHoaDonChiTiet.Rows[d].Cells[3].Value.ToString();
+                mahd = dgvHoaDonChiTiet.Rows[d].Cells[6].Value.ToString();
+                id = dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString();
+                sltong += Convert.ToInt32(_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id).Slban);
+                nUD.Value = Convert.ToDecimal(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
             }
         }
 
         private void nUD_ValueChanged(object sender, EventArgs e)
         {
             lb_Gia.Text = Convert.ToString(nUD.Value * gia);
+        }
+        public decimal Tongtien()
+        {
+            decimal tong = 0;
+            foreach (var item in _hoadonChiTietServices.GetHoaDonCT())
+            {
+                tong += Convert.ToInt32(item.Gia);
+            }
+            return tong;
         }
         public void Reset()
         {
@@ -344,16 +368,27 @@ namespace APPBanHang
             {
                 if (id != null)
                 {
-                    if (_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Masp == id) == null)
+                    if (nUD.Value != 0)
                     {
-                        _hoadonChiTietServices.AddHoaDonCT(mahd,id,nUD.Value,lb_Gia.Text);
+                        var list = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id);
+                        if (_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id) == null)
+                        {
+                            _hoadonChiTietServices.AddHoaDonCT(mahd, id, (int)(nUD.Value), lb_Gia.Text);
+                        }
+                        else
+                        {
+                            _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(list.Slban) + Convert.ToInt32(nUD.Value), Convert.ToInt32(list.Gia) + Convert.ToDecimal(lb_Gia.Text));
+                        }
+                        _SanphamServices.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                        _hoadonService.UpdateGia(mahd, Tongtien());
+                        loaddanhsachhoadon();
+                        loadhoadonchitiet();
+                        Clear();
                     }
                     else
                     {
-                        _hoadonChiTietServices.UpdateHoaDonCT(mahdct, mahd, id, nUD.Value, lb_Gia.Text);
+                        MessageBox.Show("Chọn số lượng");
                     }
-                    _SanphamServices.UpdateSL(id, sltong - Convert.ToInt32(nUD.Value));
-                    Clear();
                 }
                 else
                 {
@@ -362,9 +397,9 @@ namespace APPBanHang
             }
             else
             {
-                MessageBox.Show("Chưa chọn hóa đơn");
+                MessageBox.Show("Chưa Thêm hóa đơn hóa đơn");
             }
-            
+
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
@@ -373,8 +408,12 @@ namespace APPBanHang
             {
                 if (id != null)
                 {
-                    _hoadonChiTietServices.UpdateHoaDonCT(mahdct, mahd, id, nUD.Value, lb_Gia.Text);
-                    _SanphamServices.UpdateSL(id, sltong - Convert.ToInt32(nUD.Value));
+                    var list = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id);
+                    _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(nUD.Value), Convert.ToInt32(lb_Gia.Text));
+                    _SanphamServices.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                    _hoadonService.UpdateGia(mahd, Tongtien());
+                    loaddanhsachhoadon();
+                    loadhoadonchitiet();
                     Clear();
                 }
                 else
@@ -395,6 +434,10 @@ namespace APPBanHang
                 if (id != null)
                 {
                     _hoadonChiTietServices.XoaHDCT(mahdct);
+                    _SanphamServices.UpdateSL(idsp, sltong - 0);
+                    _hoadonService.UpdateGia(mahd, Tongtien());
+                    loadhoadonchitiet();
+                    Clear();
                 }
                 else
                 {
@@ -407,20 +450,40 @@ namespace APPBanHang
             }
         }
 
-            private void nUD_KeyUp(object sender, KeyEventArgs e)
+        private void nUD_KeyUp(object sender, KeyEventArgs e)
         {
-            if (nUD.Value > nUD.Maximum)
+            if (id != null)
             {
-                MessageBox.Show("Quá số lượng");
+                if (nUD.Value > nUD.Maximum)
+                {
+                    MessageBox.Show("Quá số lượng");
+                }
             }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm");
+            }
+
         }
 
         private void nUD_KeyDown(object sender, KeyEventArgs e)
         {
-            if (nUD.Value <= 0)
+            if (id != null)
             {
-                MessageBox.Show("Quá số lượng");
+                if (nUD.Value <= 0)
+                {
+                    MessageBox.Show("Quá số lượng");
+                }
             }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm");
+            }
+        }
+
+        private void dgvHoaDonChiTiet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
