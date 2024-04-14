@@ -53,60 +53,87 @@ namespace Main.DAL.Services
             }
             else { return false; }
         }
-        public string Them(object? idncc, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, string? sl)
-        {
-            var check = GetallChitietsanpham().Find(x => x.Idncc == (idncc == null ? null : idncc.ToString()) && x.Masp == masp && x.Idmau == mau && x.Idchatlieu == chatlieu && x.Idkichthuoc == kichthuoc && x.Iddegiay == degiay && x.Soluong == Convert.ToInt32(sl));
-            if ( check != null)
-            {
-                Sua(check.Idctsp, idncc, mau, chatlieu, kichthuoc, degiay, Convert.ToString(check.Soluong + Convert.ToInt32(sl)));
-                return "Add thành công";
-            }
-            else
-            {
-                Ctsanpham ctsanpham = new Ctsanpham
-                {
-                    Idctsp = XulyId(),
-                    Idncc = idncc == null ? null : Convert.ToString(idncc),
-                    Masp = masp,
-                    Soluong = Convert.ToInt32(sl),
-                    Idchatlieu = chatlieu,
-                    Idkichthuoc = kichthuoc,
-                    Iddegiay = degiay,
-                    Idmau = mau,
-                };
-
-                if (sanpham.them(ctsanpham))
-                {
-                    return "Add thành công";
-                }
-                else { return "Add không thành công"; }
-
-            }
-           
-        }
-        public string Sua(string id, dynamic? idncc, string? mau, string? chatlieu, string? kichthuoc, string? degiay , string? sl)
+        public string Them(object? idncc, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, int? sl)
         {
             try
             {
-                Ctsanpham sp = GetallChitietsanpham().Find(x => x.Idctsp == id);
-                sp.Idncc = idncc == null ? null : Convert.ToString(idncc);
-                sp.Idmau = mau;
-                sp.Idchatlieu = chatlieu;
-                sp.Idkichthuoc = kichthuoc;
-                sp.Iddegiay = degiay;
-                sp.Soluong = Convert.ToInt32(sl);
-                if (sanpham.sua(sp))
+                var check = GetallChitietsanpham().Find(x => x.Idncc == (idncc == null ? "" : idncc.ToString()) && x.Masp == masp && x.Idmau == mau && x.Idchatlieu == chatlieu && x.Idkichthuoc == kichthuoc && x.Iddegiay == degiay);
+                if (check != null)
                 {
-                    return "Sửa thành công";
+                    Sua(check.Idctsp, idncc, mau, chatlieu, kichthuoc, degiay, Convert.ToString(check.Soluong + Convert.ToInt32(sl)));
+                    return "Add thành công";
                 }
-                else return "Sửa không thành công";
+                else
+                {
+                    Ctsanpham ctsanpham = new Ctsanpham
+                    {
+                        Idctsp = XulyId(),
+                        Idncc = idncc == null ? null : Convert.ToString(idncc),
+                        Masp = masp,
+                        Soluong = sl,
+                        Idchatlieu = chatlieu,
+                        Idkichthuoc = kichthuoc,
+                        Iddegiay = degiay,
+                        Idmau = mau,
+                    };
+
+                    if (sanpham.them(ctsanpham))
+                    {
+                        return "Add thành công";
+                    }
+                    else { return "Add không thành công"; }
+                }
+            }
+            catch(Exception e)
+            {
+                return "Lỗi";
+            }
+         
+        }
+        public string Sua( string id, object? idncc, string? mau, string? chatlieu, string? kichthuoc, string? degiay , string? sl)
+        {
+            try
+            {
+                var check = GetallChitietsanpham().Find(x => x.Idncc == Check(idncc)  && x.Idmau == mau && x.Idchatlieu == chatlieu && x.Idkichthuoc == kichthuoc && x.Iddegiay == degiay);
+                if (check != null)
+                {
+                    Xoa(id);
+                    Sua(check.Idctsp, idncc, mau, chatlieu, kichthuoc, degiay, Convert.ToString(check.Soluong + Convert.ToInt32(sl)));
+                    return "Add thành công";
+                }
+                else
+                {
+                    Ctsanpham sp = GetallChitietsanpham().Find(x => x.Idctsp == id);
+                    sp.Idncc = Check(idncc);
+                    sp.Idmau = mau;
+                    sp.Idchatlieu = chatlieu;
+                    sp.Idkichthuoc = kichthuoc;
+                    sp.Iddegiay = degiay;
+                    sp.Soluong = Convert.ToInt32(sl);
+                    if (sanpham.sua(sp))
+                    {
+                        return "Sửa thành công";
+                    }
+                    else return "Sửa không thành công";
+
+                }
+
             }
             catch (Exception)
             {
                 return "Sai kiều dữ liệu";
             }
-            
-            
+        }
+        public string Check(object? id)
+        {
+            if(id == null)
+            {
+                return null;
+            }    
+            else
+            {
+                return id.ToString();
+            }    
         }
 
         public string Xoa(string ID)

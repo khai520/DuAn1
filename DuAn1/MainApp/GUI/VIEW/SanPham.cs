@@ -137,15 +137,15 @@ namespace APPBanHang
         }
         public void Loadtab2()
         {
-            _sanphamService.UpdateSL(id);
+            
             int Stt2 = 1;
-            var tab2 = ctSanphamService.GetallChitietsanpham().Join(ncc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new
+            var tab2 = ctSanphamService.GetallChitietsanpham().Select(x => new
             {
                 STT = Stt2++,
                 x.Idctsp,
                 x.Masp,
                 x.Soluong,
-                y.Tenncc,
+                x.Idncc,
                 x.Idmau,
                 x.Idchatlieu,
                 x.Idkichthuoc,
@@ -277,7 +277,7 @@ namespace APPBanHang
             else if (d >= 0)
             {
                 id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
-                Clear2();
+                
                 txtTenSP.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
                 txtGiaBan.Text = dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString();
             }
@@ -312,9 +312,9 @@ namespace APPBanHang
             if (id != null)
             {
 
-                MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue, id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text, txt_Sl.Text));
-                   
+                MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue, id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text, txt_Sl.Text == null?null:Convert.ToInt32(txt_Sl.Text)));
                 Loadtab2();
+                _sanphamService.UpdateSL(id);
             }
             else
             {
@@ -332,6 +332,7 @@ namespace APPBanHang
             {
                 MessageBox.Show(ctSanphamService.Sua(idctsp, cbx_Ncc.SelectedValue, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text, txt_Sl.Text));
                 Loadtab2();
+                _sanphamService.UpdateSL(id);
             }
         }
 
@@ -341,6 +342,7 @@ namespace APPBanHang
             {
                 MessageBox.Show(ctSanphamService.Xoa(idctsp));
                 Loadtab2();
+                _sanphamService.UpdateSL(id);
             }
 
         }
@@ -351,7 +353,7 @@ namespace APPBanHang
 
             if (d < 0)
             {
-
+                
             }
             else if (d >= 0)
             {
@@ -366,7 +368,7 @@ namespace APPBanHang
                 if (dgv_tab2.Rows[d].Cells[4].Value != null)
                 {
                     cbx_Ncc.SelectedValue = dgv_tab2.Rows[d].Cells[4].Value.ToString();
-                    cbx_Ncc.SelectedText = dgv_tab2.Rows[d].Cells[4].Value.ToString();
+                    
                 }
                 if (dgv_tab2.Rows[d].Cells[5].Value != null)
                 {
@@ -386,14 +388,14 @@ namespace APPBanHang
                 }
             }
         }
-        public void Clear2()
-        {
-            cbx_Ncc.SelectedIndex = 0;
-            cbx_Mau.SelectedIndex = -1;
-            cbx_Chatlieu.SelectedIndex = -1;
-            cbx_Kichthuoc.SelectedIndex = -1;
-            cbx_DeGiay.SelectedIndex = -1;
-        }
+        //public void Clear2()
+        //{
+        //    //cbx_Ncc.SelectedIndex = 0;
+        //    //cbx_Mau.SelectedIndex = -1;
+        //    //cbx_Chatlieu.SelectedIndex = -1;
+        //    //cbx_Kichthuoc.SelectedIndex = -1;
+        //    //cbx_DeGiay.SelectedIndex = -1;
+        //}
         public void Clear()
         {
             this.Controls.Clear();
