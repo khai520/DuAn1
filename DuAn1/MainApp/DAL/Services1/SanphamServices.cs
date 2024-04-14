@@ -158,6 +158,7 @@ namespace WinFormsApp1.Services
         {
             Sanpham sanpham = list.Find(x => x.Masp == id);
             sanpham.Soluong = sl;
+            sanpham.Trangthai = Convert.ToInt32(sl) == 0 ? "Hết hàng" : "Còn hàng";
             repo.sua(sanpham);
             
 

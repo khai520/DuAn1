@@ -444,7 +444,7 @@
             // btnLogout
             // 
             btnLogout.FlatStyle = FlatStyle.Flat;
-            btnLogout.Location = new Point(12, 839);
+            btnLogout.Location = new Point(9, 839);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(175, 31);
             btnLogout.TabIndex = 67;
@@ -807,6 +807,7 @@
             btnTaoHoaDon.TabIndex = 14;
             btnTaoHoaDon.Text = "Tạo Hóa Đơn";
             btnTaoHoaDon.UseVisualStyleBackColor = true;
+            btnTaoHoaDon.Click += btnTaoHoaDon_Click;
             // 
             // btnThanhToan
             // 
@@ -1108,7 +1109,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1554, 890);
+            ClientSize = new Size(1554, 891);
             Controls.Add(panel1);
             Controls.Add(panel10);
             Controls.Add(label2);

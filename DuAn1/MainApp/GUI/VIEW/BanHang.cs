@@ -19,7 +19,7 @@ namespace APPBanHang
         HoaDonChiTietServices _hoadonChiTietServices;
         CtSanphamService _ctsp;
         NhaCungCapServices _ncc;
-        string mahd, id, mahdct , idsp;
+        string mahd, id, mahdct, idsp;
         int sltong;
         decimal gia, tonggia;
         //int _idCellClick;
@@ -242,6 +242,7 @@ namespace APPBanHang
                 x.Masp
             }).ToList();
             dgvHoaDonChiTiet.Columns[0].HeaderText = "STT";
+            
             dgvHoaDonChiTiet.Columns[1].HeaderText = "Tên sản phẩm";
             dgvHoaDonChiTiet.Columns[2].HeaderText = "Số lượng";
             dgvHoaDonChiTiet.Columns[3].HeaderText = "Giá";
@@ -315,7 +316,6 @@ namespace APPBanHang
             {
                 idsp = _ctsp.GetallChitietsanpham().Find(x => x.Idctsp == dgvDanhSachSanPham.Rows[d].Cells[10].Value.ToString()).Masp;
                 id = dgvDanhSachSanPham.Rows[d].Cells[10].Value.ToString();
-                MessageBox.Show($"{id}");
                 lb_SPThem.Text = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
                 sltong = Convert.ToInt32(dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString());
                 gia = Convert.ToDecimal(dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString());
@@ -335,12 +335,12 @@ namespace APPBanHang
                 idsp = dgvHoaDonChiTiet.Rows[d].Cells[8].Value.ToString();
                 gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Giaban);
                 sltong = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Soluong);
+                sltong += Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
                 nUD.Maximum = sltong;
                 lb_SPThem.Text = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
                 mahd = dgvHoaDonChiTiet.Rows[d].Cells[6].Value.ToString();
                 id = dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString();
-                sltong += Convert.ToInt32(_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id).Slban);
                 nUD.Value = Convert.ToDecimal(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
             }
         }
@@ -354,7 +354,7 @@ namespace APPBanHang
             decimal tong = 0;
             foreach (var item in _hoadonChiTietServices.GetHoaDonCT())
             {
-                tong += Convert.ToInt32(item.Gia);
+                tong += Convert.ToInt64(item.Gia);
             }
             return tong;
         }
@@ -484,6 +484,14 @@ namespace APPBanHang
         private void dgvHoaDonChiTiet_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void btnTaoHoaDon_Click(object sender, EventArgs e)
+        {
+            if (_hoadonService.GetHoadons().Where(x => x.Trangthai == "CHUA TT").Count() <= 5)
+            {
+
+            }
         }
     }
 }

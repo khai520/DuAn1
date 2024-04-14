@@ -61,30 +61,22 @@ namespace Main.DAL.Services
             }
             return list2;
         }
-        public bool AddHoaDon(string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai, string idhdct, string idctsp, int slban, decimal gia)
+        public void AddHoaDon(string idnguoidung)
         {
             HoaDonChiTietServices hoaDonChiTietServices = new();
             Hoadonct hoadonct = new();
-            if (CheckValidate(idkh) || CheckValidate(idnguoidung) || CheckValidate(ngayban) || CheckValidate(tensanpham) || CheckValidate(soluong) || CheckValidate(tongtien) || CheckValidate(trangthai) || CheckValidate(idhdct) || CheckValidate(idctsp) || CheckValidate(slban) || CheckValidate(gia))
+            if ( CheckValidate(idnguoidung)  )
             {
                 MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
             }
             else
             {
                 var hoadon = new Hoadon
                 {
                     Mahd = XulyId(),
-                    Idkh = idkh,
-                    IdnguoiDung = idnguoidung,
-                    Idmagiamgia = idmgg,
-                    Ngayban = ngayban,
-                    Tensp = tensanpham,
-                    Soluong = soluong,
-                    Tongtien = tongtien,
-                    Trangthai = trangthai
+                    Ngayban = DateTime.Now.Date,
+
                 };
-                return true;
             }
 
         }
