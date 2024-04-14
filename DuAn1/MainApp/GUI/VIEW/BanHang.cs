@@ -430,8 +430,20 @@ namespace APPBanHang
 
         private void nUD_ValueChanged(object sender, EventArgs e)
         {
-            lb_Gia.Text = Convert.ToString(nUD.Value * gia);
-        }
+          
+                if (nUD.Value == nUD.Maximum)
+                {
+
+                    if (MessageBox.Show(" bạn có chắc muốn bán hết không?", "thông báo ", MessageBoxButtons.YesNo) == DialogResult.No)
+                    {
+                        nUD.Value = nUD.Maximum - 1;
+                    }
+                }
+                else
+                {
+                    lb_Gia.Text = Convert.ToString(nUD.Value * gia);
+                }
+            }
         public long Tongtien()
         {
             long tong = 0;

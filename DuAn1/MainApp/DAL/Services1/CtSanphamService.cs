@@ -165,12 +165,21 @@ namespace Main.DAL.Services
             }
             else return "Xóa không thành công";
         }
-        public void UpdateSL(string id, int sl)
+        public bool UpdateSL(string id, int sl)
         {
-            Ctsanpham sp = list.Find(x => x.Masp == id);
-            sp.Soluong = sl;
-            sanpham.sua(sp);
-        }
+            Ctsanpham sp = list.Find(x => x.Idctsp == id);
 
+            if (sp.Soluong == 0)
+            {
+                return false;
+            }
+            else
+            {
+                sp.Soluong = sl;
+                sanpham.sua(sp);
+                return true;
+            }
+
+
+        }
     }
-}
