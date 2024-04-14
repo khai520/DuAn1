@@ -212,28 +212,29 @@ namespace MainApp.Models
 
             modelBuilder.Entity<Hoadonct>(entity =>
             {
-                entity.HasKey(e => new { e.Mahd, e.Idctsp });
+                entity.HasKey(e => e.Mahdct)
+                    .HasName("PK__HOADONCT__1A700082FC90AC3F");
 
                 entity.ToTable("HOADONCT");
 
-                entity.Property(e => e.Mahd)
+                entity.Property(e => e.Mahdct)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("MAHD");
+                    .HasColumnName("MAHDCT");
+
+                entity.Property(e => e.Gia)
+                    .HasColumnType("money")
+                    .HasColumnName("GIA");
 
                 entity.Property(e => e.Idctsp)
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("IDCTSP");
 
-                entity.Property(e => e.Gia)
-                    .HasColumnType("money")
-                    .HasColumnName("GIA");
-
-                entity.Property(e => e.Mahdct)
+                entity.Property(e => e.Mahd)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasColumnName("MAHDCT");
+                    .HasColumnName("MAHD");
 
                 entity.Property(e => e.Ngayban)
                     .HasColumnType("datetime")
