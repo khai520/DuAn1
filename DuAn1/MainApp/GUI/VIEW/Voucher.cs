@@ -110,15 +110,23 @@ namespace APPBanHang
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (mggsv.Them(txtMaVoucher.Text, Convert.ToInt32(textBox3.Text), dateTimePicker2.Value, dtp_hethan.Value))
+            try
             {
-                MessageBox.Show("Thêm thành công");
-                LoadData();
+                if (mggsv.Them(txtMaVoucher.Text, Convert.ToInt32(textBox3.Text), dateTimePicker2.Value, dtp_hethan.Value))
+                {
+                    MessageBox.Show("Thêm thành công");
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("Thêm không thành công");
+                }
             }
-            else
+            catch 
             {
-                MessageBox.Show("Thêm không thành công");
+                MessageBox.Show("Mã giảm giá chỉ được nhập số và không được rỗng");
             }
+            
 
         }
         private void LoadData()

@@ -55,9 +55,14 @@ namespace Main.DAL.Services
                 MessageBox.Show("Bạn chưa nhập tên mã giảm giá");
                 return false;
             }
-            else if(phantramgiam < 1 || phantramgiam > 70)
+            else if(phantramgiam < 10 || phantramgiam > 70)
             {
                 MessageBox.Show("Phần trăm giảm không được quá 70%");
+                return false;
+            }    
+            else if(ngayketthuc.Date <= ngaybatdau.Date)
+            {
+                MessageBox.Show("Ngày kết thúc không được nhỏ hơn hoặc bằng ngày bắt đầu");
                 return false;
             }    
             else
