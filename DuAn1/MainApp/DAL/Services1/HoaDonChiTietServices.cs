@@ -51,6 +51,7 @@ namespace Main.DAL.Services
             return idtam;
         }
 
+
         public string AddHoaDonCT( string mahd, string masp, int slban, string gia)
         {
             string id = XulyId();

@@ -19,6 +19,10 @@ namespace APPBanHang
         HoaDonChiTietServices _hoadonChiTietServices;
         CtSanphamService _ctsp;
         NhaCungCapServices _ncc;
+        MauSacService _mau;
+        KichThuocService _kichthuoc;
+        Chatlieuservices _Cl;
+        DeGiayService _dg;
         string mahd, id, mahdct, idsp;
         int sltong, gia, sl;
         //int _idCellClick;
@@ -104,7 +108,19 @@ namespace APPBanHang
 
         private void btnTimSanPham_Click(object sender, EventArgs e)
         {
-
+            
+            dgvDanhSachSanPham.DataSource = Timkiem(txt_Ten.Text , cbx_Chatlieu.SelectedText , cbx_Mau.SelectedText , cbx_Kichthuoc.SelectedText , cbx_Degiay.SelectedText);
+        }
+        public void loadTimKiem()
+        {
+            cbx_Mau.DataSource = _mau.GetallMau().ToList();
+            cbx_Mau.DisplayMember = "MAU";
+            cbx_Kichthuoc.DataSource = _kichthuoc.Getallkt().ToList();
+            cbx_Kichthuoc.DisplayMember = "kichthuoc1";
+            cbx_Chatlieu.DataSource = _Cl.Getallchatlieu().ToList();
+            cbx_Chatlieu.DisplayMember = "Chatlieu1";
+            cbx_Degiay.DataSource = _dg.Getalldegiay().ToList();
+            cbx_Degiay.DisplayMember = "degiay1";
         }
 
         private void btnTrangChu_Click(object sender, EventArgs e)
@@ -204,6 +220,7 @@ namespace APPBanHang
                 x.Iddegiay,
                 x.Idctsp
             }).ToList().Where(x => x.Trangthai == "Còn hàng").ToList();
+
             dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
             dgvDanhSachSanPham.Columns[1].HeaderText = "Tên sản phẩm";
             dgvDanhSachSanPham.Columns[2].HeaderText = "Số lượng";
@@ -218,9 +235,62 @@ namespace APPBanHang
 
 
         }
+        public DataGridView Timkiem(string ten, string chatlieu, string mau, string kichthuoc, string degiay)
+        {
+            int Stt = 1;
+            var sp = _ctsp.GetallChitietsanpham().Join(_SanphamServices.GetSanphams(), x => x.Masp, y => y.Masp, (x, y) => new
+            {
+                x.Idctsp,
+                y.Tensp,
+                x.Soluong,
+                y.Giaban,
+                y.Trangthai,
+                x.Idncc,
+                x.Idmau,
+                x.Idchatlieu,
+                x.Idkichthuoc,
+                x.Iddegiay,
+            }).ToList().Join(_ncc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new
+            {
+                STT = Stt++,
+                x.Tensp,
+                x.Soluong,
+                x.Giaban,
+                x.Trangthai,
+                y.Tenncc,
+                x.Idmau,
+                x.Idchatlieu,
+                x.Idkichthuoc,
+                x.Iddegiay,
+                x.Idctsp
+            }).ToList().Where(x => x.Trangthai == "Còn hàng").ToList();
+            if (ten != null)
+            {
+                sp = sp.Where(x => x.Tensp.ToLower().Contains(ten.ToLower())).ToList();
+            }
+            if (chatlieu != null)
+            {
+                sp = sp.Where(x => x.Idchatlieu.ToLower().Contains(chatlieu.ToLower())).ToList();
+            }
+            if (mau != null)
+            {
+                sp = sp.Where(x => x.Idmau.ToLower().Contains(mau.ToLower())).ToList();
+            }
+            if (kichthuoc != null)
+            {
+                sp = sp.Where(x => x.Idkichthuoc.ToLower().Contains(kichthuoc.ToLower())).ToList();
+            }
+            if (degiay != null)
+            {
+                sp = sp.Where(x => x.Iddegiay.ToLower().Contains(degiay.ToLower())).ToList();
+            }
+            DataGridView dgv = new();
+            dgv.DataSource = sp;
+            return dgv;
+        }
         public void loaddatasp()
         {
-            foreach(var item in _SanphamServices.GetSanphams())
+            foreach (var item in _SanphamServices.GetSanphams())
             {
                 _SanphamServices.UpdateSL(item.Masp);
             }
@@ -267,6 +337,10 @@ namespace APPBanHang
             _hoadonService = new();
             _ctsp = new();
             _ncc = new();
+            _mau = new() ;
+            _kichthuoc = new();
+            _Cl = new() ;
+            _dg = new();
             loaddanhsachhoadon();
             loaddanhsachsanpham();
             loadhoadonchitiet();
@@ -343,7 +417,7 @@ namespace APPBanHang
                 id = dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString();
                 idsp = dgvHoaDonChiTiet.Rows[d].Cells[8].Value.ToString();
                 gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Giaban);
-                sl= sltong = Convert.ToInt32(_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong);
+                sl = sltong = Convert.ToInt32(_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong);
                 sl += Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
                 nUD.Maximum = sl;
                 lb_SPThem.Text = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
@@ -392,9 +466,9 @@ namespace APPBanHang
                         }
                         _hoadonService.UpdateGia(mahd, Tongtien());
                         _SanphamServices.UpdateSL(idsp);
-                      
-                   BanHang_Load_1(sender,e);
-                   
+
+                        BanHang_Load_1(sender, e);
+
                         Clear();
                     }
                     else

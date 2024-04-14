@@ -104,15 +104,15 @@
             pictureBox1 = new PictureBox();
             panel10 = new Panel();
             label13 = new Label();
-            textBox5 = new TextBox();
+            txt_Ten = new TextBox();
             label33 = new Label();
             label32 = new Label();
             label31 = new Label();
             label18 = new Label();
-            comboBox4 = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
+            cbx_Degiay = new ComboBox();
+            cbx_Kichthuoc = new ComboBox();
+            cbx_Mau = new ComboBox();
+            cbx_Chatlieu = new ComboBox();
             panel11 = new Panel();
             label36 = new Label();
             panel1 = new Panel();
@@ -880,16 +880,16 @@
             // panel10
             // 
             panel10.Controls.Add(label13);
-            panel10.Controls.Add(textBox5);
+            panel10.Controls.Add(txt_Ten);
             panel10.Controls.Add(btnQRCode);
             panel10.Controls.Add(label33);
             panel10.Controls.Add(label32);
             panel10.Controls.Add(label31);
             panel10.Controls.Add(label18);
-            panel10.Controls.Add(comboBox4);
-            panel10.Controls.Add(comboBox3);
-            panel10.Controls.Add(comboBox2);
-            panel10.Controls.Add(comboBox1);
+            panel10.Controls.Add(cbx_Degiay);
+            panel10.Controls.Add(cbx_Kichthuoc);
+            panel10.Controls.Add(cbx_Mau);
+            panel10.Controls.Add(cbx_Chatlieu);
             panel10.Controls.Add(panel11);
             panel10.Controls.Add(btnTimSanPham);
             panel10.Location = new Point(1172, 131);
@@ -906,13 +906,13 @@
             label13.TabIndex = 13;
             label13.Text = "Tên";
             // 
-            // textBox5
+            // txt_Ten
             // 
-            textBox5.BorderStyle = BorderStyle.FixedSingle;
-            textBox5.Location = new Point(92, 61);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(212, 23);
-            textBox5.TabIndex = 12;
+            txt_Ten.BorderStyle = BorderStyle.FixedSingle;
+            txt_Ten.Location = new Point(92, 61);
+            txt_Ten.Name = "txt_Ten";
+            txt_Ten.Size = new Size(212, 23);
+            txt_Ten.TabIndex = 12;
             // 
             // label33
             // 
@@ -950,37 +950,37 @@
             label18.TabIndex = 8;
             label18.Text = "Chất liệu";
             // 
-            // comboBox4
+            // cbx_Degiay
             // 
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(92, 222);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(212, 23);
-            comboBox4.TabIndex = 7;
+            cbx_Degiay.FormattingEnabled = true;
+            cbx_Degiay.Location = new Point(92, 222);
+            cbx_Degiay.Name = "cbx_Degiay";
+            cbx_Degiay.Size = new Size(212, 23);
+            cbx_Degiay.TabIndex = 7;
             // 
-            // comboBox3
+            // cbx_Kichthuoc
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(92, 180);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(212, 23);
-            comboBox3.TabIndex = 6;
+            cbx_Kichthuoc.FormattingEnabled = true;
+            cbx_Kichthuoc.Location = new Point(92, 180);
+            cbx_Kichthuoc.Name = "cbx_Kichthuoc";
+            cbx_Kichthuoc.Size = new Size(212, 23);
+            cbx_Kichthuoc.TabIndex = 6;
             // 
-            // comboBox2
+            // cbx_Mau
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(92, 143);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(212, 23);
-            comboBox2.TabIndex = 5;
+            cbx_Mau.FormattingEnabled = true;
+            cbx_Mau.Location = new Point(92, 143);
+            cbx_Mau.Name = "cbx_Mau";
+            cbx_Mau.Size = new Size(212, 23);
+            cbx_Mau.TabIndex = 5;
             // 
-            // comboBox1
+            // cbx_Chatlieu
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(92, 101);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(212, 23);
-            comboBox1.TabIndex = 4;
+            cbx_Chatlieu.FormattingEnabled = true;
+            cbx_Chatlieu.Location = new Point(92, 101);
+            cbx_Chatlieu.Name = "cbx_Chatlieu";
+            cbx_Chatlieu.Size = new Size(212, 23);
+            cbx_Chatlieu.TabIndex = 4;
             // 
             // panel11
             // 
@@ -1231,10 +1231,10 @@
         private Panel panel10;
         private Panel panel11;
         private Label label36;
-        private ComboBox comboBox4;
-        private ComboBox comboBox3;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
+        private ComboBox cbx_Degiay;
+        private ComboBox cbx_Kichthuoc;
+        private ComboBox cbx_Mau;
+        private ComboBox cbx_Chatlieu;
         private Label label33;
         private Label label32;
         private Label label31;
@@ -1243,7 +1243,7 @@
         private Button btn_Xoa;
         private Button btn_Them;
         private Label label13;
-        private TextBox textBox5;
+        private TextBox txt_Ten;
         private Panel panel1;
         private Panel panel12;
         private Label label37;
