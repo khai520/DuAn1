@@ -1,4 +1,5 @@
-﻿using MainApp.BLL.Models;
+﻿
+using MainApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +72,6 @@ namespace Main.DAL.Services
             }
             else
             {
-                hoadonct = hoaDonChiTietServices.AddHoaDonCT(idctsp, slban, gia, ngayban);
                 var hoadon = new Hoadon
                 {
                     Mahd = XulyId(),
@@ -109,7 +109,7 @@ namespace Main.DAL.Services
                     Tongtien = tongtien,
                     Trangthai = trangthai
                 };
-                return repo.sua(idhoadon, hoadon);
+                return repo.sua(hoadon);
             }
 
         }

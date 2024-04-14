@@ -1,4 +1,5 @@
-﻿using MainApp.BLL.Models;
+﻿
+using MainApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,23 +27,9 @@ namespace WinFormsApp1.Repositories
             return context.SaveChanges() > 0;
             
         }
-        public bool sua(string masp, Hoadon hoadon)
+        public bool sua( Hoadon hoadon)
         {
-                var obj = findbyname(masp);
-                if (obj == null)
-                {
-                    return false;
-                }
-                obj.Mahd = hoadon.Mahd;
-                obj.Idkh = hoadon.Idkh;
-                obj.IdnguoiDung = hoadon.IdnguoiDung;
-                obj.Ngayban = hoadon.Ngayban;
-                obj.Tensp = hoadon.Tensp;
-                obj.Soluong = hoadon.Soluong;
-                obj.Tongtien = hoadon.Tongtien;
-                obj.Trangthai = hoadon.Trangthai;
-               
-                context.Update(obj);
+                context.Update(hoadon);
                 return context.SaveChanges()> 0;
         }
         public bool xoa(string xoahd)
