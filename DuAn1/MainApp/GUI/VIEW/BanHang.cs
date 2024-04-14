@@ -331,15 +331,15 @@ namespace APPBanHang
             }
             else if (d >= 0)
             {
+                id = dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString();
                 idsp = dgvHoaDonChiTiet.Rows[d].Cells[8].Value.ToString();
                 gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Giaban);
-                sl = sltong = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == idsp).Soluong);
-                sltong += Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
+                sl = sltong = Convert.ToInt32(_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong);
                 nUD.Maximum = sltong;
                 lb_SPThem.Text = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
+                MessageBox.Show($"{sltong}");
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
                 mahd = dgvHoaDonChiTiet.Rows[d].Cells[6].Value.ToString();
-                id = dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString();
                 nUD.Value = Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
             }
         }

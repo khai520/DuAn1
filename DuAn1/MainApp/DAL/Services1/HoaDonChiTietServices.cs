@@ -104,7 +104,7 @@ namespace Main.DAL.Services
                 Hoadonct hdct = GetHoaDonCT().Find(x => x.Mahdct == idhdct);
                 hdct.Slban = slban;
                 hdct.Gia = gia;
-                repo.them(hdct);
+                repo.sua(hdct);
 
             }
             catch (Exception)
