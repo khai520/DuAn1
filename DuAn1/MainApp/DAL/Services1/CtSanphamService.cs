@@ -23,7 +23,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count() + 1; i++)
+            for (int i = 1; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -37,6 +37,11 @@ namespace Main.DAL.Services
                 {
                     continue;
                 }
+                else
+                {
+                    break;
+                }
+
             }
             return idtam;
        }
@@ -48,24 +53,36 @@ namespace Main.DAL.Services
             }
             else { return false; }
         }
-        public string Them(dynamic? idncc, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, string? sl)
+        public string Them(object? idncc, string? masp, string? mau, string? chatlieu, string? kichthuoc, string? degiay, string? sl)
         {
-            Ctsanpham ctsanpham = new Ctsanpham
+            var check = GetallChitietsanpham().Find(x => x.Idncc == (idncc == null ? null : idncc.ToString()) && x.Masp == masp && x.Idmau == mau && x.Idchatlieu == chatlieu && x.Idkichthuoc == kichthuoc && x.Iddegiay == degiay && x.Soluong == Convert.ToInt32(sl));
+            if ( check != null)
             {
-                Idctsp = XulyId(),
-                Idncc = idncc == null ? null : Convert.ToString(idncc),
-                Masp = masp,
-                Soluong = Convert.ToInt32(sl),
-                Idchatlieu = chatlieu,
-                Idkichthuoc = kichthuoc,
-                Iddegiay = degiay,
-                Idmau = mau,
-            };
-            if (sanpham.them(ctsanpham))
-            {
+                Sua(check.Idctsp, idncc, mau, chatlieu, kichthuoc, degiay, Convert.ToString(check.Soluong + Convert.ToInt32(sl)));
                 return "Add thành công";
             }
-            else { return "Add không thành công"; }
+            else
+            {
+                Ctsanpham ctsanpham = new Ctsanpham
+                {
+                    Idctsp = XulyId(),
+                    Idncc = idncc == null ? null : Convert.ToString(idncc),
+                    Masp = masp,
+                    Soluong = Convert.ToInt32(sl),
+                    Idchatlieu = chatlieu,
+                    Idkichthuoc = kichthuoc,
+                    Iddegiay = degiay,
+                    Idmau = mau,
+                };
+
+                if (sanpham.them(ctsanpham))
+                {
+                    return "Add thành công";
+                }
+                else { return "Add không thành công"; }
+
+            }
+           
         }
         public string Sua(string id, dynamic? idncc, string? mau, string? chatlieu, string? kichthuoc, string? degiay , string? sl)
         {

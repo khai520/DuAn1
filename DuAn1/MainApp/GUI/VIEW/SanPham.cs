@@ -311,7 +311,9 @@ namespace APPBanHang
         {
             if (id != null)
             {
+
                 MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue, id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text, txt_Sl.Text));
+                   
                 Loadtab2();
             }
             else

@@ -72,7 +72,6 @@
             groupBox2 = new GroupBox();
             dgvHoaDonChiTiet = new DataGridView();
             btn_Them = new Button();
-            btn_Sua = new Button();
             panel6 = new Panel();
             label12 = new Label();
             btnLuu = new Button();
@@ -589,16 +588,6 @@
             btn_Them.UseVisualStyleBackColor = true;
             btn_Them.Click += btn_Them_Click;
             // 
-            // btn_Sua
-            // 
-            btn_Sua.Location = new Point(90, 160);
-            btn_Sua.Name = "btn_Sua";
-            btn_Sua.Size = new Size(81, 35);
-            btn_Sua.TabIndex = 1;
-            btn_Sua.Text = "Sửa";
-            btn_Sua.UseVisualStyleBackColor = true;
-            btn_Sua.Click += btn_Sua_Click;
-            // 
             // panel6
             // 
             panel6.Controls.Add(label12);
@@ -1022,7 +1011,6 @@
             panel1.Controls.Add(label34);
             panel1.Controls.Add(btn_Them);
             panel1.Controls.Add(btn_Xoa);
-            panel1.Controls.Add(btn_Sua);
             panel1.Controls.Add(panel12);
             panel1.Location = new Point(886, 671);
             panel1.Name = "panel1";
@@ -1185,7 +1173,6 @@
         private DataGridView dgvDanhSachSanPham;
         private Label label2;
         private GroupBox groupBox2;
-        private Button btn_Sua;
         private DataGridView dgvHoaDonChiTiet;
         private Panel panel6;
         private Label label5;
