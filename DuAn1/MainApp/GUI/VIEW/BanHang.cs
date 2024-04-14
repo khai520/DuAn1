@@ -270,6 +270,16 @@ namespace APPBanHang
         {
 
         }
+        public void Clear()
+        {
+            id = null;
+            mahdct = null;
+            gia = 0;
+            sltong = 0;
+            lb_Gia.Text = null;
+            nUD.Value = 0;
+            nUD.Minimum = 0;
+        }
         private void dgvDanhSachHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int d = e.RowIndex;
@@ -312,11 +322,11 @@ namespace APPBanHang
             {
                 gia = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString()).Giaban);
                 sltong = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString()).Soluong);
+                sltong += Convert.ToInt32(_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Masp == dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString()).Slban);
                 nUD.Maximum = sltong;
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
                 nUD.Value = Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
                 lb_Gia.Text = dgvHoaDonChiTiet.Rows[d].Cells[3].Value.ToString();
-                
             }
         }
 
@@ -330,26 +340,87 @@ namespace APPBanHang
         }
         private void btn_Them_Click(object sender, EventArgs e)
         {
-
+            if (mahd != null)
+            {
+                if (id != null)
+                {
+                    if (_hoadonChiTietServices.GetHoaDonCT().Find(x => x.Masp == id) == null)
+                    {
+                        _hoadonChiTietServices.AddHoaDonCT(mahd,id,nUD.Value,lb_Gia.Text);
+                    }
+                    else
+                    {
+                        _hoadonChiTietServices.UpdateHoaDonCT(mahdct, mahd, id, nUD.Value, lb_Gia.Text);
+                    }
+                    _SanphamServices.UpdateSL(id, sltong - Convert.ToInt32(nUD.Value));
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn sản phẩm");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn hóa đơn");
+            }
+            
         }
 
         private void btn_Sua_Click(object sender, EventArgs e)
         {
-
+            if (mahd != null)
+            {
+                if (id != null)
+                {
+                    _hoadonChiTietServices.UpdateHoaDonCT(mahdct, mahd, id, nUD.Value, lb_Gia.Text);
+                    _SanphamServices.UpdateSL(id, sltong - Convert.ToInt32(nUD.Value));
+                    Clear();
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn sản phẩm");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn hóa đơn");
+            }
         }
 
         private void btn_Xoa_Click(object sender, EventArgs e)
         {
-
+            if (mahd != null)
+            {
+                if (id != null)
+                {
+                    _hoadonChiTietServices.XoaHDCT(mahdct);
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn sản phẩm");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn hóa đơn");
+            }
         }
 
-        private void nUD_KeyUp(object sender, KeyEventArgs e)
+            private void nUD_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (nUD.Value > nUD.Maximum)
+            {
+                MessageBox.Show("Quá số lượng");
+            }
         }
 
         private void nUD_KeyDown(object sender, KeyEventArgs e)
         {
+            if (nUD.Value <= 0)
+            {
+                MessageBox.Show("Quá số lượng");
+            }
         }
     }
 }
