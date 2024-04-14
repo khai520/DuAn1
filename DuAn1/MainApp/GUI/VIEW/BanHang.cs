@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Main.DAL.Services;
-using MainApp.BLL.Models;
 using WinFormsApp1.Services;
 
 namespace APPBanHang
@@ -20,7 +19,9 @@ namespace APPBanHang
         HoaDonChiTietServices _hoadonChiTietServices;
         CtSanphamService _ctsp;
         NhaCungCapServices _ncc;
-        string idsp;
+        string mahd, id, mahdct;
+        int sltong ;
+        decimal gia;
         //int _idCellClick;
         public BanHang()
         {
@@ -159,21 +160,19 @@ namespace APPBanHang
                 x.IdnguoiDung,
                 x.Idmagiamgia,
                 x.Ngayban,
-                x.Tensp,
                 x.Soluong,
                 x.Tongtien,
                 x.Trangthai
-            }).ToList();
+            }).ToList().Where(x => x.Trangthai == "CHUA TT").ToList();
             dgvDanhSachHoaDon.Columns[0].HeaderText = "STT";
             dgvDanhSachHoaDon.Columns[1].HeaderText = "MaHD";
             dgvDanhSachHoaDon.Columns[2].HeaderText = "Tên khách hàng";
             dgvDanhSachHoaDon.Columns[3].HeaderText = "Tên nhân viên";
             dgvDanhSachHoaDon.Columns[4].HeaderText = "Mã giảm giá";
             dgvDanhSachHoaDon.Columns[5].HeaderText = "Ngày bán";
-            dgvDanhSachHoaDon.Columns[6].HeaderText = "Tên sản phẩm";
-            dgvDanhSachHoaDon.Columns[7].HeaderText = "Số lượng";
-            dgvDanhSachHoaDon.Columns[8].HeaderText = "Tổng tiền";
-            dgvDanhSachHoaDon.Columns[9].HeaderText = "Trạng thái";
+            dgvDanhSachHoaDon.Columns[6].HeaderText = "Số lượng";
+            dgvDanhSachHoaDon.Columns[7].HeaderText = "Tổng tiền";
+            dgvDanhSachHoaDon.Columns[8].HeaderText = "Trạng thái";
         }
 
         private void loaddanhsachsanpham()
@@ -204,7 +203,7 @@ namespace APPBanHang
                 x.Idchatlieu,
                 x.Idkichthuoc,
                 x.Iddegiay
-            }).ToList();
+            }).ToList().Where(x => x.Trangthai == "Còn hàng").ToList();
             dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
             dgvDanhSachSanPham.Columns[1].HeaderText = "Masp";
             dgvDanhSachSanPham.Columns[2].HeaderText = "Tên sản phẩm";
@@ -221,21 +220,23 @@ namespace APPBanHang
         private void loadhoadonchitiet()
         {
             int Stt = 1;
-            dgvHoaDonChiTiet.DataSource = _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Masp == idsp).Join(_SanphamServices.GetSanphams(), x => x.Masp, x => x.Masp, (x, y) => new
+            dgvHoaDonChiTiet.DataSource = _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Mahd == mahd).Join(_SanphamServices.GetSanphams(), x => x.Masp, x => x.Masp, (x, y) => new
             {
                 STT = Stt++,
                 x.Mahd,
                 y.Tensp,
                 x.Slban,
                 x.Gia,
-                x.Ngayban
+                x.Ngayban,
+                x.Masp
             }).ToList();
-            dgvDanhSachHoaDon.Columns[0].HeaderText = "STT";
-            dgvDanhSachHoaDon.Columns[1].HeaderText = "MaHD";
-            dgvDanhSachHoaDon.Columns[2].HeaderText = "Tên sản phẩm";
-            dgvDanhSachHoaDon.Columns[3].HeaderText = "Số lượng";
-            dgvDanhSachHoaDon.Columns[4].HeaderText = "Giá";
-            dgvDanhSachHoaDon.Columns[5].HeaderText = "Ngày bán";
+            dgvHoaDonChiTiet.Columns[0].HeaderText = "STT";
+            dgvHoaDonChiTiet.Columns[1].HeaderText = "MaHD";
+            dgvHoaDonChiTiet.Columns[2].HeaderText = "Tên sản phẩm";
+            dgvHoaDonChiTiet.Columns[3].HeaderText = "Số lượng";
+            dgvHoaDonChiTiet.Columns[4].HeaderText = "Giá";
+            dgvHoaDonChiTiet.Columns[5].HeaderText = "Ngày bán";
+            dgvHoaDonChiTiet.Columns[6].Visible = true;
         }
 
         private void BanHang_Load_1(object sender, EventArgs e)
@@ -268,6 +269,124 @@ namespace APPBanHang
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
 
+        }
+
+        private void dgvDanhSachSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int d = e.RowIndex;
+            if (d < 0)
+            {
+
+            }
+            else if (d >= 0)
+            {
+                id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
+                sltong = Convert.ToInt32(dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString());
+                gia = Convert.ToDecimal(dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString());
+                lb_SPThem.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
+            }
+        }
+        private void dgvDanhSachHoaDon_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int d = e.RowIndex;
+            if (d < 0)
+            {
+
+            }
+            else if (d >= 0)
+            {
+                mahd = dgvDanhSachHoaDon.Rows[d].Cells[1].Value.ToString();
+                loadhoadonchitiet();
+            }
+        }
+
+        private void dgvDanhSachSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void nUD_ValueChanged(object sender, EventArgs e)
+        {
+            if (nUD.Value >= 0)
+            {
+                if (sltong - nUD.Value >= 0 && nUD.Value != 0)
+                {
+                    lb_Gia.Text = Convert.ToString(gia * nUD.Value);
+                }
+                else
+                {
+                    MessageBox.Show("Số lượng không hợp lệ");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Số lượng không được âm");
+            }
+        }
+
+        private void btn_Them_Click(object sender, EventArgs e)
+        {
+            if (id != null)
+            {
+                var check = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Masp == id);
+                if (check == null)
+                {
+                    _hoadonChiTietServices.AddHoaDonCT(mahd, id, sltong - nUD.Value, lb_Gia.Text);
+                    _SanphamServices.UpdateSL(id, Convert.ToInt32(sltong - nUD.Value));
+                    lb_SPThem.ResetText();
+                    loaddanhsachsanpham();
+                }
+                else
+                {
+                    _hoadonChiTietServices.UpdateHoaDonCT(check.Mahdct, mahd, id, sltong - nUD.Value, lb_Gia.Text);
+                    _SanphamServices.UpdateSL(id, Convert.ToInt32(sltong - nUD.Value));
+                    lb_SPThem.ResetText();
+                    loadhoadonchitiet();
+                }
+
+            }
+
+        }
+
+        private void btn_Sua_Click(object sender, EventArgs e)
+        {
+            if (id != null)
+            {
+                var check = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Masp == id);
+                if (check != null)
+                {
+                    _hoadonChiTietServices.UpdateHoaDonCT(check.Mahdct, mahd, id, sltong - nUD.Value, lb_Gia.Text);
+                    _SanphamServices.UpdateSL(id, Convert.ToInt32(sltong - nUD.Value));
+                    lb_SPThem.ResetText();
+                    loadhoadonchitiet();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn sản phẩm để sửa");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn sản phẩm để sửa");
+            }
+        }
+
+        private void btn_Xoa_Click(object sender, EventArgs e)
+        {
+            _hoadonChiTietServices.XoaHDCT(mahdct);
+            loadhoadonchitiet();
+        }
+
+        private void dgvHoaDonChiTiet_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            int d = e.RowIndex;
+            mahdct = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
+            lb_Gia.Text = dgvHoaDonChiTiet.Rows[d].Cells[4].Value.ToString();
+            id = dgvHoaDonChiTiet.Rows[d].Cells[6].Value.ToString();
+            gia = Convert.ToDecimal(_SanphamServices.GetSanphams().Find(x => x.Masp == id).Giaban.ToString());
+            sltong = Convert.ToInt32(_SanphamServices.GetSanphams().Find(x => x.Masp == id).Soluong.ToString());
+            nUD.Value = Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[3].Value.ToString());
         }
     }
 }

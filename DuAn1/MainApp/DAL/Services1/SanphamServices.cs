@@ -1,6 +1,6 @@
 ﻿
 using Main.DAL.Services;
-using MainApp.BLL.Models;
+using MainApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,6 +154,13 @@ namespace WinFormsApp1.Services
 
             return GetSanphams().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai).ToList();
         }
+        public void UpdateSL(string id , int sl)
+        {
+            Sanpham sanpham = list.Find(x => x.Masp == id);
+            sanpham.Soluong = sl;
+            repo.sua(sanpham);
+            
 
+        }
     }
 }

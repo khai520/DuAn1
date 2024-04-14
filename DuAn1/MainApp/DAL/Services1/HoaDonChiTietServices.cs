@@ -1,5 +1,5 @@
 ﻿
-using MainApp.BLL.Models;
+using MainApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,39 +33,40 @@ namespace Main.DAL.Services
             {
                 if (i >= 10)
                 {
-                    idtam = "HD" + i;
+                    idtam = "HDCT" + i;
                 }
                 else
                 {
-                    idtam = "HD" + "0" + i;
+                    idtam = "HDCT" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.Mahd.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.Mahdct.Skip(4) == idtam).Count() > 0)
                 {
-                    break;
+                    continue;
                 }
             }
             return idtam;
         }
 
-        public Hoadonct AddHoaDonCT(string idctsp, int slban, decimal gia, DateTime ngayban)
+        public void AddHoaDonCT( string mahd, string masp, decimal slban, string gia)
         {
-            if (CheckValidate(idctsp) || CheckValidate(slban) || CheckValidate(gia) || CheckValidate(ngayban))
-            {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return null;
-            }
-            else
+            try
             {
                 Hoadonct hdct = new Hoadonct
                 {
-                    Mahd = XulyId(),
-                    Masp = idctsp,
-                    Slban = slban,
-                    Gia = gia,
-                    Ngayban = ngayban,
+                    Mahdct = XulyId(),
+                    Mahd = mahd,
+                    Masp = masp,
+                    Slban = Convert.ToInt32(slban),
+                    Gia = Convert.ToDecimal(gia),
+                    Ngayban = DateTime.Now,
                 };
-                return hdct;
+                repo.them(hdct);
             }
+            catch (Exception)
+            {
+                Console.WriteLine("Lỗi");
+            }
+           
         }
         public List<Hoadonct> Change()
         {
@@ -82,9 +83,9 @@ namespace Main.DAL.Services
 
             Hoadonct sP = new Hoadonct()
             {
-                
+                Mahdct = XulyId(),
                 Mahd = id ,
-                Masp = list.Find(x=>x.Mahd == id).Masp.ToString(),
+
                 Slban = list.Find(x => x.Mahd == id).Slban.Value,
                 Gia = list.Find(x => x.Mahd == id).Gia.Value,
                 Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value
@@ -103,7 +104,7 @@ namespace Main.DAL.Services
             }
             else
             {
-                var ds = Change().Where(x => x.Mahd == id || x.Masp == idctsp || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
+                var ds = Change().Where(x => x.Mahd == id  || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
                 List<Hoadonct> listAdd = new();
                 if (ds.Count() > 0)
                 {
@@ -119,34 +120,26 @@ namespace Main.DAL.Services
                 return listAdd;
             }
         }
-        public bool AddHoaDonCT2(string idctsp, int slban, decimal gia, DateTime ngayban)
+        public void UpdateHoaDonCT(string idhdct,string mahd, string Masp, decimal slban, string gia)
         {
-            return repo.them(AddHoaDonCT(idctsp, slban, gia, ngayban));
-        }
-        public bool UpdateHoaDonCT(string idhdct, string idctsp, int slban, decimal gia, DateTime ngayban)
-        {
-            if (CheckValidate(idctsp) || CheckValidate(slban) || CheckValidate(gia) || CheckValidate(ngayban))
+            try
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
-            }
-            else
-            {
-                Hoadonct hoadonct = new Hoadonct
-                {
-                    Mahd = idhdct,
-                    Slban = slban,
-                    Masp = idctsp,
-                    Gia = gia,
-                    Ngayban = ngayban
-                };
-                return repo.sua(hoadonct);
-            }
+                Hoadonct hdct = GetHoaDonCT().Find(x => x.Mahdct == idhdct);
+                hdct.Mahd = mahd;
+                hdct.Masp = Masp;
+                hdct.Slban = Convert.ToInt32(slban);
+                hdct.Gia = Convert.ToDecimal(gia);
+                repo.them(hdct);
 
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Lỗi");
+            }
         }
         public bool XoaHDCT(string idhdct)
         {
-            Hoadonct hoadonct = GetHoaDonCT().Find(x => x.Mahd == idhdct);
+            Hoadonct hoadonct = GetHoaDonCT().Find(x => x.Mahdct == idhdct);
             return repo.xoa(hoadonct);
         }
         public List<Hoadonct> FindHoaDonct(string idkh)

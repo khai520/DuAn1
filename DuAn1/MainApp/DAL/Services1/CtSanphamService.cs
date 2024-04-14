@@ -1,6 +1,7 @@
 ﻿
-using MainApp.BLL.Models;
+
 using MainApp.GUI.VIEW;
+using MainApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

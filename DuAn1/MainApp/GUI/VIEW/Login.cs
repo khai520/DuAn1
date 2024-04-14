@@ -1,7 +1,7 @@
 ﻿
 using WinFormsApp1.Services;
 using Main.DAL.Services;
-using MainApp.BLL.Models;
+using MainApp.Models;
 
 namespace APPBanHang
 {

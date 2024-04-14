@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace MainApp.BLL.Models
+namespace MainApp.Models
 {
     public partial class DUAN1Context : DbContext
     {
@@ -212,9 +212,19 @@ namespace MainApp.BLL.Models
 
             modelBuilder.Entity<Hoadonct>(entity =>
             {
-                entity.HasKey(e => new { e.Mahd, e.Masp });
+                entity.HasKey(e => e.Mahdct)
+                    .HasName("PK__HOADONCT__1A700082B49A01C1");
 
                 entity.ToTable("HOADONCT");
+
+                entity.Property(e => e.Mahdct)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("MAHDCT");
+
+                entity.Property(e => e.Gia)
+                    .HasColumnType("money")
+                    .HasColumnName("GIA");
 
                 entity.Property(e => e.Mahd)
                     .HasMaxLength(10)
@@ -225,10 +235,6 @@ namespace MainApp.BLL.Models
                     .HasMaxLength(10)
                     .IsUnicode(false)
                     .HasColumnName("MASP");
-
-                entity.Property(e => e.Gia)
-                    .HasColumnType("money")
-                    .HasColumnName("GIA");
 
                 entity.Property(e => e.Ngayban)
                     .HasColumnType("datetime")

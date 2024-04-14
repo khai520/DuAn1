@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MainApp.BLL.Models
+namespace MainApp.Models
 {
     public partial class Hoadonct
     {
+        public string Mahdct { get; set; } = null!;
         public string Mahd { get; set; } = null!;
         public string Masp { get; set; } = null!;
         public int? Slban { get; set; }
