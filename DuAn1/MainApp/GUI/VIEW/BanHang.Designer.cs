@@ -213,7 +213,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1739, 53);
             panel2.TabIndex = 61;
-            panel2.Paint += panel2_Paint;
             // 
             // btnThoat
             // 
@@ -505,7 +504,6 @@
             dgvDanhSachSanPham.Size = new Size(950, 227);
             dgvDanhSachSanPham.TabIndex = 1;
             dgvDanhSachSanPham.CellClick += dgvDanhSachSanPham_CellClick;
-            dgvDanhSachSanPham.CellContentClick += dgvDanhSachSanPham_CellContentClick;
             // 
             // panel5
             // 
@@ -1068,10 +1066,13 @@
             // nUD
             // 
             nUD.Location = new Point(96, 97);
+            nUD.Maximum = new decimal(new int[] { 0, 0, 0, 0 });
             nUD.Name = "nUD";
             nUD.Size = new Size(120, 23);
             nUD.TabIndex = 17;
             nUD.ValueChanged += nUD_ValueChanged;
+            nUD.KeyDown += nUD_KeyDown;
+            nUD.KeyUp += nUD_KeyUp;
             // 
             // label34
             // 
