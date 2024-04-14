@@ -16,10 +16,6 @@ namespace WinFormsApp1.Repositories
         {
             return context.Ctsanphams.ToList();
         }
-        public List<Ctsanpham> FindSvByName(string name)
-        {
-            return context.Ctsanphams.Where(x => x.Tengiay.ToLower().Contains(name)).ToList();
-        }
         public bool them(Ctsanpham ctsanpham)
         {
             context.Ctsanphams.Add(ctsanpham);

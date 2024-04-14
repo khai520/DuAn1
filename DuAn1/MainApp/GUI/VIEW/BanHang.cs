@@ -20,8 +20,7 @@ namespace APPBanHang
         CtSanphamService _ctsp;
         NhaCungCapServices _ncc;
         string mahd, id, mahdct, idsp;
-        int sltong;
-        decimal gia, tonggia;
+        int sltong , gia;
         //int _idCellClick;
         public BanHang()
         {
@@ -182,7 +181,7 @@ namespace APPBanHang
             {
                 x.Idctsp,
                 y.Tensp,
-                y.Soluong,
+                x.Soluong,
                 y.Giaban,
                 y.Trangthai,
                 x.Idncc,
@@ -242,7 +241,6 @@ namespace APPBanHang
                 x.Masp
             }).ToList();
             dgvHoaDonChiTiet.Columns[0].HeaderText = "STT";
-            
             dgvHoaDonChiTiet.Columns[1].HeaderText = "Tên sản phẩm";
             dgvHoaDonChiTiet.Columns[2].HeaderText = "Số lượng";
             dgvHoaDonChiTiet.Columns[3].HeaderText = "Giá";
@@ -314,11 +312,12 @@ namespace APPBanHang
             }
             else if (d >= 0)
             {
+
                 idsp = _ctsp.GetallChitietsanpham().Find(x => x.Idctsp == dgvDanhSachSanPham.Rows[d].Cells[10].Value.ToString()).Masp;
                 id = dgvDanhSachSanPham.Rows[d].Cells[10].Value.ToString();
                 lb_SPThem.Text = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
                 sltong = Convert.ToInt32(dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString());
-                gia = Convert.ToDecimal(dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString());
+                gia = Convert.ToInt32(dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString());
                 nUD.Maximum = sltong;
             }
         }
@@ -341,7 +340,7 @@ namespace APPBanHang
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
                 mahd = dgvHoaDonChiTiet.Rows[d].Cells[6].Value.ToString();
                 id = dgvHoaDonChiTiet.Rows[d].Cells[7].Value.ToString();
-                nUD.Value = Convert.ToDecimal(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
+                nUD.Value = Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
             }
         }
 
@@ -349,9 +348,9 @@ namespace APPBanHang
         {
             lb_Gia.Text = Convert.ToString(nUD.Value * gia);
         }
-        public decimal Tongtien()
+        public long Tongtien()
         {
-            decimal tong = 0;
+            long tong = 0;
             foreach (var item in _hoadonChiTietServices.GetHoaDonCT())
             {
                 tong += Convert.ToInt64(item.Gia);
@@ -377,10 +376,12 @@ namespace APPBanHang
                         }
                         else
                         {
-                            _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(list.Slban) + Convert.ToInt32(nUD.Value), Convert.ToInt32(list.Gia) + Convert.ToDecimal(lb_Gia.Text));
+                            _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(list.Slban) + Convert.ToInt32(nUD.Value), Convert.ToInt32(list.Gia) + Convert.ToInt32(lb_Gia.Text));
                         }
-                        _SanphamServices.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                        _ctsp.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
                         _hoadonService.UpdateGia(mahd, Tongtien());
+                        _SanphamServices.UpdateSL(idsp);
+                        loaddanhsachsanpham();
                         loaddanhsachhoadon();
                         loadhoadonchitiet();
                         Clear();
@@ -410,8 +411,10 @@ namespace APPBanHang
                 {
                     var list = _hoadonChiTietServices.GetHoaDonCT().Find(x => x.Idctsp == id);
                     _hoadonChiTietServices.UpdateHoaDonCT(list.Mahdct, Convert.ToInt32(nUD.Value), Convert.ToInt32(lb_Gia.Text));
-                    _SanphamServices.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
+                    _ctsp.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
                     _hoadonService.UpdateGia(mahd, Tongtien());
+                    _SanphamServices.UpdateSL(idsp);
+                    loaddanhsachsanpham();
                     loaddanhsachhoadon();
                     loadhoadonchitiet();
                     Clear();
@@ -434,8 +437,11 @@ namespace APPBanHang
                 if (id != null)
                 {
                     _hoadonChiTietServices.XoaHDCT(mahdct);
-                    _SanphamServices.UpdateSL(idsp, sltong - 0);
+                    _ctsp.UpdateSL(idsp, sltong - Convert.ToInt32(nUD.Value));
                     _hoadonService.UpdateGia(mahd, Tongtien());
+                    _SanphamServices.UpdateSL(idsp);
+                    loaddanhsachsanpham();
+                    loaddanhsachhoadon();
                     loadhoadonchitiet();
                     Clear();
                 }

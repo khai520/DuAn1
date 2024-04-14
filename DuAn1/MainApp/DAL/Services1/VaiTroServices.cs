@@ -17,42 +17,6 @@ namespace WinFormsApp1.Services
             return list = list1;
 
         }
-        public List<VaiTro> Change()
-        {
-            List<VaiTro> list2 = new();
-            foreach (var item in list)
-            {
-                list2.Add(Loc(item.IdvaiTro));
-            }
-            return list2;
-        }
-        public VaiTro Loc(string id)
-        {
-            VaiTro sP = new VaiTro()
-            {
-           
-                IdvaiTro = id,
-                Vaitro1 = list.Find(x=>x.IdvaiTro==id).Vaitro1.ToString()
-            };
-            return sP;
-        }
-        public List<VaiTro> Timkiem(string? id , string? vaitro)
-        {
-            var ds = Change().Where(x => x.IdvaiTro == id ||x.Vaitro1 == vaitro);
-            List<VaiTro> listAdd = new();
-            if (ds.Count() > 0)
-            {
-                foreach (var item in ds)
-                {
-                    listAdd.Add(Loc(item.IdvaiTro));
-                }
-            }
-            else
-            {
-                listAdd = list;
-            }
-            return listAdd;
-        }
 
     }
 }

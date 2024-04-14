@@ -14,9 +14,7 @@ namespace Main.DAL.Services
     {
         HoaDonRepo repo = new HoaDonRepo();
         List<Hoadon> list = new List<Hoadon>();
-        KhachHangService khachHangService = new KhachHangService();
-        NguoiDungServices nguoiDungServices = new NguoiDungServices();
-        MaGiamGiaServices ma = new MaGiamGiaServices();
+
 
         public List<Hoadon> GetHoadons()
         {
@@ -34,7 +32,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count(); i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -51,16 +49,7 @@ namespace Main.DAL.Services
             }
             return idtam;
         }
-        public List<Hoadon> Change()
-        {
-            List<Hoadon> list2 = new();
-            GetHoadons();
-            foreach (var item in list)
-            {
-                list2.Add(Loc(item.Mahd));
-            }
-            return list2;
-        }
+
         public void AddHoaDon(string idnguoidung)
         {
             HoaDonChiTietServices hoaDonChiTietServices = new();
@@ -80,7 +69,7 @@ namespace Main.DAL.Services
             }
 
         }
-        public bool UpdateHoaDon(string idhoadon, string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, decimal tongtien, string trangthai)
+        public bool UpdateHoaDon(string idhoadon, string idkh, string idnguoidung, string idmgg, DateTime ngayban, string tensanpham, int soluong, int tongtien, string trangthai)
         {
             if (CheckValidate(idhoadon) || CheckValidate(idkh) || CheckValidate(idnguoidung) || CheckValidate(ngayban) || CheckValidate(tensanpham) || CheckValidate(tongtien) || CheckValidate(trangthai) || CheckValidate(soluong))
             {
@@ -102,80 +91,11 @@ namespace Main.DAL.Services
             }
 
         }
-        public void UpdateGia(string mahd , decimal gia)
+        public void UpdateGia(string mahd , long gia)
         {
             Hoadon hoadon = GetHoadons().Find(x => x.Mahd == mahd);
-            hoadon.Tongtien = gia;
+            hoadon.Tongtien = Convert.ToInt32(gia);
             repo.sua(hoadon);
-        }
-        public Hoadon Loc(string id)
-        {
-            string? kh ;
-            if (khachHangService.Getallkh().Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh) == null)  
-            {
-                kh = " ";
-            }
-            else
-            {
-                kh = khachHangService.Getallkh().Find(x => x.Idkh == list.Find(x => x.Mahd == id).Idkh).Ten.ToString();
-            }
-            string? nd;
-            if (nguoiDungServices.GetallND().Find(x => x.IdnguoiDung == list.Find(x => x.Mahd == id).IdnguoiDung) == null)
-            {
-                nd = " ";
-            }
-            else
-            {
-                nd = nguoiDungServices.GetallND().Find(x => x.IdnguoiDung == list.Find(x => x.Mahd == id).IdnguoiDung).Ten.ToString();
-            }
-            string? magg ;
-            if (ma.Getallmagiam().Find(x => x.Idmagiamgia == list.Find(x => x.Mahd == id).Idmagiamgia) == null)
-            {
-                magg = " ";
-            }
-            else
-            {
-                magg = ma.Getallmagiam().Find(x => x.Idmagiamgia == list.Find(x => x.Mahd == id).Idmagiamgia).Tenma.ToString();
-            }
-            Hoadon hoadon = new Hoadon()
-            {
-                Mahd = id,
-                Idkh = kh,
-                IdnguoiDung = nd,
-                Idmagiamgia = magg,
-                Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value,
-                Tensp = list.Find(x => x.Mahd == id).Tensp.ToString(),
-                Soluong = list.Find(x => x.Mahd == id).Soluong.Value,
-                Tongtien = list.Find(x => x.Mahd == id).Tongtien.Value,
-                Trangthai = list.Find(x => x.Mahd == id).Trangthai.ToString()
-
-            };
-            return hoadon;
-        }
-        public List<Hoadon> Timkiem(string? id, string? idkh, string? idngdung, string? idmagiamgia, DateTime? ngayban, string? tensp, int? soluong, decimal? tongtien, string? trangthai)
-        {
-            if (id == null && idkh == null && idngdung == null && idmagiamgia == null && ngayban == null && tensp == null && soluong == null && tongtien == null && trangthai == null)
-            {
-                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
-            else
-            {
-                var ds = Change().Where(x => x.Mahd == id || x.Idkh == idkh || x.IdnguoiDung == idngdung || x.Idmagiamgia == idmagiamgia || x.Ngayban == ngayban || x.Tensp == tensp || x.Soluong == soluong || x.Tongtien == tongtien || x.Trangthai == trangthai);
-                List<Hoadon> listAdd = new();
-                if (ds.Count() > 0)
-                {
-                    foreach (var item in ds)
-                    {
-                        listAdd.Add(Loc(item.Mahd));
-                    }
-                }
-                else
-                {
-                    listAdd = list;
-                }
-                return listAdd;
-            }
         }
 
     }

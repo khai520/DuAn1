@@ -69,9 +69,7 @@ namespace MainApp.Models
                     .IsUnicode(false)
                     .HasColumnName("IDCTSP");
 
-                entity.Property(e => e.Giaban)
-                    .HasColumnType("money")
-                    .HasColumnName("GIABAN");
+                entity.Property(e => e.Giaban).HasColumnName("GIABAN");
 
                 entity.Property(e => e.Idchatlieu)
                     .HasMaxLength(50)
@@ -99,9 +97,7 @@ namespace MainApp.Models
                     .IsUnicode(false)
                     .HasColumnName("MASP");
 
-                entity.Property(e => e.Tengiay)
-                    .HasMaxLength(50)
-                    .HasColumnName("TENGIAY");
+                entity.Property(e => e.Soluong).HasColumnName("SOLUONG");
 
                 entity.HasOne(d => d.IdchatlieuNavigation)
                     .WithMany(p => p.Ctsanphams)
@@ -186,9 +182,7 @@ namespace MainApp.Models
                     .HasMaxLength(50)
                     .HasColumnName("TENSP");
 
-                entity.Property(e => e.Tongtien)
-                    .HasColumnType("money")
-                    .HasColumnName("TONGTIEN");
+                entity.Property(e => e.Tongtien).HasColumnName("TONGTIEN");
 
                 entity.Property(e => e.Trangthai)
                     .HasMaxLength(50)
@@ -213,7 +207,7 @@ namespace MainApp.Models
             modelBuilder.Entity<Hoadonct>(entity =>
             {
                 entity.HasKey(e => e.Mahdct)
-                    .HasName("PK__HOADONCT__1A700082FC90AC3F");
+                    .HasName("PK__HOADONCT__1A700082B9328D2C");
 
                 entity.ToTable("HOADONCT");
 
@@ -222,9 +216,7 @@ namespace MainApp.Models
                     .IsUnicode(false)
                     .HasColumnName("MAHDCT");
 
-                entity.Property(e => e.Gia)
-                    .HasColumnType("money")
-                    .HasColumnName("GIA");
+                entity.Property(e => e.Gia).HasColumnName("GIA");
 
                 entity.Property(e => e.Idctsp)
                     .HasMaxLength(10)
@@ -245,13 +237,11 @@ namespace MainApp.Models
                 entity.HasOne(d => d.IdctspNavigation)
                     .WithMany(p => p.Hoadoncts)
                     .HasForeignKey(d => d.Idctsp)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_HOADONCT_CTSANPHAM");
 
                 entity.HasOne(d => d.MahdNavigation)
                     .WithMany(p => p.Hoadoncts)
                     .HasForeignKey(d => d.Mahd)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_HOADONCT_HOADON");
             });
 
@@ -466,7 +456,7 @@ namespace MainApp.Models
             modelBuilder.Entity<Sanpham>(entity =>
             {
                 entity.HasKey(e => e.Masp)
-                    .HasName("PK__SANPHAM__60228A326992D711");
+                    .HasName("PK__SANPHAM__60228A32BBB83C98");
 
                 entity.ToTable("SANPHAM");
 
@@ -475,9 +465,7 @@ namespace MainApp.Models
                     .IsUnicode(false)
                     .HasColumnName("MASP");
 
-                entity.Property(e => e.Giaban)
-                    .HasColumnType("money")
-                    .HasColumnName("GIABAN");
+                entity.Property(e => e.Giaban).HasColumnName("GIABAN");
 
                 entity.Property(e => e.Soluong).HasColumnName("SOLUONG");
 

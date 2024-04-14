@@ -15,7 +15,7 @@ namespace WinFormsApp1.Services
     {
 
         SanPhamRepo repo = new SanPhamRepo();
-
+        CtSanphamService ctSanpham = new();
         List<Sanpham> list = new();
         public List<Sanpham> GetSanphams()
 
@@ -50,16 +50,12 @@ namespace WinFormsApp1.Services
             }
             return idtam;
         }
-        public string AddSP(string ten, string soluong, string giaban)
+        public string AddSP(string ten, string giaban)
         {
             string id = XulyId();
             try
             {
-                if (Convert.ToInt32(soluong) < 0)
-                {
-                    return "Số lượng không được nhỏ hơn 0";
-                }
-                else if (Convert.ToInt32(giaban) < 0)
+                if (Convert.ToInt32(giaban) < 0)
                 {
                     return "Giá bán không được nhỏ hơn 0";
                 }
@@ -74,9 +70,9 @@ namespace WinFormsApp1.Services
                     {
                         Masp = id,
                         Tensp = ten,
-                        Soluong = Convert.ToInt32(soluong),
-                        Giaban = Convert.ToDecimal(giaban),
-                        Trangthai = Convert.ToInt32(soluong) == 0 ? "Hết hàng" : "Còn hàng"
+                        Soluong = DemSl(id),
+                        Giaban = Convert.ToInt32(giaban),
+                        Trangthai = Convert.ToInt32(DemSl(id)) == 0 ? "Hết hàng" : "Còn hàng"
                 };
                     if (repo.them(sanpham))
                     {
@@ -92,15 +88,12 @@ namespace WinFormsApp1.Services
             
 
         }
-        public string UpdateSP(string id, string name, string soluong, string giaban)
+        public string UpdateSP(string id, string name, string giaban)
         {
             try
             {
-                if (Convert.ToInt32(soluong) < 0)
-                {
-                    return "Số lượng không được nhỏ hơn 0";
-                }
-                else if (Convert.ToInt32(giaban) < 0)
+
+                if (Convert.ToInt32(giaban) < 0)
                 {
                     return "Giá bán không được nhỏ hơn 0";
                 }
@@ -112,9 +105,9 @@ namespace WinFormsApp1.Services
                 {
                     Sanpham sanpham = list.Find(x => x.Masp == id);
                     sanpham.Tensp = name;
-                    sanpham.Soluong = Convert.ToInt32(soluong);
-                    sanpham.Giaban = Convert.ToDecimal(giaban);
-                    sanpham.Trangthai = Convert.ToInt32(soluong) == 0 ? "Hết hàng" : "Còn hàng";
+                    sanpham.Soluong = DemSl(id);
+                    sanpham.Giaban = Convert.ToInt32(giaban);
+                    sanpham.Trangthai = Convert.ToInt32(sanpham.Soluong) == 0 ? "Hết hàng" : "Còn hàng";
                     if (repo.sua(sanpham))
                     {
                         return "Sửa thành công";
@@ -139,29 +132,24 @@ namespace WinFormsApp1.Services
             else return "Xóa không thành công";
             
         }
-        public List<Sanpham> GetSanphamsByName(string name, List<Sanpham> list)
+        public int DemSl(string masp)
         {
-            return list;
+            int sl = 0;
+            foreach (var item in ctSanpham.GetallChitietsanpham())
+            {
+                if (item.Masp == masp)
+                {
+                    sl += Convert.ToInt32(item.Soluong);
+                }
+            }
+            return sl;
         }
-
-        public List<Sanpham> FindSvByName(string name)
-        {
-            return repo.FindSvByName(name).ToList();
-        }
-
-        public List<Sanpham> Timkiem(string? id, string? tensp, int? soluong, decimal? giaban, string? trangthai)
-        {
-
-            return GetSanphams().Where(x => x.Masp == id || x.Tensp == tensp || x.Soluong == soluong || x.Giaban == giaban || x.Trangthai == trangthai).ToList();
-        }
-        public void UpdateSL(string id , int sl)
+        public void UpdateSL(string id)
         {
             Sanpham sanpham = list.Find(x => x.Masp == id);
-            sanpham.Soluong = sl;
-            sanpham.Trangthai = Convert.ToInt32(sl) == 0 ? "Hết hàng" : "Còn hàng";
+            sanpham.Soluong = DemSl(id);
+            sanpham.Trangthai = Convert.ToInt32(sanpham.Soluong) == 0 ? "Hết hàng" : "Còn hàng";
             repo.sua(sanpham);
-            
-
         }
     }
 }

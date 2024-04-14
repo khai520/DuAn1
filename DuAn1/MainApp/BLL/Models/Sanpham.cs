@@ -13,7 +13,7 @@ namespace MainApp.Models
         public string Masp { get; set; } = null!;
         public string? Tensp { get; set; }
         public int? Soluong { get; set; }
-        public decimal? Giaban { get; set; }
+        public int? Giaban { get; set; }
         public string? Trangthai { get; set; }
 
         public virtual ICollection<Ctsanpham> Ctsanphams { get; set; }

@@ -17,7 +17,7 @@ namespace MainApp.Models
         public DateTime? Ngayban { get; set; }
         public string? Tensp { get; set; }
         public int? Soluong { get; set; }
-        public decimal? Tongtien { get; set; }
+        public int? Tongtien { get; set; }
         public string? Trangthai { get; set; }
 
         public virtual Khachhang? IdkhNavigation { get; set; }

@@ -113,7 +113,7 @@ namespace APPBanHang
         }
         private void LoadData()
         {
-
+            
             //var result = from sp in _sanphamService
             int Stt = 1;
             dgvDanhSachSanPham.DataSource = _sanphamService.GetSanphams().Select(x => new
@@ -129,7 +129,7 @@ namespace APPBanHang
             dgvDanhSachSanPham.Columns[0].HeaderText = "STT";
             dgvDanhSachSanPham.Columns[1].HeaderText = "Masp";
             dgvDanhSachSanPham.Columns[2].HeaderText = "Tên sản phẩm";
-            dgvDanhSachSanPham.Columns[3].HeaderText = "Số lượng";
+            dgvDanhSachSanPham.Columns[3].HeaderText = "Tổng số lượng";
             dgvDanhSachSanPham.Columns[4].HeaderText = "Giá bán";
             dgvDanhSachSanPham.Columns[5].HeaderText = "Trạng thái";
 
@@ -137,12 +137,14 @@ namespace APPBanHang
         }
         public void Loadtab2()
         {
+            _sanphamService.UpdateSL(id);
             int Stt2 = 1;
             var tab2 = ctSanphamService.GetallChitietsanpham().Join(ncc.getallSnhacungcap(), x => x.Idncc, y => y.Idncc, (x, y) => new
             {
                 STT = Stt2++,
                 x.Idctsp,
                 x.Masp,
+                x.Soluong,
                 y.Tenncc,
                 x.Idmau,
                 x.Idchatlieu,
@@ -155,11 +157,12 @@ namespace APPBanHang
                 dgv_tab2.Columns[0].HeaderText = "STT";
                 dgv_tab2.Columns[1].HeaderText = "IDctsp";
                 dgv_tab2.Columns[2].HeaderText = "Masp";
-                dgv_tab2.Columns[3].HeaderText = "Nhà cung cấp";
-                dgv_tab2.Columns[4].HeaderText = "Màu";
-                dgv_tab2.Columns[5].HeaderText = "Chất liệu";
-                dgv_tab2.Columns[6].HeaderText = "Kích thước";
-                dgv_tab2.Columns[7].HeaderText = "Đế giày";
+                dgv_tab2.Columns[3].HeaderText = "Số lượng";
+                dgv_tab2.Columns[4].HeaderText = "Nhà cung cấp";
+                dgv_tab2.Columns[5].HeaderText = "Màu";
+                dgv_tab2.Columns[6].HeaderText = "Chất liệu";
+                dgv_tab2.Columns[7].HeaderText = "Kích thước";
+                dgv_tab2.Columns[8].HeaderText = "Đế giày";
                 cbx_Ncc.DataSource = ncc.getallSnhacungcap().ToList();
                 cbx_Ncc.ValueMember = "IDNCC";
                 cbx_Ncc.DisplayMember = "TENNCC";
@@ -225,16 +228,16 @@ namespace APPBanHang
                 if (check == DialogResult.Yes)
                 {
                     var spdaco = _sanphamService.GetSanphams().Find(x => x.Tensp == txtTenSP.Text);
-                    _sanphamService.UpdateSP(spdaco.Masp, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text);
+                    _sanphamService.UpdateSP(spdaco.Masp, txtTenSP.Text, txtGiaBan.Text);
                 }
                 else if (check == DialogResult.No)
                 {
-                    MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text));
+                    MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtGiaBan.Text));
                 }
             }
             else
             {
-                MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text ));
+                MessageBox.Show(_sanphamService.AddSP(txtTenSP.Text, txtGiaBan.Text));
             }
             LoadData();
         }
@@ -266,7 +269,7 @@ namespace APPBanHang
         private void dgvDanhSachSanPham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int d = e.RowIndex;
-
+            
             if (d < 0)
             {
 
@@ -274,16 +277,17 @@ namespace APPBanHang
             else if (d >= 0)
             {
                 id = dgvDanhSachSanPham.Rows[d].Cells[1].Value.ToString();
+                Clear2();
                 txtTenSP.Text = dgvDanhSachSanPham.Rows[d].Cells[2].Value.ToString();
-                txtSoLuongTon.Text = dgvDanhSachSanPham.Rows[d].Cells[3].Value.ToString();
                 txtGiaBan.Text = dgvDanhSachSanPham.Rows[d].Cells[4].Value.ToString();
             }
+            
             Loadtab2();
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_sanphamService.UpdateSP(id, txtTenSP.Text, txtSoLuongTon.Text, txtGiaBan.Text));
+            MessageBox.Show(_sanphamService.UpdateSP(id, txtTenSP.Text, txtGiaBan.Text));
             LoadData();
         }
 
@@ -307,7 +311,7 @@ namespace APPBanHang
         {
             if (id != null)
             {
-                MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue.ToString(), id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+                MessageBox.Show(ctSanphamService.Them(cbx_Ncc.SelectedValue, id, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text, txt_Sl.Text));
                 Loadtab2();
             }
             else
@@ -324,7 +328,7 @@ namespace APPBanHang
             }
             else
             {
-                MessageBox.Show(ctSanphamService.Sua(idctsp, cbx_Ncc.SelectedValue.ToString(), cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text));
+                MessageBox.Show(ctSanphamService.Sua(idctsp, cbx_Ncc.SelectedValue, cbx_Mau.Text, cbx_Chatlieu.Text, cbx_Kichthuoc.Text, cbx_DeGiay.Text, txt_Sl.Text));
                 Loadtab2();
             }
         }
@@ -336,12 +340,12 @@ namespace APPBanHang
                 MessageBox.Show(ctSanphamService.Xoa(idctsp));
                 Loadtab2();
             }
-            
+
         }
 
         private void dgv_tab2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int d = e.RowIndex, c = e.ColumnIndex;
+            int d = e.RowIndex;
 
             if (d < 0)
             {
@@ -356,28 +360,37 @@ namespace APPBanHang
                 cbx_Kichthuoc.ResetText();
                 idctsp = dgv_tab2.Rows[d].Cells[1].Value.ToString();
                 id = dgv_tab2.Rows[d].Cells[2].Value.ToString();
-                if (dgv_tab2.Rows[d].Cells[3].Value != null)
-                {
-                    cbx_Ncc.SelectedValue = dgv_tab2.Rows[d].Cells[3].Value.ToString();
-                    cbx_Ncc.SelectedText = dgv_tab2.Rows[d].Cells[3].Value.ToString();
-                }
+                txt_Sl.Text = dgv_tab2.Rows[d].Cells[3].Value.ToString();
                 if (dgv_tab2.Rows[d].Cells[4].Value != null)
                 {
-                    cbx_Mau.SelectedText = dgv_tab2.Rows[d].Cells[4].Value.ToString();
+                    cbx_Ncc.SelectedValue = dgv_tab2.Rows[d].Cells[4].Value.ToString();
+                    cbx_Ncc.SelectedText = dgv_tab2.Rows[d].Cells[4].Value.ToString();
                 }
                 if (dgv_tab2.Rows[d].Cells[5].Value != null)
                 {
-                    cbx_Chatlieu.SelectedText = dgv_tab2.Rows[d].Cells[5].Value.ToString();
+                    cbx_Mau.SelectedText = dgv_tab2.Rows[d].Cells[5].Value.ToString();
                 }
                 if (dgv_tab2.Rows[d].Cells[6].Value != null)
                 {
-                    cbx_Kichthuoc.SelectedText = dgv_tab2.Rows[d].Cells[6].Value.ToString();
+                    cbx_Chatlieu.SelectedText = dgv_tab2.Rows[d].Cells[6].Value.ToString();
                 }
                 if (dgv_tab2.Rows[d].Cells[7].Value != null)
                 {
-                    cbx_DeGiay.SelectedText = dgv_tab2.Rows[d].Cells[7].Value.ToString();
+                    cbx_Kichthuoc.SelectedText = dgv_tab2.Rows[d].Cells[7].Value.ToString();
+                }
+                if (dgv_tab2.Rows[d].Cells[8].Value != null)
+                {
+                    cbx_DeGiay.SelectedText = dgv_tab2.Rows[d].Cells[8].Value.ToString();
                 }
             }
+        }
+        public void Clear2()
+        {
+            cbx_Ncc.SelectedIndex = 0;
+            cbx_Mau.SelectedIndex = -1;
+            cbx_Chatlieu.SelectedIndex = -1;
+            cbx_Kichthuoc.SelectedIndex = -1;
+            cbx_DeGiay.SelectedIndex = -1;
         }
         public void Clear()
         {

@@ -29,7 +29,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count() + 1; i++)
+            for (int i = 1; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -39,9 +39,13 @@ namespace Main.DAL.Services
                 {
                     idtam = "HDCT" + "0" + i;
                 }
-                if (list.Where(x => x.Mahdct.Skip(4) == idtam).Count() > 0)
+                if (list.Where(x => x.Mahdct == idtam).Count() > 0)
                 {
                     continue;
+                }
+                else
+                {
+                    break;
                 }
             }
             return idtam;
@@ -49,13 +53,14 @@ namespace Main.DAL.Services
 
         public string AddHoaDonCT( string mahd, string masp, int slban, string gia)
         {
+            string id = XulyId();
                 Hoadonct hdct = new Hoadonct
                 {
-                    Mahdct = XulyId(),
+                    Mahdct = id,
                     Mahd = mahd,
                     Idctsp = masp,
                     Slban = slban,
-                    Gia = Convert.ToDecimal(gia),
+                    Gia = Convert.ToInt32(gia),
                     Ngayban = DateTime.Now.Date,
                 };
                 if (repo.them(hdct))
@@ -66,64 +71,39 @@ namespace Main.DAL.Services
            
            
         }
-        public List<Hoadonct> Change()
-        {
-            List<Hoadonct> list2 = new();
-            foreach (var item in list)
-            {
-                list2.Add(Loc(item.Mahd));
-            }
-            return list2;
-        }
-        public Hoadonct Loc(string id)
-        {
 
-
-            Hoadonct sP = new Hoadonct()
-            {
-                Mahdct = XulyId(),
-                Mahd = id ,
-                Slban = list.Find(x => x.Mahd == id).Slban.Value,
-                Gia = list.Find(x => x.Mahd == id).Gia.Value,
-                Ngayban = list.Find(x => x.Mahd == id).Ngayban.Value
-
-
-            };
-            return sP;
-        }
-
-        public List<Hoadonct> Timkiem(string? id, string? idctsp, int? slban, decimal? gia, DateTime? ngayban)
-        {
-            if (id == null && idctsp == null && slban == null && gia == null && ngayban == null)
-            {
-                MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return null;
-            }
-            else
-            {
-                var ds = Change().Where(x => x.Mahd == id  || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
-                List<Hoadonct> listAdd = new();
-                if (ds.Count() > 0)
-                {
-                    foreach (var item in ds)
-                    {
-                        listAdd.Add(Loc(item.Mahd));
-                    }
-                }
-                else
-                {
-                    listAdd = list;
-                }
-                return listAdd;
-            }
-        }
-        public void UpdateHoaDonCT(string idhdct, int slban, decimal gia)
+        //public List<Hoadonct> Timkiem(string? id, string? idctsp, int? slban, int? gia, DateTime? ngayban)
+        //{
+        //    if (id == null && idctsp == null && slban == null && gia == null && ngayban == null)
+        //    {
+        //        MessageBox.Show("Chưa nhập thông tin để tìm kiếm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //        return null;
+        //    }
+        //    else
+        //    {
+        //        var ds = Change().Where(x => x.Mahd == id  || x.Slban == slban || x.Gia == gia || x.Ngayban == ngayban);
+        //        List<Hoadonct> listAdd = new();
+        //        if (ds.Count() > 0)
+        //        {
+        //            foreach (var item in ds)
+        //            {
+        //                listAdd.Add(Loc(item.Mahd));
+        //            }
+        //        }
+        //        else
+        //        {
+        //            listAdd = list;
+        //        }
+        //        return listAdd;
+        //    }
+        //}
+        public void UpdateHoaDonCT(string idhdct, int slban, int gia)
         {
             try
             {
                 Hoadonct hdct = GetHoaDonCT().Find(x => x.Mahdct == idhdct);
                 hdct.Slban = slban;
-                hdct.Gia = Convert.ToDecimal(gia);
+                hdct.Gia = gia;
                 repo.them(hdct);
 
             }

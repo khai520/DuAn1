@@ -53,13 +53,13 @@
             btnThemSanPham = new Button();
             btnSua = new Button();
             btnXoa = new Button();
-            txtSoLuongTon = new TextBox();
             txtTenSP = new TextBox();
-            label5 = new Label();
             label3 = new Label();
             label2 = new Label();
             tab2 = new TabPage();
             panel4 = new Panel();
+            label9 = new Label();
+            txt_Sl = new TextBox();
             btn_Clear = new Button();
             cbx_Kichthuoc = new ComboBox();
             cbx_Mau = new ComboBox();
@@ -78,6 +78,8 @@
             label14 = new Label();
             label15 = new Label();
             bindingSource1 = new BindingSource(components);
+            btn_tk = new Button();
+            btn_TimKiem = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel2.SuspendLayout();
             tab1.SuspendLayout();
@@ -240,6 +242,7 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
+            panel1.Controls.Add(btn_tk);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(txtGiaBan);
@@ -248,9 +251,7 @@
             panel1.Controls.Add(btnThemSanPham);
             panel1.Controls.Add(btnSua);
             panel1.Controls.Add(btnXoa);
-            panel1.Controls.Add(txtSoLuongTon);
             panel1.Controls.Add(txtTenSP);
-            panel1.Controls.Add(label5);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(8, 7);
@@ -283,7 +284,7 @@
             // txtGiaBan
             // 
             txtGiaBan.BorderStyle = BorderStyle.FixedSingle;
-            txtGiaBan.Location = new Point(404, 83);
+            txtGiaBan.Location = new Point(218, 82);
             txtGiaBan.Name = "txtGiaBan";
             txtGiaBan.Size = new Size(158, 23);
             txtGiaBan.TabIndex = 34;
@@ -304,7 +305,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(404, 60);
+            label6.Location = new Point(218, 59);
             label6.Name = "label6";
             label6.Size = new Size(62, 16);
             label6.TabIndex = 33;
@@ -346,14 +347,6 @@
             btnXoa.UseVisualStyleBackColor = true;
             btnXoa.Click += btnXoa_Click;
             // 
-            // txtSoLuongTon
-            // 
-            txtSoLuongTon.BorderStyle = BorderStyle.FixedSingle;
-            txtSoLuongTon.Location = new Point(220, 83);
-            txtSoLuongTon.Name = "txtSoLuongTon";
-            txtSoLuongTon.Size = new Size(158, 23);
-            txtSoLuongTon.TabIndex = 7;
-            // 
             // txtTenSP
             // 
             txtTenSP.BorderStyle = BorderStyle.FixedSingle;
@@ -361,16 +354,6 @@
             txtTenSP.Name = "txtTenSP";
             txtTenSP.Size = new Size(168, 23);
             txtTenSP.TabIndex = 5;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label5.Location = new Point(217, 60);
-            label5.Name = "label5";
-            label5.Size = new Size(104, 16);
-            label5.TabIndex = 3;
-            label5.Text = "Số Lượng Tồn";
             // 
             // label3
             // 
@@ -406,6 +389,9 @@
             // panel4
             // 
             panel4.BackColor = Color.White;
+            panel4.Controls.Add(btn_TimKiem);
+            panel4.Controls.Add(label9);
+            panel4.Controls.Add(txt_Sl);
             panel4.Controls.Add(btn_Clear);
             panel4.Controls.Add(cbx_Kichthuoc);
             panel4.Controls.Add(cbx_Mau);
@@ -427,6 +413,24 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(890, 468);
             panel4.TabIndex = 5;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Verdana", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.Location = new Point(24, 125);
+            label9.Name = "label9";
+            label9.Size = new Size(70, 16);
+            label9.TabIndex = 40;
+            label9.Text = "Số lượng";
+            // 
+            // txt_Sl
+            // 
+            txt_Sl.BorderStyle = BorderStyle.FixedSingle;
+            txt_Sl.Location = new Point(100, 123);
+            txt_Sl.Name = "txt_Sl";
+            txt_Sl.Size = new Size(110, 23);
+            txt_Sl.TabIndex = 39;
             // 
             // btn_Clear
             // 
@@ -606,6 +610,28 @@
             // 
             bindingSource1.CurrentChanged += bindingSource1_CurrentChanged;
             // 
+            // btn_tk
+            // 
+            btn_tk.FlatStyle = FlatStyle.Flat;
+            btn_tk.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_tk.Location = new Point(707, 110);
+            btn_tk.Name = "btn_tk";
+            btn_tk.Size = new Size(168, 42);
+            btn_tk.TabIndex = 40;
+            btn_tk.Text = "Tìm Kiếm";
+            btn_tk.UseVisualStyleBackColor = true;
+            // 
+            // btn_TimKiem
+            // 
+            btn_TimKiem.FlatStyle = FlatStyle.Flat;
+            btn_TimKiem.Font = new Font("Verdana", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btn_TimKiem.Location = new Point(708, 114);
+            btn_TimKiem.Name = "btn_TimKiem";
+            btn_TimKiem.Size = new Size(168, 42);
+            btn_TimKiem.TabIndex = 41;
+            btn_TimKiem.Text = "Tìm kiếm";
+            btn_TimKiem.UseVisualStyleBackColor = true;
+            // 
             // SanPham
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -666,9 +692,7 @@
         private Label label12;
         private Button btnSua;
         private Button btnXoa;
-        private TextBox txtSoLuongTon;
         private TextBox txtTenSP;
-        private Label label5;
         private Label label3;
         private Label label2;
         public TabControl tab1;
@@ -696,5 +720,9 @@
         private Button btn_Clear;
         private Button button1;
         private Button btnThoat;
+        private Label label9;
+        private TextBox txt_Sl;
+        private Button btn_tk;
+        private Button btn_TimKiem;
     }
 }

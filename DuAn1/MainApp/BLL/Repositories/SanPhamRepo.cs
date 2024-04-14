@@ -47,9 +47,9 @@ namespace WinFormsApp1.Repositories
             }
             
         }
-        public Sanpham findbyname(string ID)
-        {
-            return context.Sanphams.Find(ID);
-        }
+        //public Sanpham findbyname(string ID)
+        //{
+        //    return context.Sanphams.Find(ID);
+        //}
     }
 }
