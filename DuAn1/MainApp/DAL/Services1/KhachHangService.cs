@@ -2,6 +2,7 @@
 using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count; i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -39,34 +40,53 @@ namespace Main.DAL.Services
                 {
                     idtam = "KH" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.Idkh.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.Idkh == idtam).Count() > 0)
                 {
-                    break;
+                    continue;
                 }
+
             }
             return idtam;
         }
 
-        public bool Them(string name, string diachi, string sdt, string email, string diem)
+        public string Them(string name, string diachi, string sdt, string email, string loaikh  )
         {
-            if (CheckValidate(diachi) || CheckValidate(sdt) || CheckValidate(email) || CheckValidate(name))
-            {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
-            }
-            else
-            {
-                Khachhang khach = new Khachhang
+            string id = XulyId();
+          
+               
+                if (CheckValidate(name))
                 {
-                    Idkh = XulyId(),
-                    Ten = name,
-                    Diachi = diachi,
-                    Sdt = sdt,
-                    Email = email,
-                    Diem = diem
-                };
-                return repo.them(khach);
+                    return "Thiếu tên";
+                }
+                else if (CheckValidate(sdt))
+            {
+                return " thiếu sdt";
             }
+                else
+                {
+
+                    Khachhang khachhang = new Khachhang
+                    {
+                        Idkh = id,
+                        Idloaind = loaikh,
+                        Ten = name,
+                        Diachi = diachi,
+                        Sdt = sdt,
+                        Email = email,
+                    
+                    };
+                    if (repo.them(khachhang))
+                    {
+                        return "Add thành công";
+                    }
+                    else { return "Add không thành công"; }
+                }
+            //}
+            //catch (Exception)
+            //{
+            //    return "Sai kiểu dữ liệu";
+            //}
+
 
         }
         public List<Khachhang> Change()
@@ -130,32 +150,56 @@ namespace Main.DAL.Services
         }
 
 
-        public bool Sua(string id, string name, string diachi, string sdt, string email, string diem)
+        public string Sua(string id, string name, string diachi, string sdt, string email, string diem)
         {
-            if (CheckValidate(id) || CheckValidate(diachi) || CheckValidate(sdt) || CheckValidate(email) || CheckValidate(name))
+            try
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
-            }
-            else
-            {
-                Khachhang khach1 = new Khachhang
+                if (CheckValidate(sdt))
                 {
-                    Idkh = id,
-                    Ten = name,
-                    Sdt = sdt,
-                    Diachi = diachi,
-                    Email = email,
-                    Diem = diem
-                };
-                repo.sua(id, khach1);
-                return true;
+                    return "Số lượng không được nhỏ hơn 0";
+                }
+                else if (Convert.ToInt32(sdt) < 0)
+                {
+                    return "Giá bán không được nhỏ hơn 0";
+                }
+                else if (CheckValidate(email))
+                {
+                    return "không được để trống ";
+                }
+                else if (CheckValidate(name))
+                {
+                    return "Thiếu tên";
+                }
+                else
+                {
+                    Khachhang khachhang = list.Find(x => x.Idkh == id);
+                    khachhang.Ten = name;
+                    khachhang.Diachi = diachi ;
+                    khachhang.Sdt = sdt;
+                    khachhang.Email = email;
+                 
+                    if (repo.sua(id,khachhang))
+                    {
+                        return "Sửa thành công";
+                    }
+                    else return "Sửa không thành công";
+                }
+            }
+            catch (Exception)
+            {
+                return "Lỗi dữ liệu";
             }
         }
 
-        public bool Xoa(string ID)
+        public string Xoa(string ID)
         {
-            return true;
+           Khachhang khachhang = list.Find(x => x.Idkh == ID);
+            KhachHangRepo khachHangRepo = new();
+            if (repo.xoa(khachhang.Idkh))
+            {
+                return "Xóa thành công";
+            }
+            else return "Xóa không thành công";
         }
 
         public List<Khachhang> SortByName()

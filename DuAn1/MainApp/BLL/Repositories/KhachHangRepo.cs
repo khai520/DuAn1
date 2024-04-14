@@ -22,8 +22,8 @@ namespace WinFormsApp1.Repositories
         public bool them(Khachhang khachhang)
         {
             context.Khachhangs.Add(khachhang);
-            context.SaveChanges();
-            return true;
+
+            return context.SaveChanges() > 0; 
         }
         public bool sua(string IDND, Khachhang khachhang)
         {
