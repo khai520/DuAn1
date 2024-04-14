@@ -1,5 +1,4 @@
 ﻿
-
 using MainApp.GUI.VIEW;
 using MainApp.Models;
 using System;
@@ -94,15 +93,6 @@ namespace Main.DAL.Services
         {
             try
             {
-                var check = GetallChitietsanpham().Find(x => x.Idncc == Check(idncc)  && x.Idmau == mau && x.Idchatlieu == chatlieu && x.Idkichthuoc == kichthuoc && x.Iddegiay == degiay);
-                if (check != null)
-                {
-                    Xoa(id);
-                    Sua(check.Idctsp, idncc, mau, chatlieu, kichthuoc, degiay, Convert.ToString(check.Soluong + Convert.ToInt32(sl)));
-                    return "Add thành công";
-                }
-                else
-                {
                     Ctsanpham sp = GetallChitietsanpham().Find(x => x.Idctsp == id);
                     sp.Idncc = Check(idncc);
                     sp.Idmau = mau;
@@ -115,9 +105,6 @@ namespace Main.DAL.Services
                         return "Sửa thành công";
                     }
                     else return "Sửa không thành công";
-
-                }
-
             }
             catch (Exception)
             {
@@ -135,7 +122,6 @@ namespace Main.DAL.Services
                 return id.ToString();
             }    
         }
-
         public string Xoa(string ID)
         {
             Ctsanpham sp = sanpham.getallSPrepo().Find(x => x.Idctsp == ID);
