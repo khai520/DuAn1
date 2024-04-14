@@ -111,14 +111,14 @@ namespace APPBanHang
 
                 STT = stt++,
                 x.Idkh,
+
                 x.Idloaind,
                 x.Ten,
                 x.Sdt,
                 x.Diachi,
                 x.Email,
-               
-            }).ToList();
 
+            }).ToList();
             dgvDanhSachKhachHang.Columns[0].HeaderText = "STT";
             dgvDanhSachKhachHang.Columns[1].HeaderText = "idkh";
             dgvDanhSachKhachHang.Columns[2].HeaderText = "idloaind";
@@ -131,23 +131,26 @@ namespace APPBanHang
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if (khachHangService.Getallkh().Find(x => x.Ten == txtTenKhachHang.Text) != null)
+        { if (MessageBox.Show("Bạn có muốn lưu không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                var check = MessageBox.Show("Đã có khách hàng trong danh sách  bạn có muốn cập nhật không", "Thông báo", MessageBoxButtons.YesNoCancel);
-                if (check == DialogResult.Yes)
+                if (khachHangService.Getallkh().Find(x => x.Ten == txtTenKhachHang.Text) != null)
                 {
-                    var spdaco = khachHangService.Getallkh().Find(x => x.Ten == txtTenKhachHang.Text);
-                    khachHangService.Sua(spdaco.Idkh, txtTenKhachHang.Text, txtSoDienThoai.Text, txtDiaChi.Text, txtDiem.Text, txtEmail.Text);
+                    var check = MessageBox.Show("Đã có khách hàng trong danh sách  bạn có muốn cập nhật không", "Thông báo", MessageBoxButtons.YesNoCancel);
+                    if (check == DialogResult.Yes)
+                    {
+                        var spdaco = khachHangService.Getallkh().Find(x => x.Ten == txtTenKhachHang.Text);
+                        khachHangService.Sua(spdaco.Idkh, txtTenKhachHang.Text, txtSoDienThoai.Text, txtDiaChi.Text, txtDiem.Text, txtEmail.Text);
+                    }
+                    else if (check == DialogResult.No)
+                    {
+                        MessageBox.Show(khachHangService.Them(txtTenKhachHang.Text, txtSoDienThoai.Text, txtDiaChi.Text, txtEmail.Text, txtDiem.Text));
+                    }
                 }
-                else if (check == DialogResult.No)
-                {
-                    MessageBox.Show(khachHangService.Them(txtTenKhachHang.Text, txtSoDienThoai.Text, txtDiaChi.Text, txtEmail.Text, txtDiem.Text));
-                }
-            }
+          
             else
             {
                 MessageBox.Show(khachHangService.Them(txtTenKhachHang.Text, txtDiaChi.Text, txtSoDienThoai.Text, txtEmail.Text, txtDiem.Text));
+                }
             }
             loaddatakh();
         }
@@ -189,7 +192,10 @@ namespace APPBanHang
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(khachHangService.Sua(idkh, txtTenKhachHang.Text, txtDiaChi.Text, txtSoDienThoai.Text, txtEmail.Text, txtDiem.Text));
+            if (MessageBox.Show("Bạn có muốn sửa không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                MessageBox.Show(khachHangService.Sua(idkh, txtTenKhachHang.Text, txtDiaChi.Text, txtSoDienThoai.Text, txtEmail.Text, txtDiem.Text));
+            }
             loaddatakh();
         }
 
@@ -198,7 +204,7 @@ namespace APPBanHang
             if (MessageBox.Show("Bạn có muốn xóa không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 MessageBox.Show(khachHangService.Xoa(idkh));
-             loaddatakh() ;
+                loaddatakh();
             }
         }
     }
