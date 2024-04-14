@@ -1,5 +1,4 @@
-﻿
-using MainApp.Models;
+﻿using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,18 +23,17 @@ namespace WinFormsApp1.Repositories
         public bool them(Magiamgium magiamgia)
         {
             context.Magiamgia.Add(magiamgia);
-            context.SaveChanges();
-            return true;
+            return context.SaveChanges() > 0;
+            
         }
         public bool sua( Magiamgium magiamgia)
         {
             context.Update(magiamgia);
             return context.SaveChanges() > 0;
         }
-        public bool xoa(string idxoama)
+        public bool xoa(Magiamgium idxoama)
         {
-            var itemxoa = context.Magiamgia.Find(idxoama);
-            context.Magiamgia.Remove(itemxoa);
+            context.Magiamgia.Remove(idxoama);
             return context.SaveChanges() > 0;
         }
         public Magiamgium findbyname(string ID)

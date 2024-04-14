@@ -1,11 +1,12 @@
 ﻿using Main.DAL.Services;
-using MainApp.Models;
+using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using WinFormsApp1.Repositories;
@@ -17,11 +18,23 @@ namespace WinFormsApp1.Services
         NguoiDungRepo repo = new NguoiDungRepo();
         VaiTroServices vaiTroServices = new VaiTroServices(); 
         List<NguoiDung> list = new List<NguoiDung>();
+        public string Xoa(string id)
+        {
+            NguoiDung idndxoa = list.Find(x => x.IdnguoiDung == id);
+            if(repo.xoa(idndxoa))
+            {
+                return "Xóa thành công";
+            }    
+            else
+            {
+                return "Xóa thất bại";
+            }    
+        }
         public List<NguoiDung> GetallND()
         {
             return list = repo.getallSPrepo();
         }
-        public bool CheckValidate(dynamic Check)
+            public bool CheckValidate(dynamic Check)
         {
             if (Check == null || Check.Length == 0)
             {
@@ -32,7 +45,7 @@ namespace WinFormsApp1.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count(); i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -42,9 +55,9 @@ namespace WinFormsApp1.Services
                 {
                     idtam = "ND" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.IdnguoiDung.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.IdnguoiDung == idtam).Count() > 0)
                 {
-                    break;
+                    continue;
                 }
             }
             return idtam;
@@ -59,12 +72,12 @@ namespace WinFormsApp1.Services
         //    }
         //    return list2;
         //}
-        public bool AddUser(string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
+        public string AddUser(string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
         {
-            if (CheckValidate(ten) || CheckValidate(matkhau) || CheckValidate(diachi) || CheckValidate(email) || CheckValidate(sdt) || CheckValidate(trangthai))
+            if (CheckValidate(ten) || CheckValidate(matkhau) ||CheckValidate(email))
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
+                return "Dữ liệu lỗi hoặc chưa đầy đủ";
+                
             }
             else
             {
@@ -78,31 +91,41 @@ namespace WinFormsApp1.Services
                     Dthoai = sdt,
                     Trangthai = trangthai
                 };
-                return true;
+                if (repo.them(user))
+                {
+                    return "Add thành công";
+                }    
+                else
+                {
+                    return "Add không thành công";
+                }    
             }
 
         }
-        public bool UpdateUser(string id, string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
+        public string UpdateUser(string id, string ten, string matkhau, string diachi, string email, string sdt, string trangthai)
         {
-            if (CheckValidate(ten) || CheckValidate(matkhau) || CheckValidate(diachi) || CheckValidate(email) || CheckValidate(sdt) || CheckValidate(trangthai))
+            if (CheckValidate(ten) || CheckValidate(matkhau) ||CheckValidate(email) )
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
-                return false;
+                return "Sửa thất bại do sai dữ liệu";
             }
             else
             {
-                NguoiDung nguoidung = new NguoiDung
+                NguoiDung nguoidung = list.Find(x => x.IdnguoiDung == id);
+                nguoidung.Ten = ten;
+                nguoidung.MatKhau = matkhau;
+                nguoidung.Diachi = diachi;
+                nguoidung.Email = email;
+                nguoidung.Dthoai = sdt;
+                nguoidung.Trangthai = trangthai;
+
+                if(repo.sua(nguoidung))
                 {
-                    IdnguoiDung = id,
-                    Ten = ten,
-                    MatKhau = matkhau,
-                    Diachi = diachi,
-                    Email = email,
-                    Dthoai = sdt,
-                    Trangthai = trangthai
-                };
-                repo.sua(id, nguoidung);
-                return true;
+                    return "Sửa thành công";
+                }    
+                else
+                {
+                    return "Sửa thất bại";
+                }    
             }
 
         }
@@ -141,4 +164,5 @@ namespace WinFormsApp1.Services
                 return repo.FindSvByName(name).ToList();
             }
         }
+        
 }

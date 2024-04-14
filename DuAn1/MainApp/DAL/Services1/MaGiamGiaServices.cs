@@ -1,5 +1,4 @@
-﻿
-using MainApp.Models;
+﻿using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +21,7 @@ namespace Main.DAL.Services
         public string XulyId()
         {
             string idtam = "";
-            for (int i = 0; i <= list.Count(); i++)
+            for (int i = 0; i <= list.Count() + 1; i++)
             {
                 if (i >= 10)
                 {
@@ -32,9 +31,9 @@ namespace Main.DAL.Services
                 {
                     idtam = "MGG" + "0" + i;
                 }
-                if (list.Where(x => Convert.ToInt32(x.Idmagiamgia.Skip(2)) == i).Count() > 0)
+                if (list.Where(x => x.Idmagiamgia == idtam).Count() > 0)
                 {
-                    break;
+                    continue;
                 }
             }
             return idtam;
@@ -50,11 +49,16 @@ namespace Main.DAL.Services
 
         public bool Them(string name, int phantramgiam, DateTime ngaybatdau, DateTime ngayketthuc)
         {
-            if (CheckValidate(name) || CheckValidate(phantramgiam) || CheckValidate(ngaybatdau) || CheckValidate(ngayketthuc))
+            if (CheckValidate(name))
             {
-                MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
+                MessageBox.Show("Bạn chưa nhập tên mã giảm giá");
                 return false;
             }
+            else if(phantramgiam < 1 || phantramgiam > 70)
+            {
+                MessageBox.Show("Phần trăm giảm không được quá 70%");
+                return false;
+            }    
             else
             {
                 Magiamgium ma = new Magiamgium
@@ -65,37 +69,49 @@ namespace Main.DAL.Services
                     Ngaybatdau = ngaybatdau,
                     Ngayketthuc = ngayketthuc
                 };
-                return true;
+                if(repo.them(ma))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }    
             }
 
         }
-        public bool Sua(string id, string name, int phantramgiam, DateTime ngaybatdau, DateTime ngayketthuc)
+        public bool Sua(string idmgg, string name, int phantramgiam, DateTime ngaybatdau, DateTime ngayketthuc)
         {
-            if (CheckValidate(name) || CheckValidate(phantramgiam) || CheckValidate(ngaybatdau) || CheckValidate(ngayketthuc))
+            if (CheckValidate(name))
             {
                 MessageBox.Show("Dữ liệu nhập vào lỗi hoặc chưa đầy đủ");
                 return false;
             }
+            else if (phantramgiam < 1 || phantramgiam > 70)
+            {
+                MessageBox.Show("Phần trăm giảm không được quá 70%");
+                return false;
+            }
             else
             {
-                Magiamgium magiam = new Magiamgium
-                {
-                    Idmagiamgia = id,
-                    Tenma = name,
-                    Phamtramgiam = phantramgiam,
-                    Ngaybatdau = ngaybatdau,
-                    Ngayketthuc = ngayketthuc
-                };
+                Magiamgium magiam = list.Find(x => x.Idmagiamgia == idmgg);
+                magiam.Tenma = name;
+                magiam.Phamtramgiam = phantramgiam;
+                magiam.Ngaybatdau = ngaybatdau;
+                magiam.Ngayketthuc = ngayketthuc;
                 repo.sua(magiam);
                 return true;
             }
-
-
         }
-
-        public bool Xoa(string ID)
+        public string Xoa(string ID)
         {
-            return true;
+            Magiamgium mggxoa = list.Find(x => x.Idmagiamgia == ID);
+            if (repo.xoa(mggxoa))
+            {
+                return "Xóa thành công";
+            }    
+            else
+            { return "Xóa thất bại"; }    
         }
 
         public List<Magiamgium> FindMGGByName(string name)

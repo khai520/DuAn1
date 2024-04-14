@@ -1,5 +1,5 @@
 ﻿
-using MainApp.Models;
+using MainApp.BLL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,37 +31,15 @@ namespace WinFormsApp1.Repositories
             context.SaveChanges();
             return true;
         }
-        public bool sua(string IDND, NguoiDung nguoiDung)
+        public bool sua(NguoiDung nguoiDung)
         {
-            try
-            {
-                var obj = findbyname(IDND);
-                if (obj == null)
-                {
-                    return false;
-                }
-                obj.IdnguoiDung = nguoiDung.IdnguoiDung;
-                obj.IdvaiTro = nguoiDung.IdvaiTro;
-                obj.Ten = nguoiDung.Ten;
-                obj.MatKhau = nguoiDung.MatKhau;
-                obj.Diachi = nguoiDung.Diachi;
-                obj.Email = nguoiDung.Email;
-                obj.Dthoai = nguoiDung.Dthoai;
-                obj.Trangthai = nguoiDung.Trangthai;
-                context.Update(obj);
-                context.SaveChanges();
-
-                return true;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            context.Update(nguoiDung);
+            return context.SaveChanges() > 0;
         }
-        public bool xoa(string xoaND)
+        public bool xoa(NguoiDung xoaND)
         {
-            var itemxoa = context.NguoiDungs.Find(xoaND);
-            context.NguoiDungs.Remove(itemxoa);
+            
+            context.NguoiDungs.Remove(xoaND);
             return context.SaveChanges() > 0;
         }
         public NguoiDung findbyname(string ID)
