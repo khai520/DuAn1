@@ -6,8 +6,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using WinFormsApp1.Repositories;
 using WinFormsApp1.Services;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Main.DAL.Services
 {
@@ -56,6 +58,22 @@ namespace Main.DAL.Services
         {
             try
             {
+                if (Convert.ToInt32(sl) < 0)
+                {
+                    return "Số lượng không được nhỏ hơn 0";
+                }
+                else if (CheckValidate(mau))
+                {
+                    return "màu không được để trống ";
+                }
+                else if (CheckValidate(chatlieu))
+                {
+                    return "không được để trống ";
+                }
+                else if (CheckValidate(kichthuoc))
+                {
+                    return "không đc để trống ";
+                }
                 var check = GetallChitietsanpham().Find(x => x.Idncc == (idncc == null ? "" : idncc.ToString()) && x.Masp == masp && x.Idmau == mau && x.Idchatlieu == chatlieu && x.Idkichthuoc == kichthuoc && x.Iddegiay == degiay);
                 if (check != null)
                 {
@@ -93,7 +111,23 @@ namespace Main.DAL.Services
         {
             try
             {
-                    Ctsanpham sp = GetallChitietsanpham().Find(x => x.Idctsp == id);
+                if (Convert.ToInt32(sl)<0)
+                {
+                    return "Số lượng không được nhỏ hơn 0";
+                }
+                else if (CheckValidate(mau))
+                {
+                    return "màu không được để trống ";
+                }
+                else if (CheckValidate(chatlieu))
+                {
+                    return "không được để trống ";
+                }
+                else if (CheckValidate(kichthuoc))
+                {
+                    return "không đc để trống ";
+                }
+                Ctsanpham sp = GetallChitietsanpham().Find(x => x.Idctsp == id);
                     sp.Idncc = Check(idncc);
                     sp.Idmau = mau;
                     sp.Idchatlieu = chatlieu;
