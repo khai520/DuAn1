@@ -150,7 +150,7 @@ namespace Main.DAL.Services
         }
 
 
-        public string Sua(string id, string name, string diachi, string sdt, string email, string diem)
+        public string Sua(string id, string name, string diachi, string sdt, string email, string loaikh)
         {
             try
             {
@@ -173,6 +173,7 @@ namespace Main.DAL.Services
                 else
                 {
                     Khachhang khachhang = list.Find(x => x.Idkh == id);
+                    khachhang.Idloaind = loaikh;    
                     khachhang.Ten = name;
                     khachhang.Diachi = diachi ;
                     khachhang.Sdt = sdt;

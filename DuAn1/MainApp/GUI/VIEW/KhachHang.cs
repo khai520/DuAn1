@@ -116,7 +116,7 @@ namespace APPBanHang
                 x.Sdt,
                 x.Diachi,
                 x.Email,
-                x.Diem
+               
             }).ToList();
 
             dgvDanhSachKhachHang.Columns[0].HeaderText = "STT";
