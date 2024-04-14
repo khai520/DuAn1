@@ -345,6 +345,7 @@ namespace APPBanHang
             loaddanhsachsanpham();
             loadhoadonchitiet();
             loadTimKiem();
+            
         }
 
         private void btnQRCode_Click(object sender, EventArgs e)
@@ -364,6 +365,7 @@ namespace APPBanHang
         }
         public void Clear()
         {
+            txtTongTien.Text = "0";
             idsp = null;
             id = null;
             mahdct = null;
@@ -384,6 +386,7 @@ namespace APPBanHang
             {
                 Clear();
                 mahd = dgvDanhSachHoaDon.Rows[d].Cells[1].Value.ToString();
+                txtTongTien.Text = _hoadonService.GetHoadons().Find(x => x.Mahd == mahd).Tongtien.ToString();
                 loadhoadonchitiet();
             }
         }
@@ -634,5 +637,7 @@ namespace APPBanHang
                 MessageBox.Show("Vui lòng chọn Hóa đơn cần xóa");
             }
         }
+
+
     }
 }

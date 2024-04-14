@@ -96,7 +96,6 @@
             btnThanhToan = new Button();
             txtCoupon = new TextBox();
             label8 = new Label();
-            txtTongTien = new TextBox();
             label7 = new Label();
             label9 = new Label();
             label10 = new Label();
@@ -124,6 +123,7 @@
             label34 = new Label();
             panel12 = new Panel();
             label37 = new Label();
+            txtTongTien = new Label();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -665,6 +665,7 @@
             // 
             // panel8
             // 
+            panel8.Controls.Add(txtTongTien);
             panel8.Controls.Add(lb_TT);
             panel8.Controls.Add(lb_TL);
             panel8.Controls.Add(label17);
@@ -679,7 +680,6 @@
             panel8.Controls.Add(btnThanhToan);
             panel8.Controls.Add(txtCoupon);
             panel8.Controls.Add(label8);
-            panel8.Controls.Add(txtTongTien);
             panel8.Controls.Add(label7);
             panel8.Controls.Add(label9);
             panel8.Controls.Add(label10);
@@ -808,6 +808,7 @@
             btnThanhToan.TabIndex = 13;
             btnThanhToan.Text = "Thanh Toán";
             btnThanhToan.UseVisualStyleBackColor = true;
+
             // 
             // txtCoupon
             // 
@@ -824,13 +825,6 @@
             label8.Size = new Size(31, 15);
             label8.TabIndex = 3;
             label8.Text = "VNĐ";
-            // 
-            // txtTongTien
-            // 
-            txtTongTien.Location = new Point(111, 44);
-            txtTongTien.Name = "txtTongTien";
-            txtTongTien.Size = new Size(147, 23);
-            txtTongTien.TabIndex = 2;
             // 
             // label7
             // 
@@ -1094,6 +1088,15 @@
             label37.TabIndex = 0;
             label37.Text = "Thêm chi tiết hóa đơn";
             // 
+            // txtTongTien
+            // 
+            txtTongTien.AutoSize = true;
+            txtTongTien.Location = new Point(114, 51);
+            txtTongTien.Name = "txtTongTien";
+            txtTongTien.Size = new Size(13, 15);
+            txtTongTien.TabIndex = 25;
+            txtTongTien.Text = "0";
+            // 
             // BanHang
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1185,7 +1188,6 @@
         private TextBox txtTenKhachHang;
         private Panel panel8;
         private Label label8;
-        private TextBox txtTongTien;
         private Label label7;
         private Panel panel9;
         private Label label6;
@@ -1254,5 +1256,6 @@
         private Label label39;
         private Label label38;
         private Label lb_Gia;
+        private Label txtTongTien;
     }
 }
