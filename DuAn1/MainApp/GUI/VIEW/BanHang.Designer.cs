@@ -81,6 +81,8 @@
             panel7 = new Panel();
             label3 = new Label();
             panel8 = new Panel();
+            lb_thongbao = new Label();
+            txtTongTien = new Label();
             lb_TT = new Label();
             lb_TL = new Label();
             label17 = new Label();
@@ -123,7 +125,6 @@
             label34 = new Label();
             panel12 = new Panel();
             label37 = new Label();
-            txtTongTien = new Label();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -665,6 +666,7 @@
             // 
             // panel8
             // 
+            panel8.Controls.Add(lb_thongbao);
             panel8.Controls.Add(txtTongTien);
             panel8.Controls.Add(lb_TT);
             panel8.Controls.Add(lb_TL);
@@ -687,6 +689,23 @@
             panel8.Name = "panel8";
             panel8.Size = new Size(370, 316);
             panel8.TabIndex = 78;
+            // 
+            // lb_thongbao
+            // 
+            lb_thongbao.AutoSize = true;
+            lb_thongbao.Location = new Point(276, 78);
+            lb_thongbao.Name = "lb_thongbao";
+            lb_thongbao.Size = new Size(0, 15);
+            lb_thongbao.TabIndex = 26;
+            // 
+            // txtTongTien
+            // 
+            txtTongTien.AutoSize = true;
+            txtTongTien.Location = new Point(114, 51);
+            txtTongTien.Name = "txtTongTien";
+            txtTongTien.Size = new Size(13, 15);
+            txtTongTien.TabIndex = 25;
+            txtTongTien.Text = "0";
             // 
             // lb_TT
             // 
@@ -739,6 +758,7 @@
             txtKhachDua.Name = "txtKhachDua";
             txtKhachDua.Size = new Size(147, 23);
             txtKhachDua.TabIndex = 18;
+            txtKhachDua.TextChanged += txtKhachDua_TextChanged;
             // 
             // panel9
             // 
@@ -808,7 +828,7 @@
             btnThanhToan.TabIndex = 13;
             btnThanhToan.Text = "Thanh Toán";
             btnThanhToan.UseVisualStyleBackColor = true;
-
+            btnThanhToan.Click += btnThanhToan_Click;
             // 
             // txtCoupon
             // 
@@ -816,6 +836,7 @@
             txtCoupon.Name = "txtCoupon";
             txtCoupon.Size = new Size(147, 23);
             txtCoupon.TabIndex = 5;
+            txtCoupon.TextChanged += txtCoupon_TextChanged;
             // 
             // label8
             // 
@@ -1088,15 +1109,6 @@
             label37.TabIndex = 0;
             label37.Text = "Thêm chi tiết hóa đơn";
             // 
-            // txtTongTien
-            // 
-            txtTongTien.AutoSize = true;
-            txtTongTien.Location = new Point(114, 51);
-            txtTongTien.Name = "txtTongTien";
-            txtTongTien.Size = new Size(13, 15);
-            txtTongTien.TabIndex = 25;
-            txtTongTien.Text = "0";
-            // 
             // BanHang
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1257,5 +1269,6 @@
         private Label label38;
         private Label lb_Gia;
         private Label txtTongTien;
+        private Label lb_thongbao;
     }
 }

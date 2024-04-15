@@ -23,6 +23,7 @@ namespace APPBanHang
         KichThuocService _kichthuoc;
         Chatlieuservices _Cl;
         DeGiayService _dg;
+        MaGiamGiaServices _mgg;
         string mahd, id, mahdct, idsp;
         int sltong, gia, sl;
         //int _idCellClick;
@@ -177,7 +178,7 @@ namespace APPBanHang
                 x.Tongtien,
                 x.Trangthai,
                 x.Soluong,
-            }).ToList().Where(x => x.Trangthai == "CHUA TT").ToList();
+            }).ToList().OrderBy(x => x.Trangthai).ToList();
             dgvDanhSachHoaDon.Columns[0].HeaderText = "STT";
             dgvDanhSachHoaDon.Columns[1].HeaderText = "MaHD";
             dgvDanhSachHoaDon.Columns[2].HeaderText = "Tên khách hàng";
@@ -341,11 +342,12 @@ namespace APPBanHang
             _kichthuoc = new();
             _Cl = new();
             _dg = new();
+            _mgg = new();
             loaddanhsachhoadon();
             loaddanhsachsanpham();
             loadhoadonchitiet();
             loadTimKiem();
-            
+
         }
 
         private void btnQRCode_Click(object sender, EventArgs e)
@@ -365,7 +367,6 @@ namespace APPBanHang
         }
         public void Clear()
         {
-            txtTongTien.Text = "0";
             idsp = null;
             id = null;
             mahdct = null;
@@ -387,6 +388,7 @@ namespace APPBanHang
                 Clear();
                 mahd = dgvDanhSachHoaDon.Rows[d].Cells[1].Value.ToString();
                 txtTongTien.Text = _hoadonService.GetHoadons().Find(x => x.Mahd == mahd).Tongtien.ToString();
+                lb_TT.Text = txtTongTien.Text;
                 loadhoadonchitiet();
             }
         }
@@ -425,7 +427,6 @@ namespace APPBanHang
                 sltong += Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
                 nUD.Maximum = sltong;
                 lb_SPThem.Text = dgvHoaDonChiTiet.Rows[d].Cells[1].Value.ToString();
-                MessageBox.Show($"{sltong}");
                 mahdct = dgvHoaDonChiTiet.Rows[d].Cells[5].Value.ToString();
                 mahd = dgvHoaDonChiTiet.Rows[d].Cells[6].Value.ToString();
                 nUD.Value = Convert.ToInt32(dgvHoaDonChiTiet.Rows[d].Cells[2].Value.ToString());
@@ -484,6 +485,8 @@ namespace APPBanHang
                             }
                             _hoadonService.UpdateGia(mahd, Tongtien());
                             _SanphamServices.UpdateSL(idsp);
+                            txtTongTien.Text = Convert.ToString(Tongtien());
+                            lb_TT.Text = txtTongTien.Text;
                             BanHang_Load_1(sender, e);
                             Clear();
                         }
@@ -552,6 +555,8 @@ namespace APPBanHang
                     _hoadonChiTietServices.XoaHDCT(mahdct);
                     _ctsp.UpdateSL(id, sl + Convert.ToInt32(nUD.Value));
                     _hoadonService.UpdateGia(mahd, Tongtien());
+                    txtTongTien.Text = Convert.ToString(Tongtien());
+                    lb_TT.Text = txtTongTien.Text;
                     _SanphamServices.UpdateSL(idsp);
                     BanHang_Load_1(sender, e);
                     Clear();
@@ -620,17 +625,22 @@ namespace APPBanHang
         {
             if (mahd != null)
             {
-                foreach (var item in _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Mahd == mahd))
+                foreach (var item in _hoadonChiTietServices.GetHoaDonCT().Where(x => x.Mahd == mahd).ToList())
                 {
                     mahdct = item.Mahdct;
                     id = item.Idctsp;
+                    foreach (var item1 in _SanphamServices.GetSanphams())
+                    {
+                        idsp = item1.Masp;
+                        _SanphamServices.UpdateSL(idsp);
+                    }
                     sl = Convert.ToInt32(_ctsp.GetallChitietsanpham().Find(x => x.Idctsp == id).Soluong);
                     _hoadonChiTietServices.XoaHDCT(mahdct);
                     _ctsp.UpdateSL(id, sl + Convert.ToInt32(item.Slban));
-                    _SanphamServices.UpdateSL(idsp);
-                    BanHang_Load_1(sender, e);
-                    Clear();
+                    
                 }
+                _hoadonService.Delete(mahd);
+                loaddanhsachhoadon();
             }
             else
             {
@@ -638,6 +648,66 @@ namespace APPBanHang
             }
         }
 
+        private void txtCoupon_TextChanged(object sender, EventArgs e)
+        {
+            lb_thongbao.Text = null;
+            var check = _mgg.Getallmagiam().Find(x => x.Tenma == txtCoupon.Text);
+            if (check != null)
+            {
+                double tong = Convert.ToDouble(txtTongTien.Text) * Convert.ToDouble(Convert.ToDouble(check.Phamtramgiam) / 100);
+                lb_TT.Text = Convert.ToString(tong);
+            }
+            else
+            {
+                lb_thongbao.Text = "Mã không hợp lệ";
+                
+            }
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            if (mahd != null)
+            {
+                if (txtKhachDua.Text != null)
+                {
+                    if (Convert.ToInt32(lb_TL.Text) >= 0)
+                    {
+                        MessageBox.Show("Thanh toán thành công");
+                        _hoadonService.UpdateTT(mahd);
+                        loaddanhsachhoadon();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thiếu tiền");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng nhập số tiền thanh toán");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn Hóa đơn muốn thanh toán");
+            }
+           
+           
+
+        }
+
+        private void txtKhachDua_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                lb_TL.Text = Convert.ToString(Convert.ToInt32(txtKhachDua.Text) - Convert.ToInt32(lb_TT.Text));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Vui lòng nhập lại");
+                txtKhachDua.Text = null;
+            }   
+        }
 
     }
 }

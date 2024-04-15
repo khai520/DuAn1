@@ -89,6 +89,17 @@ namespace Main.DAL.Services
             hoadon.Tongtien = Convert.ToInt32(gia);
             repo.sua(hoadon);
         }
+        public void UpdateTT(string mahd)
+        {
+            Hoadon hoadon = GetHoadons().Find(x => x.Mahd == mahd);
+            hoadon.Trangthai = "Đã TT";
+            repo.sua(hoadon);
+        }
+        public void Delete(string id)
+        {
+            Hoadon hoadon = GetHoadons().Find(x => x.Mahd == id);
+            repo.xoa(hoadon);
+        }
 
     }
 }

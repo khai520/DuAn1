@@ -6,6 +6,36 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
+      "AForge/2.2.5": {
+        "runtime": {
+          "lib/AForge.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.0"
+          }
+        }
+      },
+      "AForge.Video/2.2.5": {
+        "dependencies": {
+          "AForge": "2.2.5"
+        },
+        "runtime": {
+          "lib/AForge.Video.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.0"
+          }
+        }
+      },
+      "AForge.Video.DirectShow/2.2.5": {
+        "dependencies": {
+          "AForge.Video": "2.2.5"
+        },
+        "runtime": {
+          "lib/AForge.Video.DirectShow.dll": {
+            "assemblyVersion": "2.2.5.0",
+            "fileVersion": "2.2.5.0"
+          }
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -353,6 +383,11 @@
           }
         }
       },
+      "NETStandard.Library/2.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "3.1.0"
+        }
+      },
       "System.Collections.Immutable/6.0.0": {
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
@@ -575,10 +610,42 @@
             "fileVersion": "4.700.19.56404"
           }
         }
+      },
+      "ZXing.Net/0.16.4": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/zxing.dll": {
+            "assemblyVersion": "0.16.4.0",
+            "fileVersion": "0.16.4.0"
+          }
+        }
       }
     }
   },
   "libraries": {
+    "AForge/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-clkumhM9DggqIzEXAHgVLeWO4arG5YfoPr7J4jfjJx35AoeEIJSSm49J25bwp/9mXQYLwi7y1Wunc8qgYJsGxg==",
+      "path": "aforge/2.2.5",
+      "hashPath": "aforge.2.2.5.nupkg.sha512"
+    },
+    "AForge.Video/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XqzcOXtBUagEPRqg/00oayxlCPmxP4284SdM62mVotsNoD03fs19BrzdMBfhUOOYPyd0B/IXH7tEWnSDmc2gxA==",
+      "path": "aforge.video/2.2.5",
+      "hashPath": "aforge.video.2.2.5.nupkg.sha512"
+    },
+    "AForge.Video.DirectShow/2.2.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pEch6felU/RGAbl0A7yjaQjsGxwiRFU9R+qBqR92wQo++XhzPLeQaZHnAPIBYaG7MfoqtjgCDkK4z3Tra4VQ3w==",
+      "path": "aforge.video.directshow/2.2.5",
+      "hashPath": "aforge.video.directshow.2.2.5.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
@@ -782,6 +849,13 @@
       "path": "microsoft.win32.systemevents/4.7.0",
       "hashPath": "microsoft.win32.systemevents.4.7.0.nupkg.sha512"
     },
+    "NETStandard.Library/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
+      "path": "netstandard.library/2.0.0",
+      "hashPath": "netstandard.library.2.0.0.nupkg.sha512"
+    },
     "System.Collections.Immutable/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -879,6 +953,13 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "ZXing.Net/0.16.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9Qaq+ovAlJ5SL+1HiIzNXOLObj0iCPAytDtsa7QVSn7qx/CspfnlnleGYLeCiESTHBwW1ERxI1MBc2veFsK1sg==",
+      "path": "zxing.net/0.16.4",
+      "hashPath": "zxing.net.0.16.4.nupkg.sha512"
     }
   }
 }

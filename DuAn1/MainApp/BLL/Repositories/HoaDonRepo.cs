@@ -32,10 +32,9 @@ namespace WinFormsApp1.Repositories
                 context.Update(hoadon);
                 return context.SaveChanges()> 0;
         }
-        public bool xoa(string xoahd)
+        public bool xoa(Hoadon xoahd)
         {
-            var itemxoa = context.Hoadons.Find(xoahd);
-            context.Hoadons.Remove(itemxoa);
+            context.Hoadons.Remove(xoahd);
             return context.SaveChanges() > 0;
         }
         public Hoadon findbyname(string ID)
